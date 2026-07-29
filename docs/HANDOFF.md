@@ -2,7 +2,7 @@
 
 Kontekst dla nowej sesji. Przeczytaj to zamiast odtwarzać historię rozmowy.
 
-Stan na: 28 lipca 2026.
+Stan na: 29 lipca 2026.
 
 ---
 
@@ -98,9 +98,18 @@ inne ilorazy szans, inne liczebności modeli. Źródłem prawdy jest PDF pracy p
 **Nie publikuj** transkrypcji wywiadów, surowych plików ankiety ani danych
 respondentów. Tylko agregaty. Folder pracy nie należy do repo.
 
-**`myfonts/` zawiera licencjonowane kroje** (Druk Wide, Noirden). Przed
-upublicznieniem repozytorium sprawdź licencję — jeśli nie pozwala, dodaj do
-`.gitignore`, a WOFF2 odtwarza `scripts/build-webfonts.py`.
+**`myfonts/` JEST w repozytorium, celowo.** Druk Wide i Noirden to licencjonowane
+kroje komercyjne, ale bez nich projekt się nie zbuduje — kopia zapasowa, z której
+nie da się odtworzyć projektu, nie jest kopią zapasową. Jest to akceptowalne,
+dopóki repozytorium pozostaje **prywatne**, jako osobista kopia archiwalna.
+**Przed upublicznieniem trzeba je usunąć z historii** (razem z CV z wcześniejszego
+commita). WOFF2 odtwarza `scripts/build-webfonts.py`.
+
+**Polskie znaki.** Noirden nie ma `ą ć ę ń ś ź ż` — ma tylko `ó` i `ł`. Bez
+obsługi przeglądarka podmienia pojedyncze litery na font systemowy w środku wyrazu.
+Rozwiązane regułą `:lang(pl)` w `globals.css`, która przełącza na Oswalda
+(pełne pokrycie). Dotyczy trzech cytatów; **każdy nowy tekst po polsku musi mieć
+`lang="pl"`**, inaczej wróci ten sam problem.
 
 ---
 
@@ -121,29 +130,84 @@ zero kolizji tekstu w SVG, fokus klawiaturą działa, menu mobilne przenosi i od
 
 ## Co dalej
 
-### Etap A — dokończenie strony
+Etap A jest **zamknięty**: prawdziwe dane kontaktowe, portret, usunięte fikcyjne
+case studies, obsługa strony z jedną pracą, naprawione polskie znaki, kopia na
+GitHubie (`gregseweryn/portfolio`, prywatne).
 
-Zrobione: usunięcie czterech fikcyjnych case studies, obsługa strony z jedną pracą
-(brak bloku „Next study", licznik prac, ukryty pusty indeks), ukrycie linków do CV.
+### Etap A2 — do publikacji (priorytet, w tej kolejności)
 
-**Zostało — zablokowane na danych od właściciela:**
+**1. Wdrożenie na Vercela — największa blokada.**
+Bez adresu URL nie da się wysłać niczego rekruterowi. Projekt jest statyczny,
+bez backendu, więc wdrożenie to podpięcie repo i domena. Repo jest prywatne —
+Vercel to obsłuży po autoryzacji GitHuba.
 
-1. **`lib/site.ts`** — trzy `TODO(replace)`: prawdziwy e-mail (teraz
-   `hello@grzegorzseweryn.com`), lokalizacja, LinkedIn (teraz `https://www.linkedin.com/`)
-   i link „Read / Writing" (teraz `https://medium.com/`). Martwe linki są gorsze
-   niż ich brak — jeśli profilu do pisania nie ma, usuń pozycję.
-2. **CV** — `site.resumeHref` jest `null`, więc wszystkie trzy przyciski pobierania
-   są ukryte. Wystarczy wrzucić plik do `public/` i ustawić ścieżkę, żeby wróciły.
-   Poprzedni plik był 683-bajtowym placeholderem i został usunięty.
-3. **Portret na `/about`** — wciąż pusta ramka `MediaFrame`. Właściciel nie ma
-   jeszcze zdjęcia.
+**2. Reset scrolla przy zmianie trasy — potwierdzony błąd.**
+`components/SmoothScroll.tsx` tworzy instancję Lenis raz, w `useEffect` z pustą
+tablicą zależności, i **nigdy nie dowiaduje się o zmianie trasy**. Next normalnie
+przewija na górę przy nawigacji, ale Lenis trzyma własny stan pozycji i nadpisuje
+`window.scrollTo`, więc reset Nexta nie działa — użytkownik zostaje tam, gdzie był.
 
-**Zostało — do zrobienia bez blokad:**
+Kierunek naprawy: dodać `usePathname()`, a na jego zmianę wywołać
+`lenis.scrollTo(0, { immediate: true })`. Uwaga na dwa przypadki brzegowe: nawigacja
+z kotwicą (`/#work`) nie powinna skakać na górę, a `prefers-reduced-motion` wyłącza
+Lenis w całości, więc tam scroll natywny działa już poprawnie.
 
-4. **Kompresja PDF-a pracy** — 6,2 MB, cel ~2 MB przez downsampling obrazów.
-   Jeśli ucierpi czytelność tabel, zostaw oryginał.
-5. **Obraz OG** dla case study — `generateMetadata` w `app/work/[slug]/page.tsx`
-   już istnieje, brakuje statycznego PNG w `public/`.
+Nie da się tego zweryfikować w panelu przeglądarki Claude'a — nie kompozytuje klatek,
+więc pętla `requestAnimationFrame` Lenisa stoi. **Testuj w prawdziwej przeglądarce.**
+
+**3. Nagłówki bezpieczeństwa.** Obecnie żadnych. Do dodania w `next.config.mjs`
+przez `headers()`: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`,
+`Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options` (albo `frame-ancestors`
+w CSP). CSP wymaga uwagi, bo GSAP i Lenis wstrzykują style — zacznij od
+`Content-Security-Policy-Report-Only` i dopiero po weryfikacji przełącz na egzekwowanie.
+
+**4. `npm audit fix`** — trzy podatności o wysokiej wadze w `libvips` przez `sharp`
+(CVE-2026-33327/33328/35590/35591). Sharp jest zależnością build-time do optymalizacji
+obrazów i nie trafia do przeglądarki, więc ryzyko dla odwiedzającego jest zerowe,
+ale build powinien być czysty.
+
+**5. Formalny tytuł pracy.** Nagłówek zostaje redakcyjny („Who pays for a tourist
+city"), ale pełny tytuł — *Turystyfikacja Krakowa: percepcja mieszkańców* — ma się
+pojawić przy PDF-ie w sekcji pobierania i w metadanych strony. Decyzja właściciela.
+
+**6. Obraz OG** — `generateMetadata` w `app/work/[slug]/page.tsx` już istnieje,
+brakuje statycznego PNG w `public/`.
+
+**7. Kompresja PDF-a pracy** — 6,2 MB, cel ~2 MB. Jeśli ucierpi czytelność tabel,
+zostaw oryginał.
+
+### Etap A3 — tło w nagłówku case study
+
+Właściciel chce wizualne tło w pierwszym ekranie strony z pracą (tam, gdzie tytuł
+i diagram trzech dzielnic). **Nie pod wykresami** — to zostało odrzucone, bo cofnęłoby
+pracę nad kontrastem.
+
+Czego użyć: impeccable nie generuje obrazów rastrowych, projektuje wizualizacje
+w kodzie. Do dyspozycji: SVG, canvas, WebGL. Na stronie głównej jest już
+`components/ShaderField.tsx` (OGL/WebGL) — wzorzec i obsługa `prefers-reduced-motion`,
+pauzy poza ekranem i sprzątania kontekstu są tam gotowe do skopiowania.
+
+Ograniczenia, których nie wolno złamać: nagłówek musi zachować kontrast ≥3:1,
+diagram `DistrictPhases` nie może konkurować z tłem, a całość musi mieć wariant dla
+zredukowanego ruchu. Rejestr jest near-monochrome — gradient ani zdjęcie tu nie pasują.
+
+### Bezpieczeństwo — co jest, a co nie jest problemem
+
+Strona jest statyczna: bez backendu, bazy, formularzy, logowania i danych użytkownika.
+**Nie dotyczą jej** SQL injection, XSS z danych wejściowych, CSRF, przejęcie sesji
+ani rate limiting — nie ma czego atakować.
+
+Realne pozycje to: nagłówki bezpieczeństwa (punkt 3), łańcuch zależności (punkt 4)
+i higiena danych osobowych. Ta ostatnia została już rozstrzygnięta — **CV zdjęte
+ze strony**, bo zawiera numer telefonu `+48 508 649 968`, a publiczny PDF to
+dokładnie to, co skanują boty zbierające numery. Plik leży w `private/`
+(poza serwowanym katalogiem, wykluczony z gita), `site.resumeHref` jest `null`,
+więc wszystkie trzy przyciski pobierania są ukryte. CV idzie bezpośrednio do
+rekruterów, którzy się odezwą.
+
+Uwaga: CV znajduje się w historii gita z wcześniejszego commita. Repo jest prywatne,
+więc to akceptowalne jako kopia zapasowa — ale **przed ewentualnym upublicznieniem
+repozytorium trzeba wyczyścić historię** (razem z `myfonts/`).
 
 ### Etap B — druga praca
 
