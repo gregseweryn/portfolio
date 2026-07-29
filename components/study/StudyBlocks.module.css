@@ -1,0 +1,230 @@
+/* Case study content blocks.
+   Flat by default, near-monochrome, accent reserved for a single mark per
+   block. Depth comes from scale and space, never from shadow. */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: 40rem;
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+}
+
+.media {
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+/* ---- Stats row ---- */
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 5vw, 3.5rem);
+  border-block: 1px solid var(--line);
+  padding-block: 1.75rem;
+  margin: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.statValue {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 1.1rem + 1.8vw, 2.4rem);
+  line-height: 1;
+  letter-spacing: var(--ls-display);
+}
+
+/* Hierarchy runs value -> label -> note. The note was on --line, a divider
+   token, which lands at 1.42:1; text colours come from the text ramp. */
+.statLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--ink);
+}
+
+.statNote {
+  color: var(--muted);
+}
+
+/* ---- Interview quote ----
+   The Polish original is the evidence, so it carries the weight; the
+   translation is a courtesy and sits quieter beneath it. */
+.quote {
+  max-width: 44rem;
+  margin: 0;
+  padding-left: clamp(1rem, 3vw, 2rem);
+  border-left: 2px solid var(--accent);
+}
+
+.quoteOriginal {
+  margin: 0;
+  font-size: var(--text-lead);
+  line-height: 1.45;
+  text-wrap: pretty;
+}
+
+.quoteOriginal::before {
+  content: "\201E";
+}
+
+.quoteOriginal::after {
+  content: "\201D";
+}
+
+.quoteTranslation {
+  margin-top: 0.85rem;
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 38rem;
+}
+
+.quoteAttribution {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+}
+
+.quoteSpeaker {
+  color: var(--ink);
+}
+
+.quoteContext::before {
+  content: "/ ";
+  color: var(--line);
+}
+
+/* ---- Method note (collapsed depth) ---- */
+.note {
+  max-width: 44rem;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.noteSummary {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding-block: 0.9rem;
+  cursor: pointer;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  list-style: none;
+  transition: color var(--dur) var(--ease-out);
+}
+
+.noteSummary::-webkit-details-marker {
+  display: none;
+}
+
+.noteSummary:hover,
+.noteSummary:focus-visible {
+  color: var(--ink);
+}
+
+/* Plus/minus drawn from two rules so it needs no icon font. */
+.noteMarker {
+  position: relative;
+  flex: none;
+  width: 10px;
+  height: 10px;
+}
+
+.noteMarker::before,
+.noteMarker::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 auto 0;
+  height: 1px;
+  background: currentColor;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.noteMarker::after {
+  transform: rotate(90deg);
+}
+
+.note[open] .noteMarker::after {
+  transform: rotate(0deg);
+}
+
+.noteBody {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding-bottom: 1.4rem;
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--muted);
+  max-width: 38rem;
+}
+
+/* ---- Callout (the "so what" layer) ---- */
+.callout {
+  max-width: 44rem;
+  border-top: 2px solid var(--ink);
+  padding-top: 1.25rem;
+}
+
+.calloutLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.calloutBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.9rem;
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+}
+
+/* ---- Numbered list ---- */
+.list {
+  display: grid;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+  max-width: 44rem;
+}
+
+/* A hairline per item carries the structure that the numbers used to. */
+.listItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  border-top: 1px solid var(--line);
+  padding-top: clamp(0.9rem, 2vw, 1.25rem);
+}
+
+.listTitle {
+  font-size: var(--text-h3);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+}
+
+.listBody {
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+

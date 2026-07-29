@@ -1,0 +1,69 @@
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# Salvaged object store from the 29.07.2026 corruption. Kept on disk in case
+# anything else needs recovering from its dangling blobs; not part of history.
+/.git.corrupt/
+
+# Research source material. Contains raw survey exports, interview transcripts
+# and respondent contact details — must never be committed or published. Only
+# the aggregates in lib/data/thesis/ are safe, and those are generated from it
+# by scripts/extract-thesis-data.py.
+/Wszystkie aktualne pliki związane z pracą/
+
+# NOTE: myfonts/ IS committed, deliberately. Druk Wide and Noirden are licensed
+# commercial faces, and the app will not build without them — a backup that
+# can't restore isn't a backup. This is fine while the repository is PRIVATE,
+# as a personal archival copy.
+#
+# BEFORE MAKING THIS REPOSITORY PUBLIC: remove myfonts/ from history, or
+# confirm the licences permit redistribution. scripts/build-webfonts.py
+# regenerates the WOFF2 builds from the masters.
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+.env
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# impeccable-live-ignore-start
+.impeccable/hook.cache.json
+.impeccable/hook.pending.json
+.impeccable/config.local.json
+.impeccable/live/server.json
+.impeccable/live/sessions/
+.impeccable/live/previews/
+.impeccable/live/annotations/
+.impeccable/live/cache/
+.impeccable/live/manual-edit-apply-transaction.json
+.impeccable/live/manual-edit-events.jsonl
+.impeccable/live/manual-edit-evidence/
+.impeccable/live/pending-manual-edits.json
+.impeccable/live/deferred-svelte-component-accepts.json
+.impeccable-live.json
+.impeccable-live/
+node_modules/.impeccable-live/
+src/lib/impeccable/ImpeccableLiveRoot.svelte
+src/lib/impeccable/__runtime.js
+src/lib/impeccable/[0-9a-f]*/
+# impeccable-live-ignore-end

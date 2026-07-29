@@ -1,0 +1,109 @@
+.figure {
+  margin: 0;
+  /* See charts.module.css — keeps the table scrolling inside its own box. */
+  min-width: 0;
+}
+
+.scroll {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--surface);
+}
+
+.table {
+  width: 100%;
+  min-width: 780px;
+  border-collapse: collapse;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.table thead th {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 1rem 1.1rem;
+  border-bottom: 1px solid var(--ink);
+  vertical-align: bottom;
+}
+
+.table tbody th {
+  font-weight: 700;
+  color: var(--ink);
+  width: 18%;
+}
+
+.table tbody td,
+.table tbody th {
+  padding: 1.1rem;
+  border-bottom: 1px solid var(--line);
+  vertical-align: top;
+}
+
+.table tbody tr:last-child td,
+.table tbody tr:last-child th {
+  border-bottom: 0;
+}
+
+.table tbody td:nth-child(2) {
+  color: var(--muted);
+  width: 30%;
+}
+
+.table tbody td:nth-child(3) {
+  width: 22%;
+}
+
+.verdict {
+  display: block;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.note {
+  display: block;
+  margin-top: 0.4rem;
+  color: var(--muted);
+}
+
+/* The one row where the strands disagree. A convergent design is supposed to
+   surface that, so it gets marked rather than smoothed over. */
+.tension {
+  background: var(--bg);
+}
+
+.tension th[scope="row"] {
+  box-shadow: inset 3px 0 0 var(--accent);
+}
+
+.tension .verdict {
+  color: var(--accent);
+}
+
+.caption {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-top: 0.9rem;
+  max-width: 46rem;
+}
+
+.captionText {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.source {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+}

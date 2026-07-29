@@ -1,0 +1,96 @@
+{
+  "source": "Thesis chapter V; coding matrix from Analiza_jakosciowa_zweryfikowana (verified against the final thesis)",
+  "note": "Reflexive thematic analysis (Braun & Clarke) of 10 in-depth interviews. Hybrid framing: deductive themes follow the four dimensions of urban tourism hypertrophy; inductive themes emerged from the corpus.",
+  "intensity": { "0": "absent", "1": "present", "2": "central" },
+  "respondents": [
+    { "name": "Hanna", "district": "Old Town", "note": "6 years, owner, has decided to leave" },
+    { "name": "Stefania", "district": "Old Town", "note": "lifelong resident, 70+, owner, staying" },
+    { "name": "Marian", "district": "Old Town", "note": "5th generation, restaurateur, owner" },
+    { "name": "Dorota", "district": "Kazimierz", "note": "8 years, owner, considering leaving" },
+    { "name": "Kinga", "district": "Kazimierz", "note": "4 years, student, rents a room" },
+    { "name": "Adam", "district": "Kazimierz", "note": "20 years, architect, owner" },
+    { "name": "Natalia", "district": "Podgórze", "note": "15 years, teacher, district councillor" },
+    { "name": "Paweł", "district": "Podgórze", "note": "7 years, works in hospitality, renter" },
+    { "name": "Bartek", "district": "Podgórze", "note": "12 years, IT, owner, two children" },
+    { "name": "Damian", "district": "central, mobile", "note": "boundary case — analysed, not quoted" }
+  ],
+  "themes": [
+    {
+      "code": "T1",
+      "label": "A building without neighbours",
+      "gloss": "Short-term rental as the mechanism that unravels neighbourhood ties",
+      "origin": "deductive",
+      "intensity": [2, 2, 2, 2, 1, 2, 1, 1, 1, 1]
+    },
+    {
+      "code": "T2",
+      "label": "A night that isn't ours",
+      "gloss": "Noise, and the futility of doing anything about it",
+      "origin": "deductive",
+      "intensity": [2, 2, 1, 2, 1, 2, 1, 0, 0, 0]
+    },
+    {
+      "code": "T3",
+      "label": "The infrastructure of everyday life",
+      "gloss": "Everyday shops disappear; a two-tier price economy takes hold",
+      "origin": "deductive",
+      "intensity": [2, 2, 1, 1, 2, 1, 1, 1, 2, 2]
+    },
+    {
+      "code": "T4",
+      "label": "From home to stage set",
+      "gloss": "Loss of domesticity and of the district's identity",
+      "origin": "deductive",
+      "intensity": [2, 2, 1, 2, 0, 2, 1, 1, 1, 0]
+    },
+    {
+      "code": "T5",
+      "label": "Benefits, and who gets them",
+      "gloss": "Benefits are real but positional — visible to owners and to people in the trade",
+      "origin": "deductive",
+      "intensity": [0, 0, 2, 1, 2, 1, 1, 2, 1, 1]
+    },
+    {
+      "code": "T6",
+      "label": "Authority without trust",
+      "gloss": "Criticism of the city that cuts across every other division",
+      "origin": "deductive",
+      "intensity": [1, 2, 1, 1, 0, 2, 2, 1, 1, 1]
+    },
+    {
+      "code": "T6a",
+      "label": "Regulate short-term rental",
+      "gloss": "Raised spontaneously by 9 of 10 as the one thing to change",
+      "origin": "deductive",
+      "intensity": [1, 1, 1, 1, 1, 1, 1, 1, 1, 0]
+    },
+    {
+      "code": "T7",
+      "label": "Adaptive strategies",
+      "gloss": "Going out ahead of the crowds, side streets, weekend escapes, mental relocation",
+      "origin": "inductive",
+      "intensity": [2, 2, 1, 1, 1, 1, 0, 0, 0, 0]
+    },
+    {
+      "code": "T8",
+      "label": "The horizon of leaving",
+      "gloss": "A continuum: decided, considering, economically forced, anchored",
+      "origin": "inductive",
+      "intensity": [2, 0, 0, 1, 1, 1, 0, 1, 1, 0]
+    },
+    {
+      "code": "T9",
+      "label": "I'm not against tourists",
+      "gloss": "Distinguishing work — criticism aimed at the system, not at visitors",
+      "origin": "inductive",
+      "intensity": [1, 2, 1, 1, 1, 1, 1, 1, 0, 1]
+    },
+    {
+      "code": "T10",
+      "label": "Gradient and anticipation",
+      "gloss": "Podgórze fears becoming today's Kazimierz",
+      "origin": "inductive",
+      "intensity": [0, 0, 0, 1, 0, 1, 2, 1, 2, 0]
+    }
+  ]
+}

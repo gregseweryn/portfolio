@@ -1,0 +1,96 @@
+{
+  "source": "Thesis table 4.4 (N = 446)",
+  "scale": "1 = strongly disagree … 5 = strongly agree",
+  "items": [
+    {
+      "code": "D4",
+      "label": "Tourism creates jobs and earning opportunities",
+      "n": 433,
+      "mean": 3.41,
+      "agreePct": 48.7,
+      "disagreePct": 19.2,
+      "distribution": [
+        2.1,
+        17.1,
+        32.1,
+        35.1,
+        13.6
+      ]
+    },
+    {
+      "code": "D1",
+      "label": "Better cultural and entertainment offer",
+      "n": 430,
+      "mean": 3.05,
+      "agreePct": 37.0,
+      "disagreePct": 32.1,
+      "distribution": [
+        9.8,
+        22.3,
+        30.9,
+        27.4,
+        9.5
+      ]
+    },
+    {
+      "code": "D5",
+      "label": "Tourists bring life and energy to the area",
+      "n": 430,
+      "mean": 2.89,
+      "agreePct": 28.8,
+      "disagreePct": 37.9,
+      "distribution": [
+        8.4,
+        29.5,
+        33.3,
+        22.1,
+        6.7
+      ]
+    },
+    {
+      "code": "D3",
+      "label": "Pride in living somewhere people want to visit",
+      "n": 434,
+      "mean": 2.83,
+      "agreePct": 26.3,
+      "disagreePct": 39.9,
+      "distribution": [
+        11.8,
+        28.1,
+        33.9,
+        17.5,
+        8.8
+      ]
+    },
+    {
+      "code": "D2",
+      "label": "Better-kept, more attractive public space",
+      "n": 437,
+      "mean": 2.59,
+      "agreePct": 22.0,
+      "disagreePct": 48.1,
+      "distribution": [
+        19.0,
+        29.1,
+        30.0,
+        18.1,
+        3.9
+      ]
+    },
+    {
+      "code": "D6",
+      "label": "Better urban infrastructure",
+      "n": 428,
+      "mean": 2.52,
+      "agreePct": 16.6,
+      "disagreePct": 49.5,
+      "distribution": [
+        18.0,
+        31.5,
+        33.9,
+        14.0,
+        2.6
+      ]
+    }
+  ]
+}

@@ -1,0 +1,293 @@
+.article {
+  padding-top: clamp(2rem, 4vw, 3.5rem);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 24px; /* WCAG 2.2 SC 2.5.8 */
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+  transition: color var(--dur) var(--ease-out);
+}
+
+.back:hover,
+.back:focus-visible {
+  color: var(--ink);
+}
+
+.header {
+  padding-top: clamp(1.5rem, 4vw, 2.5rem);
+  padding-bottom: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+}
+
+.meta span[aria-hidden] {
+  color: var(--line);
+}
+
+.title {
+  margin-top: 1.25rem;
+  font-size: var(--text-h1);
+  font-weight: 900;
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  max-width: 20ch;
+}
+
+.question {
+  margin-top: 1.25rem;
+  font-size: var(--text-lead);
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.tag {
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 0.35rem 0.6rem;
+}
+
+.hero {
+  margin-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.summary {
+  font-size: var(--text-lead);
+  line-height: 1.5;
+  max-width: 40rem;
+  margin-block: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.impacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: clamp(1.5rem, 6vw, 4rem);
+  border-block: 1px solid var(--line);
+  padding-block: 1.75rem;
+  margin-bottom: var(--section-y);
+}
+
+.impact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.impactValue {
+  font-size: clamp(1.8rem, 1.2rem + 2vw, 2.6rem);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1;
+}
+
+.impactLabel {
+  margin: 0;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+}
+
+/* ---- Sections (heading rail + prose) ---- */
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+  padding-bottom: var(--section-y);
+}
+
+/* The intro grid is deliberately a separate box from .sectionBlocks: it scopes
+   the sticky heading so it can never travel over the full-width figures. */
+.sectionIntro {
+  display: grid;
+  grid-template-columns: minmax(0, 0.7fr) minmax(0, 2fr);
+  gap: clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
+}
+
+.sectionHead {
+  position: sticky;
+  top: 6rem;
+  height: fit-content;
+}
+
+.sectionTitle {
+  font-size: var(--text-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+}
+
+.sectionBody {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  max-width: 40rem;
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+}
+
+.sectionMedia {
+  grid-column: 1 / -1;
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+/* Everything after the section's opening prose gets the full measure rather
+   than the narrow prose column. */
+.sectionBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2rem, 4vw, 3rem);
+  min-width: 0;
+}
+
+.sectionBlocks > * {
+  min-width: 0;
+}
+
+.sectionBlocks:empty {
+  display: none;
+}
+
+/* ---- Downloads ---- */
+.downloads {
+  padding-bottom: clamp(2.5rem, 5vw, 4rem);
+}
+
+.downloadsLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1rem;
+}
+
+.downloadsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.download {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  border: 1px solid var(--line);
+  padding: 1.1rem 1.4rem;
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.download:hover,
+.download:focus-visible {
+  border-color: var(--ink);
+}
+
+.downloadLabel {
+  font-size: var(--text-body);
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+}
+
+.download:hover .downloadLabel,
+.download:focus-visible .downloadLabel {
+  color: var(--accent);
+}
+
+.downloadNote {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  color: var(--muted);
+}
+
+/* ---- Next study ---- */
+.next {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: baseline;
+  gap: 1rem 1.5rem;
+  border-top: 1px solid var(--ink);
+  padding-block: clamp(1.75rem, 4vw, 2.75rem);
+}
+
+.nextLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.nextTitle {
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 2.1rem);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+}
+
+.nextArrow {
+  font-size: 1.5rem;
+  color: var(--muted);
+  transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.next:hover .nextArrow,
+.next:focus-visible .nextArrow {
+  transform: translateX(6px);
+  color: var(--accent);
+}
+
+/* ---- Inline CTA ---- */
+.cta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  padding-block: clamp(2rem, 4vw, 3rem) 0;
+}
+
+.ctaText {
+  font-size: var(--text-lead);
+  font-weight: 500;
+  max-width: 30ch;
+}
+
+@media (max-width: 760px) {
+  .sectionIntro {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .sectionHead {
+    position: static;
+  }
+  .next {
+    grid-template-columns: 1fr auto;
+  }
+  .nextLabel {
+    grid-column: 1 / -1;
+  }
+}

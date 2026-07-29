@@ -1,0 +1,62 @@
+{
+  "source": "Thesis table 6.1 — joint display integrating the survey (N = 446) and the interviews (N = 10)",
+  "note": "In a convergent design the two strands are analysed separately and compared at the end. The display is where they meet — including where they disagree.",
+  "rows": [
+    {
+      "dimension": "Housing and short-term rental",
+      "quantitative": "C4 rents 4.39, 88.1% agree — the highest-scoring item in the survey, and uniform across districts (p = 0.193)",
+      "qualitative": "T1 — a building without neighbours",
+      "convergence": "full",
+      "convergenceNote": "Convergence plus mechanism: the interviews explain how it happens"
+    },
+    {
+      "dimension": "Noise and the night economy",
+      "quantitative": "C1 graded: Kazimierz 3.77 / Old Town 3.31 / Podgórze 2.47 (ε² = 0.177)",
+      "qualitative": "T2 — a night that isn't ours",
+      "convergence": "full",
+      "convergenceNote": "Identical gradient in both strands"
+    },
+    {
+      "dimension": "Everyday infrastructure",
+      "quantitative": "C3 services 4.15 (76.8%); C5 shops displaced 3.81 (65.7%)",
+      "qualitative": "T3 — the infrastructure of everyday life",
+      "convergence": "full",
+      "convergenceNote": ""
+    },
+    {
+      "dimension": "Domesticity and identity",
+      "quantitative": "C8 attraction, not home: 3.93 / 3.79 / 2.79 (ε² = 0.148)",
+      "qualitative": "T4 — from home to stage set",
+      "convergence": "full",
+      "convergenceNote": "Convergence plus depth: the metaphors name what the scale measures"
+    },
+    {
+      "dimension": "Benefits",
+      "quantitative": "Benefit index 2.87; highest D4 jobs 3.41 (48.7%)",
+      "qualitative": "T5 — benefits are positional",
+      "convergence": "partial",
+      "convergenceNote": "The survey shows how much; the interviews show who, and why"
+    },
+    {
+      "dimension": "Institutions and agency",
+      "quantitative": "F1 trust 1.99–2.24, uniformly low (p = 0.189); only 8.5% agree the city manages tourism effectively",
+      "qualitative": "T6 — 9 of 10 call for STR regulation, unprompted",
+      "convergence": "full",
+      "convergenceNote": ""
+    },
+    {
+      "dimension": "Intention to leave",
+      "quantitative": "G1 13.9–17.8%, not significant between districts; logit: costs OR 5.54, tenure OR 1.45, ownership OR 0.44",
+      "qualitative": "T8 — a continuum from decided to anchored; the anchored are owner-pensioners and long-rooted families",
+      "convergence": "tension",
+      "convergenceNote": "The one divergence: longer tenure weakly raises intention to leave in the model, while the most rooted interviewees say they are staying. Ownership, not tenure, carries the protective effect"
+    },
+    {
+      "dimension": "Internal differentiation",
+      "quantitative": "Typology k = 2: In conflict 57.3% / Reconciled 42.7%; demographics not significant",
+      "qualitative": "Interview portraits map onto both types",
+      "convergence": "full",
+      "convergenceNote": "Attitudes are polarised rather than uniform — an argument against reading Doxey's Irridex as a single linear stage"
+    }
+  ]
+}

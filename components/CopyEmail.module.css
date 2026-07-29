@@ -1,0 +1,69 @@
+.wrap {
+  display: inline-flex;
+  align-items: baseline;
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+  flex-wrap: wrap;
+}
+
+.email {
+  /* inline-block + vertical padding clears the 24px hit target (WCAG 2.2
+     SC 2.5.8) at the small footer size; background-origin keeps the underline
+     against the text instead of the padded edge. */
+  display: inline-block;
+  padding-block: 0.3rem;
+  background-origin: content-box;
+  font-weight: 700;
+  letter-spacing: var(--ls-tight);
+  line-height: 1.1;
+  background-image: linear-gradient(var(--ink), var(--ink));
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 1.5px;
+  transition: background-size var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.email:hover,
+.email:focus-visible {
+  color: var(--accent);
+  background-image: linear-gradient(var(--accent), var(--accent));
+  background-size: 100% 2px;
+}
+
+.lg .email {
+  font-size: var(--text-h2);
+}
+
+.sm .email {
+  font-size: var(--text-body);
+}
+
+.copy {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-family: var(--font-label);
+  font-size: 0.7rem;
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  padding: 0.4rem 0.7rem;
+  cursor: pointer;
+  align-self: center;
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out),
+    background var(--dur) var(--ease-out);
+}
+
+.copy:hover,
+.copy:focus-visible {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+.live {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}

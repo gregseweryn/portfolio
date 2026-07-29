@@ -1,0 +1,71 @@
+{
+  "source": "Thesis table 4.7 (Kruskal-Wallis with Holm post-hoc)",
+  "districts": [
+    "Old Town",
+    "Kazimierz",
+    "Podgórze"
+  ],
+  "note": "Epsilon-squared and p values are quoted from the thesis; means are recomputed from the analytic dataset.",
+  "rows": [
+    {
+      "code": "C4",
+      "label": "Tourism drives up rents",
+      "register": "city-wide",
+      "means": [
+        4.43,
+        4.45,
+        4.3
+      ],
+      "epsilonSq": 0.003,
+      "p": 0.193
+    },
+    {
+      "code": "E2",
+      "label": "Short-term rental is a serious problem in my area",
+      "register": "city-wide",
+      "means": [
+        4.01,
+        3.99,
+        3.76
+      ],
+      "epsilonSq": 0.01,
+      "p": 0.044
+    },
+    {
+      "code": "F1",
+      "label": "The city manages tourism growth effectively",
+      "register": "city-wide",
+      "means": [
+        1.99,
+        2.11,
+        2.24
+      ],
+      "epsilonSq": 0.003,
+      "p": 0.189
+    },
+    {
+      "code": "C8",
+      "label": "The district is turning into an attraction, not a place to live",
+      "register": "graded",
+      "means": [
+        3.93,
+        3.79,
+        2.79
+      ],
+      "epsilonSq": 0.148,
+      "p": 0.001
+    },
+    {
+      "code": "C1",
+      "label": "Tourist noise disrupts sleep or rest",
+      "register": "graded",
+      "means": [
+        3.31,
+        3.77,
+        2.47
+      ],
+      "epsilonSq": 0.177,
+      "p": 0.001
+    }
+  ]
+}

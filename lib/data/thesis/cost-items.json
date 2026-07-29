@@ -1,0 +1,141 @@
+{
+  "source": "Thesis table 4.3 (N = 446)",
+  "scale": "1 = strongly disagree … 5 = strongly agree",
+  "items": [
+    {
+      "code": "C4",
+      "label": "Tourism drives up rents",
+      "n": 444,
+      "mean": 4.39,
+      "agreePct": 88.1,
+      "disagreePct": 1.4,
+      "distribution": [
+        0.0,
+        1.4,
+        10.6,
+        35.4,
+        52.7
+      ]
+    },
+    {
+      "code": "C3",
+      "label": "Tourism drives up the price of everyday services",
+      "n": 439,
+      "mean": 4.15,
+      "agreePct": 76.8,
+      "disagreePct": 4.3,
+      "distribution": [
+        0.2,
+        4.1,
+        18.9,
+        33.9,
+        42.8
+      ]
+    },
+    {
+      "code": "C5",
+      "label": "Everyday shops are displaced by tourist businesses",
+      "n": 440,
+      "mean": 3.81,
+      "agreePct": 65.7,
+      "disagreePct": 14.5,
+      "distribution": [
+        1.6,
+        13.0,
+        19.8,
+        34.1,
+        31.6
+      ]
+    },
+    {
+      "code": "C7",
+      "label": "The district is over-exploited by tourism",
+      "n": 441,
+      "mean": 3.59,
+      "agreePct": 56.7,
+      "disagreePct": 18.6,
+      "distribution": [
+        4.5,
+        14.1,
+        24.7,
+        31.1,
+        25.6
+      ]
+    },
+    {
+      "code": "C6",
+      "label": "Getting around day to day has become harder",
+      "n": 436,
+      "mean": 3.56,
+      "agreePct": 57.6,
+      "disagreePct": 17.2,
+      "distribution": [
+        5.0,
+        12.2,
+        25.2,
+        36.7,
+        20.9
+      ]
+    },
+    {
+      "code": "C8",
+      "label": "The district is turning into an attraction, not a place to live",
+      "n": 442,
+      "mean": 3.52,
+      "agreePct": 54.5,
+      "disagreePct": 23.5,
+      "distribution": [
+        8.1,
+        15.4,
+        21.9,
+        25.8,
+        28.7
+      ]
+    },
+    {
+      "code": "C2",
+      "label": "Public space is no longer freely accessible",
+      "n": 440,
+      "mean": 3.49,
+      "agreePct": 53.0,
+      "disagreePct": 23.0,
+      "distribution": [
+        7.3,
+        15.7,
+        24.1,
+        26.8,
+        26.1
+      ]
+    },
+    {
+      "code": "C1",
+      "label": "Tourist noise disrupts sleep or rest",
+      "n": 441,
+      "mean": 3.19,
+      "agreePct": 39.2,
+      "disagreePct": 29.5,
+      "distribution": [
+        10.2,
+        19.3,
+        31.3,
+        20.2,
+        19.0
+      ]
+    },
+    {
+      "code": "C9",
+      "label": "A sense of being a stranger in my own neighbourhood",
+      "n": 440,
+      "mean": 3.08,
+      "agreePct": 39.1,
+      "disagreePct": 32.5,
+      "distribution": [
+        14.5,
+        18.0,
+        28.4,
+        23.0,
+        16.1
+      ]
+    }
+  ]
+}

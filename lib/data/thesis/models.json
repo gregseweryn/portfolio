@@ -1,0 +1,165 @@
+{
+  "ols": {
+    "n": 428,
+    "r2": 0.801,
+    "outcome": "General attitude to tourism (index B, standardised)",
+    "note": "OLS with HC3 robust standard errors; continuous predictors standardised.",
+    "source": "Thesis table 4.8 / figure 4.7",
+    "terms": [
+      {
+        "term": "Perceived costs",
+        "estimate": -0.52,
+        "ciLow": -0.582,
+        "ciHigh": -0.445,
+        "p": 0.0,
+        "significant": true
+      },
+      {
+        "term": "Perceived benefits",
+        "estimate": 0.462,
+        "ciLow": 0.401,
+        "ciHigh": 0.523,
+        "p": 0.0,
+        "significant": true
+      },
+      {
+        "term": "Works in tourism",
+        "estimate": 0.001,
+        "ciLow": -0.149,
+        "ciHigh": 0.151,
+        "p": 0.9903,
+        "significant": false
+      },
+      {
+        "term": "Years in the district",
+        "estimate": -0.017,
+        "ciLow": -0.07,
+        "ciHigh": 0.035,
+        "p": 0.5165,
+        "significant": false
+      },
+      {
+        "term": "Age",
+        "estimate": 0.008,
+        "ciLow": -0.051,
+        "ciHigh": 0.067,
+        "p": 0.8016,
+        "significant": false
+      },
+      {
+        "term": "Gender: woman",
+        "estimate": 0.003,
+        "ciLow": -0.086,
+        "ciHigh": 0.092,
+        "p": 0.9502,
+        "significant": false
+      },
+      {
+        "term": "District: Kazimierz",
+        "estimate": -0.042,
+        "ciLow": -0.142,
+        "ciHigh": 0.059,
+        "p": 0.4159,
+        "significant": false
+      },
+      {
+        "term": "District: Podgórze",
+        "estimate": -0.119,
+        "ciLow": -0.235,
+        "ciHigh": -0.003,
+        "p": 0.0436,
+        "significant": true
+      },
+      {
+        "term": "Owns their home",
+        "estimate": 0.048,
+        "ciLow": -0.051,
+        "ciHigh": 0.147,
+        "p": 0.3381,
+        "significant": false
+      }
+    ]
+  },
+  "logit": {
+    "n": 430,
+    "events": 68,
+    "pseudoR2": 0.275,
+    "outcome": "Seriously considering moving out for tourism-related reasons",
+    "note": "Odds ratios per one standard deviation for continuous predictors.",
+    "source": "Thesis table 4.9",
+    "terms": [
+      {
+        "term": "Perceived costs",
+        "estimate": 5.538,
+        "ciLow": 2.784,
+        "ciHigh": 11.015,
+        "p": 0.0,
+        "significant": true
+      },
+      {
+        "term": "Perceived benefits",
+        "estimate": 0.543,
+        "ciLow": 0.34,
+        "ciHigh": 0.868,
+        "p": 0.0107,
+        "significant": true
+      },
+      {
+        "term": "Works in tourism",
+        "estimate": 1.35,
+        "ciLow": 0.583,
+        "ciHigh": 3.128,
+        "p": 0.4838,
+        "significant": false
+      },
+      {
+        "term": "Years in the district",
+        "estimate": 1.45,
+        "ciLow": 1.001,
+        "ciHigh": 2.102,
+        "p": 0.0496,
+        "significant": true
+      },
+      {
+        "term": "Age",
+        "estimate": 1.292,
+        "ciLow": 0.86,
+        "ciHigh": 1.939,
+        "p": 0.217,
+        "significant": false
+      },
+      {
+        "term": "Gender: woman",
+        "estimate": 1.283,
+        "ciLow": 0.683,
+        "ciHigh": 2.41,
+        "p": 0.4376,
+        "significant": false
+      },
+      {
+        "term": "District: Kazimierz",
+        "estimate": 1.089,
+        "ciLow": 0.532,
+        "ciHigh": 2.228,
+        "p": 0.8157,
+        "significant": false
+      },
+      {
+        "term": "District: Podgórze",
+        "estimate": 2.425,
+        "ciLow": 1.087,
+        "ciHigh": 5.411,
+        "p": 0.0305,
+        "significant": true
+      },
+      {
+        "term": "Owns their home",
+        "estimate": 0.441,
+        "ciLow": 0.201,
+        "ciHigh": 0.97,
+        "p": 0.0417,
+        "significant": true
+      }
+    ]
+  }
+}
