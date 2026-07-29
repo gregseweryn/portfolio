@@ -86,6 +86,8 @@ VERIFIED = {
     "1", "4",
     # interview length, from the IDI protocol (scenariusz_IDI: "45-70 minut")
     "70",
+    # part of the contact email address, not a finding
+    "99",
 }
 
 parser = Prose()
