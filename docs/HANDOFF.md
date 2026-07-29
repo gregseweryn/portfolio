@@ -57,6 +57,7 @@ z `DESIGN.md`), podpis mówi wniosek a nie opisuje osi, skalowanie przez `viewBo
 | `scripts/audit-published-numbers.py` | Sprawdza każdą liczbę w tekście na zbudowanej stronie |
 | `scripts/build-webfonts.py` | Konwersja licencjonowanych TTF/OTF do WOFF2 |
 | `scripts/compress-thesis-pdf.py` | Odchudza PDF pracy i **odmawia zapisu, jeśli render którejkolwiek strony się zmieni** |
+| `scripts/build-icons.py` | Z `brand/gs-mark.png` robi favikonę, ikonę Next i ikonę Apple |
 
 Pochodzenie każdej liczby: `lib/data/thesis/SOURCES.md`.
 
