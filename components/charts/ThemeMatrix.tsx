@@ -21,12 +21,12 @@ export default function ThemeMatrix() {
 
   return (
     <Figure
-      caption="The coding trail, not just the conclusion. Every theme is shown against every interviewee, so the counts quoted in the text can be checked — including the one theme all ten raised, and the demand for short-term rental regulation that nine of them brought up unprompted."
+      caption="The coding trail, not just the conclusion. Every theme is shown against every interviewee, so the counts quoted in the text can be checked, including the one theme all ten raised and the demand for short-term rental regulation that nine of them brought up unprompted."
       source={data.source}
       table={{
         caption: "Theme by interviewee, coded 0 absent / 1 present / 2 central",
         head: ["Theme", ...respondents.map((r) => r.name)],
-        rows: themes.map((t) => [`${t.code} — ${t.label}`, ...t.intensity]),
+        rows: themes.map((t) => [`${t.code} – ${t.label}`, ...t.intensity]),
       }}
     >
       <svg viewBox={`0 0 1000 ${height}`} className={styles.svg} aria-hidden="true">

@@ -18,7 +18,7 @@ const principles = [
   },
   {
     title: "Evidence over opinion",
-    body: "I make the strongest, most honest version of what the data says — including where it's thin. Confidence should match the evidence, not the deadline.",
+    body: "I make the strongest, most honest version of what the data says, including where it's thin. Confidence should match the evidence, not the deadline.",
   },
   {
     title: "Findings have to land",
@@ -51,13 +51,13 @@ export default function AboutPage() {
           </p>
           {/* TODO(personalise): replace with real background, sector experience, and story. */}
           <p>
-            I work across the research arc — framing questions, running generative and evaluative
+            I work across the research arc: framing questions, running generative and evaluative
             studies, and synthesising messy evidence into something a team can act on. I&rsquo;m
             equally at home with a discovery interview, a usability session, and a stakeholder
             workshop where the findings have to survive contact with real constraints.
           </p>
           <p>
-            What I enjoy most is the moment research changes a team&rsquo;s mind — when a confident
+            What I enjoy most is the moment research changes a team&rsquo;s mind, when a confident
             assumption meets the evidence and the plan gets better for it. I treat clarity,
             inclusion, and research ethics as part of the craft, not afterthoughts.
           </p>

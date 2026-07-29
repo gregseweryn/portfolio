@@ -9,7 +9,7 @@ export const site = {
   tagline:
     "I turn messy human behaviour into decisions teams can act on.",
   intro:
-    "UX researcher working across generative and evaluative studies. I help product teams understand the people they build for — and make confident, evidence-based decisions.",
+    "UX researcher working across generative and evaluative studies. I help product teams understand the people they build for, and make confident, evidence-based decisions.",
   // Deliberately null: the CV carries a personal phone number, and a public PDF
   // is exactly what number-harvesting bots crawl for. It goes to recruiters who
   // get in touch, not to anyone who finds the site. Setting a path here brings

@@ -18,7 +18,7 @@ export default function ContactPage() {
         <SplitReveal as="h1" className={styles.title}>Let&rsquo;s talk.</SplitReveal>
         <p className={styles.lead}>
           The fastest way to reach me is email. Tell me a little about the team, the problem,
-          and the timing — I&rsquo;ll reply within a couple of days.
+          and the timing. I&rsquo;ll reply within a couple of days.
         </p>
 
         <div className={styles.emailRow}>

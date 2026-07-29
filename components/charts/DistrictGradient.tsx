@@ -76,13 +76,13 @@ export default function DistrictGradient() {
 
   return (
     <Figure
-      caption="Two registers, one process. Rent pressure, short-term rental and distrust of the city sit at the same level in all three districts. Noise and the sense of losing a home fan out sharply — Kazimierz at one end, Podgórze at the other."
+      caption="Two registers, one process. Rent pressure, short-term rental and distrust of the city sit at the same level in all three districts. Noise and the sense of losing a home fan out sharply: Kazimierz at one end, Podgórze at the other."
       source={data.source}
       table={{
         caption: "District means by item, with effect size and significance",
         head: ["Item", "Register", ...data.districts, "Epsilon squared", "p"],
         rows: data.rows.map((r) => [
-          `${r.code} — ${r.label}`,
+          `${r.code} – ${r.label}`,
           r.register === "city-wide" ? "City-wide" : "Graded",
           ...r.means,
           r.epsilonSq,

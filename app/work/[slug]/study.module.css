@@ -185,6 +185,22 @@
   margin-bottom: 1rem;
 }
 
+/* The registered title of the work being downloaded. Quiet by design: the
+   heading upstairs is what the reader is here for, this is what they cite. */
+.formalTitle {
+  font-size: var(--text-sm);
+  color: var(--muted);
+  max-width: 44ch;
+  margin-top: -0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+/* <cite> is italic by default, and the Polish fallback face has no italic —
+   the browser would synthesise a slant. Set it upright instead. */
+.formalTitle cite {
+  font-style: normal;
+}
+
 .downloadsList {
   display: flex;
   flex-wrap: wrap;

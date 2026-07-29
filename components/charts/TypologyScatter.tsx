@@ -24,7 +24,7 @@ export default function TypologyScatter() {
 
   return (
     <Figure
-      caption={`Two types, one axis. 57% sit in conflict and 43% reconciled — but the indices correlate at ${data.correlation}, so the clusters lie along a single diagonal. The typology names the poles of a continuum; it does not prove two separate populations exist.`}
+      caption={`Two types, one axis. 57% sit in conflict and 43% reconciled, but the indices correlate at ${data.correlation}, so the clusters lie along a single diagonal. The typology names the poles of a continuum; it does not prove two separate populations exist.`}
       source={data.source}
       table={{
         caption: "Resident typology, k-means on standardised cost and benefit indices",

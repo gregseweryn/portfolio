@@ -57,13 +57,13 @@ export default function LikertBars() {
 
   return (
     <Figure
-      caption="Costs are led by money, not by nuisance. Agreement that tourism drives up rents reaches 88% — the highest-scoring statement in the questionnaire, and the one with the least spread."
+      caption="Costs are led by money, not by nuisance. Agreement that tourism drives up rents reaches 88%, the highest-scoring statement in the questionnaire and the one with the least spread."
       source={data.source}
       table={{
         caption: "Perceived costs of tourism, block C items, N = 446",
         head: ["Item", "Mean", "% agree", ...SEGMENT_NAME.map((s) => `${s} %`)],
         rows: items.map((it) => [
-          `${it.code} — ${it.label}`,
+          `${it.code} – ${it.label}`,
           it.mean,
           it.agreePct,
           ...it.distribution,

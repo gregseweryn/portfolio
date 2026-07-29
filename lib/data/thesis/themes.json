@@ -12,7 +12,7 @@
     { "name": "Natalia", "district": "Podgórze", "note": "15 years, teacher, district councillor" },
     { "name": "Paweł", "district": "Podgórze", "note": "7 years, works in hospitality, renter" },
     { "name": "Bartek", "district": "Podgórze", "note": "12 years, IT, owner, two children" },
-    { "name": "Damian", "district": "central, mobile", "note": "boundary case — analysed, not quoted" }
+    { "name": "Damian", "district": "central, mobile", "note": "boundary case: analysed, not quoted" }
   ],
   "themes": [
     {
@@ -46,7 +46,7 @@
     {
       "code": "T5",
       "label": "Benefits, and who gets them",
-      "gloss": "Benefits are real but positional — visible to owners and to people in the trade",
+      "gloss": "Benefits are real but positional, visible to owners and to people in the trade",
       "origin": "deductive",
       "intensity": [0, 0, 2, 1, 2, 1, 1, 2, 1, 1]
     },
@@ -81,7 +81,7 @@
     {
       "code": "T9",
       "label": "I'm not against tourists",
-      "gloss": "Distinguishing work — criticism aimed at the system, not at visitors",
+      "gloss": "Distinguishing work: criticism aimed at the system, not at visitors",
       "origin": "inductive",
       "intensity": [1, 2, 1, 1, 1, 1, 1, 1, 0, 1]
     },

@@ -80,6 +80,14 @@ export type Download = {
 export type Study = {
   slug: string;
   title: string;
+  /**
+   * The work's registered title, where that differs from the editorial heading
+   * above. Shown with the download and carried in the page metadata, so a reader
+   * who has the catalogue entry can match it to this page. Set `formalTitleLang`
+   * whenever it is not English — Polish needs it to reach a font with diacritics.
+   */
+  formalTitle?: string;
+  formalTitleLang?: string;
   /** The research question, shown in the index. */
   question: string;
   year: string;

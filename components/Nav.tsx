@@ -45,7 +45,7 @@ export default function Nav() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.bar}`}>
-        <Link href="/" className={styles.wordmark} aria-label={`${site.name} — home`}>
+        <Link href="/" className={styles.wordmark} aria-label={`${site.name} – home`}>
           <span className={styles.name}>{site.name}</span>
           <span className={styles.role}>{site.role}</span>
         </Link>

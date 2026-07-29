@@ -43,14 +43,16 @@ const noirden = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://grzegorzseweryn.com"),
+  // The domain the site is served from. Absolute URLs for the OG cards are built
+  // off this, so a mismatch here means link previews resolve to nothing.
+  metadataBase: new URL("https://grzegorzseweryn.pl"),
   title: {
-    default: `${site.name} — ${site.role}`,
-    template: `%s — ${site.name}`,
+    default: `${site.name} – ${site.role}`,
+    template: `%s – ${site.name}`,
   },
   description: site.intro,
   openGraph: {
-    title: `${site.name} — ${site.role}`,
+    title: `${site.name} – ${site.role}`,
     description: site.intro,
     type: "website",
   },

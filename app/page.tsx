@@ -116,7 +116,7 @@ export default function Home() {
             I start from the question, <span className={styles.approachEm}>not the method.</span>
           </SplitReveal>
           <p className={styles.approachBody}>
-            Research earns trust by being rigorous and honest about its limits — and earns its keep
+            Research earns trust by being rigorous and honest about its limits, and earns its keep
             by turning what people do into decisions a team can actually make. I work across the
             whole arc: framing the right question, choosing methods that fit, talking to real
             people, and shaping messy evidence into something clear enough to act on.

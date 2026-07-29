@@ -88,6 +88,8 @@ VERIFIED = {
     "70",
     # part of the contact email address, not a finding
     "99",
+    # download size of the thesis PDF, not a finding
+    "2.5",
 }
 
 parser = Prose()

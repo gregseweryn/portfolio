@@ -56,6 +56,7 @@ z `DESIGN.md`), podpis mówi wniosek a nie opisuje osi, skalowanie przez `viewBo
 | `scripts/extract-thesis-data.py` | Przelicza dane z pracy i **nie zapisuje nic, jeśli nie zgadzają się z pracą** |
 | `scripts/audit-published-numbers.py` | Sprawdza każdą liczbę w tekście na zbudowanej stronie |
 | `scripts/build-webfonts.py` | Konwersja licencjonowanych TTF/OTF do WOFF2 |
+| `scripts/compress-thesis-pdf.py` | Odchudza PDF pracy i **odmawia zapisu, jeśli render którejkolwiek strony się zmieni** |
 
 Pochodzenie każdej liczby: `lib/data/thesis/SOURCES.md`.
 
@@ -75,6 +76,13 @@ Zostały podjęte świadomie i były przedmiotem rozmowy z właścicielem projek
 - **Wykresy są statyczne**, bez tooltipów i filtrów. Świadomy wybór: rekruter ma
   zobaczyć wniosek, nie bawić się narzędziem.
 - **Dwie prace docelowo**, nie trzy. Jedna gotowa, druga w planie.
+- **Zero em dashów (`—`) w widocznej treści.** Decyzja właściciela: ta pauza czyta
+  się dziś jako sygnatura tekstu generowanego, a nie jako interpunkcja. Zamiast
+  niej: przecinek, dwukropek, nawias albo osobne zdanie. Półpauza (`–`) zostaje
+  tam, gdzie znaczy zakres (`45–70 minut`, `C1–C9`, `cost–benefit`) i jako
+  separator w tytułach stron. W kartach OG separatorem jest `·`, tak jak w kickerze.
+  Reguła dotyczy treści, nie komentarzy w kodzie. Sprawdzenie:
+  `grep -rn "—" --include="*.ts" --include="*.tsx" --include="*.json" lib app components`
 
 ---
 
@@ -134,47 +142,77 @@ Etap A jest **zamknięty**: prawdziwe dane kontaktowe, portret, usunięte fikcyj
 case studies, obsługa strony z jedną pracą, naprawione polskie znaki, kopia na
 GitHubie (`gregseweryn/portfolio`, prywatne).
 
-### Etap A2 — do publikacji (priorytet, w tej kolejności)
+Z etapu A2 zostało **tylko wdrożenie** (punkt 1) — pozostałe sześć pozycji jest
+zrobionych, szczegóły przy każdej niżej. Jedna rzecz czeka na ręczne sprawdzenie
+w prawdziwej przeglądarce: reset scrolla (punkt 2).
 
-**1. Wdrożenie na Vercela — największa blokada.**
+### Etap A2 — do publikacji
+
+**1. Wdrożenie na Vercela — jedyna otwarta pozycja i największa blokada.**
 Bez adresu URL nie da się wysłać niczego rekruterowi. Projekt jest statyczny,
 bez backendu, więc wdrożenie to podpięcie repo i domena. Repo jest prywatne —
-Vercel to obsłuży po autoryzacji GitHuba.
+Vercel to obsłuży po autoryzacji GitHuba. **Wymaga rąk właściciela**: logowania
+do Vercela ani autoryzacji GitHuba nie da się oddelegować agentowi.
 
-**2. Reset scrolla przy zmianie trasy — potwierdzony błąd.**
-`components/SmoothScroll.tsx` tworzy instancję Lenis raz, w `useEffect` z pustą
-tablicą zależności, i **nigdy nie dowiaduje się o zmianie trasy**. Next normalnie
-przewija na górę przy nawigacji, ale Lenis trzyma własny stan pozycji i nadpisuje
-`window.scrollTo`, więc reset Nexta nie działa — użytkownik zostaje tam, gdzie był.
+Kod jest po stronie wdrożenia gotowy: build przechodzi czysto, nagłówki
+bezpieczeństwa i karty OG generują się z `next.config.mjs` i tras
+`opengraph-image`. Uwaga: build **czyta `myfonts/`** (Satori potrzebuje TTF,
+nie WOFF2), więc katalog musi zostać w repo, żeby wdrożenie się powiodło.
 
-Kierunek naprawy: dodać `usePathname()`, a na jego zmianę wywołać
-`lenis.scrollTo(0, { immediate: true })`. Uwaga na dwa przypadki brzegowe: nawigacja
-z kotwicą (`/#work`) nie powinna skakać na górę, a `prefers-reduced-motion` wyłącza
-Lenis w całości, więc tam scroll natywny działa już poprawnie.
+**2. Reset scrolla przy zmianie trasy — zrobione.**
+`components/SmoothScroll.tsx` trzyma teraz instancję Lenis w `useRef` i ma drugi
+efekt na `usePathname()`. Przy zmianie trasy, po jednej klatce (żeby nowy widok
+zdążył się rozłożyć), woła `lenis.resize()` i przewija: na kotwicę, jeśli URL ma
+hash — inaczej na `lenis.scrollTo(0, { immediate: true })`. Pierwsze wywołanie
+jest pomijane, bo montaż ma już własną obsługę hasha i nie chcemy zabijać
+przywracania pozycji przy odświeżeniu. Bez instancji Lenisa (zredukowany ruch)
+efekt nie robi nic — tam natywny reset Nexta działa sam.
 
-Nie da się tego zweryfikować w panelu przeglądarki Claude'a — nie kompozytuje klatek,
-więc pętla `requestAnimationFrame` Lenisa stoi. **Testuj w prawdziwej przeglądarce.**
+**Nie zweryfikowane w przeglądarce.** Panel przeglądarki Claude'a nie kompozytuje
+klatek, więc pętla `requestAnimationFrame` Lenisa stoi i strona w ogóle się nie
+przewija. **Do sprawdzenia ręcznie w prawdziwej przeglądarce**: `/` → case study
+(ma otworzyć się na górze), `/about` → „Work" (ma wylądować na sekcji, nie na
+górze), i to samo przy `prefers-reduced-motion`.
 
-**3. Nagłówki bezpieczeństwa.** Obecnie żadnych. Do dodania w `next.config.mjs`
-przez `headers()`: `Content-Security-Policy`, `X-Content-Type-Options: nosniff`,
-`Referrer-Policy`, `Permissions-Policy`, `X-Frame-Options` (albo `frame-ancestors`
-w CSP). CSP wymaga uwagi, bo GSAP i Lenis wstrzykują style — zacznij od
-`Content-Security-Policy-Report-Only` i dopiero po weryfikacji przełącz na egzekwowanie.
+**3. Nagłówki bezpieczeństwa — zrobione.** `next.config.mjs`, `headers()` na
+`/:path*`: CSP, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`,
+`Permissions-Policy`. CSP jest od razu **egzekwowane**, nie Report-Only — udało
+się je zweryfikować pomiarem zamiast na produkcji: żadnych naruszeń w konsoli na
+`/`, `/work/…`, `/about` i `/contact` w buildzie produkcyjnym.
 
-**4. `npm audit fix`** — trzy podatności o wysokiej wadze w `libvips` przez `sharp`
-(CVE-2026-33327/33328/35590/35591). Sharp jest zależnością build-time do optymalizacji
-obrazów i nie trafia do przeglądarki, więc ryzyko dla odwiedzającego jest zerowe,
-ale build powinien być czysty.
+Dwa `'unsafe-inline'` są nośne, nie z lenistwa: Next wstrzykuje ładunek RSC jako
+inline `<script>`, a GSAP, Lenis i `next/font` piszą inline style. Nonce
+wymagałby renderowania per żądanie, czyli wymiany statycznej generacji na
+dyrektywę, która i tak niczego tu nie broni. `next dev` dostaje osobno
+`'unsafe-eval'` i socket HMR — relaksacja jest warunkowana `NODE_ENV` i nigdy
+nie trafia do buildu.
 
-**5. Formalny tytuł pracy.** Nagłówek zostaje redakcyjny („Who pays for a tourist
-city"), ale pełny tytuł — *Turystyfikacja Krakowa: percepcja mieszkańców* — ma się
-pojawić przy PDF-ie w sekcji pobierania i w metadanych strony. Decyzja właściciela.
+**4. `npm audit fix` — zrobione.** Czyste zero. `npm audit fix` samo nic nie
+naprawiało: podatne `postcss` i `sharp` są przypięte przez Nexta, a wszystkie
+opublikowane wersje Nexta mieszczą się w zakresie ostrzeżenia. Rozwiązane przez
+`overrides` w `package.json` (postcss ≥8.5.25, sharp ≥0.35.3) plus Next 15.5.22.
+Optymalizator obrazów zweryfikowany po podmianie sharpa — `/_next/image` zwraca 200.
 
-**6. Obraz OG** — `generateMetadata` w `app/work/[slug]/page.tsx` już istnieje,
-brakuje statycznego PNG w `public/`.
+**5. Formalny tytuł pracy — zrobione.** `Study` ma teraz opcjonalne
+`formalTitle` + `formalTitleLang`. Tytuł stoi pod nagłówkiem „Check the work",
+w `<cite lang="pl">` (czyli na Oswaldzie, z pełnymi znakami diakrytycznymi),
+i w metadanych jako `citation_title` / `citation_author`. Nagłówek H1 zostaje
+redakcyjny. Do podmiany, jeśli właściciel woli inne miejsce w metadanych.
 
-**7. Kompresja PDF-a pracy** — 6,2 MB, cel ~2 MB. Jeśli ucierpi czytelność tabel,
-zostaw oryginał.
+**6. Obrazy OG — zrobione, ale inaczej niż zakładał plan.** Zamiast statycznego
+PNG w `public/` są dwie trasy `opengraph-image.tsx` (globalna i per case study),
+renderowane przez `next/og` przy buildzie z tych samych tokenów i krojów co
+strona. Ręcznie wyeksportowany PNG rozjechałby się z systemem przy pierwszej
+zmianie akcentu; ten się nie rozjedzie. Wspólne kolory i fonty: `lib/og.ts`
+(hex-owe lustro tokenów OKLCH — trzymaj je w zgodzie z `globals.css`).
+
+**7. Kompresja PDF-a pracy — zrobione, 6,25 MB → 2,46 MB.** Nic nie ucierpiało,
+bo problemem nie były tabele ani obrazy: Word osadził **cały Segoe UI Emoji**,
+7,8 MB konturów dla jednego znaku na jednej stronie — 63% pliku. Subsetting fontów
+plus przepisanie pliku bez martwych obiektów. Obrazy zachowały rozdzielczość,
+warstwa tekstowa jest identyczna, a render wszystkich 172 stron jest
+pikselowo identyczny (`scripts/compress-thesis-pdf.py` sam to sprawdza i odmawia
+zapisu przy jakiejkolwiek różnicy).
 
 ### Etap A3 — tło w nagłówku case study
 
@@ -197,8 +235,9 @@ Strona jest statyczna: bez backendu, bazy, formularzy, logowania i danych użytk
 **Nie dotyczą jej** SQL injection, XSS z danych wejściowych, CSRF, przejęcie sesji
 ani rate limiting — nie ma czego atakować.
 
-Realne pozycje to: nagłówki bezpieczeństwa (punkt 3), łańcuch zależności (punkt 4)
-i higiena danych osobowych. Ta ostatnia została już rozstrzygnięta — **CV zdjęte
+Realne pozycje to były: nagłówki bezpieczeństwa (punkt 3), łańcuch zależności
+(punkt 4) i higiena danych osobowych. Pierwsze dwie są zamknięte. Trzecia
+została rozstrzygnięta wcześniej — **CV zdjęte
 ze strony**, bo zawiera numer telefonu `+48 508 649 968`, a publiczny PDF to
 dokładnie to, co skanują boty zbierające numery. Plik leży w `private/`
 (poza serwowanym katalogiem, wykluczony z gita), `site.resumeHref` jest `null`,
@@ -249,3 +288,7 @@ python scripts/audit-published-numbers.py
 
 Plus przegląd w przeglądarce na 375 i 1280 px: kontrast, cele dotykowe,
 brak przepełnień poziomych, brak martwych linków.
+
+Nagłówki bezpieczeństwa sprawdzaj **na buildzie produkcyjnym**, nie na `next dev` —
+CSP jest tam celowo luźniejsze. Konfiguracja podglądu `site-prod`
+(`.claude/launch.json`) uruchamia `next start` na porcie 3211 właśnie do tego.
