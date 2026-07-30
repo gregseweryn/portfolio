@@ -8,7 +8,9 @@ import styles from "./about.module.css";
 
 export const metadata: Metadata = {
   title: "About",
-  description: `About ${site.name}, ${site.role.toLowerCase()}.`,
+  // Not site.role.toLowerCase(): that turned the acronym into "ux researcher",
+  // and this string is what a search result shows.
+  description: `About ${site.name}, UX researcher in Kraków. The study behind the portfolio, and how it was run.`,
 };
 
 const principles = [
@@ -71,7 +73,7 @@ export default function AboutPage() {
               381x381, so a taller frame would have to upscale it. */}
           <Image
             src="/grzegorz-seweryn-portrait.webp"
-            alt={`${site.name}, ${site.role.toLowerCase()}`}
+            alt={`${site.name}, ${site.role}`}
             width={381}
             height={381}
             sizes="(max-width: 900px) 60vw, 360px"

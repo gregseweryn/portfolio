@@ -24,10 +24,13 @@ export async function generateMetadata({
   const { slug } = await params;
   const study = getStudy(slug);
   if (!study) return {};
+  // The question, not the summary. The summary is a 377-character paragraph:
+  // search results and link previews both cut it off mid-sentence, and the
+  // research question is the better hook anyway.
   return {
     title: study.title,
-    description: study.summary,
-    openGraph: { type: "article", title: study.title, description: study.summary },
+    description: study.question,
+    openGraph: { type: "article", title: study.title, description: study.question },
     // The heading on the page is editorial. Someone searching for the work by the
     // title it was defended and archived under should still land here, so the
     // registered title goes in the citation metadata rather than in the <title>.

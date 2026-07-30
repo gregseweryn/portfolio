@@ -24,6 +24,10 @@
   color: var(--accent);
 }
 
+/* Stays at hairline weight on purpose. It is aria-hidden and redundant with the
+   flex gap, so it is decoration rather than a UI component: WCAG 1.4.11 does
+   not apply and a darker glyph would compete with the two labels it divides.
+   Measures 1.42:1, which is the intent, not an oversight. */
 .dotSep {
   color: var(--line);
 }

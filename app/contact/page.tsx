@@ -7,7 +7,7 @@ import styles from "./contact.module.css";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: `Get in touch with ${site.name}.`,
+  description: `Email ${site.name}, UX researcher in Kraków. Open to research roles; replies within a couple of days.`,
 };
 
 export default function ContactPage() {

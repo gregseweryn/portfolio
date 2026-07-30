@@ -7,6 +7,13 @@ import styles from "./DistrictPhases.module.css";
  * of each other, and Podgórze sits apart.
  *
  * Means from thesis table 4.7; see lib/data/thesis/SOURCES.md.
+ *
+ * Text alternative deliberately differs from the charts. Figure.tsx gives every
+ * chart a hidden <table>, because a Likert grid or a coefficient plot carries
+ * dozens of values that only a table can expose in order. This figure carries
+ * three numbers and one relationship, which a <desc> states more directly than
+ * a three-cell table would. Two mechanisms, chosen by how much data there is,
+ * not by accident: don't "unify" them.
  */
 
 const X0 = 110;
