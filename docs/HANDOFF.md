@@ -77,6 +77,16 @@ Zostały podjęte świadomie i były przedmiotem rozmowy z właścicielem projek
 - **Wykresy są statyczne**, bez tooltipów i filtrów. Świadomy wybór: rekruter ma
   zobaczyć wniosek, nie bawić się narzędziem.
 - **Dwie prace docelowo**, nie trzy. Jedna gotowa, druga w planie.
+- **Analityka to Vercel Web Analytics i nie zamieniaj jej na Google Analytics.**
+  Wybrana z jednego powodu: w produkcji serwuje się z własnego origin
+  (`/_vercel/insights/...`), więc `script-src 'self'` i `connect-src 'self'`
+  ją pokrywają i **CSP zostaje zamknięte**. Każde inne narzędzie to skrypt z
+  obcej domeny. Do tego bez ciasteczek i bez trwałego identyfikatora (hasz z
+  żądania kasowany po dobie), dzięki czemu strona **nie potrzebuje banera
+  zgody**. Darmowy plan nie ma UTM ani zdarzeń własnych, a okno raportowania
+  to miesiąc, więc dane trzeba raz w miesiącu wyeksportować do CSV.
+  Trasa `/cv` istnieje po to, żeby wejścia z wysłanego CV dało się policzyć
+  osobno bez UTM; ma `noindex`.
 - **Dwa głosy typografii, nie jedna drabinka.** `--text-display` (Druk Wide) to
   tytuły stron. `--text-statement` (Druk Wide, o stopień niżej) to teza wewnątrz
   strony: pasmo „Approach" i tytuł kontaktu. `--text-h1` i niżej to Noirden,

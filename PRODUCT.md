@@ -81,7 +81,6 @@ udawane doświadczenie komercyjne.
 
 - Bez bloga, newslettera i „przemyśleń".
 - Bez wersji językowej innej niż angielska (cytaty z badań zostają w oryginale).
-- Bez analityki śledzącej odwiedzających.
 - Bez formularza kontaktowego — e-mail i LinkedIn wystarczą i nie wymagają backendu.
 - Bez CMS-a. Treść żyje w repozytorium, bo autorem jest jedna osoba.
 

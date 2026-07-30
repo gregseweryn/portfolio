@@ -4,6 +4,7 @@ import { site } from "@/lib/site";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 // WOFF2 builds, produced from the licensed TTF/OTF masters in myfonts/ by
@@ -73,6 +74,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Nav />
         <main id="main">{children}</main>
         <Footer />
+        {/* Vercel Web Analytics. Chosen over Plausible or Fathom for one reason
+            that matters here: in production it is served from this origin
+            (/_vercel/insights/...), so the locked-down CSP needs no third-party
+            host added to script-src or connect-src.
+
+            No cookies and no persistent identifier either. Visitors are a hash
+            of the incoming request that resets daily, which is why the site
+            still needs no consent banner. */}
+        <Analytics />
       </body>
     </html>
   );

@@ -16,7 +16,8 @@ export const krakowOvertourism: Study = {
   title: "Who pays for a tourist city",
   // The heading above is editorial; this is the title the thesis was defended
   // and archived under in APD UJ, and the one the PDF opens with.
-  formalTitle: "Turystyfikacja Krakowa: percepcja mieszkańców",
+  formalTitle:
+    "Turystyfikacja Krakowa: percepcja mieszkańców Krakowa wobec skutków rozwoju turystyki w dzielnicach centralnych",
   formalTitleLang: "pl",
   question:
     "How do the people who actually live in central Kraków experience tourism, and what decides where they land?",
