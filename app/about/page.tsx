@@ -69,13 +69,20 @@ export default function AboutPage() {
           <Button href="/contact" variant="line">Get in touch</Button>
         </div>
         <div className={styles.portrait}>
-          {/* Square rather than the 4/5 the placeholder used: the source is
-              381x381, so a taller frame would have to upscale it. */}
+          {/* 686px square, cropped out of the source in brand/. The previous file
+              was 381px, which is fine at 360 CSS px on a 1x screen and visibly
+              soft at 2x, where the browser has to stretch it to 720.
+
+              Desaturated on purpose. The site runs near-monochrome on one accent
+              at hue 264; the source photo is graded teal at hue 169, and this is
+              the only photograph on the site, so it cannot carry a second colour
+              language on its own. The graded version is kept alongside as
+              -toned.webp if that call is ever reversed. */}
           <Image
             src="/grzegorz-seweryn-portrait.webp"
             alt={`${site.name}, ${site.role}`}
-            width={381}
-            height={381}
+            width={686}
+            height={686}
             sizes="(max-width: 900px) 60vw, 360px"
             className={styles.portraitImage}
             priority
