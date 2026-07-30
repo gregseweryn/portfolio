@@ -11,7 +11,9 @@ export default function NotFound() {
         The page you&rsquo;re after doesn&rsquo;t exist or has moved. Let&rsquo;s get you back to
         something real.
       </p>
-      <nav className={styles.links} aria-label="Recovery">
+      {/* "Recovery" was internal vocabulary: a screen reader announced it as
+          "Recovery navigation", which tells the listener nothing. */}
+      <nav className={styles.links} aria-label="Where to go next">
         <Link href="/" className="link">Home</Link>
         <Link href="/#work" className="link">Selected research</Link>
         <Link href="/contact" className="link">Contact</Link>

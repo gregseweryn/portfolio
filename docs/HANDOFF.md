@@ -77,6 +77,16 @@ Zostały podjęte świadomie i były przedmiotem rozmowy z właścicielem projek
 - **Wykresy są statyczne**, bez tooltipów i filtrów. Świadomy wybór: rekruter ma
   zobaczyć wniosek, nie bawić się narzędziem.
 - **Dwie prace docelowo**, nie trzy. Jedna gotowa, druga w planie.
+- **Dwa głosy typografii, nie jedna drabinka.** `--text-display` (Druk Wide) to
+  tytuły stron. `--text-statement` (Druk Wide, o stopień niżej) to teza wewnątrz
+  strony: pasmo „Approach" i tytuł kontaktu. `--text-h1` i niżej to Noirden,
+  czyli nagłówki porządkujące stronę, którą ktoś już czyta. Display i h1 nie są
+  kolejnymi stopniami tej samej skali, bo to nie ten sam rodzaj pisma.
+- **Reguła „etykieta nazywa rodzaj".** Małe wersaliki z trackingiem mogą nazywać,
+  czym coś **jest** (Featured, Next study, Copy, nagłówek kolumny, nagłówek
+  tabeli). Nie wolno nimi zapowiadać sekcji, która ma własny nagłówek: „APPROACH"
+  nad nagłówkiem mówiącym, czym jest approach, to druga, słabsza etykieta i nic
+  więcej. Wyjście z tego prowadzi przez skalę, nie przez cichszy kicker.
 - **Zero em dashów (`—`) w widocznej treści.** Decyzja właściciela: ta pauza czyta
   się dziś jako sygnatura tekstu generowanego, a nie jako interpunkcja. Zamiast
   niej: przecinek, dwukropek, nawias albo osobne zdanie. Półpauza (`–`) zostaje

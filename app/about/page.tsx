@@ -37,7 +37,6 @@ export default function AboutPage() {
   return (
     <div className={styles.page}>
       <section className="container">
-        <p className={styles.kicker}>About</p>
         <SplitReveal as="h1" className={styles.title}>
           A researcher who cares as much about the decision as the data.
         </SplitReveal>
@@ -46,21 +45,25 @@ export default function AboutPage() {
       <section className={`container ${styles.bioGrid}`}>
         <div className={styles.bio}>
           <p className={styles.lead}>
-            I&rsquo;m {site.name}, a UX researcher. I help product teams understand the people
-            they build for, and turn that understanding into decisions they can defend.
-          </p>
-          {/* TODO(personalise): replace with real background, sector experience, and story. */}
-          <p>
-            I work across the research arc: framing questions, running generative and evaluative
-            studies, and synthesising messy evidence into something a team can act on. I&rsquo;m
-            equally at home with a discovery interview, a usability session, and a stakeholder
-            workshop where the findings have to survive contact with real constraints.
+            I&rsquo;m {site.name}, a UX researcher in Kraków. I design studies, run the fieldwork
+            myself, and turn what comes back into decisions a team can defend.
           </p>
           <p>
-            What I enjoy most is the moment research changes a team&rsquo;s mind, when a confident
-            assumption meets the evidence and the plan gets better for it. I treat clarity,
-            inclusion, and research ethics as part of the craft, not afterthoughts.
+            My last one was an MA thesis at the Jagiellonian University, on how the people who
+            actually live in central Kraków experience a city that draws 14.7 million visitors a
+            year. I built the questionnaire, gathered 446 responses and ten in-depth interviews
+            across six weeks of fieldwork, and analysed the two strands separately before letting
+            them meet. It is on this site in full, including the part about what it cannot tell you.
           </p>
+          <p>
+            That last part is the habit I would bring to a team. What I enjoy most is the moment
+            research changes someone&rsquo;s mind, when a confident assumption meets the evidence
+            and the plan gets better for it, and that only happens if the evidence arrives honestly,
+            with its limits attached. So the limits go in the deck, not in an appendix nobody opens.
+          </p>
+          {/* TODO(personalise): the professional half is now the real study. Still
+              missing, and only Grzegorz can supply it: what pulled him to
+              touristification specifically, and what kind of team he is aiming at. */}
           <Button href="/contact" variant="line">Get in touch</Button>
         </div>
         <div className={styles.portrait}>

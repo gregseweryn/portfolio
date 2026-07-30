@@ -8,8 +8,18 @@ export const site = {
   availability: "Open to UX research roles",
   tagline:
     "I turn messy human behaviour into decisions teams can act on.",
+  // Two different jobs, so two strings. `intro` is read directly after the
+  // tagline, so it must add rather than restate; one string doing both is why
+  // this used to say "decisions" twice in the same fold and open with the role
+  // that the line above it already gives.
   intro:
-    "UX researcher working across generative and evaluative studies. I help product teams understand the people they build for, and make confident, evidence-based decisions.",
+    "One study so far, carried end to end: 446 residents surveyed, ten interviewed, and a published account of where its own conclusions stop.",
+  // Stands alone in search results and link previews, where the tagline is not
+  // there to lean on.
+  // Kept under ~155 characters: past that Google truncates, and the clause that
+  // does the differentiating is the one at the end.
+  description:
+    "UX researcher in Kraków, working across generative and evaluative studies. One mixed-methods study published in full, including where its evidence stops.",
   // Deliberately null: the CV carries a personal phone number, and a public PDF
   // is exactly what number-harvesting bots crawl for. It goes to recruiters who
   // get in touch, not to anyone who finds the site. Setting a path here brings

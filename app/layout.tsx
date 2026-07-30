@@ -50,10 +50,10 @@ export const metadata: Metadata = {
     default: `${site.name} – ${site.role}`,
     template: `%s – ${site.name}`,
   },
-  description: site.intro,
+  description: site.description,
   openGraph: {
     title: `${site.name} – ${site.role}`,
-    description: site.intro,
+    description: site.description,
     type: "website",
   },
   robots: { index: true, follow: true },

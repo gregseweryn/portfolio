@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getStudy, studies } from "@/lib/studies";
+import { getStudy, studies, sectionId } from "@/lib/studies";
 import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import Button from "@/components/Button";
 import SplitReveal from "@/components/SplitReveal";
 import StudyBlock from "@/components/study/StudyBlocks";
 import DistrictPhases from "@/components/study/DistrictPhases";
+import SectionIndex from "@/components/study/SectionIndex";
 import { site } from "@/lib/site";
 import styles from "./study.module.css";
 
@@ -96,7 +97,19 @@ export default async function StudyPage({
             </div>
           ))}
         </dl>
+      </div>
 
+      {/* Outside the container on purpose: the bar's rule and background run the
+          full width, its contents stay on the grid. It scrolls with the page
+          until it meets the nav, then sticks for the rest of the argument. */}
+      <SectionIndex
+        sections={study.sections.map((s) => ({
+          id: sectionId(s.navLabel ?? s.heading),
+          label: s.navLabel ?? s.heading,
+        }))}
+      />
+
+      <div className="container">
         {study.sections.map((section) => {
           // Prose sits in the narrow column beside the sticky heading; anything
           // wider (figures, tables, stat rows) spans the full grid.
@@ -104,7 +117,12 @@ export default async function StudyPage({
           const hasLeadProse = lead?.kind === "prose";
 
           return (
-            <Reveal as="section" key={section.heading} className={styles.section}>
+            <Reveal
+              as="section"
+              key={section.heading}
+              id={sectionId(section.navLabel ?? section.heading)}
+              className={styles.section}
+            >
               {/* Heading and opening prose share a grid of their own. That grid
                   is the sticky heading's containing block, so the heading
                   releases where the prose ends instead of riding down over the
@@ -130,7 +148,7 @@ export default async function StudyPage({
       <div className="container">
         {study.downloads && (
           <div className={styles.downloads}>
-            <p className={styles.downloadsLabel}>Check the work</p>
+            <h2 className={styles.downloadsTitle}>Check the work</h2>
             {study.formalTitle && (
               <p className={styles.formalTitle}>
                 <cite lang={study.formalTitleLang}>{study.formalTitle}</cite>

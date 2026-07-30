@@ -5,7 +5,10 @@ import { usePathname } from "next/navigation";
 import Lenis from "lenis";
 import { gsap, ScrollTrigger, prefersReducedMotion } from "@/lib/gsap";
 
-const ANCHOR_OFFSET = -80;
+// Clearance above an anchor target. Lenis positions the target itself and does
+// not honour scroll-margin, so this has to cover the sticky nav (4.5rem) plus
+// the study page's contents bar (~2.75rem) with a little air.
+const ANCHOR_OFFSET = -124;
 
 /**
  * Lenis smooth scroll, synced to GSAP's ticker so ScrollTrigger stays in lock-step.

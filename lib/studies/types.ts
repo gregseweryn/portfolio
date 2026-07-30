@@ -62,7 +62,20 @@ export type Block =
   | { kind: "list"; items: { title: string; body: string }[] };
 
 export type StudySection = {
+  /**
+   * The visible heading, written as a claim rather than a topic, so that a
+   * reader who skims only the headings still collects the findings.
+   */
   heading: string;
+  /**
+   * Short label for the contents bar, and the source of the section's anchor id.
+   *
+   * Two reasons it is separate from `heading`. A contents list of twelve
+   * full claims is a wall of text, and deriving the anchor from a claim gives
+   * URLs like #nobody-had-asked-the-residents-since-before-covid that break the
+   * moment the wording is edited. Falls back to `heading` when omitted.
+   */
+  navLabel?: string;
   blocks: Block[];
 };
 

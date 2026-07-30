@@ -38,13 +38,17 @@
   color: var(--line);
 }
 
+/* The most important headline on the site, and until now the only page title
+   not set in the display face. Druk Wide Bold ships one weight: asking for 900
+   bought a synthesised bold, not a heavier one. */
 .title {
   margin-top: 1.25rem;
-  font-size: var(--text-h1);
-  font-weight: 900;
-  line-height: var(--lh-snug);
-  letter-spacing: var(--ls-tight);
-  max-width: 20ch;
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  font-weight: 700;
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  max-width: 17ch;
 }
 
 .question {
@@ -118,19 +122,29 @@
   flex-direction: column;
   gap: clamp(2rem, 4vw, 3rem);
   padding-bottom: var(--section-y);
+  /* Sections are anchor targets for the contents bar, and two things stick
+     above them: the nav and the bar itself. Set on the target rather than as
+     scroll-padding on <html>, so it holds for native jumps, reduced motion,
+     and no-JS alike. */
+  scroll-margin-top: calc(var(--nav-h) + 3.5rem);
 }
 
 /* The intro grid is deliberately a separate box from .sectionBlocks: it scopes
    the sticky heading so it can never travel over the full-width figures. */
+/* The rail carries a full claim now, not a two-word label, so it gets more
+   width. Free to do: .sectionBody is capped at 40rem, so the prose column was
+   never using the space this takes. */
 .sectionIntro {
   display: grid;
-  grid-template-columns: minmax(0, 0.7fr) minmax(0, 2fr);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 2fr);
   gap: clamp(1rem, 4vw, 3rem) clamp(2rem, 5vw, 4rem);
 }
 
+/* Clears the nav and the contents bar, same offset the anchor targets use, so a
+   heading never comes to rest underneath the bar that linked to it. */
 .sectionHead {
   position: sticky;
-  top: 6rem;
+  top: calc(var(--nav-h) + 3.5rem);
   height: fit-content;
 }
 
@@ -176,13 +190,14 @@
   padding-bottom: clamp(2.5rem, 5vw, 4rem);
 }
 
-.downloadsLabel {
-  font-family: var(--font-label);
-  font-size: var(--text-xs);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 1rem;
+/* Was a tracked uppercase eyebrow. Same words, real hierarchy: this block ends
+   a twelve-section argument and deserves a heading, not a label. It also gives
+   the block the outline entry it was missing. */
+.downloadsTitle {
+  font-size: var(--text-h2);
+  font-weight: 800;
+  letter-spacing: var(--ls-tight);
+  margin-bottom: 0.75rem;
 }
 
 /* The registered title of the work being downloaded. Quiet by design: the
@@ -191,7 +206,6 @@
   font-size: var(--text-sm);
   color: var(--muted);
   max-width: 44ch;
-  margin-top: -0.5rem;
   margin-bottom: 1.25rem;
 }
 

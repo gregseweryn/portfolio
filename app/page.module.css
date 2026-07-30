@@ -63,30 +63,16 @@
   padding-block: clamp(1.5rem, 3vw, 2.25rem);
 }
 
-.methodsInner {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: clamp(1.25rem, 4vw, 3rem);
-  align-items: baseline;
-}
-
-.methodsHead {
-  font-family: var(--font-label);
-  font-size: var(--text-xs);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  color: var(--muted);
-  white-space: nowrap;
-}
-
 .methodsList {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem 0;
 }
 
+/* The band now carries itself, so the type steps up: without a label column
+   competing for the eye, the method names are the whole statement. */
 .methodItem {
-  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
+  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.45rem);
   font-weight: 500;
   letter-spacing: var(--ls-tight);
 }
@@ -333,22 +319,13 @@
   max-width: 62rem;
 }
 
-.approachKicker {
-  font-family: var(--font-label);
-  font-size: var(--text-xs);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 1.5rem;
-}
-
 .approachTitle {
   font-family: var(--font-display);
-  font-size: var(--text-display);
+  font-size: var(--text-statement);
   font-weight: 700;
   line-height: var(--lh-tight);
   letter-spacing: var(--ls-display);
-  max-width: 24ch;
+  max-width: 22ch;
 }
 
 .approachEm {
@@ -381,13 +358,16 @@
   margin-bottom: 1rem;
 }
 
+/* Same tier as the approach statement, on the token rather than a one-off
+   clamp: two claims on the page, set the same way, so the hero stays the only
+   voice at full volume. */
 .contactTitle {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  font-size: var(--text-statement);
   font-weight: 700;
   letter-spacing: var(--ls-display);
-  line-height: 1.14;
-  max-width: 26ch;
+  line-height: var(--lh-tight);
+  max-width: 22ch;
   margin-bottom: clamp(1.75rem, 3vw, 2.5rem);
 }
 
@@ -415,10 +395,6 @@
 }
 
 @media (max-width: 680px) {
-  .methodsInner {
-    grid-template-columns: 1fr;
-    gap: 0.75rem;
-  }
   .row {
     grid-template-columns: 1fr;
     gap: 0.85rem;

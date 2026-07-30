@@ -9,3 +9,22 @@ export const studies: Study[] = [krakowOvertourism];
 export function getStudy(slug: string): Study | undefined {
   return studies.find((s) => s.slug === slug);
 }
+
+/**
+ * The anchor id for a section, derived from its heading so the URL stays
+ * readable and stable: #two-registers rather than #section-4. Renumbering the
+ * sections therefore never breaks a link someone already shared.
+ *
+ * Headings are English and already unique within a study; the diacritic strip
+ * is there so a Polish heading would not silently produce an empty id.
+ */
+export function sectionId(heading: string): string {
+  return heading
+    .normalize("NFD")
+    // Combining marks, written as escapes so no literal diacritic sits in the
+    // source: "Podgórze" becomes podgorze rather than podg-rze.
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}

@@ -38,11 +38,24 @@
      mid-syllable. Oswald carries the full set. */
   --font-pl: var(--font-oswald), var(--font-noirden), "Helvetica Neue", Arial, sans-serif;
 
-  /* Druk Wide is ~1.6x the width of a normal grotesque; the scale compensates. */
-  --text-display: clamp(1.85rem, 1rem + 3.6vw, 3.4rem);
+  /* Two voices, not one ramp.
+     --text-display is Druk Wide: page titles and the statements that carry the
+     brand. --text-h1 downwards is Noirden: headings that organise a page
+     someone is already reading. They are deliberately not consecutive steps on
+     one scale, because they are not the same kind of type.
+     Druk Wide is ~1.6x the width of a normal grotesque, so the display ceiling
+     sits below where a normal face could go and still fill the measure.
+     3.75rem is measured, not picked: this site's headlines are sentences, and
+     at 1240px the hero and the About title both hold three lines up to 60px,
+     then break to four. Going to 67px bought 7px of size for 95px of height. */
+  --text-display: clamp(2rem, 1.05rem + 4vw, 3.75rem);
+  /* Statements: the Druk voice used for a claim inside a page rather than for
+     the page's own title. One clear step below display, so a section can speak
+     up without competing with the headline that opened the page. */
+  --text-statement: clamp(1.7rem, 1.05rem + 2.7vw, 3rem);
   --text-h1: clamp(2rem, 1.3rem + 3.2vw, 3.15rem);
   --text-h2: clamp(1.5rem, 1.15rem + 1.6vw, 2.1rem);
-  --text-h3: 1.25rem;
+  --text-h3: clamp(1.2rem, 1.1rem + 0.45vw, 1.45rem);
   --text-lead: clamp(1.125rem, 1rem + 0.7vw, 1.4rem);
   --text-body: 1.0625rem; /* 17px */
   --text-sm: 0.875rem;
@@ -74,6 +87,9 @@
   --container: 1240px;
   --container-prose: 46rem; /* ~68ch at 17px */
   --gutter: clamp(1.25rem, 0.5rem + 3.5vw, 3.5rem);
+  /* The sticky nav's height. Anything that sticks below it offsets by this
+     rather than repeating the number. */
+  --nav-h: 4.5rem;
 
   /* ---- Motion ---- */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -242,7 +258,14 @@ ol {
   font-family: var(--font-pl);
 }
 
-/* ---- Utility label ---- */
+/* ---- Utility label ----
+   The Label-Names-A-Kind Rule. Small tracked uppercase type may name what a
+   piece of content *is* (Featured, Next study, Copy, a column head, a table
+   header). It must never announce a section that already has a heading:
+   "APPROACH" sitting above a heading that says what the approach is adds a
+   second, weaker label and nothing else. That habit is the section-eyebrow
+   pattern, and the way out of it is the Scale-Is-Hierarchy rule in DESIGN.md,
+   not a quieter eyebrow. */
 .label {
   font-family: var(--font-label);
   font-size: var(--text-xs);

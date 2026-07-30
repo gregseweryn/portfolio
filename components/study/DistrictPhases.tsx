@@ -68,10 +68,9 @@ export default function DistrictPhases({ caption }: { caption: string }) {
           its residents expect to follow.
         </desc>
 
-        <text x={X0} y={58} className={styles.kicker}>
-          SAMPLING LOGIC
-        </text>
-        <text x={X0} y={96} className={styles.headline}>
+        {/* No "SAMPLING LOGIC" eyebrow above this: the headline already says
+            what the figure is, and the axis labels name the rest. */}
+        <text x={X0} y={68} className={styles.headline}>
           Three districts, one process
         </text>
 

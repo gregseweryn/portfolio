@@ -52,7 +52,8 @@ export const krakowOvertourism: Study = {
   ],
   sections: [
     {
-      heading: "The gap",
+      heading: "Nobody had asked the residents since before COVID",
+      navLabel: "The gap",
       blocks: [
         {
           kind: "prose",
@@ -74,7 +75,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "Design",
+      heading: "Three districts, chosen as three phases of one process",
+      navLabel: "Design",
       blocks: [
         {
           kind: "prose",
@@ -105,7 +107,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "A negative balance",
+      heading: "What residents agree on is money, not noise",
+      navLabel: "A negative balance",
       blocks: [
         {
           kind: "prose",
@@ -125,7 +128,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "Two registers",
+      heading: "Touristification runs in two registers at once",
+      navLabel: "Two registers",
       blocks: [
         {
           kind: "prose",
@@ -139,7 +143,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "What explains an attitude",
+      heading: "Attitude is a balance sheet, not a demographic",
+      navLabel: "What explains an attitude",
       blocks: [
         {
           kind: "prose",
@@ -167,7 +172,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "Who leaves, who is anchored",
+      heading: "Costs push harder than benefits hold",
+      navLabel: "Who leaves, who is anchored",
       blocks: [
         {
           kind: "prose",
@@ -187,7 +193,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "Two types, one axis",
+      heading: "Two types that turn out to be one axis",
+      navLabel: "Two types, one axis",
       blocks: [
         {
           kind: "prose",
@@ -207,7 +214,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "What people said",
+      heading: "Residents blame the model, not the visitors",
+      navLabel: "What people said",
       blocks: [
         {
           kind: "prose",
@@ -283,7 +291,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "Putting the strands together",
+      heading: "Where the two strands disagree",
+      navLabel: "Putting the strands together",
       blocks: [
         {
           kind: "prose",
@@ -302,7 +311,8 @@ export const krakowOvertourism: Study = {
       ],
     },
     {
-      heading: "What follows",
+      heading: "Four measures the evidence supports",
+      navLabel: "What follows",
       blocks: [
         {
           kind: "list",
@@ -329,6 +339,7 @@ export const krakowOvertourism: Study = {
     },
     {
       heading: "What this doesn't support",
+      navLabel: "Limits",
       blocks: [
         {
           kind: "prose",

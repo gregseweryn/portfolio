@@ -37,10 +37,11 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Methods — range at a glance */}
+      {/* Methods — range at a glance. No label: the band is a run of method
+          names between two rules, and a "WHAT I DO" eyebrow only said again
+          what the words underneath already say. */}
       <section className={styles.methods} aria-label="Methods">
-        <div className={`container ${styles.methodsInner}`}>
-          <p className={styles.methodsHead}>What I do</p>
+        <div className="container">
           <MethodsList items={methods} listClassName={styles.methodsList} itemClassName={styles.methodItem} />
         </div>
       </section>
@@ -111,7 +112,6 @@ export default function Home() {
       {/* Approach — dark band with the abstract motif */}
       <section className={`darkSection ${styles.approach}`} aria-labelledby="approach-title">
         <div className={`container ${styles.approachInner}`}>
-          <p className={styles.approachKicker}>Approach</p>
           <SplitReveal as="h2" id="approach-title" trigger className={styles.approachTitle}>
             I start from the question, <span className={styles.approachEm}>not the method.</span>
           </SplitReveal>

@@ -10,13 +10,6 @@
 }
 
 /* ---- Type ---- */
-.kicker {
-  font-family: var(--font-label);
-  font-size: 15px;
-  letter-spacing: 0.14em;
-  fill: var(--muted);
-}
-
 /* Druk Wide runs about 1.6x the width of a normal grotesque, so the display
    size here is set well below what the box would otherwise allow. */
 .headline {

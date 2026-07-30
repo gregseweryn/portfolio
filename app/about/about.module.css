@@ -2,16 +2,9 @@
   padding-top: clamp(2.5rem, 5vw, 4.5rem);
 }
 
-.kicker {
-  font-family: var(--font-label);
-  font-size: var(--text-xs);
-  letter-spacing: var(--ls-caps);
-  text-transform: uppercase;
-  color: var(--accent);
-}
-
+/* No "ABOUT" eyebrow: the nav already marks this page, and the headline below
+   says something the word "About" does not. */
 .title {
-  margin-top: 1.25rem;
   font-family: var(--font-display);
   font-size: var(--text-display);
   font-weight: 700;

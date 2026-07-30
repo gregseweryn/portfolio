@@ -10,6 +10,8 @@ type Props = {
   as?: ElementType;
   delay?: number;
   className?: string;
+  /** Anchor target, so a revealed section can also be a link destination. */
+  id?: string;
 };
 
 /**
@@ -17,7 +19,7 @@ type Props = {
  * state is applied in a layout effect (client only), so no-JS, reduced-motion,
  * and headless renders always paint full, visible content.
  */
-export default function Reveal({ children, as: Tag = "div", delay = 0, className }: Props) {
+export default function Reveal({ children, as: Tag = "div", delay = 0, className, id }: Props) {
   const ref = useRef<HTMLElement>(null);
 
   useIsoLayoutEffect(() => {
@@ -57,6 +59,6 @@ export default function Reveal({ children, as: Tag = "div", delay = 0, className
 
   // Cast to a permissive type so the shared ref works across element tags.
   const Comp = Tag as ElementType;
-  const compProps = { ref, className } as Record<string, unknown>;
+  const compProps = { ref, className, id } as Record<string, unknown>;
   return <Comp {...compProps}>{children}</Comp>;
 }
