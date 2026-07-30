@@ -73,10 +73,11 @@
   gap: 0.35rem 0;
 }
 
-/* The band now carries itself, so the type steps up: without a label column
-   competing for the eye, the method names are the whole statement. */
+/* Back to the size it had before the label came off. Bigger type plus no label
+   made the least-evidenced content on the site the loudest thing in the first
+   screen, which was an accident of two separate changes, not a decision. */
 .methodItem {
-  font-size: clamp(1.1rem, 0.95rem + 0.7vw, 1.45rem);
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.3rem);
   font-weight: 500;
   letter-spacing: var(--ls-tight);
 }

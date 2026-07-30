@@ -1,3 +1,4 @@
+import ActiveSection from "./ActiveSection";
 import ReadingProgress from "./ReadingProgress";
 import styles from "./SectionIndex.module.css";
 
@@ -25,8 +26,7 @@ export default function SectionIndex({ sections }: { sections: SectionLink[] }) 
     <nav className={styles.wrap} aria-label="Sections in this study">
       <details className={styles.details}>
         <summary className={styles.summary}>
-          <span className={styles.label}>Contents</span>
-          <span className={styles.count}>{sections.length} sections</span>
+          <ActiveSection sections={sections} />
           <span className={styles.chevron} aria-hidden="true" />
         </summary>
         <ol className={styles.list}>
