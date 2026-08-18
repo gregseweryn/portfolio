@@ -1,7 +1,9 @@
 /**
- * Content-Security-Policy for a fully static site: no backend, no third-party
- * scripts, no analytics, no embeds. Everything the page needs it serves itself,
- * so every directive can be pinned to 'self'.
+ * Content-Security-Policy for a fully static site. Everything the page needs it
+ * serves itself, so every directive is pinned to 'self' — with one exception:
+ * Microsoft Clarity, which loads its tag from www.clarity.ms and posts session
+ * recordings back to *.clarity.ms (and c.bing.com, which it uses as a fallback
+ * ingest host). Those three hosts are the whole third-party surface.
  *
  * The two 'unsafe-inline' allowances are load-bearing, not laziness:
  *   script-src  Next inlines the RSC payload as `self.__next_f.push(...)`.
@@ -22,11 +24,11 @@ const devConnect = isDev ? " ws: http://localhost:* ws://localhost:*" : "";
 
 const csp = [
   "default-src 'self'",
-  `script-src 'self' 'unsafe-inline'${devScript}`,
+  `script-src 'self' 'unsafe-inline' https://www.clarity.ms https://*.clarity.ms${devScript}`,
   "style-src 'self' 'unsafe-inline'",
   "img-src 'self' data:",
   "font-src 'self'",
-  `connect-src 'self'${devConnect}`,
+  `connect-src 'self' https://*.clarity.ms https://c.bing.com${devConnect}`,
   "object-src 'none'",
   "base-uri 'self'",
   "form-action 'self'",

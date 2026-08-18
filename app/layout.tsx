@@ -5,6 +5,7 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/next";
+import Script from "next/script";
 import "./globals.css";
 
 // WOFF2 builds, produced from the licensed TTF/OTF masters in myfonts/ by
@@ -68,6 +69,21 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" className={`${druk.variable} ${noirden.variable} ${oswald.variable}`}>
+      <head>
+        {/* Microsoft Clarity — heatmaps and session recordings. beforeInteractive
+            puts the loader in the served <head>, so it starts collecting on the
+            first paint rather than after hydration; the tag it injects is async
+            either way. Unlike Vercel Analytics above, Clarity is third-party and
+            does set cookies (_clck, _clsk), so if the site ever needs a consent
+            banner, this is the thing that triggers it. */}
+        <Script id="ms-clarity" strategy="beforeInteractive">
+          {`(function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+          })(window, document, "clarity", "script", "y4cx9uxyfz");`}
+        </Script>
+      </head>
       <body id="top">
         <a href="#main" className="skip-link">Skip to content</a>
         <SmoothScroll />
