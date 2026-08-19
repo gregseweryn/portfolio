@@ -1,0 +1,20 @@
+{
+  "round1": {
+    "n": 6,
+    "medianError": 2925.0,
+    "minError": 0.0,
+    "maxError": 3650.0,
+    "zeroError": 1,
+    "filterEqualsBudget": 2,
+    "z4Correct": 4,
+    "z5Noticed": 4
+  },
+  "retest": {
+    "n": 5,
+    "medianError": 20.0,
+    "minError": 0.0,
+    "maxError": 950.0,
+    "returning": 2
+  },
+  "source": "Moderated usability sessions, Otodom, Kraków. Round 1 n=6, retest n=5."
+}

@@ -5,6 +5,8 @@ import ForestPlot from "./ForestPlot";
 import TypologyScatter from "./TypologyScatter";
 import ThemeMatrix from "./ThemeMatrix";
 import JointDisplay from "./JointDisplay";
+import CostComponents from "./CostComponents";
+import ErrorShift from "./ErrorShift";
 
 /**
  * Charts are addressed by id from study content, so the data files stay free of
@@ -18,4 +20,6 @@ export const CHARTS: Record<ChartId, () => React.ReactElement> = {
   typology: TypologyScatter,
   themes: ThemeMatrix,
   "joint-display": JointDisplay,
+  "cost-components": CostComponents,
+  "error-shift": ErrorShift,
 };

@@ -26,7 +26,29 @@ export type ChartId =
   | "move-out-model"
   | "typology"
   | "themes"
-  | "joint-display";
+  | "joint-display"
+  // Rental-search study.
+  | "cost-components"
+  | "error-shift";
+
+/**
+ * A real image in the running text. The thesis study is all SVG, so this is the
+ * first block that needs the image optimiser; width and height are required
+ * because a case study that reflows while it loads reads as unfinished.
+ */
+export type StudyImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /**
+   * Display cap in CSS pixels. A phone screenshot blown up to the full content
+   * column reads as a mistake however sharp the source is, so portrait captures
+   * set this to roughly phone width and sit centred. Omit for artwork that
+   * should fill the column.
+   */
+  maxWidth?: number;
+};
 
 export type Block =
   /** Running text. The default block. */
@@ -59,7 +81,21 @@ export type Block =
   /** The "so what" layer — what the work says about how I work. */
   | { kind: "callout"; label: string; body: string[] }
   /** Enumerated points that shouldn't be buried in a paragraph. */
-  | { kind: "list"; items: { title: string; body: string }[] };
+  | { kind: "list"; items: { title: string; body: string }[] }
+  /** A single screenshot or artefact photograph. */
+  | { kind: "image"; image: StudyImage; caption?: string }
+  /**
+   * A before/after pair under one caption. Two separate images would let a
+   * reader compare the wrong things; pairing them is the claim.
+   */
+  | {
+      kind: "compare";
+      before: StudyImage;
+      after: StudyImage;
+      beforeLabel?: string;
+      afterLabel?: string;
+      caption: string;
+    };
 
 export type StudySection = {
   /**

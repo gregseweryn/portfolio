@@ -52,9 +52,12 @@ export default function Home() {
           <div className={styles.sectionHead}>
             <h2 id="work-title" className={styles.sectionTitle}>Selected research</h2>
             <p className={styles.sectionNote}>
+              {/* "generative & evaluative" would overclaim: the second study is
+                  an audit and redesign, and its evaluative half is designed but
+                  not yet run. */}
               {studies.length === 1
                 ? "Mixed methods · quantitative & qualitative"
-                : `${studies.length} case studies · generative & evaluative`}
+                : `${studies.length} case studies · research & redesign`}
             </p>
           </div>
 

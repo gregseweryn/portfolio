@@ -13,7 +13,7 @@ export const site = {
   // this used to say "decisions" twice in the same fold and open with the role
   // that the line above it already gives.
   intro:
-    "One study so far, carried end to end: 446 residents surveyed, ten interviewed, and a published account of where its own conclusions stop.",
+    "Two pieces of work: a mixed-methods study of 446 residents, and a measured teardown of a rental search where every result breaks the budget it was filtered to. Both published with the limits attached.",
   // Stands alone in search results and link previews, where the tagline is not
   // there to lean on.
   // Kept under ~155 characters: past that Google truncates, and the clause that

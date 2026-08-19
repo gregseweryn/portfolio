@@ -1,0 +1,159 @@
+{
+  "people": [
+    {
+      "id": "U1",
+      "tenancy": "Pierwszy w życiu",
+      "outcome": "Wciąż szukam",
+      "filter": 3500.0,
+      "budget": 3500.0,
+      "deducted": false,
+      "estimate": 2900.0,
+      "actual": 6550.0,
+      "error": 3650.0,
+      "errorPct": 55.7,
+      "z4Correct": false,
+      "z5Noticed": false,
+      "components": [
+        "czynsz_wlasciciela"
+      ]
+    },
+    {
+      "id": "U2",
+      "tenancy": "Drugi",
+      "outcome": "Wynająłem mieszkanie",
+      "filter": 3000.0,
+      "budget": 3500.0,
+      "deducted": true,
+      "estimate": 6000.0,
+      "actual": 6120.0,
+      "error": 120.0,
+      "errorPct": 2.0,
+      "z4Correct": true,
+      "z5Noticed": true,
+      "components": [
+        "czynsz_wlasciciela",
+        "czynsz_administracyjny",
+        "kaucja"
+      ]
+    },
+    {
+      "id": "U6",
+      "tenancy": "Drugi",
+      "outcome": "Wynająłem mieszkanie",
+      "filter": 2800.0,
+      "budget": 3500.0,
+      "deducted": true,
+      "estimate": 6710.0,
+      "actual": 9560.0,
+      "error": 2850.0,
+      "errorPct": 29.8,
+      "z4Correct": true,
+      "z5Noticed": true,
+      "components": [
+        "czynsz_wlasciciela",
+        "czynsz_administracyjny",
+        "kaucja",
+        "media"
+      ]
+    },
+    {
+      "id": "U3",
+      "tenancy": "Trzeci lub kolejny",
+      "outcome": "Wynająłem mieszkanie",
+      "filter": 2500.0,
+      "budget": 3500.0,
+      "deducted": true,
+      "estimate": 6600.0,
+      "actual": 6600.0,
+      "error": 0.0,
+      "errorPct": 0.0,
+      "z4Correct": true,
+      "z5Noticed": true,
+      "components": [
+        "czynsz_wlasciciela",
+        "czynsz_administracyjny",
+        "kaucja",
+        "media",
+        "internet"
+      ]
+    },
+    {
+      "id": "U4",
+      "tenancy": "Pierwszy w życiu",
+      "outcome": "Zrezygnowałem i zostałem tam, gdzie byłem",
+      "filter": 3500.0,
+      "budget": 3500.0,
+      "deducted": false,
+      "estimate": 2600.0,
+      "actual": 6090.0,
+      "error": 3490.0,
+      "errorPct": 57.3,
+      "z4Correct": false,
+      "z5Noticed": false,
+      "components": [
+        "czynsz_wlasciciela"
+      ]
+    },
+    {
+      "id": "U5",
+      "tenancy": "Trzeci lub kolejny",
+      "outcome": "Wciąż szukam",
+      "filter": 3200.0,
+      "budget": 3500.0,
+      "deducted": true,
+      "estimate": 3941.0,
+      "actual": 6941.0,
+      "error": 3000.0,
+      "errorPct": 43.2,
+      "z4Correct": true,
+      "z5Noticed": true,
+      "components": [
+        "czynsz_wlasciciela",
+        "czynsz_administracyjny"
+      ]
+    }
+  ],
+  "retest": [
+    {
+      "id": "P1",
+      "returning": true,
+      "estimate": 6580.0,
+      "actual": 6580.0,
+      "error": 0.0,
+      "z4Correct": true
+    },
+    {
+      "id": "P2",
+      "returning": true,
+      "estimate": 6740.0,
+      "actual": 6740.0,
+      "error": 0.0,
+      "z4Correct": true
+    },
+    {
+      "id": "P3",
+      "returning": false,
+      "estimate": 6100.0,
+      "actual": 6500.0,
+      "error": 400.0,
+      "z4Correct": true
+    },
+    {
+      "id": "P4",
+      "returning": false,
+      "estimate": 6900.0,
+      "actual": 6920.0,
+      "error": 20.0,
+      "z4Correct": true
+    },
+    {
+      "id": "P5",
+      "returning": false,
+      "estimate": 5800.0,
+      "actual": 6750.0,
+      "error": 950.0,
+      "z4Correct": true
+    }
+  ],
+  "source": "Moderated usability sessions, Otodom, Kraków. Round 1 n=6, retest n=5."
+}

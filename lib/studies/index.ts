@@ -1,10 +1,13 @@
 import { krakowOvertourism } from "./krakow-overtourism";
+import { krakowRentalSearch } from "./krakow-rental-search";
 import type { Study } from "./types";
 
-export type { Block, ChartId, Download, Hero, Impact, Media, Study, StudySection } from "./types";
+export type { Block, ChartId, Download, Hero, Impact, Media, Study, StudyImage, StudySection } from "./types";
 
 // Order is meaningful: the first study takes the featured slot on the home page.
-export const studies: Study[] = [krakowOvertourism];
+// The thesis stays featured: it is the deeper piece and the one with fieldwork
+// behind it. The rental study sits second until its evaluative sessions are run.
+export const studies: Study[] = [krakowOvertourism, krakowRentalSearch];
 
 export function getStudy(slug: string): Study | undefined {
   return studies.find((s) => s.slug === slug);

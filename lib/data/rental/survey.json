@@ -1,0 +1,19 @@
+{
+  "n": 42,
+  "screenedOut": 5,
+  "distributions": {
+    "S7": {
+      "Czynszu dla właściciela plus czynsz administracyjny": 13,
+      "Wszystkiego razem z mediami": 13,
+      "Samego czynszu dla właściciela": 9,
+      "Nie zastanawiałem się nad tym w ten sposób": 7
+    },
+    "S8": {
+      "Tak, raz lub dwa": 14,
+      "Tak, wielokrotnie": 20,
+      "Nie": 6,
+      "Nie pamiętam": 2
+    }
+  },
+  "source": "Recruitment and quantification survey, Kraków rental seekers, n=42."
+}

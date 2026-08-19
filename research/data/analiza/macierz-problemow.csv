@@ -1,0 +1,11 @@
+priorytet,problem_id,problem,gdzie,zaobserwowano_u,czestosc_n,czestosc,prog_raportowania,zglosili_spontanicznie_w_Z6,dotkliwosc_nielsen_1_4,szacowany_koszt_naprawy,czestosc_x_dotkliwosc
+1,P-01,"Filtr ceny operuje na cenie bazowej i nie sygnalizuje, czego nie obejmuje",filtry / wyniki wyszukiwania,U1;U2;U3;U4;U5;U6,6,6/6,ustalenie mocne jak na tę próbę,U2;U3;U5,4,średni,24
+2,P-03,Brak czynszu nieodróżnialny od czynszu zerowego — puste miejsce zamiast etykiety,karta oferty (oferta C),U1;U2;U3;U4;U5;U6,6,6/6,ustalenie mocne jak na tę próbę,U3;U6,4,niski,24
+3,P-05,Porównanie dwóch ofert wymaga ręcznego sumowania składników,lista wyników,U2;U3;U5;U6,4,4/6,wzór wart projektowania,U3;U5,3,średni,12
+4,P-06,Kaucja poza polem widzenia w momencie szacowania kosztu wejścia,strona oferty,U1;U2;U4;U5,4,4/6,wzór wart projektowania,,3,niski,12
+5,P-04,"Niespójny format drugiego wiersza karty: raz czynsz, raz cena za m²",lista wyników,U2;U3;U6,3,3/6,wzór wart projektowania,U2,3,niski,9
+6,P-09,"Sekcja opłat poniżej opisu, poza pierwszym ekranem",strona oferty,U1;U4;U6,3,3/6,wzór wart projektowania,,3,niski,9
+7,P-10,Sumowanie kosztu przerzucone na użytkownika mimo obecności danych w bazie,cały przepływ,U3;U5;U6,3,3/6,wzór wart projektowania,U2;U3;U5;U6,3,wysoki,9
+8,P-02,Cena bazowa odbierana jako pełny koszt miesięczny,karta oferty / strona oferty,U1;U4,2,2/6,sygnał,U1,4,niski,8
+9,P-07,"Prowizja biura umieszczona poniżej opisu, poza zasięgiem przewijania",strona oferty,U6,1,1/6,sygnał,U3;U5;U6,4,niski,4
+10,P-08,Oferty biur nierozróżnialne od prywatnych na liście wyników,lista wyników,U6,1,1/6,sygnał,U2;U3;U5;U6,3,średni,3

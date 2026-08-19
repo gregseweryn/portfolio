@@ -1,9 +1,13 @@
-"""Final gate: audit every number in the case study's hand-written text.
+"""Final gate: audit every number in each case study's hand-written text.
 
 Scope is deliberate. Numbers inside the SVGs and the screen-reader tables are
-emitted from lib/data/thesis/*.json, which the extraction script already gates
-against the printed thesis. The risk this catches is different: a figure I typed
-by hand into prose, a caption or a stat row that drifted from the source.
+emitted from lib/data/*/*.json, which the extraction scripts already gate against
+their sources. The risk this catches is different: a figure typed by hand into
+prose, a caption or a stat row that drifted from the source.
+
+Every study on the site needs an entry in STUDIES. A study with no entry is a
+study whose numbers nobody is checking, which is the failure this file exists to
+prevent.
 """
 import re
 import sys
@@ -12,7 +16,8 @@ from pathlib import Path
 
 sys.stdout.reconfigure(encoding="utf-8")
 
-HTML = Path(r"C:\Users\grzeg\Documents\portfolio\.next\server\app\work\krakow-touristification.html")
+# Relative to this file, so the audit runs wherever the repo is checked out.
+BUILD = Path(__file__).resolve().parent.parent / ".next" / "server" / "app" / "work"
 
 SKIP_TAGS = {"script", "style", "svg"}
 
@@ -47,7 +52,7 @@ class Prose(HTMLParser):
 
 
 # Values verified against the thesis; see lib/data/thesis/SOURCES.md.
-VERIFIED = {
+THESIS = {
     # scope and sample
     "446", "10", "3", "6", "20.1", "2026",
     # context (chapter II)
@@ -92,20 +97,89 @@ VERIFIED = {
     "2.5",
 }
 
-parser = Prose()
-parser.feed(HTML.read_text(encoding="utf-8"))
-text = re.sub(r"\s+", " ", " ".join(parser.parts))
+# Values measured on otodom.pl, 4 August 2026. Every figure below is reproduced
+# by scripts/analyse-rental-audit.py from the saved dataset; run it if any of
+# these need checking. Nothing here comes from user research, because none has
+# been run.
+RENTAL = {
+    # --- scaled audit, 423 listings over six pages -----------------------
+    "423", "397",
+    # administrative rent not stated, and stated as zero
+    "26", "6.1", "10",
+    # administrative rent distribution, zl
+    "537", "700", "856", "3100",
+    # administrative rent as a share of the advertised price
+    "22.4", "22",
+    # a 3000 zl filter: returned, over budget, share
+    "213", "139", "65.3", "65",
+    # the same filter narrowed to two-room listings
+    "85.2",
+    # ranking disagreements. "76,335" and "5,219" tokenise on the comma,
+    # which is why the halves appear here separately.
+    "6.8", "76", "335", "5", "219",
+    # the first-page figure the scaled audit corrected downwards
+    "100",
+    # the search and its result set
+    "3000", "8", "2",
+    # overshoot range and the worst case
+    "17", "35", "2980", "4050",
+    # admin rents observed across the eight listings
+    "700", "1200", "400",
+    # the listing whose headline price reverses the real order
+    "2500", "4000", "6500",
+    # cheapest real cost on the page, and the scenario budget
+    "3500", "3800",
+    # the estimate conventions, stated in the interface
+    "300",
+    # unit-price example quoted from a card
+    "92", "59",
+    # thesis figures referenced in the opening section
+    "446", "88.1",
+    # accessibility measurements
+    "4.51", "4.57", "7", "375", "44",
+    # audit date and study scale
+    "2026", "4", "11", "6",
+    # ordinary prose and list markers
+    "1", "3", "01", "02", "03",
+    # "0 of 8": nothing on the page fits a 3500 zl budget
+    "0",
+    # part of the contact email address in the footer, not a finding
+    "99",
+}
 
-tokens = re.findall(r"\d+(?:\.\d+)?", text)
-unknown = {}
-for t in tokens:
-    if t not in VERIFIED:
-        m = re.search(r".{0,55}" + re.escape(t) + r".{0,30}", text)
-        unknown.setdefault(t, m.group(0).strip() if m else "")
+STUDIES = [
+    ("krakow-touristification", THESIS, "verified thesis value"),
+    ("krakow-rental-search", RENTAL, "measured audit value"),
+]
 
-print(f"numbers in hand-written text: {len(tokens)} ({len(set(tokens))} distinct)")
-print(f"unaccounted for: {len(unknown)}")
-for v, ctx in sorted(unknown.items(), key=lambda kv: kv[0]):
-    print(f"  {v:>7}   …{ctx}…")
-if not unknown:
-    print("\nEvery figure traces to a verified thesis value.")
+
+def audit(slug, verified, source_label):
+    path = BUILD / f"{slug}.html"
+    if not path.exists():
+        print(f"{slug}: MISSING BUILD OUTPUT at {path}")
+        return 1
+
+    parser = Prose()
+    parser.feed(path.read_text(encoding="utf-8"))
+    text = re.sub(r"\s+", " ", " ".join(parser.parts))
+
+    tokens = re.findall(r"\d+(?:\.\d+)?", text)
+    unknown = {}
+    for t in tokens:
+        if t not in verified:
+            m = re.search(r".{0,55}" + re.escape(t) + r".{0,30}", text)
+            unknown.setdefault(t, m.group(0).strip() if m else "")
+
+    print(f"\n{slug}")
+    print(f"  numbers in hand-written text: {len(tokens)} ({len(set(tokens))} distinct)")
+    print(f"  unaccounted for: {len(unknown)}")
+    for v, ctx in sorted(unknown.items(), key=lambda kv: kv[0]):
+        print(f"    {v:>7}   …{ctx}…")
+    if not unknown:
+        print(f"  every figure traces to a {source_label}.")
+    return len(unknown)
+
+
+total = sum(audit(*s) for s in STUDIES)
+print(f"\nunaccounted across all studies: {total}")
+sys.exit(1 if total else 0)

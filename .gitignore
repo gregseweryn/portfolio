@@ -70,3 +70,10 @@ src/lib/impeccable/[0-9a-f]*/
 
 # CV kept out of the served directory — it carries a phone number.
 /private/
+
+# Raw fieldwork for the rental-search study: filled observation sheets, session
+# recordings, listing URLs and participant contact details. The methodology in
+# research/*.md is committed deliberately — it is the case study's evidence that
+# the process was designed before the data existed. What people said, and who
+# they are, is not. Same rule as the thesis: only aggregates ever leave here.
+/research/raw/

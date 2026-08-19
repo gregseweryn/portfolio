@@ -12,6 +12,12 @@
       "runtimeExecutable": "npx",
       "runtimeArgs": ["next", "start", "-p", "3211"],
       "port": 3211
+    },
+    {
+      "name": "mockup",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["../otodom-cost-mockup/serve.py", "3300"],
+      "port": 3300
     }
   ]
 }

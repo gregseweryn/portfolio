@@ -15,6 +15,67 @@
   margin-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 
+/* ---- Images and before/after pairs ----
+   The first real photographs on the site: everything in the thesis study is
+   SVG. A hairline keeps a screenshot with a white chrome from bleeding into
+   the paper background; there is no shadow, per the flat-by-default rule. */
+.imageBlock,
+.compare {
+  margin-top: clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+/* A portrait phone capture centres at roughly phone width rather than being
+   stretched across the column, where it would read as a mistake however sharp
+   the source file is. */
+.imageCapped {
+  margin-inline: auto;
+}
+
+.imageCaption {
+  margin-top: 0.85rem;
+  max-width: 40rem;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+.comparePair {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Stacked below the pair's comfortable reading width. Two 400px screenshots
+   side by side stop being comparable long before the viewport gets narrow. */
+@media (max-width: 40rem) {
+  .comparePair {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.compareItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  min-width: 0;
+}
+
+/* Names the kind ("Before"/"After"), which is what small caps are for here. */
+.compareLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
 /* ---- Stats row ---- */
 .stats {
   display: flex;

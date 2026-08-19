@@ -1,7 +1,31 @@
+import Image from "next/image";
 import MediaFrame from "@/components/MediaFrame";
 import { CHARTS } from "@/components/charts/registry";
-import type { Block } from "@/lib/studies";
+import type { Block, StudyImage } from "@/lib/studies";
 import styles from "./StudyBlocks.module.css";
+
+/**
+ * One image, sized honestly.
+ *
+ * `sizes` has to describe the CSS width the image will occupy, or the browser
+ * picks a source for the wrong width and the picture is either upscaled or
+ * over-fetched. When the block caps its display width, that cap is the answer;
+ * otherwise the caller passes the column's measured width.
+ */
+function StudyPicture({ image, fallbackSizes }: { image: StudyImage; fallbackSizes: string }) {
+  const capped = image.maxWidth !== undefined;
+  return (
+    <Image
+      src={image.src}
+      alt={image.alt}
+      width={image.width}
+      height={image.height}
+      sizes={capped ? `${image.maxWidth}px` : fallbackSizes}
+      className={capped ? `${styles.image} ${styles.imageCapped}` : styles.image}
+      style={capped ? { maxWidth: image.maxWidth } : undefined}
+    />
+  );
+}
 
 /**
  * Renders one content block of a case study. Every block kind gets its own
@@ -101,6 +125,34 @@ export default function StudyBlock({ block }: { block: Block }) {
             </li>
           ))}
         </ul>
+      );
+
+    case "image":
+      return (
+        <figure className={styles.imageBlock}>
+          <StudyPicture image={block.image} fallbackSizes="(max-width: 900px) 100vw, 1130px" />
+          {block.caption && <figcaption className={styles.imageCaption}>{block.caption}</figcaption>}
+        </figure>
+      );
+
+    case "compare":
+      // One figure, not two. The pair is the argument, so a screen reader that
+      // meets the caption first is told what it is about to compare.
+      return (
+        <figure className={styles.compare}>
+          <div className={styles.comparePair}>
+            {([
+              [block.before, block.beforeLabel ?? "Before"],
+              [block.after, block.afterLabel ?? "After"],
+            ] as const).map(([img, label]) => (
+              <div key={label} className={styles.compareItem}>
+                <p className={styles.compareLabel}>{label}</p>
+                <StudyPicture image={img} fallbackSizes="(max-width: 40rem) 100vw, 560px" />
+              </div>
+            ))}
+          </div>
+          <figcaption className={styles.imageCaption}>{block.caption}</figcaption>
+        </figure>
       );
 
     default:

@@ -1,0 +1,6 @@
+uczestnik_retest,respondent_id,uczestnik_runda1,brał_udział_w_rundzie_1,data_sesji,oferta_id,cena_bazowa,czynsz_adm,kaucja,media_szacowane,Z1_kwota_filtra,Z1_budzet_scenariusza,Z3_oszacowanie_m1,Z3_rzeczywisty_m1,Z3_blad_m1_zl,Z3_blad_m1_proc,Z4_wskazal,Z4_trafnie,Z1_SEQ,Z3_SEQ,Z4_SEQ
+P1,R07,U2,tak,07.08.2026 17:00,PR-01,2900,780,2900,300,3500,3500,6580,6580,0,0.0,B,tak,7,7,7
+P2,R19,U5,tak,07.08.2026 18:30,PR-02,3050,640,3050,300,3500,3500,6740,6740,0,0.0,B,tak,6,6,6
+P3,R28,,nie,07.08.2026 10:30,PR-03,2800,900,2800,300,3500,3500,6100,6500,400,6.2,B,tak,6,5,6
+P4,R34,,nie,07.08.2026 12:00,PR-04,3200,520,3200,300,3500,3500,6900,6920,20,0.3,B,tak,7,7,7
+P5,R41,,nie,07.08.2026 14:30,PR-05,2950,850,2950,300,3000,3500,5800,6750,950,14.1,B,tak,5,6,6

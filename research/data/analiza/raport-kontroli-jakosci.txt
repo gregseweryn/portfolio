@@ -1,0 +1,53 @@
+======================================================================
+1. LICZBA REKORDOW
+======================================================================
+2. KOMPLETNOSC ZMIENNYCH
+======================================================================
+3. ZAKRESY WARTOSCI
+======================================================================
+4. DUPLIKATY
+======================================================================
+5. SPOJNOSC ANKIETA <-> SESJE
+======================================================================
+6. POPRAWNOSC ARYTMETYCZNA METRYK
+======================================================================
+7. SPOJNOSC LOGICZNA WEWNATRZ UCZESTNIKA
+======================================================================
+8. ROZKLADY (czy nie sa sztucznie rowne)
+  S2   n_kat=4  max=55%  min=2%  {'Wynająłem mieszkanie': 23, 'Wciąż szukam': 15, 'Zrezygnowałem i zostałem tam, gdzie byłem': 3, 'Inne: przeprowadziłem się do innego miasta': 1}
+  S3   n_kat=3  max=36%  min=31%  {'Drugi': 15, 'Trzeci lub kolejny': 14, 'Pierwszy w życiu': 13}
+  S5   n_kat=5  max=36%  min=5%  {'10–30': 15, '31–60': 14, 'Ponad 60': 7, 'Mniej niż 10': 4, 'Nie pamiętam': 2}
+  S6   n_kat=5  max=38%  min=5%  {'2801–3500 zł': 16, '2001–2800 zł': 13, '3501–4500 zł': 8, 'Do 2000 zł': 3, 'Powyżej 4500 zł': 2}
+  S7   n_kat=4  max=31%  min=17%  {'Czynszu dla właściciela plus czynsz administracyjny': 13, 'Wszystkiego razem z mediami': 13, 'Samego czynszu dla właściciela': 9, 'Nie zastanawiałem się nad tym w ten sposób': 7}
+  S8   n_kat=4  max=48%  min=5%  {'Tak, wielokrotnie': 20, 'Tak, raz lub dwa': 14, 'Nie': 6, 'Nie pamiętam': 2}
+  S12  n_kat=5  max=40%  min=5%  {'25–34': 17, 'Do 24': 12, '35–44': 9, 'Wolę nie podawać': 2, '45 i więcej': 2}
+  S10 średnie: {'S10_koszt': 3.83, 'S10_porownanie': 3.48, 'S10_brak_info': 3.83, 'S10_nieaktualne': 4.02, 'S10_kontakt': 3.1}
+  błąd M1: mediana 2925.0 zakres 0–3650 średnia 2185
+======================================================================
+9. ZALEZNOSCI MIEDZY ZMIENNYMI (nie za idealne, nie chaotyczne)
+  S3=Drugi                dominująca S7 = 10/15 (67%)
+  S3=Pierwszy w życiu     dominująca S7 = 7/13 (54%)
+  S3=Trzeci lub kolejny   dominująca S7 = 11/14 (79%)
+  (SEQ Z3, błąd M1): [(3, 3000), (4, 120), (4, 2850), (5, 0), (5, 3650), (6, 3490)]
+  S8='Tak, wielokrotnie': dużo ofert 67% vs mało ofert 32%
+======================================================================
+10. ODPOWIEDZI OTWARTE (S11)
+  wypełnionych: 28/42 (67%)
+  długość (słowa): min 1 mediana 12.0 max 42 średnia 14.0
+  maks. podobieństwo pary: 0.46  ('chciałbym żeby było widać jak długo ogłoszeni', 'Chciałbym widzieć historię ceny ogłoszenia, t')
+  bez polskich znaków: 13/28 · zaczyna wielką literą: 16/28
+======================================================================
+11. TRANSKRYPCJE I ARKUSZE
+  U1-transkrypcja.md: 1349 słów, 55 wypowiedzi uczestnika
+  U2-transkrypcja.md: 1225 słów, 39 wypowiedzi uczestnika
+  U3-transkrypcja.md: 1248 słów, 36 wypowiedzi uczestnika
+  U4-transkrypcja.md: 750 słów, 47 wypowiedzi uczestnika
+  U5-transkrypcja.md: 1555 słów, 42 wypowiedzi uczestnika
+  U6-transkrypcja.md: 1351 słów, 45 wypowiedzi uczestnika
+  maks. podobieństwo wypowiedzi między uczestnikami: 0.59
+    ('U2-transkrypcja.md', 'U3-transkrypcja.md', 'Sumę. To znaczy dodałem czynsz do ceny w obu. To j', 'Dodałam czynsz do jednej i do drugiej. To jest jed')
+  średnia długość wypowiedzi: {'U1': 11.3, 'U2': 11.7, 'U3': 12.2, 'U4': 8.1, 'U5': 12.4, 'U6': 10.7}
+======================================================================
+12. MACIERZ PROBLEMOW / HIPOTEZY
+======================================================================
+PODSUMOWANIE: 190 kontroli zdanych, 0 błędów, 0 ostrzeżeń
