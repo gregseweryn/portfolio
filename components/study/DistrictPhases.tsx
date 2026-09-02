@@ -56,7 +56,12 @@ const DISTRICTS = [
   },
 ];
 
-export default function DistrictPhases({ caption }: { caption: string }) {
+/**
+ * `caption` is optional so the diagram can double as a thumbnail, where there is
+ * no room to read a sentence and the study title beside it carries the meaning.
+ * Wherever it is the hero, it keeps its caption.
+ */
+export default function DistrictPhases({ caption }: { caption?: string }) {
   return (
     <figure className={styles.figure}>
       <svg
@@ -152,7 +157,7 @@ export default function DistrictPhases({ caption }: { caption: string }) {
           </marker>
         </defs>
       </svg>
-      <figcaption className={styles.caption}>{caption}</figcaption>
+      {caption && <figcaption className={styles.caption}>{caption}</figcaption>}
     </figure>
   );
 }

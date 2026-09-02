@@ -129,6 +129,11 @@ RENTAL = {
     "2500", "4000", "6500",
     # cheapest real cost on the page, and the scenario budget
     "3500", "3800",
+    # the three budget states in the gallery. Monthly totals of the eight
+    # listings, from listings.js with its stated 300 zl utilities convention:
+    # 3800, 3910, 4000, 4000, 4000, 4150, 4241, 4350. So 3500 clears none,
+    # 4100 clears five, 5000 clears all eight.
+    "4100", "5000",
     # the estimate conventions, stated in the interface
     "300",
     # unit-price example quoted from a card

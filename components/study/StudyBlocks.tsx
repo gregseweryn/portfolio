@@ -52,7 +52,15 @@ export default function StudyBlock({ block }: { block: Block }) {
 
     case "figure": {
       const Chart = CHARTS[block.chart];
-      return <Chart />;
+      // The id is stamped on the wrapper so scripts/extract-chart-svgs.mjs can
+      // name what it pulls out of the built HTML. Without it the export has to
+      // infer a chart's identity from its caption, and an edited caption would
+      // silently rename a file the Figma file links to.
+      return (
+        <div data-chart={block.chart} className={styles.chartWrap}>
+          <Chart />
+        </div>
+      );
     }
 
     case "stats":
@@ -155,7 +163,37 @@ export default function StudyBlock({ block }: { block: Block }) {
         </figure>
       );
 
-    default:
-      return null;
+    case "gallery": {
+      const columns = block.columns ?? 3;
+      // One figure with one caption, for the same reason `compare` is one: the
+      // frames are a single argument — three budgets in one filter — and reading
+      // them as three separate pictures loses it.
+      return (
+        <figure className={styles.compare}>
+          <div
+            className={styles.gallery}
+            style={{ ["--gallery-cols" as string]: String(columns) }}
+            data-cols={columns}
+          >
+            {block.images.map((img) => (
+              <div key={img.src} className={styles.compareItem}>
+                {img.label && <p className={styles.compareLabel}>{img.label}</p>}
+                <StudyPicture
+                  image={img}
+                  fallbackSizes={`(max-width: 48rem) 100vw, ${Math.round(1128 / columns)}px`}
+                />
+              </div>
+            ))}
+          </div>
+          <figcaption className={styles.imageCaption}>{block.caption}</figcaption>
+        </figure>
+      );
+    }
   }
+
+  // Every branch above returns, so this is unreachable — and the assignment is
+  // what makes it a compile error to add a block kind and forget to render it.
+  // A silently blank block is the failure this replaces.
+  const unhandled: never = block;
+  return unhandled;
 }

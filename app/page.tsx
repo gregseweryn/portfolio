@@ -2,13 +2,12 @@ import Link from "next/link";
 import { methods, site } from "@/lib/site";
 import { studies } from "@/lib/studies";
 import Button from "@/components/Button";
-import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import CopyEmail from "@/components/CopyEmail";
 import ShaderField from "@/components/ShaderField";
 import SplitReveal from "@/components/SplitReveal";
 import MethodsList from "@/components/MethodsList";
-import DistrictPhases from "@/components/study/DistrictPhases";
+import StudyHero from "@/components/study/StudyHero";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -65,11 +64,7 @@ export default function Home() {
           <Reveal>
             <Link href={`/work/${featured.slug}`} className={styles.featured}>
               <div className={styles.featuredMedia}>
-                {featured.hero.kind === "placeholder" ? (
-                  <MediaFrame label={featured.hero.label} ratio={featured.hero.ratio} size="lg" />
-                ) : (
-                  <DistrictPhases caption={featured.hero.caption} />
-                )}
+                <StudyHero study={featured} variant="card" />
               </div>
               <div className={styles.featuredBody}>
                 <p className={styles.featuredTag}>Featured</p>
@@ -96,6 +91,14 @@ export default function Home() {
             {rest.map((s, i) => (
               <Reveal as="li" key={s.slug} delay={i * 60}>
                 <Link href={`/work/${s.slug}`} className={styles.row}>
+                  {/* Until now a study that wasn't featured appeared here as
+                      text and nothing else, which said the work had nothing to
+                      look at. The plate is small and the row keeps its index
+                      form: three equal cards would be the template look the
+                      design law rules out. */}
+                  <span className={styles.rowMedia} aria-hidden="true">
+                    <StudyHero study={s} variant="thumb" />
+                  </span>
                   <span className={styles.rowMain}>
                     <span className={styles.rowTitle}>{s.title}</span>
                     <span className={styles.rowQ}>{s.question}</span>

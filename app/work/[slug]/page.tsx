@@ -2,12 +2,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getStudy, studies, sectionId } from "@/lib/studies";
-import MediaFrame from "@/components/MediaFrame";
 import Reveal from "@/components/Reveal";
 import Button from "@/components/Button";
 import SplitReveal from "@/components/SplitReveal";
 import StudyBlock from "@/components/study/StudyBlocks";
-import DistrictPhases from "@/components/study/DistrictPhases";
+import StudyHero from "@/components/study/StudyHero";
 import SectionIndex from "@/components/study/SectionIndex";
 import { site } from "@/lib/site";
 import styles from "./study.module.css";
@@ -81,11 +80,7 @@ export default async function StudyPage({
 
       <div className="container">
         <div className={styles.hero}>
-          {study.hero.kind === "placeholder" ? (
-            <MediaFrame label={study.hero.label} ratio={study.hero.ratio} size="lg" />
-          ) : (
-            <DistrictPhases caption={study.hero.caption} />
-          )}
+          <StudyHero study={study} variant="page" />
         </div>
       </div>
 

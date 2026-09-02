@@ -97,6 +97,17 @@ export type Block =
       beforeLabel?: string;
       afterLabel?: string;
       caption: string;
+    }
+  /**
+   * Several frames of one argument — three budgets in the same filter, say.
+   * Deliberately not a generalisation of `compare`: a before/after pair carries
+   * a claim that an n-up plate does not, and collapsing the two would lose it.
+   */
+  | {
+      kind: "gallery";
+      images: (StudyImage & { label?: string })[];
+      caption: string;
+      columns?: 2 | 3;
     };
 
 export type StudySection = {
@@ -118,8 +129,20 @@ export type StudySection = {
 };
 
 export type Hero =
+  /**
+   * Still legal, because a study may honestly not have its artifacts yet — but
+   * no published study may use it. scripts/check-no-placeholders.mjs enforces
+   * that against the built HTML, so this stays an admission rather than a habit.
+   */
   | { kind: "placeholder"; label: string; ratio?: string }
-  | { kind: "diagram"; id: "district-phases"; caption: string };
+  | { kind: "diagram"; id: "district-phases"; caption: string }
+  | { kind: "image"; image: StudyImage; caption: string }
+  /**
+   * A study whose artifacts are data files rather than screens leads with a
+   * figure it already owns. Building it a picture instead would be the exact
+   * failure such a study argues against.
+   */
+  | { kind: "chart"; chart: ChartId };
 
 export type Download = {
   label: string;

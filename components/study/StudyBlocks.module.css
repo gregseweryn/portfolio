@@ -15,6 +15,14 @@
   margin-top: clamp(0.5rem, 2vw, 1.5rem);
 }
 
+/* The wrapper carrying data-chart for scripts/extract-chart-svgs.mjs. It becomes
+   the flex item in place of the figure, so it has to inherit the min-width: 0
+   the figure was carrying: without it a chart's intrinsic min-width pushes the
+   whole page sideways instead of scrolling inside its own box. */
+.chartWrap {
+  min-width: 0;
+}
+
 /* ---- Images and before/after pairs ----
    The first real photographs on the site: everything in the thesis study is
    SVG. A hairline keeps a screenshot with a white chrome from bleeding into
@@ -50,6 +58,30 @@
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* Several frames of one argument. Same grid as the pair, with the column count
+   coming from the content rather than the stylesheet, because two states and
+   three states are both legitimate and neither deserves its own class. */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(var(--gallery-cols, 3), minmax(0, 1fr));
+  gap: clamp(0.75rem, 2vw, 1.5rem);
+}
+
+/* A three-up of phone captures stops being readable earlier than a pair does,
+   so it collapses earlier. Below these widths the frames stack and the labels
+   carry the sequence. */
+@media (max-width: 48rem) {
+  .gallery[data-cols="3"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 40rem) {
+  .gallery[data-cols="2"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 /* Stacked below the pair's comfortable reading width. Two 400px screenshots

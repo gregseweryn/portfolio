@@ -54,11 +54,10 @@ export const syntheticDataAudit: Study = {
     { value: "0", label: "Standard deviation in two generated cost components" },
     { value: "423", label: "Measured listings used as the arbiter" },
   ],
-  hero: {
-    kind: "placeholder",
-    label: "Generated corpus against the measured market",
-    ratio: "16 / 9",
-  },
+  // This study's artifacts are JSON files. A screenshot of one would be a
+  // screenshot of code, not evidence, and building it a picture would be exactly
+  // the failure it documents — so it leads with a figure it already owns.
+  hero: { kind: "chart", chart: "variance-collapse" },
   // The working document, published as it was written rather than tidied up.
   // Its first section is a superseded-notice: it was built on web anchors, and
   // the measured audit later moved one of its findings from +55% to +11%. That

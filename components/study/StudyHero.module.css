@@ -1,0 +1,87 @@
+/* Frames for the study hero and its thumbnail.
+   No shadows and no radii: the site is flat by default, and a plate around a
+   screenshot is the system framing the work, not competing with it. */
+
+.imageFigure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+}
+
+.image {
+  width: 100%;
+  /* Whichever is smaller: the cap the study asked for, or the space there is.
+     The second half is what keeps a 420px hero inside a 320px phone. */
+  max-width: min(var(--cap, 100%), 100%);
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.caption {
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 40rem;
+  text-align: center;
+}
+
+/* Flex items default to min-width: auto, which would let a chart's intrinsic
+   width push the page sideways instead of scrolling inside its own box. */
+.chartWrap {
+  min-width: 0;
+}
+
+/* ---- Thumbnails ----
+   Used in the home-page index, where a study currently appears as a row of text
+   and nothing else. */
+
+.thumbFigure {
+  margin: 0;
+  height: 100%;
+}
+
+.thumbImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Phone captures are portrait and the plate is landscape; anchoring to the top
+     keeps the part of the screen that identifies it rather than centring on the
+     middle of a listing. */
+  object-position: top center;
+  border: 1px solid var(--line);
+}
+
+/* The crop frame. The inner element is wider than this box and shifted, so the
+   region the chart is about lands inside it and the rest is clipped. */
+.thumbChart {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.thumbChartInner {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform-origin: 0 0;
+}
+
+/* Inside a thumbnail the chart is the picture, so the apparatus around it goes:
+   the plot's own frame would draw a second border inside this one, and the
+   caption is a paragraph of prose in a 240px box. The screen-reader table stays
+   in the markup but the whole thumbnail is aria-hidden — the row's link text
+   carries the meaning here. */
+.thumbChartInner figcaption {
+  display: none;
+}
+
+.thumbChartInner div[role="group"] {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: visible;
+}

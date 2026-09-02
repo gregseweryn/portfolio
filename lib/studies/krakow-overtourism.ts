@@ -65,6 +65,18 @@ export const krakowOvertourism: Study = {
           ],
         },
         {
+          kind: "image",
+          image: {
+            src: "/work/thesis/questionnaire-opening.png",
+            alt: "The first page of the blank questionnaire: a district screening question, then the covering letter explaining who is asking, why, and how the answers will be used.",
+            width: 1190,
+            height: 1684,
+            maxWidth: 460,
+          },
+          caption:
+            "The instrument, blank, as 446 people met it: one screening question to establish that the respondent actually lives there, then the covering letter. Nothing on this site is published from the completed forms — those identify people, and they stay out of the repository.",
+        },
+        {
           kind: "stats",
           items: [
             { value: "446", label: "Survey responses", note: "Three central districts" },
@@ -117,6 +129,21 @@ export const krakowOvertourism: Study = {
             "The cost index sits well above the midpoint of the scale; the benefit index sits below it, at 2.87. But the interesting part isn't the average. It's the hierarchy underneath it.",
             "What residents agree on most is not noise or crowds. It's money. Agreement that tourism drives up rents reaches 88.1%, with the smallest spread of any item in the questionnaire, the closest thing in the data to a consensus. Service prices follow at 76.8%, everyday shops being displaced at 65.7%.",
           ],
+        },
+        {
+          // The question as it was asked, immediately above the answer as it was
+          // measured. C4 on this page is the item the chart below reports at
+          // 88.1%, and the sentence the second study on this site grew out of.
+          kind: "image",
+          image: {
+            src: "/work/thesis/questionnaire-cost-block.png",
+            alt: "A page of the blank questionnaire showing items C3 and C4, each a statement followed by a five-point agreement scale and a don't-know option. C4 states that tourism affects rents.",
+            width: 1190,
+            height: 1684,
+            maxWidth: 460,
+          },
+          caption:
+            "The cost block, as respondents met it. C4 is the item that drew the strongest agreement in the whole questionnaire and the smallest spread — and the sentence the rental study on this site started from.",
         },
         { kind: "figure", chart: "cost-items" },
         {
