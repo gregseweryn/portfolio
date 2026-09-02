@@ -82,3 +82,6 @@ src/lib/impeccable/[0-9a-f]*/
 # generator by path. Regenerated on every run.
 __pycache__/
 *.pyc
+
+# Empty state files left by the impeccable design hook.
+.impeccable/hook.cache.json
