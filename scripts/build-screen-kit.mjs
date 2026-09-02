@@ -18,16 +18,27 @@
  */
 
 import fs from "node:fs/promises";
+import { existsSync } from "node:fs";
 import path from "node:path";
 import { createHash } from "node:crypto";
 import { pathToFileURL } from "node:url";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+// The directory is otodom-cost-mockup here and `designsystem` in a fresh clone —
+// the repository was named after what it became rather than what it started as.
+// Try both before giving up, so a clone does not fail on a default path.
+function defaultMockup(root) {
+  for (const name of ["../otodom-cost-mockup", "../designsystem"]) {
+    if (existsSync(path.join(root, name, "tokens.css"))) return name;
+  }
+  return "../otodom-cost-mockup";
+}
+
 const args = process.argv.slice(2);
 const MOCKUP = path.resolve(
   ROOT,
-  args.includes("--mockup") ? args[args.indexOf("--mockup") + 1] : "../otodom-cost-mockup"
+  args.includes("--mockup") ? args[args.indexOf("--mockup") + 1] : defaultMockup(ROOT)
 );
 const OUT = path.join(ROOT, "design", "otodom-screen-kit");
 
