@@ -94,7 +94,7 @@ export const krakowRentalSearch: Study = {
             maxWidth: 380,
           },
           caption:
-            "Three of the eight the filter returned. Every headline is a number the tenant will not pay, and every card carries the rest of the figure directly underneath it, in grey, at half the size.",
+            "Three of the eight the filter returned, rebuilt from the measurements rather than screenshotted: addresses are reduced to a district and agencies to a generic label, per the study's anonymisation rule, and neither redaction touches the cost structure. Every headline is a number the tenant will not pay, and every card carries the rest of the figure directly underneath it, in grey, at half the size.",
         },
         {
           kind: "stats",
@@ -247,10 +247,10 @@ export const krakowRentalSearch: Study = {
             height: 1624,
             maxWidth: 380,
           },
-          beforeLabel: "Current",
+          beforeLabel: "Current, rebuilt",
           afterLabel: "Redesigned",
           caption:
-            "Same listings, same visual language, same density. Only the structure of the cost information changes, so any difference in how well the page can be read is attributable to that and not to the redesign looking newer.",
+            "Both sides are prototypes. The current state is a reconstruction, built from the same eleven listings I measured and sharing one stylesheet with the redesign — not a screenshot of the live product. That is the point: with the typography, spacing and photography held identical, the only thing that varies between these two frames is the structure of the cost information, so any difference in how the page reads is attributable to that and not to the redesign looking newer.",
         },
         {
           kind: "prose",
