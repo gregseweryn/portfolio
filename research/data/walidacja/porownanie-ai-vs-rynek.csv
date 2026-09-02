@@ -1,0 +1,7 @@
+zmienna,jednostka,n_ai,mediana_ai,srednia_ai,odch_std_ai,p10_ai,p90_ai,n_rynek,mediana_rynek,srednia_rynek,odch_std_rynek,p10_rynek,p90_rynek,odchylenie_mediany,odchylenie_mediany_proc,kotwica,uwaga
+czynsz administracyjny,zł/mies,31,850.0,802.6,295.3,380.0,1200.0,250,550.0,581.7,228.0,330.0,880.0,300.0,54.5,K-06;K-07;K-08,Główne odchylenie zbioru. Model zawyża czynsz i rozciąga jego rozrzut.
+cena bazowa,zł/mies,37,2900.0,2896.8,228.9,2500,3200.0,250,2800.0,2897.0,662.4,2150.0,3900.0,100.0,3.6,K-01;K-02,"Zgodność dobra — to liczba, którą model najczęściej widział w treningu."
+media (szacowane),zł/mies,29,300.0,300.0,0.0,300.0,300.0,250,420.0,420.8,69.4,330.0,510.0,-120.0,-28.6,K-09;K-10;K-11,Model użył stałej 300 zł we wszystkich 24 ofertach: zaniżenie i zerowa wariancja.
+kaucja (krotność czynszu),x czynsz,24,1.0,1.0,0.0,1.0,1.0,250,1.0,1.1,0.5,1.0,2.0,0.0,0.0,K-12,Model przyjął dokładnie 1x wszędzie; rynek zna 2x i brak kaucji.
+prowizja pośrednika,zł,24,0.0,118.8,569.5,0.0,0.0,250,0.0,1266.0,1701.2,0.0,3700.0,0.0,,K-13;K-16,Model dał prowizję 1 ofercie na 24 (4%); przy założeniu 45% ofert agencyjnych to zaniżenie.
+narzut ponad cenę bazową,%,18,38.8,38.7,16.0,20.3,60.0,250,33.8,36.0,11.0,24.4,52.1,4.9,14.6,wyliczenie,"Skutek złożenia trzech powyższych: model dramatyzuje różnicę, ale z niewłaściwych składników."

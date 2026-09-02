@@ -1,0 +1,126 @@
+{
+  "rows": [
+    {
+      "key": "admin-rent",
+      "label": "Administrative rent",
+      "unit": "zl",
+      "nGenerated": 23,
+      "medianGenerated": 780,
+      "sdGenerated": 319.4,
+      "nReference": 208,
+      "medianReference": 700,
+      "sdReference": 238.1,
+      "deviationPct": 11.4,
+      "groundTruth": "measured",
+      "anchors": [],
+      "note": "The variable the whole project is about. The generated corpus sits above the measured median and puts far more weight in the expensive tail."
+    },
+    {
+      "key": "base-price",
+      "label": "Advertised rent",
+      "unit": "zl",
+      "nGenerated": 29,
+      "medianGenerated": 2950,
+      "sdGenerated": 243.2,
+      "nReference": 220,
+      "medianReference": 3000,
+      "sdReference": 557.4,
+      "deviationPct": -1.7,
+      "groundTruth": "measured",
+      "anchors": [],
+      "note": "The medians nearly agree. The spreads do not, and the spread is the finding."
+    },
+    {
+      "key": "utilities",
+      "label": "Utilities",
+      "unit": "zl",
+      "nGenerated": 24,
+      "medianGenerated": 300,
+      "sdGenerated": 0.0,
+      "nReference": 250,
+      "medianReference": 420,
+      "sdReference": 69.4,
+      "deviationPct": -28.6,
+      "groundTruth": "web-anchor",
+      "anchors": [
+        {
+          "id": "K-09",
+          "variable": "media_lacznie_2osoby_50m2",
+          "evidence": "web-anchor",
+          "sourceName": "Zestawienie cen mediów",
+          "url": "https://santeos.pl/ceny-mediow-w-polsce-prad-gaz-woda-internet-wyliczenia/"
+        },
+        {
+          "id": "K-10",
+          "variable": "media_prad",
+          "evidence": "web-anchor",
+          "sourceName": "Zestawienie cen mediów",
+          "url": "https://santeos.pl/ceny-mediow-w-polsce-prad-gaz-woda-internet-wyliczenia/"
+        },
+        {
+          "id": "K-11",
+          "variable": "media_internet",
+          "evidence": "web-anchor",
+          "sourceName": "Zestawienie cen mediów",
+          "url": "https://santeos.pl/ceny-mediow-w-polsce-prad-gaz-woda-internet-wyliczenia/"
+        }
+      ],
+      "note": "No measured ground truth exists: not one card in the audit stated utilities. The generated corpus used a single constant for every listing."
+    },
+    {
+      "key": "deposit",
+      "label": "Deposit, as a multiple of rent",
+      "unit": "x",
+      "nGenerated": 24,
+      "medianGenerated": 1,
+      "sdGenerated": 0.0,
+      "nReference": 250,
+      "medianReference": 1,
+      "sdReference": 0.5,
+      "deviationPct": 0.0,
+      "groundTruth": "web-anchor",
+      "anchors": [
+        {
+          "id": "K-12",
+          "variable": "kaucja_krotnosc",
+          "evidence": "web-anchor",
+          "sourceName": "PewnyLokal / GAMP",
+          "url": "https://pewnylokal.pl/ile-bierze-posrednik-nieruchomosci-i-agencja-nieruchomosci"
+        }
+      ],
+      "note": "No measured ground truth. The generated corpus applied the textbook rule to every listing without exception."
+    },
+    {
+      "key": "commission",
+      "label": "Agency commission",
+      "unit": "zl",
+      "nGenerated": 24,
+      "medianGenerated": 0,
+      "sdGenerated": 569.5,
+      "nReference": 250,
+      "medianReference": 0,
+      "sdReference": 1701.2,
+      "deviationPct": null,
+      "groundTruth": "web-anchor",
+      "anchors": [
+        {
+          "id": "K-13",
+          "variable": "prowizja_posrednika",
+          "evidence": "web-anchor",
+          "sourceName": "PewnyLokal / Bożyk Nieruchomości",
+          "url": "https://www.bozyknieruchomosci.pl/blog/prowizje-biur-nieruchomosci-w-2025/"
+        },
+        {
+          "id": "K-16",
+          "variable": "udzial_ofert_agencyjnych",
+          "evidence": "assumption",
+          "sourceName": "BRAK ŹRÓDŁA",
+          "url": ""
+        }
+      ],
+      "note": "Rests on an assumed 45% share of agency listings, which has no source. Reported in prose only, never drawn.",
+      "chartable": false
+    }
+  ],
+  "source": "Generated corpus against its arbiter, one row per variable. Every row declares whether its reference is measured or anchored."
+}

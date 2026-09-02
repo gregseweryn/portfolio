@@ -1,0 +1,23 @@
+{
+  "auditSha256": "efd2ab2f0238e9342ce7c0456b0d026775da45436f38e8dc758075b943edd672",
+  "auditRows": 423,
+  "auditTwoRoom": 220,
+  "referenceSeed": 20260902,
+  "referenceN": 250,
+  "referenceCalibration": {
+    "medianBasePrice": 2800,
+    "meanBasePrice": 2897,
+    "meanPricePerSqm": 66.8,
+    "meanFloorArea": 43.8,
+    "medianUtilities": 420
+  },
+  "generatorCoefficients": {
+    "districtPanelRescale": 0.8779,
+    "medianTuning": 1.055
+  },
+  "assumptionAnchors": [
+    "K-15",
+    "K-16"
+  ],
+  "note": "The two generator coefficients are researcher choices, not measurements. They are published here so the reference set cannot be mistaken for data."
+}

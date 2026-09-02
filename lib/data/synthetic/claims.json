@@ -1,0 +1,49 @@
+{
+  "W1": {
+    "claim": "A 3000 zl price filter returns listings that cost more than 3000 zl",
+    "asNarrated": {
+      "share": 100.0,
+      "overshootLow": 17,
+      "overshootHigh": 35,
+      "n": 8,
+      "note": "Eight listings from the top of the filter band"
+    },
+    "reDerived": {
+      "band": "2500-3000 zl",
+      "n": 101,
+      "share": 97.0,
+      "overshootMin": 2.0,
+      "overshootP10": 6.7,
+      "overshootMedian": 16.7,
+      "overshootP90": 28.3,
+      "overshootMax": 35.0,
+      "wholeFilterN": 122,
+      "wholeFilterShare": 85.2
+    },
+    "verdict": "confirmed; the narrated range describes the upper half"
+  },
+  "W2": {
+    "claim": "Ordering by advertised price reverses the ordering by real cost",
+    "asNarrated": {
+      "n": 1,
+      "note": "Demonstrated on a single pair"
+    },
+    "reDerived": {
+      "listings": 397,
+      "pairs": 76335,
+      "inverted": 5219,
+      "share": 6.8,
+      "twoRoomListings": 208,
+      "twoRoomPairs": 20556,
+      "twoRoomInverted": 2370,
+      "twoRoomShare": 11.5
+    },
+    "verdict": "confirmed, and rarer than one worked example suggests"
+  },
+  "W3": {
+    "claim": "A missing administrative rent is indistinguishable from a zero one",
+    "validatable": false,
+    "reason": "A property of how the card renders absence, not a quantity in the listing data. No count settles it."
+  },
+  "source": "Re-derived on the 423-listing Otodom audit of 4 August 2026, two-room subset."
+}

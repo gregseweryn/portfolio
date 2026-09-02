@@ -77,3 +77,8 @@ src/lib/impeccable/[0-9a-f]*/
 # the process was designed before the data existed. What people said, and who
 # they are, is not. Same rule as the thesis: only aggregates ever leave here.
 /research/raw/
+
+# Bytecode from scripts/extract-synthetic-audit.py importing the reference-set
+# generator by path. Regenerated on every run.
+__pycache__/
+*.pyc

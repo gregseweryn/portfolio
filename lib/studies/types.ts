@@ -27,9 +27,11 @@ export type ChartId =
   | "typology"
   | "themes"
   | "joint-display"
-  // Rental-search study.
-  | "cost-components"
-  | "error-shift";
+  // Synthetic-data audit.
+  | "variance-collapse"
+  | "admin-distribution"
+  | "constants-not-distributions"
+  | "claim-survival";
 
 /**
  * A real image in the running text. The thesis study is all SVG, so this is the

@@ -1,5 +1,6 @@
 import { krakowOvertourism } from "./krakow-overtourism";
 import { krakowRentalSearch } from "./krakow-rental-search";
+import { syntheticDataAudit } from "./synthetic-data-audit";
 import type { Study } from "./types";
 
 export type { Block, ChartId, Download, Hero, Impact, Media, Study, StudyImage, StudySection } from "./types";
@@ -7,7 +8,12 @@ export type { Block, ChartId, Download, Hero, Impact, Media, Study, StudyImage, 
 // Order is meaningful: the first study takes the featured slot on the home page.
 // The thesis stays featured: it is the deeper piece and the one with fieldwork
 // behind it. The rental study sits second until its evaluative sessions are run.
-export const studies: Study[] = [krakowOvertourism, krakowRentalSearch];
+//
+// The synthetic-data audit sits third on purpose. It is not a third subject —
+// it is the methodological spine of the second study, the part that says which
+// of that project's numbers were measured and which were generated. Read alone
+// it is a short piece; read after the rental study it is the load-bearing one.
+export const studies: Study[] = [krakowOvertourism, krakowRentalSearch, syntheticDataAudit];
 
 export function getStudy(slug: string): Study | undefined {
   return studies.find((s) => s.slug === slug);

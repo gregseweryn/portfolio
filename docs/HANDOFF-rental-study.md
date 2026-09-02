@@ -101,6 +101,24 @@ analizy. Nie wolno go opublikować jako wyników badania. Tekst case study mówi
 **Warstwa projektowa jest od tego niezależna** i nie wymaga rozstrzygnięcia: makieta, Figma
 i wszystkie ekrany opierają się wyłącznie na pomiarach Otodomu z tabeli wyżej.
 
+### Sprzątnięte 2.09.2026
+
+Syntetyczny korpus był częściowo wciągnięty do bundla strony, choć nic go nie renderowało.
+`components/charts/ErrorShift.tsx` i `CostComponents.tsx` były zarejestrowane w
+`components/charts/registry.tsx` i czytały `lib/data/rental/{participants,summary,cost-components,survey}.json`,
+czyli wygenerowane n=6 i n=5. Podpis `ErrorShift` głosił „mediana błędu spada z 2925 zł do 20 zł"
+o sześciu osobach, które nie istnieją. Żadne studium nie miało bloku `figure` o tych identyfikatorach,
+więc kod był martwy — ale importowalny, a to wystarczy, żeby kiedyś ożył przez pomyłkę.
+
+Usunięte: oba komponenty, ich wpisy w rejestrze, identyfikatory `cost-components` i `error-shift`
+z `ChartId`, cztery pliki JSON oraz `scripts/extract-rental-data.py`, którego jedyni konsumenci
+zniknęli. Kontrakt tego skryptu (przelicz z najsurowszej kolumny, `--check`, nie zapisuj nic przy
+jednej nieudanej kontroli) dziedziczy `scripts/extract-synthetic-audit.py`.
+
+Korpus zostaje w `research/data/` jako materiał źródłowy trzeciego case study —
+`/work/synthetic-data-audit` — gdzie jest cytowany wyłącznie przez swoje **właściwości
+statystyczne**, nigdy przez swoje **ustalenia**.
+
 ---
 
 ## Co jest zrobione

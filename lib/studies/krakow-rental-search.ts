@@ -274,6 +274,7 @@ export const krakowRentalSearch: Study = {
           body: [
             "The study that would settle it is designed and ready to run: six moderated sessions on the live product, with the participant's own phone, and one measured quantity, which is the gap in zloty between what a person says a flat costs and what it costs. The same tasks then run again on the prototype.",
             "Until those sessions happen, this page says what it is. I would rather publish a redesign labelled as untested than a redesign with invented validation attached to it.",
+            "There is a longer version of that sentence. While preparing those sessions I generated a full synthetic corpus for them: transcripts, session metrics, a survey. None of it was ever published as a finding, and none of it appears on this page. I then audited it against the same 423 listings measured here, to find out how far generated data drifts from a market you can actually count. It drifts in ways worth knowing about, and the audit is its own case study.",
           ],
         },
       ],

@@ -1,0 +1,49 @@
+{
+  "variables": [
+    {
+      "variable": "Utilities",
+      "unit": "zl",
+      "uniqueGenerated": 1,
+      "nGenerated": 24,
+      "sdGenerated": 0.0,
+      "uniqueReference": 33,
+      "nReference": 250,
+      "sdReference": 69.4,
+      "groundTruth": "web-anchor"
+    },
+    {
+      "variable": "Deposit, multiple of rent",
+      "unit": "x",
+      "uniqueGenerated": 1,
+      "nGenerated": 24,
+      "sdGenerated": 0.0,
+      "uniqueReference": 3,
+      "nReference": 250,
+      "sdReference": 0.46,
+      "groundTruth": "web-anchor"
+    },
+    {
+      "variable": "Administrative rent",
+      "unit": "zl",
+      "uniqueGenerated": 19,
+      "nGenerated": 23,
+      "sdGenerated": 319.4,
+      "uniqueReference": 84,
+      "nReference": 208,
+      "sdReference": 238.1,
+      "groundTruth": "measured"
+    },
+    {
+      "variable": "Advertised rent",
+      "unit": "zl",
+      "uniqueGenerated": 19,
+      "nGenerated": 29,
+      "sdGenerated": 243.2,
+      "uniqueReference": 63,
+      "nReference": 220,
+      "sdReference": 557.4,
+      "groundTruth": "measured"
+    }
+  ],
+  "source": "Unique values and standard deviation per variable. Two rows have a measured arbiter; two rest on web anchors because the audit does not carry them."
+}

@@ -147,9 +147,54 @@ RENTAL = {
     "99",
 }
 
+# Every figure below is re-derived by scripts/extract-synthetic-audit.py and read
+# out of lib/data/synthetic/*.json at build time. Each group names the file and
+# key it comes from, so a number can be traced without opening a chart component.
+# Prose in this study is deliberately thin on hand-typed figures: one interpolated
+# into a caption cannot drift from its data file, and the parser sees it either
+# way, because figcaption is not a skipped subtree.
+SYNTHETIC = {
+    # distributions.json -> basePrice.measured {min, max, sd}
+    "1880", "6000", "557",
+    # distributions.json -> basePrice.generated {min, max, sd}
+    "2450", "3300", "243",
+    # distributions.json -> basePrice.scenarioBudget
+    "3500",
+    # impacts: basePrice.measured.sd / basePrice.generated.sd, 557/243
+    "2.3",
+    # distributions.json -> adminRent.measured {median, n}
+    "700", "208",
+    # distributions.json -> adminRent.generated {median, n}
+    "780", "23",
+    # distributions.json -> adminRent.shareAbove900 {measured, generated},
+    # and the threshold the split is drawn at
+    "15.4", "34.8", "900",
+    # claims.json -> W1.reDerived {share, n, band, overshootMedian}
+    "97", "101", "2500", "3000", "16.7",
+    # claims.json -> W1.asNarrated {overshootLow, overshootHigh, n}
+    "17", "35", "8",
+    # claims.json -> W2.reDerived.share, cross-checked against the figure the
+    # krakow-rental-search study publishes from the same file
+    "6.8",
+    # provenance.json -> auditRows, referenceN
+    "423", "250",
+    # the constant the generated corpus used for utilities in every listing,
+    # constants.json -> variables[Utilities], and the two extreme administrative
+    # rents it put into the comparison task, from oferty-uzyte.csv
+    "300", "1200", "1250",
+    # impacts: two generated variables with a standard deviation of zero
+    "0",
+    # audit date, study year, contents-bar section count, download weight
+    "4", "2026", "7", "12",
+    # part of the contact email address in the footer, not a finding
+    "99",
+}
+
 STUDIES = [
     ("krakow-touristification", THESIS, "verified thesis value"),
     ("krakow-rental-search", RENTAL, "measured audit value"),
+    ("synthetic-data-audit", SYNTHETIC,
+     "value re-derived by scripts/extract-synthetic-audit.py"),
 ]
 
 
