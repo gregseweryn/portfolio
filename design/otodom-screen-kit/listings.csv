@@ -1,0 +1,12 @@
+id,search,rooms,area_m2,base_rent,admin_rent,utilities_estimate,monthly_total,deposit,first_month_total,cost_status,district,floor,seller,title
+a1,A,2,32,2800,900,300,4000,2800,6800,complete,"Stare Podgórze, Podgórze",3 piętro,Oferta prywatna,Bez prowizji | 2 pokoje | Stare Podgórze | od 01.09
+a2,A,2,52.59,3000,941,300,4241,3000,7241,complete,Krowodrza,2 piętro,Oferta prywatna,"Do wynajęcia od zaraz, 2 pokoje, Osiedle Teatralne"
+a3,A,2,40,2800,700,300,3800,2800,6600,complete,"Prądnik Biały Zachód, Prądnik Biały",2 piętro,Oferta prywatna,2 pok. + balkon | 40 m | bezpośrednio | English
+a4,A,2,43.04,2800,810,300,3910,2800,6710,complete,"Prądnik Biały Wschód, Prądnik Biały",5 piętro,Biuro nieruchomości,Nowe 2-pokojowe mieszkanie | Siewna | Kraków
+a5,A,2,40,3000,700,300,4000,3000,7000,complete,"Wola Duchacka, Podgórze Duchackie",parter,Oferta prywatna,Nowoczesne 2 pokoje z prywatnym ogródkiem
+a6,A,2,41.78,2980,1070,300,4350,2980,7330,complete,"Łobzów, Krowodrza",1 piętro,Biuro nieruchomości,Bez prowizji | 2-pokojowe mieszkanie | Krowodrza
+a7,A,2,40.53,2840,1010,300,4150,2840,6990,complete,"Płaszów, Podgórze",2 piętro,Biuro nieruchomości,Bez prowizji | Funkcjonalne 2-pokojowe mieszkanie
+a8,A,2,51.62,2500,1200,300,4000,2500,6500,complete,Prądnik Czerwony,1 piętro,Oferta prywatna,"Mieszkanie dwupokojowe z balkonem, Górka Narodowa"
+b1,B,3,54,5000,,300,,5000,,cannot be derived,Stare Miasto,2 piętro,Biuro nieruchomości,Stare Miasto | Rakowicka | 3 pok. | ENG
+b2,B,3,74,3700,,300,,3700,,cannot be derived,Prądnik Czerwony,1 piętro,Biuro nieruchomości,"Przestronne, rodzinne mieszkanie z balkonem i garażem"
+b3,B,3,59,3800,,300,,3800,,cannot be derived,"Płaszów, Podgórze",4 piętro,Biuro nieruchomości,"Nowe mieszkanie, doskonała lokalizacja, 2 miejsca postojowe"

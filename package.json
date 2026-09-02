@@ -9,7 +9,8 @@
     "lint": "next lint",
     "capture:mockup": "node scripts/capture-mockup.mjs",
     "export:svg": "node scripts/extract-chart-svgs.mjs",
-    "check:placeholders": "node scripts/check-no-placeholders.mjs"
+    "check:placeholders": "node scripts/check-no-placeholders.mjs",
+    "build:kit": "node scripts/build-screen-kit.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
