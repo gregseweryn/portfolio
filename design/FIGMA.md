@@ -114,17 +114,43 @@ substituted** unless installed locally, and that this is expected.
 - how to fork it: which page is the source of truth for what, and the note that the portfolio
   site's own system is not mirrored here and lives in `app/globals.css`.
 
-## 5. What the Figma MCP would change
+## 5. Tooling: what is reachable, checked 2 September 2026
 
-Nothing above needs it. If `use_figma` reconnects it removes the tedious parts, in this order:
+Two Figma servers matter here and they are not the same thing.
 
-1. generate the variable collection directly from `tokens.css` — about forty hand
-   transcriptions, and forty chances to mistype a hex;
-2. bulk-create the `Card / Listing` variant matrix;
-3. bind properties programmatically instead of by hand.
+**The connected server** authenticates — `list_generative_plugins` returns an empty list rather
+than an error, so the account link works. It exposes **only** shader and generative-plugin
+tools: `create_shader`, `create_generative_plugin`, `list_file_shaders` and their siblings.
+There is no `use_figma`, `create_new_file`, `generate_diagram`, `get_screenshot` or
+`upload_assets`. Approving the connector does not add them; they were never on this server.
 
-At the time of writing the connected Figma server exposes only shader and generative-plugin
-tools — no `use_figma`, `create_new_file`, `generate_diagram`, `get_screenshot` or
-`upload_assets` — and `figma-desktop` refuses the connection. Load the `figma:figma-use` skill
-before the first `use_figma` call if that changes; skipping it causes failures that are hard to
-diagnose from the error alone.
+**`figma-desktop`** is the server that carries them, and it fails with `ConnectionRefused`. It
+is a local server published by the Figma desktop application, so it answers only while that
+application is running with its MCP server switched on. Start Figma, enable the local MCP
+server in its preferences, and restart the session so the server is picked up. Until then,
+every write to a Figma *file* is manual.
+
+### The generative-plugin route, and why it is currently blocked
+
+A generative plugin modifies the canvas, so in principle it could build sections 1–3 of this
+document in one run: read the token values, create the variable collection, the nine text
+styles and the `Card / Listing` variant matrix, and remove about forty hand transcriptions
+along with their typos. That is the single most valuable thing automation could do here.
+
+It is blocked on its own prerequisite. `create_generative_plugin` states that the
+`figma-generative-plugins` skill **must** be loaded first, and that skipping it causes failures
+that are hard to diagnose from the error alone. All three documented ways to load it fail:
+
+- it is not installed as a skill in this environment;
+- `skill://figma/figma-generative-plugins/SKILL.md` is unreachable — the server replies
+  `does not support resources`;
+- there is no `get_figma_skill` tool.
+
+Without it the plugin runtime's API surface is unknown: which `figma.*` calls exist, what the
+entry point looks like, how the plugin is invoked. Writing `code.ts` against a guess and
+publishing it into the account library would most likely produce a plugin that does not run.
+
+**When the skill becomes reachable, this is the first thing to do** — it is worth more than
+any amount of clicking, and a plugin that builds a design system from the same token file the
+code uses is a better portfolio artifact than a hand-made variable collection.
+
