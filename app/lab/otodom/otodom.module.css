@@ -1,0 +1,1110 @@
+/* ============================================================
+   Lab — Otodom rental cost, design proposal
+   Visual language: "Rachunek" (the statement of account)
+
+   Two systems meet on this page and they are kept apart on purpose.
+
+   The PAGE is this portfolio: site tokens from globals.css, site type, site
+   rhythm. The SCREENS inside the frames are a different product, so everything
+   under .app is scoped, self-contained and does not inherit a single value from
+   the site. Nothing here leaks out either: the site's own system stays the one
+   in globals.css, and this file must never become a second place to look for it.
+
+   The proposal in one sentence: a rental listing is a bill, not a poster.
+   Figures lead, the photograph is a thumbnail, rules replace cards, and the two
+   things the interface can be uncertain about — a missing administrative rent
+   and an estimated utility bill — have inks of their own so uncertainty can
+   never be mistaken for a number.
+   ============================================================ */
+
+/* Inter, self-hosted, SIL Open Font License 1.1 — the same two subsets the
+   prototype ships, so a frame on this page and a screenshot of the prototype are
+   set in the same face. latin-ext is not optional: the interface is Polish.
+   The site's own faces are not used inside the frames on purpose: Druk Wide and
+   Noirden are this portfolio's voice, and this is meant to look like somebody
+   else's product. */
+@font-face {
+  font-family: "Inter Lab";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-latin.woff2") format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+    U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: "Inter Lab";
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+  src: url("/fonts/inter/Inter-latin-ext.woff2") format("woff2");
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+    U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+    U+2C60-2C7F, U+A720-A7FF;
+}
+
+/* ---------- Page furniture (site system) ---------- */
+
+.page {
+  padding-top: calc(var(--nav-h) + var(--space-2xl));
+  padding-bottom: var(--space-4xl);
+}
+
+.wrap {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.lede {
+  max-width: 46rem;
+}
+
+.kicker {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-sm);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: var(--text-display);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  text-wrap: balance;
+  margin-bottom: var(--space-md);
+}
+
+.intro p {
+  font-size: var(--text-lead);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  max-width: 42rem;
+}
+
+.intro p + p {
+  margin-top: var(--space-sm);
+  font-size: var(--text-body);
+  color: var(--muted);
+}
+
+.disclaimer {
+  margin-top: var(--space-lg);
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--line);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 42rem;
+}
+
+.rules {
+  display: grid;
+  gap: var(--space-md) var(--space-xl);
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  margin-top: var(--space-2xl);
+  padding-top: var(--space-lg);
+  border-top: 1px solid var(--line);
+}
+
+.rule h3 {
+  font-size: var(--text-h3);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  margin-bottom: var(--space-3xs);
+}
+
+.rule p {
+  font-size: var(--text-sm);
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+/* ---------- One screen: frame beside its caption ---------- */
+
+.screen {
+  display: grid;
+  /* minmax(0, 1fr) rather than the implicit auto: a grid item's automatic
+     minimum is its content, so the 390px frame would widen the column past the
+     container and take the page with it. Measured at 360px: 51px of horizontal
+     scroll before this line existed. */
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--line);
+}
+
+@media (min-width: 60rem) {
+  .screen {
+    grid-template-columns: 390px minmax(0, 1fr);
+    gap: var(--space-2xl);
+  }
+
+  /* The caption sticks while its own screen is on screen: at this width the
+     frames are taller than the viewport, and a caption that scrolls away leaves
+     the reader looking at an interface with nothing to read it against. */
+  .caption {
+    position: sticky;
+    top: calc(var(--nav-h) + var(--space-lg));
+  }
+}
+
+.caption h2 {
+  font-size: var(--text-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+  text-wrap: balance;
+  margin-bottom: var(--space-2xs);
+}
+
+.caption p {
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  max-width: 34rem;
+}
+
+.caption p + p {
+  margin-top: var(--space-sm);
+  color: var(--muted);
+}
+
+.decisions {
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid var(--line);
+}
+
+.decisions li {
+  display: grid;
+  grid-template-columns: 8.5rem minmax(0, 1fr);
+  gap: var(--space-sm);
+  padding: var(--space-2xs) 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.decisions b {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+@media (max-width: 30rem) {
+  .decisions li {
+    grid-template-columns: 1fr;
+    gap: var(--space-3xs);
+  }
+}
+
+.readout {
+  margin-top: var(--space-md);
+  font-size: var(--text-sm);
+  color: var(--muted);
+  max-width: 34rem;
+}
+
+.readout summary {
+  cursor: pointer;
+  color: var(--ink);
+  font-weight: 500;
+  padding: var(--space-3xs) 0;
+}
+
+.readout summary::marker {
+  color: var(--muted);
+}
+
+.readout ul {
+  margin: var(--space-2xs) 0 0;
+  padding-left: 1.1rem;
+  line-height: 1.6;
+}
+
+/* ---------- The device frame ---------- */
+
+.frame {
+  width: 390px;
+  max-width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  overflow: hidden;
+  background: #fff;
+  /* The only shadow on this page. It says "this is a picture of a phone", which
+     is information; nothing inside the frames casts one. */
+  box-shadow: 0 1px 2px oklch(0.2 0 0 / 0.05), 0 12px 32px -18px oklch(0.2 0 0 / 0.35);
+}
+
+.frameRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-lg);
+}
+
+.frameRow .frame {
+  width: 300px;
+}
+
+.frameLabel {
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--space-2xs);
+}
+
+/* ============================================================
+   .app — the proposed product. Nothing below inherits from the site.
+   ============================================================ */
+
+.app {
+  /* Paper, faintly cool. Not warm: warm near-white is the house style of every
+     property portal, and this interface is a statement of account rather than a
+     lifestyle brochure. */
+  --paper: oklch(0.979 0.003 255);
+  --surface: oklch(1 0 0);
+  --sunken: oklch(0.955 0.004 255);
+  --ink: oklch(0.19 0.014 262);
+  --ink-2: oklch(0.455 0.012 262); /* 4.9:1 on --surface, measured */
+  --rule: oklch(0.885 0.006 262);
+  --rule-strong: oklch(0.76 0.01 262);
+
+  /* Two semantic inks, and no third. `known` marks a figure the listing can
+     support in full; `gap` marks a component the listing never stated. Neither
+     is success or error — the interface is describing what it can prove. */
+  --known: oklch(0.42 0.1 156);
+  --known-wash: oklch(0.955 0.032 156);
+  --gap: oklch(0.46 0.12 62);
+  --gap-wash: oklch(0.955 0.05 80);
+
+  --focus: oklch(0.19 0.014 262);
+
+  --r-sm: 4px;
+  --r-md: 8px;
+  --r-pill: 999px;
+
+  --dur: 160ms;
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  font-family: "Inter Lab", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 17px;
+  line-height: 1.45;
+  color: var(--ink);
+  background: var(--paper);
+  /* Every figure in this product lines up in a column somewhere. */
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+.app *,
+.app *::before,
+.app *::after {
+  box-sizing: border-box;
+}
+
+.app p,
+.app h1,
+.app h2,
+.app h3,
+.app ul,
+.app ol {
+  margin: 0;
+}
+
+.app ul,
+.app ol {
+  list-style: none;
+  padding: 0;
+}
+
+.app :focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Type ramp: one family, fixed steps ---------- */
+
+.tTotal {
+  font-size: 28px;
+  line-height: 1.1;
+  font-weight: 620;
+  letter-spacing: -0.02em;
+}
+
+.tFigure {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+}
+
+.tHead {
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.tBody {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.tSmall {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--ink-2);
+}
+
+.tLabel {
+  font-size: 11px;
+  line-height: 1.3;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+}
+
+/* ---------- Shell ---------- */
+
+.status {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px 2px;
+  background: var(--surface);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.statusDots {
+  letter-spacing: 0.14em;
+  color: var(--ink-2);
+}
+
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 20px 12px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  margin-left: -12px;
+  border: 0;
+  background: none;
+  color: var(--ink);
+  font: inherit;
+  font-size: 19px;
+  cursor: pointer;
+  border-radius: var(--r-sm);
+}
+
+.barTitle {
+  flex: 1;
+  min-width: 0;
+  font-size: 15px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* The budget lives in the bar on every screen that filters by it, because it is
+   the one number the whole interface is measured against. */
+.budgetChip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  min-height: 44px;
+  padding: 8px 14px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-pill);
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease), background-color var(--dur) var(--ease);
+}
+
+.budgetChip:hover {
+  border-color: var(--ink);
+  background: var(--sunken);
+}
+
+.budgetChip span {
+  font-weight: 400;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.body {
+  padding: 0 20px 24px;
+  background: var(--paper);
+}
+
+.bodyFlush {
+  padding: 0 0 24px;
+  background: var(--paper);
+}
+
+/* ---------- Summary: the answer before the list ---------- */
+
+.summary {
+  padding: 16px 20px 14px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.summaryLine {
+  font-size: 15px;
+  line-height: 1.45;
+}
+
+.summaryLine b {
+  font-weight: 650;
+}
+
+.summaryNote {
+  margin-top: 4px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* ---------- The ledger row: one listing ---------- */
+
+.rows {
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto;
+  gap: 14px;
+  align-items: start;
+  padding: 14px 20px;
+  border-top: 1px solid var(--rule);
+  transition: background-color var(--dur) var(--ease);
+}
+
+.rows > .row:first-child {
+  border-top: 0;
+}
+
+.row:hover {
+  background: var(--sunken);
+}
+
+/* The photograph is evidence about the flat, not about the price, so it is a
+   thumbnail. Demoting it is the single most visible thing this proposal does. */
+.thumb {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--r-sm);
+  background: var(--sunken);
+  border: 1px solid var(--rule);
+}
+
+.rowMain {
+  min-width: 0;
+}
+
+.rowTitle {
+  font-size: 15px;
+  font-weight: 550;
+  line-height: 1.3;
+  color: var(--ink);
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.rowMeta {
+  margin-top: 3px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.rowCost {
+  text-align: right;
+  white-space: nowrap;
+}
+
+.rowTotal {
+  font-size: 19px;
+  font-weight: 650;
+  letter-spacing: -0.01em;
+}
+
+.rowTotalGap {
+  color: var(--gap);
+}
+
+.rowParts {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+/* The advertised figure, kept and struck through rather than hidden: the reader
+   arrived from a search page that showed it, and an interface that silently
+   replaces one number with another teaches nobody anything. */
+.wasPrice {
+  font-size: 12px;
+  color: var(--ink-2);
+  text-decoration: line-through;
+  text-decoration-thickness: 1px;
+}
+
+/* ---------- Badges ---------- */
+
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: var(--r-pill);
+  font-size: 11px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.badgeKnown {
+  background: var(--known-wash);
+  color: var(--known);
+}
+
+.badgeGap {
+  background: var(--gap-wash);
+  color: var(--gap);
+}
+
+/* ---------- Group header ---------- */
+
+.group {
+  padding: 22px 20px 8px;
+  background: var(--paper);
+}
+
+.groupNote {
+  margin-top: 4px;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ---------- The ledger table ---------- */
+
+.ledger {
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  padding: 4px 20px 12px;
+}
+
+.ledgerHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px 0 10px;
+}
+
+.ledgerRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 0;
+  border-top: 1px solid var(--rule);
+}
+
+.ledgerRow:first-of-type {
+  border-top: 0;
+}
+
+.ledgerLabel {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+/* The leader. A statement of account draws the eye from a label to its figure
+   with a dotted rule, and it is doing real work here: these rows are wide,
+   short and read right-to-left by anyone checking a total. */
+.leader {
+  flex: 1;
+  min-width: 12px;
+  border-bottom: 1px dotted var(--rule-strong);
+  transform: translateY(-3px);
+}
+
+.ledgerValue {
+  font-size: 15px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.ledgerRowGap .ledgerLabel,
+.ledgerRowGap .ledgerValue {
+  color: var(--gap);
+}
+
+.ledgerRowSum {
+  border-top: 1px solid var(--ink);
+  margin-top: 2px;
+  padding-top: 12px;
+}
+
+.ledgerRowSum .ledgerLabel {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.ledgerRowSum .ledgerValue {
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.est {
+  display: inline-block;
+  margin-left: 6px;
+  padding: 1px 6px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-sm);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-2);
+  vertical-align: 1px;
+}
+
+.note {
+  padding: 14px 20px 0;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--ink-2);
+}
+
+/* ---------- Buttons ---------- */
+
+.actions {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px 16px;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+}
+
+.btn {
+  flex: 1;
+  min-height: 48px;
+  padding: 12px 16px;
+  border-radius: var(--r-md);
+  border: 1px solid transparent;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--dur) var(--ease), border-color var(--dur) var(--ease),
+    color var(--dur) var(--ease);
+}
+
+/* The accent is the ink. A property portal's primary action does not need a
+   colour of its own — it needs to be the darkest thing on the screen. */
+.btnPrimary {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+.btnPrimary:hover {
+  background: oklch(0.28 0.016 262);
+}
+
+.btnGhost {
+  background: var(--surface);
+  border-color: var(--rule-strong);
+  color: var(--ink);
+}
+
+.btnGhost:hover {
+  background: var(--sunken);
+  border-color: var(--ink);
+}
+
+.btnPrimary:disabled,
+.btnGhost:disabled,
+.btnPrimary[data-disabled],
+.btnGhost[data-disabled] {
+  background: var(--sunken);
+  border-color: var(--rule);
+  color: var(--ink-2);
+  cursor: not-allowed;
+}
+
+/* ---------- First run: the budget question ---------- */
+
+.ask {
+  padding: 28px 20px 20px;
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.askTitle {
+  font-size: 24px;
+  line-height: 1.2;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.askBody {
+  margin-top: 8px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 20px;
+  padding: 10px 14px;
+  min-height: 56px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--r-md);
+  background: var(--surface);
+  transition: border-color var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+
+.fieldFocus {
+  border-color: var(--ink);
+  box-shadow: 0 0 0 3px oklch(0.19 0.014 262 / 0.12);
+}
+
+.fieldError {
+  border-color: var(--gap);
+}
+
+.fieldValue {
+  flex: 1;
+  font-size: 28px;
+  font-weight: 650;
+  letter-spacing: -0.02em;
+}
+
+.fieldUnit {
+  font-size: 15px;
+  color: var(--ink-2);
+}
+
+.fieldHint {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.fieldMessage {
+  margin-top: 8px;
+  font-size: 13px;
+  line-height: 1.45;
+  color: var(--gap);
+  font-weight: 550;
+}
+
+.includes {
+  margin-top: 20px;
+  border-top: 1px solid var(--rule);
+}
+
+.includeRow {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 15px;
+}
+
+.includeLabel {
+  color: var(--ink);
+}
+
+.includeValue {
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.excluded {
+  padding: 12px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+/* ---------- Comparison ---------- */
+
+.compare {
+  background: var(--surface);
+  border-bottom: 1px solid var(--rule);
+}
+
+.compareHead {
+  display: grid;
+  grid-template-columns: 7.5rem repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 14px 20px 10px;
+  border-bottom: 1px solid var(--ink);
+}
+
+.compareCol {
+  min-width: 0;
+}
+
+.compareName {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.compareMeta {
+  margin-top: 2px;
+  font-size: 12px;
+  color: var(--ink-2);
+}
+
+.compareRow {
+  display: grid;
+  grid-template-columns: 7.5rem repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  align-items: baseline;
+  padding: 11px 20px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.compareRowLabel {
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+.compareValue {
+  font-size: 15px;
+  font-weight: 550;
+  white-space: nowrap;
+}
+
+.compareRowSum .compareValue {
+  font-size: 19px;
+  font-weight: 650;
+}
+
+.compareRowSum {
+  border-top: 1px solid var(--ink);
+  border-bottom: 0;
+  padding-top: 13px;
+}
+
+/* Which of the two is cheaper, said in words at the two points where the answer
+   differs. The whole comparison exists because these two rows disagree. */
+.rank {
+  display: block;
+  margin-top: 3px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.rankBest {
+  color: var(--known);
+}
+
+.rankWorse {
+  color: var(--ink-2);
+}
+
+.reversal {
+  display: flex;
+  gap: 10px;
+  padding: 14px 20px 16px;
+  background: var(--gap-wash);
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  line-height: 1.5;
+  color: oklch(0.34 0.09 62);
+}
+
+/* ---------- Empty, error, loading ---------- */
+
+.empty {
+  padding: 28px 20px;
+  background: var(--surface);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.emptyTitle {
+  font-size: 19px;
+  font-weight: 620;
+  letter-spacing: -0.01em;
+}
+
+.emptyBody {
+  margin-top: 6px;
+  font-size: 15px;
+  line-height: 1.5;
+  color: var(--ink-2);
+}
+
+.emptyActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.skeletonRow {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) 5.5rem;
+  gap: 14px;
+  padding: 14px 20px;
+  border-top: 1px solid var(--rule);
+  background: var(--surface);
+}
+
+.skeletonRow:first-child {
+  border-top: 0;
+}
+
+.sk {
+  border-radius: var(--r-sm);
+  background: var(--sunken);
+  animation: pulse 1.4s var(--ease) infinite;
+}
+
+.skThumb {
+  width: 56px;
+  height: 56px;
+}
+
+.skLine {
+  height: 12px;
+}
+
+.skLineShort {
+  height: 12px;
+  width: 60%;
+  margin-top: 8px;
+}
+
+.skFigure {
+  height: 20px;
+  justify-self: end;
+  width: 100%;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.55;
+  }
+}
+
+/* The skeleton is the one animated thing in the proposal, and it is state, not
+   decoration. Without motion it still reads as "not here yet", so the reduced
+   alternative is simply the same blocks, still. */
+@media (prefers-reduced-motion: reduce) {
+  .sk {
+    animation: none;
+  }
+
+  .app *,
+  .app *::before,
+  .app *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Tokens shown as themselves ---------- */
+
+.sectionTitle {
+  font-size: var(--text-h2);
+  line-height: var(--lh-snug);
+  letter-spacing: var(--ls-tight);
+}
+
+.sectionLede {
+  margin-top: var(--space-2xs);
+  max-width: 42rem;
+  font-size: var(--text-body);
+  line-height: var(--lh-body);
+  color: var(--muted);
+}
+
+.tokens {
+  margin-top: var(--space-3xl);
+  padding-top: var(--space-xl);
+  border-top: 1px solid var(--line);
+}
+
+.swatches {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+  padding: 0;
+  list-style: none;
+}
+
+.swatch {
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.swatchChip {
+  height: 56px;
+  border-bottom: 1px solid var(--line);
+}
+
+.swatchMeta {
+  padding: var(--space-2xs) var(--space-xs);
+  font-size: var(--text-xs);
+  line-height: 1.5;
+}
+
+.swatchMeta b {
+  display: block;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.swatchMeta span {
+  color: var(--muted);
+}
