@@ -17,8 +17,10 @@
  *      over-budget card is the live example: its CSS exists but render() filters
  *      before drawing, so no screenshot of it exists here.)
  *
- * The mockup is not a git repository, so provenance is a hash of its sources
- * rather than a commit: change tokens.css or listings.js and the manifest says so.
+ * Provenance is a hash of the mockup's sources rather than a commit. It predates
+ * that directory becoming a repository and has outlived the reason: a hash still
+ * moves when tokens.css or listings.js changes, which a commit id does not
+ * promise, since a commit can touch anything or nothing.
  *
  * Usage:
  *   node scripts/capture-mockup.mjs                # capture and write
@@ -241,8 +243,8 @@ async function main() {
     `Chromium: ${chromiumVersion}`,
     `Viewport: ${VIEWPORT.width}x${VIEWPORT.height} at ${DEVICE_SCALE_FACTOR}x unless a row says otherwise, locale pl-PL, reduced motion`,
     "",
-    "The mockup is not a git repository, so the hash above stands in for a commit: change",
-    "any of those five files and it moves.",
+    "The hash above is the provenance, not the mockup's commit id: change any of those",
+    "five files and it moves, whether or not the change was committed.",
     "",
     "| file | px | page | state asserted before capture | shows |",
     "|---|---|---|---|---|",

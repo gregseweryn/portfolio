@@ -5,13 +5,13 @@ screenshot of the prototype in `../otodom-cost-mockup` running in a real browser
 a rendering of a design file. This file records what was true when each was taken, so
 the claim can be checked rather than trusted.
 
-Captured: 2026-09-02
-Mockup source hash (sha256 of tokens.css, listings.js, before.html, after.html, listing.html): b735f849c0419f1c88e122487c9b0d84be610c9f3274a378e921f0933429fd92
+Captured: 2026-09-03
+Mockup source hash (sha256 of tokens.css, listings.js, before.html, after.html, listing.html): 8f04706a5f1190836f32df3666a322a5ad218349157d3c79fb338523c8d2be85
 Chromium: 151.0.7922.34
 Viewport: 375x812 at 2x unless a row says otherwise, locale pl-PL, reduced motion
 
-The mockup is not a git repository, so the hash above stands in for a commit: change
-any of those five files and it moves.
+The hash above is the provenance, not the mockup's commit id: change any of those
+five files and it moves, whether or not the change was committed.
 
 | file | px | page | state asserted before capture | shows |
 |---|---|---|---|---|
@@ -22,10 +22,10 @@ any of those five files and it moves.
 | `after-3500-empty.png` | 750x1624 | `/after.html` | budget 3500; `() => document.querySelector("#summary").textContent.includes("0 z 8")` | The scenario budget: nothing fits, and the page says how far off it is. |
 | `after-4100.png` | 750x1624 | `/after.html` | budget 4100; `() => document.querySelector("#summary").textContent.includes("5 z 8")` | Five of eight, at 4100 zl. |
 | `after-5000.png` | 750x1624 | `/after.html` | budget 5000; `() => document.querySelector("#summary").textContent.includes("8 z 8")` | Eight of eight, at 5000 zl. |
-| `after-unknown-group.png` | 750x3252 | `/after.html` | budget 5000; `() => { const g = document.querySelector("#unknown-group"); return !g.hidden && document.q` | The three listings whose cost cannot be derived, grouped and named as such. |
-| `listing-a1.png` | 750x2096 | `/listing.html?id=a1` | `() => !document.querySelector("#recurring-total").textContent.includes("od ")` | A listing that can state its total: every component present. |
-| `listing-a8.png` | 750x2036 | `/listing.html?id=a8` | `() => { const t = document.body.textContent.replace(/\s/g, ""); return t.includes("4000zł"` | The reversal in full: 2500 zl advertised, 4000 zl a month, 6500 zl to move in. |
-| `listing-b1.png` | 750x2132 | `/listing.html?id=b1` | `() => document.querySelector("#recurring-total").textContent.includes("od ")` | A listing that cannot state its total, and says so instead of guessing. |
+| `after-unknown-group.png` | 750x3250 | `/after.html` | budget 5000; `() => { const g = document.querySelector("#unknown-group"); return !g.hidden && document.q` | The three listings whose cost cannot be derived, grouped and named as such. |
+| `listing-a1.png` | 750x2124 | `/listing.html?id=a1` | `() => !document.querySelector("#recurring-total").textContent.includes("od ")` | A listing that can state its total: every component present. |
+| `listing-a8.png` | 750x2064 | `/listing.html?id=a8` | `() => { const t = document.body.textContent.replace(/\s/g, ""); return t.includes("4000zł"` | The reversal in full: 2500 zl advertised, 4000 zl a month, 6500 zl to move in. |
+| `listing-b1.png` | 750x2160 | `/listing.html?id=b1` | `() => document.querySelector("#recurring-total").textContent.includes("od ")` | A listing that cannot state its total, and says so instead of guessing. |
 | `listing-a8-recurring.png` | 686x460 | `/listing.html?id=a8` | `() => document.querySelectorAll("#recurring-rows li").length >= 3` | The recurring-cost panel alone, itemised. |
 
 ## Copied, not captured

@@ -42,7 +42,7 @@ design the product does not have.
 **`color/neutral/`** — `0 #ffffff` · `50 #f7f8f9` · `100 #eef0f2` · `200 #dfe3e7` ·
 `400 #9aa3ac` · `600 #5b6570` · `900 #1a1f24`
 
-**`color/primary/`** — `600 #0f766e` · `50 #ecf9f8`
+**`color/primary/`** — `600 #0f766e` · `700 #0b5d57` · `50 #ecf9f8`
 
 **`color/known/`** — `600 #0e5d2d` · `50 #dcfce7`
 
@@ -54,6 +54,30 @@ The two semantic 600s carry darkened values from a contrast pass — badge label
 **`space/`** — `1 4` · `2 8` · `3 12` · `4 16` · `5 20` · `6 24` · `8 32` · `10 40` · `12 48`
 
 **`radius/`** — `sm 4` · `md 8` · `lg 12` · `pill 999`
+
+### Roles — a second group, aliases not copies
+
+The scale says which colours exist; these say what each is for, and every rule in the CSS
+reaches for one of these rather than for a step of the scale. Bind each to the variable named
+beside it — an alias, so a change to the scale moves the role with it. The full list, generated
+from the CSS, is in `otodom-screen-kit/tokens.md`; the shape is:
+
+`text/primary → color/neutral/900` · `text/secondary → color/neutral/600` ·
+`surface → color/neutral/0` · `surface/sunken → color/neutral/50` · `border → color/neutral/200` ·
+`accent → color/primary/600` · `accent/hover → color/primary/700` ·
+`cost/known-ink → color/known/600` · `cost/gap-ink → color/unknown/600` ·
+`focus/ring → color/primary/600`
+
+**`cost/gap` is not a warning colour.** It marks a component of the cost the listing does not
+state, which is a truthful condition rather than an error, and every place it appears also
+says so in words. Do not rename it to `warning` and do not reach for it as one.
+
+### Motion, which Figma has no variable for
+
+`dur/fast 160ms` · `dur/base 180ms` · `ease-out cubic-bezier(0.22, 1, 0.36, 1)` ·
+`target-min 44px`. Put these on the cover as a note. A prototype built in Figma from this file
+should use them, and anything that animates needs a reduced-motion alternative — the code's
+build refuses to ship one without.
 
 ## 2. Text styles
 
@@ -79,7 +103,7 @@ screen: the screens are assemblies, and pasting rectangles now means rebuilding 
 
 | Component | Variants | Notes |
 |---|---|---|
-| `Card / Listing` | `state = current \| redesigned` × `cost = known \| partial` × `budget = within \| over` | Text properties for title, district, tags, seller |
+| `Card / Listing` | `state = current \| redesigned` × `cost = known \| partial` | Text properties for title, district, tags, seller |
 | `Badge` | `type = known \| unknown` | Bound to `color/known/*` and `color/unknown/*` |
 | `Cost block` | `known \| partial` | Partial renders "from X zl" |
 | `Panel / Cost rows` | panel `Co miesiąc \| Pierwszy miesiąc`; row `normal \| gap \| sum` | The `gap` row is the "not stated" line |
@@ -87,10 +111,17 @@ screen: the screens are assemblies, and pasting rectangles now means rebuilding 
 | `Budget control` | `default \| focus` | |
 | `Group header` | — | "Nie można ustalić kosztu (n)" |
 
-**Label the `budget = over` variant "not reachable in the prototype".** Its CSS exists but
-`render()` filters over-budget listings before drawing them, so no screenshot of it exists and
-none was manufactured to fill the gap. A variant that quietly implies otherwise would be the
-same error the study is about.
+**There is no over-budget variant, and adding one would be a mistake.** A dimmed card existed
+in the CSS for a while, but `render()` filters over-budget listings before drawing them, so the
+prototype never reached the state, nobody ever measured it, and the one place it was reachable —
+the React library — dimmed the card to roughly 2.4:1. It has been deleted from the system rather
+than documented as an exception. If a screen ever needs it, design it with background and border
+and full-strength text, measure it, and add it in all three places at once.
+
+**Every other component's states are in `../../otodom-cost-mockup/styleguide.html`**, generated
+from the CSS, with the contrast of each pair computed at build time. Build the variant matrix
+from that page rather than from this table if the two ever disagree — the page is read out of the
+code, and this table is typed.
 
 ## 4. Pages
 
@@ -114,7 +145,15 @@ substituted** unless installed locally, and that this is expected.
 - how to fork it: which page is the source of truth for what, and the note that the portfolio
   site's own system is not mirrored here and lives in `app/globals.css`.
 
-## 5. Tooling: what is reachable, checked 2 September 2026
+## 5. Where the reasoning lives
+
+`../../otodom-cost-mockup/DESIGN.md` states the rules this file's contents follow: the three cost
+states, why there is no dark mode and no elevation scale, the 44 px target and its one deliberate
+exception, and the motion budget. Read it before deciding that something in the Figma file should
+differ from the code — most of those differences are decisions somebody already made and wrote
+down.
+
+## 6. Tooling: what is reachable, checked 2 September 2026
 
 Two Figma servers matter here and they are not the same thing.
 

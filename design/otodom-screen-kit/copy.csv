@@ -1,8 +1,10 @@
 screen,string
 after,"Brak czynszu"
 after,"Ile możesz wydać miesięcznie na mieszkanie?"
+after,"Oferty, których pełny koszt można ustalić"
 after,"Pełny koszt"
 after,"Propozycja — wyniki wyszukiwania"
+after,"Wyniki wyszukiwania: mieszkania dwupokojowe, Kraków"
 after,"zł/mies."
 before,"2 pokoje"
 before,"Aktywne filtry"

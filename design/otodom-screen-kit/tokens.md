@@ -18,11 +18,38 @@ The two semantic 600s carry darkened values from a contrast pass: badge labels m
 | `color/neutral/600` | `#5b6570` |
 | `color/neutral/900` | `#1a1f24` |
 | `color/primary/600` | `#0f766e` |
+| `color/primary/700` | `#0b5d57` |
 | `color/primary/50` | `#ecf9f8` |
 | `color/known/600` | `#0e5d2d` |
 | `color/known/50` | `#dcfce7` |
 | `color/unknown/600` | `#833c06` |
 | `color/unknown/50` | `#fef3c7` |
+
+## Colour roles
+
+The scale says which colours exist; these say what each one is for. In Figma they are a
+second collection group whose values are aliases to the first, not copies of it — the same
+relationship they have in the CSS.
+
+| Variable | Alias of |
+|---|---|
+| `text/primary` | `color/neutral/900` |
+| `text/secondary` | `color/neutral/600` |
+| `text/on-accent` | `color/neutral/0` |
+| `surface` | `color/neutral/0` |
+| `surface/sunken` | `color/neutral/50` |
+| `surface/inert` | `color/neutral/100` |
+| `border` | `color/neutral/200` |
+| `border/strong` | `color/neutral/400` |
+| `border/rule` | `color/neutral/100` |
+| `accent` | `color/primary/600` |
+| `accent/hover` | `color/primary/700` |
+| `accent/wash` | `color/primary/50` |
+| `cost/known-ink` | `color/known/600` |
+| `cost/known-wash` | `color/known/50` |
+| `cost/gap-ink` | `color/unknown/600` |
+| `cost/gap-wash` | `color/unknown/50` |
+| `focus/ring` | `color/primary/600` |
 
 ## Spacing
 
@@ -46,6 +73,19 @@ The two semantic 600s carry darkened values from a contrast pass: badge labels m
 | `radius/md` | 8px |
 | `radius/lg` | 12px |
 | `radius/pill` | 999px |
+
+## Motion and targets
+
+Two durations, one curve, one minimum. Figma has no home for these, so they belong on the
+cover as a note rather than in the variable collection — but a prototype built from this kit
+has to use them, and every transition needs a reduced-motion alternative.
+
+| Variable | Value |
+|---|---|
+| `dur-fast` | `160ms` |
+| `dur-base` | `180ms` |
+| `ease-out` | `cubic-bezier(0.22, 1, 0.36, 1)` |
+| `target-min` | `44px` |
 
 ## Type
 

@@ -12,7 +12,7 @@ npm run build:kit
 ```
 
 Source hash (sha256 of tokens.css, listings.js and the three HTML files):
-`b735f849c0419f1c88e122487c9b0d84be610c9f3274a378e921f0933429fd92`
+`8f04706a5f1190836f32df3666a322a5ad218349157d3c79fb338523c8d2be85`
 
 If that hash and the one in `public/work/rental/CAPTURES.md` disagree, the kit and the
 published screenshots were built from different versions of the prototype.

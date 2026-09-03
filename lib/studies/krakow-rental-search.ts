@@ -369,7 +369,7 @@ export const krakowRentalSearch: Study = {
           label: "Accessibility, measured rather than asserted",
           body: [
             "Every text and background pair in the interface was measured in the browser. Two semantic colours came in at 4.51:1 and 4.57:1 against their tinted badge backgrounds, which passes AA and leaves no margin, so both were darkened until the smallest text on the card cleared 7:1.",
-            "Zero horizontal scrolling at 375 px, touch targets at 44 px, a reduced-motion alternative for every transition, and the estimate markers separated in the content rather than only by margin, so a screen reader does not read 'MediaSZACUNEK' as one word.",
+            "Zero horizontal scrolling from 320 px up, 44 px on every control the redesign owns, a reduced-motion alternative for every transition, and the estimate markers separated in the content rather than only by margin, so a screen reader does not read 'MediaSZACUNEK' as one word. The current-state chips stay at 37 px: they reproduce the live product rather than improve on it, and quietly fixing them would have made the comparison flatter than it is.",
           ],
         },
       ],

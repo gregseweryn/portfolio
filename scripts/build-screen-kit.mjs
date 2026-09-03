@@ -57,19 +57,28 @@ async function read(rel) {
 // ---------------------------------------------------------------- tokens
 
 function parseTokens(css) {
-  const root = /:root\s*\{([\s\S]*?)\}/.exec(css);
-  if (!root) {
+  // tokens.css declares two :root blocks: the scale, and the semantic layer that
+  // names what the scale is for. Both are read — a kit that carried only the
+  // scale would tell a designer which greys exist and not which one is body text.
+  const roots = [...css.matchAll(/:root\s*\{([\s\S]*?)\n\}/g)].map((m) => m[1]);
+  if (!roots.length) {
     fail("tokens.css has no :root block");
-    return { colour: [], space: [], radius: [] };
+    return { colour: [], space: [], radius: [], role: [], motion: [] };
   }
-  const out = { colour: [], space: [], radius: [] };
-  for (const [, name, value] of root[1].matchAll(/--([a-z0-9-]+)\s*:\s*([^;]+);/g)) {
-    const v = value.trim();
-    if (name.startsWith("color-")) out.colour.push([name.replace(/^color-/, ""), v]);
-    else if (name.startsWith("space-")) out.space.push([name.replace(/^space-/, ""), v]);
-    else if (name.startsWith("radius-")) out.radius.push([name.replace(/^radius-/, ""), v]);
+  const out = { colour: [], space: [], radius: [], role: [], motion: [] };
+  for (const body of roots) {
+    for (const [, name, value] of body.matchAll(/--([a-z0-9-]+)\s*:\s*([^;]+);/g)) {
+      const v = value.trim();
+      if (name.startsWith("color-")) out.colour.push([name.replace(/^color-/, ""), v]);
+      else if (name.startsWith("space-")) out.space.push([name.replace(/^space-/, ""), v]);
+      else if (name.startsWith("radius-")) out.radius.push([name.replace(/^radius-/, ""), v]);
+      else if (name.startsWith("dur-") || name === "ease-out" || name === "target-min")
+        out.motion.push([name, v]);
+      else if (v.startsWith("var(")) out.role.push([name, v.replace(/var\((--[a-z0-9-]+)\)/, "$1")]);
+    }
   }
-  if (out.colour.length < 10) fail(`only ${out.colour.length} colour tokens found; expected 13`);
+  if (out.colour.length < 10) fail(`only ${out.colour.length} colour tokens found; expected 14`);
+  if (out.role.length < 10) fail(`only ${out.role.length} semantic roles found; expected 17`);
   return out;
 }
 
@@ -181,6 +190,16 @@ const tokensMd = [
   "|---|---|",
   ...tokens.colour.map(([n, v]) => `| \`color/${n.replace(/-(\d+)$/, "/$1")}\` | \`${v}\` |`),
   "",
+  "## Colour roles",
+  "",
+  "The scale says which colours exist; these say what each one is for. In Figma they are a",
+  "second collection group whose values are aliases to the first, not copies of it — the same",
+  "relationship they have in the CSS.",
+  "",
+  "| Variable | Alias of |",
+  "|---|---|",
+  ...tokens.role.map(([n, v]) => `| \`${n.replace(/-/, "/")}\` | \`${v.replace(/^--color-/, "color/").replace(/-(\d+)$/, "/$1")}\` |`),
+  "",
   "## Spacing",
   "",
   "| Variable | Value |",
@@ -192,6 +211,16 @@ const tokensMd = [
   "| Variable | Value |",
   "|---|---|",
   ...tokens.radius.map(([n, v]) => `| \`radius/${n}\` | ${v} |`),
+  "",
+  "## Motion and targets",
+  "",
+  "Two durations, one curve, one minimum. Figma has no home for these, so they belong on the",
+  "cover as a note rather than in the variable collection — but a prototype built from this kit",
+  "has to use them, and every transition needs a reduced-motion alternative.",
+  "",
+  "| Variable | Value |",
+  "|---|---|",
+  ...tokens.motion.map(([n, v]) => `| \`${n}\` | \`${v}\` |`),
   "",
   "## Type",
   "",
@@ -358,7 +387,7 @@ cheapest number on the results page, and the most expensive place to end up.
 
 await fs.writeFile(path.join(OUT, "README.md"), readme, "utf8");
 
-console.log(`  tokens.md      ${tokens.colour.length} colours, ${tokens.space.length} spaces, ${tokens.radius.length} radii, ${type.length} type styles`);
+console.log(`  tokens.md      ${tokens.colour.length} colours, ${tokens.role.length} roles, ${tokens.space.length} spaces, ${tokens.radius.length} radii, ${type.length} type styles`);
 console.log(`  listings.csv   ${all.length} listings`);
 console.log(`  screens.md     3 screens`);
 console.log(`  copy.csv       ${strings.size} strings`);
