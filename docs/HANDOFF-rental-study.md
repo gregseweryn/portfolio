@@ -4,6 +4,14 @@ Kontekst dla nowej sesji. Przeczytaj to zamiast odtwarzać rozmowę.
 
 Stan na: 4 sierpnia 2026.
 
+> **Status na stronie: zdjęte z publikacji.** Case study najmu i towarzyszący mu
+> audyt danych syntetycznych nie są wpięte w `lib/studies/index.ts`, więc strona
+> pokazuje tylko magisterkę. Pliki `lib/studies/krakow-rental-search.ts` i
+> `lib/studies/synthetic-data-audit.ts` zostają w repo bez zmian — żeby wrócić,
+> wystarczy dopisać je do tablicy `studies` (magisterka pierwsza, bo trzyma slot
+> featured). Powód: opis wymaga poprawek, a sesje ewaluacyjne nie są jeszcze
+> przeprowadzone.
+
 **Dwa dokumenty, dwie role:**
 
 | Plik | Do czego |

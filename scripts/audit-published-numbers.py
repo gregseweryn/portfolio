@@ -195,17 +195,25 @@ SYNTHETIC = {
     "99",
 }
 
+# The fourth field says whether the study is currently published. The rental
+# study and the synthetic-data audit are held back in lib/studies, so they build
+# no page and there is nothing to audit; a missing page for them is expected and
+# is skipped rather than failing the run. For a published study a missing page
+# is still an error. Flip the flag back to True when they return.
 STUDIES = [
-    ("krakow-touristification", THESIS, "verified thesis value"),
-    ("krakow-rental-search", RENTAL, "measured audit value"),
+    ("krakow-touristification", THESIS, "verified thesis value", True),
+    ("krakow-rental-search", RENTAL, "measured audit value", False),
     ("synthetic-data-audit", SYNTHETIC,
-     "value re-derived by scripts/extract-synthetic-audit.py"),
+     "value re-derived by scripts/extract-synthetic-audit.py", False),
 ]
 
 
-def audit(slug, verified, source_label):
+def audit(slug, verified, source_label, published):
     path = BUILD / f"{slug}.html"
     if not path.exists():
+        if not published:
+            print(f"\n{slug}\n  held back from the site, nothing published to audit.")
+            return 0
         print(f"{slug}: MISSING BUILD OUTPUT at {path}")
         return 1
 

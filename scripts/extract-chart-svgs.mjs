@@ -36,7 +36,10 @@ const BUILD = path.join(ROOT, ".next", "server", "app", "work");
 const CSS_DIR = path.join(ROOT, ".next", "static", "css");
 const OUT = path.join(ROOT, "design", "charts");
 
-const PAGES = ["krakow-touristification", "krakow-rental-search", "synthetic-data-audit"];
+// Only the published studies: a page that is not in lib/studies is not built,
+// so listing it here would read a file that does not exist. Put the rental
+// study and the synthetic-data audit back on this line when they return.
+const PAGES = ["krakow-touristification"];
 
 /**
  * Properties worth carrying into a standalone file. Layout properties are
