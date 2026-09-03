@@ -2,14 +2,20 @@
  * /lab/otodom — a design proposal, on an unlisted page.
  *
  * Not in the navigation, not in any sitemap, noindex and nofollow. It is reached
- * by having the link. That is deliberate: the case study at
- * /work/krakow-rental-search argues from measurement and holds one variable
- * still on purpose, and this page does the opposite — it proposes a visual
- * language nobody has tested. Publishing it beside the study would blur the two.
+ * by having the link. That is deliberate twice over.
+ *
+ * The rental case study argues from measurement and holds the visual design
+ * still on purpose; this page does the opposite — it proposes a visual language
+ * nobody has tested. Published beside the study, the two claims would blur.
+ *
+ * And the study itself is currently held back from the published set (see
+ * docs/HANDOFF-rental-study.md): the write-up needs revising and the evaluative
+ * sessions have not been run, so /work/krakow-rental-search is not built. This
+ * page names it in prose rather than linking to it for that reason, and it must
+ * stay unlisted at least until the study is back.
  */
 
 import type { Metadata } from "next";
-import Link from "next/link";
 import s from "./otodom.module.css";
 import {
   BudgetScreen,
@@ -58,8 +64,10 @@ export default function LabOtodomPage() {
           ich logo ani nazwy jako marki. Wszystkie kwoty pochodzą z ofert zmierzonych na otodom.pl
           4 sierpnia 2026; adresy skrócone do dzielnicy, nazwy biur zastąpione. Media (300 zł) i
           kaucja (równowartość najmu) to założenia badacza, oznaczone w interfejsie jako szacunek.
-          Materiał towarzyszący studium przypadku{" "}
-          <Link href="/work/krakow-rental-search">Koszt najmu w Krakowie</Link>.
+          Materiał towarzyszący studium przypadku o koszcie najmu w Krakowie, które jest w tej
+          chwili zdjęte z publikacji — opis wymaga poprawek, a sesje ewaluacyjne nie zostały
+          przeprowadzone. Dlatego to zdanie nie jest linkiem: strona studium nie jest budowana,
+          więc odsyłacz prowadziłby do 404.
         </p>
 
         <div className={s.rules}>
