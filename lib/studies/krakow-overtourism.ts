@@ -133,7 +133,7 @@ export const krakowOvertourism: Study = {
         {
           // The question as it was asked, immediately above the answer as it was
           // measured. C4 on this page is the item the chart below reports at
-          // 88.1%, and the sentence the second study on this site grew out of.
+          // 88.1%.
           kind: "image",
           image: {
             src: "/work/thesis/questionnaire-cost-block.png",
@@ -143,7 +143,7 @@ export const krakowOvertourism: Study = {
             maxWidth: 460,
           },
           caption:
-            "The cost block, as respondents met it. C4 is the item that drew the strongest agreement in the whole questionnaire and the smallest spread — and the sentence the rental study on this site started from.",
+            "The cost block, as respondents met it. C4 is the item that drew the strongest agreement in the whole questionnaire and the smallest spread.",
         },
         { kind: "figure", chart: "cost-items" },
         {

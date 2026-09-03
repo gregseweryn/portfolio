@@ -51,9 +51,9 @@ export default function Home() {
           <div className={styles.sectionHead}>
             <h2 id="work-title" className={styles.sectionTitle}>Selected research</h2>
             <p className={styles.sectionNote}>
-              {/* "generative & evaluative" would overclaim: the second study is
-                  an audit and redesign, and its evaluative half is designed but
-                  not yet run. */}
+              {/* "generative & evaluative" would overclaim while the only
+                  published piece is the thesis. The branch is kept for when the
+                  held-back studies go back into lib/studies. */}
               {studies.length === 1
                 ? "Mixed methods · quantitative & qualitative"
                 : `${studies.length} case studies · research & redesign`}
