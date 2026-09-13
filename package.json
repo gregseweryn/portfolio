@@ -7,10 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "capture:mockup": "node scripts/capture-mockup.mjs",
     "export:svg": "node scripts/extract-chart-svgs.mjs",
     "check:placeholders": "node scripts/check-no-placeholders.mjs",
-    "build:kit": "node scripts/build-screen-kit.mjs"
+    "capture:desk": "node scripts/capture-portfolio-desk.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

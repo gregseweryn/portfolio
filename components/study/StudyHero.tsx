@@ -30,11 +30,9 @@ type Props = {
  * `viewBox` is the chart's own, `crop` is the region to show, both in its units.
  */
 const THUMB_CROP: Partial<Record<ChartId, { viewBox: [number, number]; crop: [number, number, number, number] }>> = {
-  // The two ranges and the median rules — the comparison the study is about.
-  "variance-collapse": { viewBox: [1000, 340], crop: [300, 100, 680, 200] },
-  "admin-distribution": { viewBox: [1000, 430], crop: [140, 90, 620, 200] },
-  "constants-not-distributions": { viewBox: [1000, 400], crop: [140, 100, 700, 220] },
-  "claim-survival": { viewBox: [1000, 320], crop: [260, 110, 700, 180] },
+  // Empty while no published study leads with a chart. A study whose hero is a
+  // chart adds its entry here; without one the thumbnail falls back to the whole
+  // plot, which is the unreadable case this map exists to avoid.
 };
 
 export default function StudyHero({ study, variant }: Props) {

@@ -246,6 +246,32 @@
   color: var(--accent);
 }
 
+/* The arrow is the only thing separating "this opens a prototype in a new tab"
+   from "this downloads a file", so it travels with the label rather than
+   sitting at the end of the box, and it leans on hover the way the site's other
+   outbound links do. */
+.downloadExternal {
+  display: inline-block;
+  margin-left: 0.4em;
+  transition: transform var(--dur) var(--ease-out);
+}
+
+.download:hover .downloadExternal,
+.download:focus-visible .downloadExternal {
+  transform: translate(0.12em, -0.12em);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .downloadExternal {
+    transition: none;
+  }
+
+  .download:hover .downloadExternal,
+  .download:focus-visible .downloadExternal {
+    transform: none;
+  }
+}
+
 .downloadNote {
   font-family: var(--font-label);
   font-size: var(--text-xs);

@@ -44,13 +44,6 @@ export const krakowOvertourism: Study = {
     caption:
       "Three districts chosen as three phases of one process, positioned here by the cost index their residents actually reported. Old Town and Kazimierz land on top of each other; Podgórze sits apart, and expects to follow.",
   },
-  downloads: [
-    {
-      label: "Read the full thesis",
-      href: "/krakow-touristification-thesis.pdf",
-      note: "PDF · Polish · 172 pages · 2.5 MB",
-    },
-  ],
   sections: [
     {
       heading: "Nobody had asked the residents since before COVID",

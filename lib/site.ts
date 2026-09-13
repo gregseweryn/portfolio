@@ -13,13 +13,13 @@ export const site = {
   // this used to say "decisions" twice in the same fold and open with the role
   // that the line above it already gives.
   intro:
-    "One study so far, carried end to end: 446 residents surveyed, ten interviewed, and a published account of where its own conclusions stop.",
+    "Two studies, both carried end to end: a loan servicing system audited, redesigned and remeasured, and 446 residents surveyed on what tourism costs them. Both published with the point where their evidence stops.",
   // Stands alone in search results and link previews, where the tagline is not
   // there to lean on.
   // Kept under ~155 characters: past that Google truncates, and the clause that
   // does the differentiating is the one at the end.
   description:
-    "UX researcher in Kraków, working across generative and evaluative studies. One mixed-methods study published in full, including where its evidence stops.",
+    "UX researcher in Kraków. A survey of 446 residents, and a loan servicing system redesigned with the analyst's task time modelled before and after.",
   // Deliberately null: the CV carries a personal phone number, and a public PDF
   // is exactly what number-harvesting bots crawl for. It goes to recruiters who
   // get in touch, not to anyone who finds the site. Setting a path here brings
@@ -37,14 +37,17 @@ export const nav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
-// Methods shown as the "range at a glance" strip on the home page.
+// Methods shown as the "range at a glance" strip on the home page. It sits
+// directly under the intro, which now names two studies, so it has to cover both
+// of them: a strip of eight research methods under a featured interface audit
+// reads as a strip describing somebody else's work.
 export const methods = [
   "Generative research",
+  "Heuristic audit",
   "Usability testing",
+  "KLM-GOMS modelling",
   "Survey design",
-  "Diary studies",
+  "Information architecture",
   "Interviews",
-  "Service blueprinting",
-  "Concept testing",
-  "Research ops",
+  "Design systems",
 ] as const;
