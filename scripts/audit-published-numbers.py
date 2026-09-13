@@ -93,118 +93,66 @@ THESIS = {
     "70",
     # part of the contact email address, not a finding
     "99",
-    # download size of the thesis PDF, not a finding
-    "2.5",
 }
 
-# Values measured on otodom.pl, 4 August 2026. Every figure below is reproduced
-# by scripts/analyse-rental-audit.py from the saved dataset; run it if any of
-# these need checking. Nothing here comes from user research, because none has
-# been run.
-RENTAL = {
-    # --- scaled audit, 423 listings over six pages -----------------------
-    "423", "397",
-    # administrative rent not stated, and stated as zero
-    "26", "6.1", "10",
-    # administrative rent distribution, zl
-    "537", "700", "856", "3100",
-    # administrative rent as a share of the advertised price
-    "22.4", "22",
-    # a 3000 zl filter: returned, over budget, share
-    "213", "139", "65.3", "65",
-    # the same filter narrowed to two-room listings
-    "85.2",
-    # ranking disagreements. "76,335" and "5,219" tokenise on the comma,
-    # which is why the halves appear here separately.
-    "6.8", "76", "335", "5", "219",
-    # the first-page figure the scaled audit corrected downwards
-    "100",
-    # the search and its result set
-    "3000", "8", "2",
-    # overshoot range and the worst case
-    "17", "35", "2980", "4050",
-    # admin rents observed across the eight listings
-    "700", "1200", "400",
-    # the listing whose headline price reverses the real order
-    "2500", "4000", "6500",
-    # cheapest real cost on the page, and the scenario budget
-    "3500", "3800",
-    # the three budget states in the gallery. Monthly totals of the eight
-    # listings, from listings.js with its stated 300 zl utilities convention:
-    # 3800, 3910, 4000, 4000, 4000, 4150, 4241, 4350. So 3500 clears none,
-    # 4100 clears five, 5000 clears all eight.
-    "4100", "5000",
-    # the estimate conventions, stated in the interface
-    "300",
-    # unit-price example quoted from a card
-    "92", "59",
-    # thesis figures referenced in the opening section
-    "446", "88.1",
-    # accessibility measurements
-    "4.51", "4.57", "7", "375", "44",
-    # audit date and study scale
-    "2026", "4", "11", "6",
-    # ordinary prose and list markers
-    "1", "3", "01", "02", "03",
-    # "0 of 8": nothing on the page fits a 3500 zl budget
+# Portfolio Desk. Every figure traces to the project repository,
+# github.com/gregseweryn/uxportfolio: the eighteen findings and their severities
+# to docs/audit/heuristic-audit.md, the task times to docs/audit/klm-baseline.md
+# and klm-after.md, the contrast pairs to docs/design/contrast-carbon.md, and the
+# portfolio itself to the seeded snapshot recorded in docs/research/data-method.md.
+#
+# The contrast figures are the Carbon ones on purpose. contrast.md covers the
+# earlier OKLCH screens, which are not the screens this study shows, and its
+# numbers must not be copied here.
+PORTFOLIO_DESK = {
+    # --- the measured task times, before and after -----------------------
+    "23.33", "2.66", "88.6",
+    "13.35", "6.68", "50.0",
+    "24.22", "11.96", "50.6",
+    # the three tasks together, and the round trips they cost. "60" and "90"
+    # appear separately because "60.90 s" tokenises on the decimal point; "90"
+    # is also the name of the worst delinquency bucket, 90+ days.
+    "60.90", "21.30", "65.0", "65", "8", "4", "90",
+    # task 3 under its other two framings, where the redesign is slower
+    "7.42", "61.2", "31.07", "28.3", "60",
+    # the dropdown version the measurement killed
+    "23.86",
+    # --- the audited book ------------------------------------------------
+    # seeded portfolio: loans, value, delinquent count and share, arrears
+    "500", "568.7", "150", "30", "18.4",
+    # the one product that dominates it, and the SBA term it follows
+    "489", "120",
+    # the saved view the first task uses, and the loans it returns
+    "30", "79",
+    # the loan the detail screens show
+    "119", "94",
+    # --- the audit -------------------------------------------------------
+    # eighteen findings by severity: 2 catastrophic, 6 serious, 7 minor, 3 cosmetic
+    "18", "2", "6", "7", "3",
+    # the findings named in the text, and the report's column count
+    "01", "02", "05", "06", "19",
+    # --- research and method ---------------------------------------------
+    # products compared, capabilities they were compared on
+    "6", "5",
+    # the reference date the portfolio is frozen at, and the model's viewport
+    "1", "2026", "1440", "900",
+    # contrast: pairs measured, pairs carrying a threshold, and the standard
+    "42", "38", "2.2",
+    # the SBA dataset
+    "7",
+    # ordinary prose, list markers and the year
     "0",
     # part of the contact email address in the footer, not a finding
     "99",
 }
 
-# Every figure below is re-derived by scripts/extract-synthetic-audit.py and read
-# out of lib/data/synthetic/*.json at build time. Each group names the file and
-# key it comes from, so a number can be traced without opening a chart component.
-# Prose in this study is deliberately thin on hand-typed figures: one interpolated
-# into a caption cannot drift from its data file, and the parser sees it either
-# way, because figcaption is not a skipped subtree.
-SYNTHETIC = {
-    # distributions.json -> basePrice.measured {min, max, sd}
-    "1880", "6000", "557",
-    # distributions.json -> basePrice.generated {min, max, sd}
-    "2450", "3300", "243",
-    # distributions.json -> basePrice.scenarioBudget
-    "3500",
-    # impacts: basePrice.measured.sd / basePrice.generated.sd, 557/243
-    "2.3",
-    # distributions.json -> adminRent.measured {median, n}
-    "700", "208",
-    # distributions.json -> adminRent.generated {median, n}
-    "780", "23",
-    # distributions.json -> adminRent.shareAbove900 {measured, generated},
-    # and the threshold the split is drawn at
-    "15.4", "34.8", "900",
-    # claims.json -> W1.reDerived {share, n, band, overshootMedian}
-    "97", "101", "2500", "3000", "16.7",
-    # claims.json -> W1.asNarrated {overshootLow, overshootHigh, n}
-    "17", "35", "8",
-    # claims.json -> W2.reDerived.share, cross-checked against the figure the
-    # krakow-rental-search study publishes from the same file
-    "6.8",
-    # provenance.json -> auditRows, referenceN
-    "423", "250",
-    # the constant the generated corpus used for utilities in every listing,
-    # constants.json -> variables[Utilities], and the two extreme administrative
-    # rents it put into the comparison task, from oferty-uzyte.csv
-    "300", "1200", "1250",
-    # impacts: two generated variables with a standard deviation of zero
-    "0",
-    # audit date, study year, contents-bar section count, download weight
-    "4", "2026", "7", "12",
-    # part of the contact email address in the footer, not a finding
-    "99",
-}
-
-# The fourth field says whether the study is currently published. The rental
-# study and the synthetic-data audit are held back in lib/studies, so they build
-# no page and there is nothing to audit; a missing page for them is expected and
-# is skipped rather than failing the run. For a published study a missing page
-# is still an error. Flip the flag back to True when they return.
+# The fourth field says whether the study is currently published. A published
+# study with no built page is an error; an unpublished one is skipped. Nothing
+# is held back right now, so every entry is published.
 STUDIES = [
+    ("portfolio-desk", PORTFOLIO_DESK,
+     "figure recorded in the Portfolio Desk repository", True),
     ("krakow-touristification", THESIS, "verified thesis value", True),
-    ("krakow-rental-search", RENTAL, "measured audit value", False),
-    ("synthetic-data-audit", SYNTHETIC,
-     "value re-derived by scripts/extract-synthetic-audit.py", False),
 ]
 
 

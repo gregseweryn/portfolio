@@ -1,16 +1,14 @@
+import { portfolioDesk } from "./portfolio-desk";
 import { krakowOvertourism } from "./krakow-overtourism";
 import type { Study } from "./types";
 
 export type { Block, ChartId, Download, Hero, Impact, Media, Study, StudyImage, StudySection } from "./types";
 
-// Only the thesis is published. The rental study and the synthetic-data audit
-// that belongs with it still live in this directory — krakow-rental-search.ts
-// and synthetic-data-audit.ts — but they are held back until the rental study's
-// evaluative sessions are run and its write-up is revised. Adding them back to
-// this array (thesis first: it keeps the featured slot) is all it takes to
-// publish them again; the home page and the study pages already adapt to the
-// number of studies in it.
-export const studies: Study[] = [krakowOvertourism];
+// Order is the page order, and the first entry takes the featured slot on the
+// home page. Portfolio Desk leads because it is the one that shows the work
+// being done rather than written up; the thesis follows as the evidence that
+// the research half is real.
+export const studies: Study[] = [portfolioDesk, krakowOvertourism];
 
 export function getStudy(slug: string): Study | undefined {
   return studies.find((s) => s.slug === slug);

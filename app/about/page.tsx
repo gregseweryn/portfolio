@@ -28,10 +28,16 @@ const principles = [
   },
 ];
 
+// Five groups, because four of them described only the research half and the
+// site now leads with a study that is an audit, a model and an interface. A
+// method listed here should be findable in one of the two published studies or
+// be one I would put my name to on day one; this is not an aspiration list.
 const toolkit = [
   { group: "Generative", items: ["Interviews", "Diary studies", "Contextual inquiry", "Concept testing"] },
   { group: "Evaluative", items: ["Usability testing", "Tree testing", "Surveys", "Benchmarking"] },
+  { group: "Audit & modelling", items: ["Heuristic evaluation", "KLM-GOMS", "Competitive analysis", "Accessibility checks"] },
   { group: "Synthesis & comms", items: ["Thematic analysis", "Affinity mapping", "Journey maps", "Workshops"] },
+  { group: "Design", items: ["Information architecture", "Wireframing", "Interface design", "Design systems"] },
   { group: "Research ops", items: ["Participant panels", "Repositories", "Consent & ethics", "Enablement"] },
 ];
 
@@ -51,11 +57,19 @@ export default function AboutPage() {
             myself, and turn what comes back into decisions a team can defend.
           </p>
           <p>
-            My last one was an MA thesis at the Jagiellonian University, on how the people who
-            actually live in central Kraków experience a city that draws 14.7 million visitors a
-            year. I built the questionnaire, gathered 446 responses and ten in-depth interviews
-            across six weeks of fieldwork, and analysed the two strands separately before letting
-            them meet. It is on this site in full, including the part about what it cannot tell you.
+            The first of the two studies here is an MA thesis at the Jagiellonian University, on how
+            the people who actually live in central Kraków experience a city that draws 14.7 million
+            visitors a year. I built the questionnaire, gathered 446 responses and ten in-depth
+            interviews across six weeks of fieldwork, and analysed the two strands separately before
+            letting them meet. It is on this site in full, including the part about what it cannot
+            tell you.
+          </p>
+          <p>
+            The second starts somewhere else and ends in the same place. I took a loan servicing
+            system, loaded it with a realistic book of 500 commercial loans, audited it against
+            eighteen findings, redesigned the screens an analyst lives in, and modelled the work
+            operator by operator on both sides. It is also on this site with the section where the
+            redesign comes out slower.
           </p>
           <p>
             That last part is the habit I would bring to a team. What I enjoy most is the moment

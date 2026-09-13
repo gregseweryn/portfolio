@@ -155,9 +155,25 @@ export default async function StudyPage({
             <ul className={styles.downloadsList}>
               {study.downloads.map((d) => (
                 <li key={d.href}>
-                  <a href={d.href} className={styles.download} download>
-                    <span className={styles.downloadLabel}>{d.label}</span>
-                    <span className={styles.downloadNote}>{d.note}</span>
+                  <a
+                    href={d.href}
+                    className={styles.download}
+                    {...(d.external
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : { download: true })}
+                  >
+                    <span className={styles.downloadLabel}>
+                      {d.label}
+                      {d.external && (
+                        <span className={styles.downloadExternal} aria-hidden="true">
+                          &#8599;
+                        </span>
+                      )}
+                    </span>
+                    <span className={styles.downloadNote}>
+                      {d.note}
+                      {d.external && <span className="sr-only"> (opens in a new tab)</span>}
+                    </span>
                   </a>
                 </li>
               ))}

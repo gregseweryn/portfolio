@@ -26,12 +26,7 @@ export type ChartId =
   | "move-out-model"
   | "typology"
   | "themes"
-  | "joint-display"
-  // Synthetic-data audit.
-  | "variance-collapse"
-  | "admin-distribution"
-  | "constants-not-distributions"
-  | "claim-survival";
+  | "joint-display";
 
 /**
  * A real image in the running text. The thesis study is all SVG, so this is the
@@ -149,6 +144,14 @@ export type Download = {
   href: string;
   /** Format, language and weight — set expectations before the click. */
   note: string;
+  /**
+   * A link that leaves the site rather than a file that arrives on disk. The
+   * `download` attribute is meaningless cross-origin and the browser silently
+   * navigates instead, so an external entry has to be rendered as a link and
+   * opened in a new tab: a reader who clicks through to a prototype is still
+   * halfway down a case study.
+   */
+  external?: boolean;
 };
 
 export type Study = {
