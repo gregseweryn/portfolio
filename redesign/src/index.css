@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  /* Variant 2 — brutalist rave */
+  --font-brutal: "Anton", ui-sans-serif, system-ui, sans-serif;
+  --font-code: "Space Mono", ui-monospace, monospace;
+
+  /* Near-monochrome ink-on-paper + one decisive accent */
+  --color-paper: #f4f2ed;
+  --color-ink: #16150f;
+  --color-mute: #6a675d;
+  --color-line: #d9d5cb;
+  --color-accent: #e2412a;
+  --color-ink-inv: #f4f2ed;
+
+  /* CMYK clash on white */
+  --color-key: #0a0a0a;
+  --color-bone: #f2f0ea;
+  --color-cyan: #00b4e6;
+  --color-magenta: #e6007e;
+  --color-yellow: #ffde00;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-synthesis-weight: none;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-accent);
+  color: var(--color-ink-inv);
+}
+
+/* Visible keyboard focus, never removed */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+}
+
+.container {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Marquee — paused for reduced motion */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+
+@keyframes reveal-up {
+  from { opacity: 0; transform: translateY(1rem); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reveal {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* --- Brutalist rave utilities --- */
+.hard-c { box-shadow: 8px 8px 0 0 var(--color-cyan); }
+.hard-m { box-shadow: 8px 8px 0 0 var(--color-magenta); }
+.hard-y { box-shadow: 8px 8px 0 0 var(--color-yellow); }
+.hard-k { box-shadow: 8px 8px 0 0 var(--color-key); }
+
+/* square grid ornament */
+.grid-ornament {
+  background-image:
+    linear-gradient(var(--color-key) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-key) 1px, transparent 1px);
+  background-size: 28px 28px;
+  opacity: 0.06;
+}
+
+/* checkerboard divider from squares */
+.checker {
+  background-image:
+    conic-gradient(var(--color-key) 90deg, transparent 90deg 180deg, var(--color-key) 180deg 270deg, transparent 270deg);
+  background-size: 20px 20px;
+}
+
+@keyframes glitch-shift {
+  0%, 92%, 100% { transform: translate(0, 0); }
+  93% { transform: translate(-2px, 1px); }
+  95% { transform: translate(2px, -1px); }
+  97% { transform: translate(-1px, -1px); }
+}
+.glitch:hover {
+  animation: glitch-shift 0.4s steps(2, end);
+}
+
+@keyframes marquee-rev {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+.marquee-rev {
+  animation: marquee-rev 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+    flex-wrap: wrap;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

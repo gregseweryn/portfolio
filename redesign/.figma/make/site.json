@@ -1,0 +1,10 @@
+{
+  "description": "Showcases a professional portfolio with an optimized, visually appealing layout designed to highlight skills and projects effectively for career growth.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
