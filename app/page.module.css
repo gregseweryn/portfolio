@@ -243,14 +243,28 @@
    look the design law rules out. Flat, because a shadow here would be ambient
    decoration rather than a response to state. */
 .rowMedia {
-  display: block;
+  display: grid;
+  place-items: center;
   aspect-ratio: 4 / 3;
   overflow: hidden;
   background: var(--surface);
 }
 
+/* Width is the slot's to give; height stays with the child. A photographic
+   thumb sets its own 100% and crops to fill. A diagram keeps the ratio it was
+   drawn at and is centred in what is left, rather than hanging off the top edge
+   with a band of bare plate under it. */
 .rowMedia > * {
-  height: 100%;
+  width: 100%;
+  max-height: 100%;
+}
+
+/* The plate is already the surface. A diagram that paints its own fill and
+   border inside it draws a second, shorter rectangle, and the mismatch reads as
+   a misalignment rather than as two deliberate frames. */
+.rowMedia svg {
+  background: transparent;
+  border: none;
 }
 
 /* Narrow: the plate moves above the text at a wider ratio rather than
@@ -263,6 +277,15 @@
   .rowMedia {
     grid-column: 1 / -1;
     aspect-ratio: 16 / 9;
+  }
+
+  /* A diagram sized for reading widens itself on a phone and scrolls inside its
+     own container, which is right on the study page and wrong here: this plate
+     is 333px of index thumbnail, nobody scrolls sideways inside it, and the
+     widened drawing only overflows the slot and loses its bottom to the clip.
+     Let it fit the plate instead. */
+  .rowMedia svg {
+    min-width: 0;
   }
 }
 

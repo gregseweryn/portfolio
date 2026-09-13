@@ -54,20 +54,14 @@ export const portfolioDesk: Study = {
     { value: "18", label: "Findings in the heuristic audit" },
     { value: "500", label: "Loans in the audited book" },
   ],
-  // Both entries leave the site, so both are links rather than files. A reader
-  // who wants to check the work can either drive the thing or read how it was
-  // measured, and neither belongs behind a screenshot.
+  // The prototype is the only thing offered here, and it leaves the site, so it
+  // is a link rather than a file. A reader who wants to check the work should
+  // drive the thing rather than take a screenshot's word for it.
   downloads: [
     {
       label: "Open the prototype",
       href: "https://semi-secure-43576547.figma.site/",
       note: "Clickable, both themes, the three measured paths walkable",
-      external: true,
-    },
-    {
-      label: "Read the project repository",
-      href: "https://github.com/gregseweryn/uxportfolio",
-      note: "Audit, research, task model, KLM workings, seeding scripts",
       external: true,
     },
   ],
