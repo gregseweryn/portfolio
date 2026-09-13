@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ChartId, Study } from "@/lib/studies";
 import { CHARTS } from "@/components/charts/registry";
 import DistrictPhases from "./DistrictPhases";
+import ZoomLink from "./ZoomLink";
 import MediaFrame from "@/components/MediaFrame";
 import styles from "./StudyHero.module.css";
 
@@ -48,10 +49,13 @@ export default function StudyHero({ study, variant }: Props) {
       // read it, and the study title beside it already says as much.
       return <DistrictPhases caption={isThumb ? undefined : hero.caption} />;
 
-    case "image":
-      return (
-        <figure className={isThumb ? styles.thumbFigure : styles.imageFigure}>
-          <Image
+    case "image": {
+      // Only the study page enlarges its hero. The card and the thumbnail are
+      // links to the study, and a second, competing link inside them would be
+      // both a nested anchor and an offer to inspect a picture the reader has
+      // not decided to read yet.
+      const image = (
+        <Image
             src={hero.image.src}
             alt={hero.image.alt}
             width={hero.image.width}
@@ -70,9 +74,25 @@ export default function StudyHero({ study, variant }: Props) {
             }
             priority={variant === "page"}
           />
+      );
+      return (
+        <figure className={isThumb ? styles.thumbFigure : styles.imageFigure}>
+          {variant === "page" ? (
+            <ZoomLink
+              src={hero.image.src}
+              alt={hero.image.alt}
+              width={hero.image.width}
+              height={hero.image.height}
+            >
+              {image}
+            </ZoomLink>
+          ) : (
+            image
+          )}
           {variant === "page" && <figcaption className={styles.caption}>{hero.caption}</figcaption>}
         </figure>
       );
+    }
 
     case "chart": {
       const Chart = CHARTS[hero.chart];

@@ -1,0 +1,113 @@
+.dialog {
+  width: 100vw;
+  max-width: 100vw;
+  height: 100dvh;
+  max-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  overflow: hidden;
+}
+
+.dialog::backdrop {
+  /* The deep ink the site already uses for inverted sections, not a generic
+     black wash: the overlay should read as this page's dark side. */
+  background: oklch(0.165 0.013 264 / 0.94);
+}
+
+.figure {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  height: 100%;
+  margin: 0;
+}
+
+.scroll {
+  display: grid;
+  place-items: center;
+  overflow: auto;
+  overscroll-behavior: contain;
+  /* Vertical padding only. Horizontal padding here would eat into the width the
+     capture is sized against and push its right edge out of view on exactly the
+     display where it fits perfectly otherwise. */
+  padding-block: clamp(0.75rem, 2vw, 2rem);
+  /* The pointer says what the surface does: pan when the capture is wider than
+     the viewport, which is the whole point on a phone. */
+  cursor: grab;
+}
+
+/* The scroller takes focus when the overlay opens, so arrow keys pan the
+   capture straight away. A focused element with no ring is the thing that makes
+   that feel broken rather than deliberate; the ring is inset because the
+   element runs to the edge of the viewport. */
+.scroll:focus-visible {
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: -2px;
+}
+
+/* Screenshots here are captured at 2x from a 1440-wide viewport, so 1440 CSS px
+   is the size the interface was drawn at and the size it is legible at. Cap
+   there rather than at the file's own width, which would upscale on a large
+   display. Below that, fill the viewport; below 1024, stay at 1024 and let the
+   reader pan, because a dense table shrunk to 375px is the problem this overlay
+   exists to solve. */
+.image {
+  display: block;
+  width: min(1440px, max(100vw, 1024px));
+  max-width: none;
+  height: auto;
+  background: var(--bg);
+}
+
+.caption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem clamp(1rem, 4vw, 2.5rem);
+  padding: clamp(0.75rem, 2vw, 1.25rem) clamp(0.75rem, 2vw, 2rem);
+  border-top: 1px solid oklch(0.72 0.012 264 / 0.3);
+  background: var(--ink-deep);
+}
+
+.captionText {
+  flex: 1 1 24rem;
+  min-width: 0;
+  max-width: 70ch;
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--on-dark-muted);
+}
+
+.close {
+  flex: none;
+  padding: 0.55rem 1.1rem;
+  font-family: var(--font-label);
+  font-size: var(--text-xs);
+  letter-spacing: var(--ls-caps);
+  text-transform: uppercase;
+  color: var(--on-dark);
+  background: transparent;
+  border: 1px solid oklch(0.72 0.012 264 / 0.45);
+  cursor: pointer;
+  transition: border-color var(--dur) var(--ease-out), color var(--dur) var(--ease-out);
+}
+
+.close:hover,
+.close:focus-visible {
+  color: var(--ink-deep);
+  background: var(--on-dark);
+  border-color: var(--on-dark);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .close {
+    transition: none;
+  }
+}

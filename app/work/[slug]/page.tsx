@@ -7,6 +7,7 @@ import Button from "@/components/Button";
 import SplitReveal from "@/components/SplitReveal";
 import StudyBlock from "@/components/study/StudyBlocks";
 import StudyHero from "@/components/study/StudyHero";
+import ImageZoom from "@/components/study/ImageZoom";
 import SectionIndex from "@/components/study/SectionIndex";
 import { site } from "@/lib/site";
 import styles from "./study.module.css";
@@ -188,6 +189,10 @@ export default async function StudyPage({
             <span className={styles.nextArrow} aria-hidden="true">&rarr;</span>
           </Link>
         )}
+
+        {/* One overlay for every capture on the page. It attaches to the links
+            ZoomLink already rendered, so nothing above depends on it loading. */}
+        <ImageZoom />
 
         <div className={styles.cta}>
           <p className={styles.ctaText}>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import MediaFrame from "@/components/MediaFrame";
+import ZoomLink from "./ZoomLink";
 import { CHARTS } from "@/components/charts/registry";
 import type { Block, StudyImage } from "@/lib/studies";
 import styles from "./StudyBlocks.module.css";
@@ -15,15 +16,21 @@ import styles from "./StudyBlocks.module.css";
 function StudyPicture({ image, fallbackSizes }: { image: StudyImage; fallbackSizes: string }) {
   const capped = image.maxWidth !== undefined;
   return (
-    <Image
-      src={image.src}
-      alt={image.alt}
-      width={image.width}
-      height={image.height}
-      sizes={capped ? `${image.maxWidth}px` : fallbackSizes}
-      className={capped ? `${styles.image} ${styles.imageCapped}` : styles.image}
-      style={capped ? { maxWidth: image.maxWidth } : undefined}
-    />
+    // Every study picture is enlargeable. These are interface captures drawn at
+    // 1440 and shown in a text column or, in a compare pair, in half of one;
+    // read at that size the tables in them are texture rather than evidence,
+    // and the argument depends on the reader being able to check them.
+    <ZoomLink src={image.src} alt={image.alt} width={image.width} height={image.height}>
+      <Image
+        src={image.src}
+        alt={image.alt}
+        width={image.width}
+        height={image.height}
+        sizes={capped ? `${image.maxWidth}px` : fallbackSizes}
+        className={capped ? `${styles.image} ${styles.imageCapped}` : styles.image}
+        style={capped ? { maxWidth: image.maxWidth } : undefined}
+      />
+    </ZoomLink>
   );
 }
 
