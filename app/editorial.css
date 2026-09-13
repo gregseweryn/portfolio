@@ -101,6 +101,28 @@
   padding-inline: clamp(1.25rem, 5vw, 4rem);
 }
 
+/* EvidenceChart states its data a second time in a visually hidden <table>, so
+   the chart never depends on sight or colour. A table ignores a width smaller
+   than its content unless the layout is fixed, so .sr-only's width: 1px did
+   nothing and the table kept its natural 584px — which widened the layout
+   viewport to 628px on a 375px phone and made the whole page render zoomed out.
+   The prototype has the same bug; body { overflow-x: hidden } only hides the
+   scrollbar it causes. Fixed layout is what actually makes the 1px stick. */
+.editorial table.sr-only {
+  table-layout: fixed;
+  max-width: 1px;
+}
+
+/* .sr-only also sets white-space: nowrap, and a <caption> is what actually
+   floors a table's width — one unwrapped 74-character caption was holding the
+   table open at 584px on its own. Letting it wrap is the other half of the fix;
+   measured together they take the 375px viewport from 253px of overflow to 0. */
+.editorial table.sr-only,
+.editorial table.sr-only * {
+  white-space: normal;
+  word-break: break-all;
+}
+
 /* Marquee — paused for reduced motion */
 @keyframes marquee {
   from {
