@@ -1,0 +1,139 @@
+/* ============================================================
+   Editorial layout — ported from the Figma Make prototype
+   ("Redesign portfolio layout", the Editorial edition).
+
+   The prototype is a Vite app written in Tailwind v4 utilities. Porting it
+   into this Next app means bringing Tailwind with it, because translating a
+   few hundred utility classes into CSS Modules by hand is where a 1:1 port
+   stops being 1:1.
+
+   Tailwind's preflight is deliberately NOT imported. The rest of this site is
+   CSS Modules over the reset in globals.css, and dropping a second reset on
+   top of it would restyle /about, /cv and the study pages as a side effect of
+   a homepage change.
+   ============================================================ */
+
+@layer theme;
+@import "tailwindcss/theme.css" layer(theme);
+/* Deliberately unlayered.
+   globals.css sets its reset with bare element selectors (a, h1-h4, p, ul) and
+   no @layer. In the cascade an unlayered rule beats any layered one regardless
+   of specificity, so `a { color: inherit }` was overriding text-paper on the
+   hero button and painting it ink-on-ink. Unlayered, the utilities win on
+   specificity instead: .text-paper (0,1,0) over a (0,0,1). */
+@import "tailwindcss/utilities.css";
+
+/* Tailwind v4 infers its content sources from this file's location. The app
+   and components trees both hold editorial markup, so both are named. */
+@source "../app";
+@source "../components";
+
+@theme {
+  /* Faces are wired up in layout.tsx via next/font/google, which exposes each
+     one as a CSS variable. Naming them here is what makes font-display,
+     font-body and font-mono resolve. */
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  /* Near-monochrome ink-on-paper + one decisive accent. Verbatim from the
+     prototype's index.css. */
+  --color-paper: #f4f2ed;
+  --color-ink: #16150f;
+  --color-mute: #6a675d;
+  --color-line: #d9d5cb;
+  --color-accent: #e2412a;
+  --color-ink-inv: #f4f2ed;
+}
+
+/* The editorial page owns the whole viewport, so its ground and body type are
+   set on the page wrapper rather than on body — globals.css still dresses
+   body for every other route. */
+.editorial {
+  /* globals.css already owns a --font-display, and it points at Druk Wide.
+     Its :root declaration is unlayered, so it beats the @theme block above and
+     font-display would silently resolve to Druk on this page. Redeclaring the
+     three faces here wins on source order and they inherit down the tree.
+     Renaming the theme keys instead would mean rewriting every font-display
+     and font-mono class in the ported components, which is the opposite of a
+     1:1 port. */
+  --font-display: var(--font-archivo), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-synthesis-weight: none;
+}
+
+/* The prototype runs without Tailwind preflight in this app, so headings here
+   would otherwise inherit the globals.css reset — weight 800, --lh-snug,
+   --ls-tight and text-wrap: balance. Each of those either fights a utility the
+   prototype sets or changes where lines break under one it does not. Handing
+   the headings back to the browser default is what makes the ported markup
+   render the way it does in the prototype. */
+/* Specificity is load-bearing here. :where() zeroes the .editorial half, so
+   the selector weighs (0,0,1) — the same as globals.css's `h1`, which it then
+   beats on source order because editorial.css is imported second. A utility
+   like font-extrabold weighs (0,1,0) and still wins, which is the point: this
+   hands the headings back to the browser default without outranking the
+   classes the ported markup actually sets. */
+:where(.editorial) :is(h1, h2, h3, h4) {
+  font-weight: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-wrap: wrap;
+}
+
+.editorial ::selection {
+  background: var(--color-accent);
+  color: var(--color-ink-inv);
+}
+
+/* The prototype's container, which is wider than this site's 1240px and has
+   its own gutter ramp. Scoped to .editorial so the global .container that the
+   study pages use is left alone. */
+.editorial .container {
+  width: 100%;
+  max-width: 76rem;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 4rem);
+}
+
+/* Marquee — paused for reduced motion */
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-track {
+  animation: marquee 34s linear infinite;
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.reveal {
+  animation: reveal-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+    transform: none;
+    flex-wrap: wrap;
+  }
+}

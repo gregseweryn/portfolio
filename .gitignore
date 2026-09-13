@@ -85,3 +85,8 @@ __pycache__/
 
 # Empty state files left by the impeccable design hook.
 .impeccable/hook.cache.json
+
+# The Figma Make export the editorial homepage was ported from. Kept on disk
+# as the reference for that port; it is a separate Vite app with its own lock
+# file and dependencies, and nothing in this project imports from it.
+/Redesign portfolio layout/

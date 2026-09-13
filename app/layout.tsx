@@ -1,12 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Archivo, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@/lib/site";
-import Nav from "@/components/Nav";
-import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import { Analytics } from "@vercel/analytics/next";
 import Script from "next/script";
 import "./globals.css";
+import "./editorial.css";
 
 // WOFF2 builds, produced from the licensed TTF/OTF masters in myfonts/ by
 // scripts/build-webfonts.py. Serving the masters directly cost 227 KB on first
@@ -44,6 +44,32 @@ const noirden = localFont({
   display: "swap",
 });
 
+// The editorial homepage is a 1:1 port of the Figma Make prototype, which is
+// set in Archivo, Inter and JetBrains Mono. next/font/google self-hosts all
+// three, so the CSP needs no Google host and there is no render-blocking
+// stylesheet — the prototype's @import url(fonts.googleapis.com) lines do not
+// come across.
+const archivo = Archivo({
+  subsets: ["latin", "latin-ext"],
+  weight: ["500", "600", "700", "800", "900"],
+  variable: "--font-archivo",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrains = JetBrains_Mono({
+  subsets: ["latin", "latin-ext"],
+  weight: ["400", "500", "600"],
+  variable: "--font-jetbrains",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   // The domain the site is served from. Absolute URLs for the OG cards are built
   // off this, so a mismatch here means link previews resolve to nothing.
@@ -70,7 +96,10 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${druk.variable} ${noirden.variable} ${oswald.variable}`}>
+    <html
+      lang="en"
+      className={`${druk.variable} ${noirden.variable} ${oswald.variable} ${archivo.variable} ${inter.variable} ${jetbrains.variable}`}
+    >
       <head>
         {/* Microsoft Clarity — heatmaps and session recordings. beforeInteractive
             puts the loader in the served <head>, so it starts collecting on the
@@ -87,11 +116,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </Script>
       </head>
       <body id="top">
-        <a href="#main" className="skip-link">Skip to content</a>
         <SmoothScroll />
-        <Nav />
-        <main id="main">{children}</main>
-        <Footer />
+        {/* The nav, the skip link and the footer moved into the (site) route
+            group: the homepage is the editorial layout and brings its own. */}
+        {children}
         {/* Vercel Web Analytics. Chosen over Plausible or Fathom for one reason
             that matters here: in production it is served from this origin
             (/_vercel/insights/...), so the locked-down CSP needs no third-party
