@@ -11,7 +11,13 @@
   --surface-2: oklch(0.905 0 0); /* media inner / hover */
   --ink: oklch(0.205 0.006 75); /* near-black, faintly warm for depth */
   --muted: oklch(0.455 0.006 75); /* secondary text — ≥4.5:1 on --bg */
-  --line: oklch(0.87 0 0); /* hairline dividers */
+  --line: oklch(0.87 0 0); /* hairline dividers — decorative, exempt from 1.4.11 */
+  /* The border of a control whose border is the only thing identifying it as a
+     control. WCAG 2.2 SC 1.4.11 wants 3:1 against the surface behind it, and
+     --line is 1.4:1 — right for a divider you are meant to read past, wrong
+     for the edge of a button. Kept a separate token so raising it does not
+     darken every hairline on the site. */
+  --control-line: oklch(0.655 0 0);
 
   /* The single accent. Swappable in one place (working default: cobalt). */
   --accent: oklch(0.48 0.188 264);
@@ -216,6 +222,7 @@ ol {
   --ink: var(--on-dark);
   --muted: var(--on-dark-muted);
   --line: oklch(0.34 0.012 264);
+  --control-line: oklch(0.485 0.014 264);
   --accent: var(--accent-on-dark);
   --accent-strong: oklch(0.56 0.16 264);
   --select-bg: oklch(0.64 0.17 264 / 0.28);
@@ -383,6 +390,7 @@ html.lenis body {
     --ink: #000;
     --muted: #333;
     --line: #999;
+    --control-line: #666;
     --accent: #000;
     background: #fff !important;
     color: #000 !important;

@@ -251,7 +251,7 @@
    sitting at the end of the box, and it leans on hover the way the site's other
    outbound links do. */
 .downloadExternal {
-  display: inline-block;
+  display: inline-flex;
   margin-left: 0.4em;
   transition: transform var(--dur) var(--ease-out);
 }
@@ -305,6 +305,7 @@
 }
 
 .nextArrow {
+  display: inline-flex;
   font-size: 1.5rem;
   color: var(--muted);
   transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out);

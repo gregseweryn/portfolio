@@ -12,7 +12,11 @@ import styles from "./JointDisplay.module.css";
 export default function JointDisplay() {
   return (
     <Reveal as="figure" className={styles.figure}>
-      <div className={styles.scroll}>
+      {/* Below 780px this box scrolls, and a box that only a mouse can scroll
+          hides the two right-hand columns from a keyboard user entirely
+          (WCAG 2.2 SC 2.1.1). Same treatment as `Figure`: a labelled tab stop,
+          so whoever lands there is told what they are about to scroll. */}
+      <div className={styles.scroll} tabIndex={0} role="group" aria-label={data.note}>
         <table className={styles.table}>
           <caption className="sr-only">
             Joint display integrating survey results (N = 446) with interview themes (N = 10)

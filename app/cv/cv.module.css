@@ -97,15 +97,21 @@
 
 .readMore {
   display: inline-flex;
+  align-items: center;
   gap: 0.5rem;
   margin-top: clamp(1.25rem, 2.5vw, 1.75rem);
   font-weight: 600;
   font-size: var(--text-sm);
 }
 
-.study:hover .readMore span,
-.study:focus-visible .readMore span {
+/* The transition belongs on the resting state, not inside :hover — declared
+   only there, the arrow eases out and then snaps back. */
+.readMore svg {
   transition: transform var(--dur) var(--ease-out);
+}
+
+.study:hover .readMore svg,
+.study:focus-visible .readMore svg {
   transform: translateX(4px);
 }
 

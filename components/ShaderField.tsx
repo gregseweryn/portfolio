@@ -181,9 +181,20 @@ export default function ShaderField({ theme = "light" }: { theme?: "light" | "da
       cancelAnimationFrame(raf);
     };
 
-    const io = new IntersectionObserver(([e]) => (e.isIntersecting ? start() : stop()), { threshold: 0 });
+    // Two independent reasons to pause, so the restart has to satisfy both:
+    // returning to the tab while the hero is scrolled off screen used to start
+    // the loop again and leave a WebGL shader rendering a canvas nobody can see.
+    let onScreen = false;
+    const io = new IntersectionObserver(
+      ([e]) => {
+        onScreen = e.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
+      { threshold: 0 }
+    );
     io.observe(gl.canvas);
-    const onVis = () => (document.hidden ? stop() : start());
+    const onVis = () => (document.hidden || !onScreen ? stop() : start());
     document.addEventListener("visibilitychange", onVis);
     const ro = new ResizeObserver(resize);
     ro.observe(wrap);

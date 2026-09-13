@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getStudy, studies, sectionId } from "@/lib/studies";
 import Reveal from "@/components/Reveal";
+import Arrow from "@/components/Arrow";
 import Button from "@/components/Button";
 import SplitReveal from "@/components/SplitReveal";
 import StudyBlock from "@/components/study/StudyBlocks";
@@ -58,7 +59,7 @@ export default async function StudyPage({
     <article className={styles.article}>
       <div className="container">
         <Link href="/#work" className={styles.back}>
-          <span aria-hidden="true">&larr;</span> All research
+          <Arrow dir="left" /> All research
         </Link>
 
         <header className={styles.header}>
@@ -166,8 +167,8 @@ export default async function StudyPage({
                     <span className={styles.downloadLabel}>
                       {d.label}
                       {d.external && (
-                        <span className={styles.downloadExternal} aria-hidden="true">
-                          &#8599;
+                        <span className={styles.downloadExternal}>
+                          <Arrow dir="up-right" />
                         </span>
                       )}
                     </span>
@@ -186,7 +187,9 @@ export default async function StudyPage({
           <Link href={`/work/${next.slug}`} className={styles.next}>
             <span className={styles.nextLabel}>Next study</span>
             <span className={styles.nextTitle}>{next.title}</span>
-            <span className={styles.nextArrow} aria-hidden="true">&rarr;</span>
+            <span className={styles.nextArrow}>
+              <Arrow />
+            </span>
           </Link>
         )}
 

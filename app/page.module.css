@@ -215,12 +215,18 @@
   font-weight: 600;
   font-size: var(--text-sm);
   display: inline-flex;
+  align-items: center;
   gap: 0.5rem;
 }
 
-.featured:hover .readMore span,
-.featured:focus-visible .readMore span {
+/* The transition belongs on the resting state, not inside :hover — declared
+   only there, the arrow eases out and then snaps back. */
+.readMore svg {
   transition: transform var(--dur) var(--ease-out);
+}
+
+.featured:hover .readMore svg,
+.featured:focus-visible .readMore svg {
   transform: translateX(4px);
 }
 
@@ -348,6 +354,7 @@
 }
 
 .rowArrow {
+  display: inline-flex;
   color: var(--muted);
   font-size: 1.4rem;
   transition: transform var(--dur) var(--ease-out), color var(--dur) var(--ease-out);

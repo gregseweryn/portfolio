@@ -62,7 +62,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#f7f7f6",
+  // The sRGB twin of --bg. It was #f7f7f6: both off the page colour and warmer
+  // than it, which is the one tint the True-Neutral rule rules out.
+  themeColor: "#fafafa",
   colorScheme: "light",
 };
 

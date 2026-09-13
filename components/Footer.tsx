@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { nav, site } from "@/lib/site";
+import Arrow from "./Arrow";
 import CopyEmail from "./CopyEmail";
 import styles from "./Footer.module.css";
 
@@ -60,7 +61,9 @@ export default function Footer() {
         </p>
         <p className={styles.copy}>
           <span>&copy; {year}</span>
-          <a href="#top" className={styles.top}>Back to top &uarr;</a>
+          <a href="#top" className={styles.top}>
+            Back to top <Arrow dir="up" />
+          </a>
         </p>
       </div>
     </footer>

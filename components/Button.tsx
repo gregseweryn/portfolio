@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
+import Arrow from "./Arrow";
 import styles from "./Button.module.css";
 
 type Props = {
@@ -26,7 +27,9 @@ export default function Button({
     return (
       <Link href={href} className={cls}>
         <span className={styles.label}>{children}</span>
-        <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+        <span className={styles.arrow}>
+          <Arrow />
+        </span>
       </Link>
     );
   }
@@ -39,7 +42,9 @@ export default function Button({
       {...(download ? { download: true } : {})}
     >
       <span className={styles.label}>{children}</span>
-      <span className={styles.arrow} aria-hidden="true">&rarr;</span>
+      <span className={styles.arrow}>
+        <Arrow />
+      </span>
     </a>
   );
 }

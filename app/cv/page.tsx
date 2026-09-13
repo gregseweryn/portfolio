@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { site } from "@/lib/site";
 import { studies } from "@/lib/studies";
+import Arrow from "@/components/Arrow";
 import Button from "@/components/Button";
 import SplitReveal from "@/components/SplitReveal";
 import CopyEmail from "@/components/CopyEmail";
@@ -55,7 +56,7 @@ export default function CvPage() {
             ))}
           </ul>
           <span className={styles.readMore}>
-            Read the study <span aria-hidden="true">&rarr;</span>
+            Read the study <Arrow />
           </span>
         </Link>
 

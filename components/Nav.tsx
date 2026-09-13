@@ -20,9 +20,39 @@ export default function Nav() {
   // Lock scroll, close on Escape, and keep focus with the menu while it's open.
   useEffect(() => {
     if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") setOpen(false);
+
+    // The menu covers the page, so tabbing out of it puts focus on links the
+    // reader cannot see. The cycle is the overlay's own links plus the button
+    // that closes it — that button lives in the header, outside the overlay, so
+    // the trap is built from both rather than from the overlay alone.
+    const focusables = () => {
+      const toggle = toggleRef.current;
+      const inOverlay = [...(overlayRef.current?.querySelectorAll<HTMLElement>("a[href]") ?? [])];
+      return toggle ? [toggle, ...inOverlay] : inOverlay;
     };
+
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setOpen(false);
+        return;
+      }
+      if (e.key !== "Tab") return;
+
+      const items = focusables();
+      if (!items.length) return;
+      const first = items[0];
+      const last = items[items.length - 1];
+      const active = document.activeElement as HTMLElement | null;
+
+      if (e.shiftKey && (active === first || !active || !items.includes(active))) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+
     document.body.style.overflow = "hidden";
     window.addEventListener("keydown", onKey);
     overlayRef.current?.querySelector<HTMLElement>("a")?.focus();

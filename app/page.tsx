@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { methods, site } from "@/lib/site";
 import { studies } from "@/lib/studies";
+import Arrow from "@/components/Arrow";
 import Button from "@/components/Button";
 import Reveal from "@/components/Reveal";
 import CopyEmail from "@/components/CopyEmail";
@@ -80,7 +81,7 @@ export default function Home() {
                   <span className={styles.impactLabel}>{featured.impacts[0].label}</span>
                 </p>
                 <span className={styles.readMore}>
-                  Read the study <span aria-hidden="true">&rarr;</span>
+                  Read the study <Arrow />
                 </span>
               </div>
             </Link>
@@ -107,7 +108,9 @@ export default function Home() {
                     <span className={styles.rowMethods}>{s.methods.join(" · ")}</span>
                     <span className={styles.rowImpact}>{s.impacts[0].value}</span>
                   </span>
-                  <span className={styles.rowArrow} aria-hidden="true">&rarr;</span>
+                  <span className={styles.rowArrow}>
+                    <Arrow />
+                  </span>
                 </Link>
               </Reveal>
             ))}

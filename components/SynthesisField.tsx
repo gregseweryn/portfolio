@@ -4,9 +4,28 @@ import { useEffect, useRef } from "react";
 import { prefersReducedMotion } from "@/lib/gsap";
 import styles from "./SynthesisField.module.css";
 
-// Hardcoded (not via CSS var) so canvas fillStyle is reliable across browsers.
-const INK = "#1c1a17";
-const ACCENT = "#1e40dd";
+// The last resort, for a browser whose canvas cannot parse the colour space the
+// tokens are written in. The live values come from the tokens themselves — see
+// `resolveToken` below — so swapping the accent in globals.css moves the field
+// with it instead of leaving it on last year's blue.
+const INK_FALLBACK = "#1c1a17";
+const ACCENT_FALLBACK = "#1e40dd";
+
+/**
+ * Reads a custom property off the element and hands back something
+ * `ctx.fillStyle` will actually accept, falling back when it will not: assigning
+ * an unparseable value to fillStyle is a silent no-op, which would leave every
+ * dot painted in whatever colour was set last.
+ */
+function resolveToken(el: Element, name: string, fallback: string) {
+  const raw = getComputedStyle(el).getPropertyValue(name).trim();
+  if (!raw) return fallback;
+  const probe = document.createElement("canvas").getContext("2d");
+  if (!probe) return fallback;
+  probe.fillStyle = "#010101";
+  probe.fillStyle = raw;
+  return probe.fillStyle === "#010101" ? fallback : raw;
+}
 
 type Point = {
   gx: number; gy: number; // ordered grid target
@@ -32,8 +51,17 @@ export default function SynthesisField({ className }: { className?: string }) {
     if (!canvas || !ctx) return;
 
     const reduce = prefersReducedMotion();
+    const INK = resolveToken(canvas, "--ink", INK_FALLBACK);
+    const ACCENT = resolveToken(canvas, "--accent", ACCENT_FALLBACK);
     let w = 0;
     let h = 0;
+    // Scroll progress needs the canvas's position on the page. Measuring it
+    // inside the rAF loop forces a synchronous layout on every tick, so it is
+    // cached here and refreshed only when it can actually have moved.
+    let boxTop = 0;
+    let boxLeft = 0;
+    let boxHeight = 1;
+    let onScreen = false;
     let points: Point[] = [];
     let raf = 0;
     let running = false;
@@ -43,6 +71,9 @@ export default function SynthesisField({ className }: { className?: string }) {
       const rect = canvas!.getBoundingClientRect();
       w = rect.width;
       h = rect.height;
+      boxTop = rect.top + window.scrollY;
+      boxLeft = rect.left;
+      boxHeight = Math.max(rect.height, 1);
       const dpr = Math.min(window.devicePixelRatio || 1, 2);
       canvas!.width = Math.max(1, Math.floor(w * dpr));
       canvas!.height = Math.max(1, Math.floor(h * dpr));
@@ -95,8 +126,7 @@ export default function SynthesisField({ className }: { className?: string }) {
       const time = t * 0.001;
       ctx!.clearRect(0, 0, w, h);
 
-      const rect = canvas!.getBoundingClientRect();
-      const scrollProg = Math.min(Math.max(-rect.top / Math.max(rect.height, 1), 0), 1);
+      const scrollProg = Math.min(Math.max((window.scrollY - boxTop) / boxHeight, 0), 1);
       const globalOrder = 0.16 + scrollProg * 0.58;
 
       for (const p of points) {
@@ -145,10 +175,12 @@ export default function SynthesisField({ className }: { className?: string }) {
       return;
     }
 
+    // Same reason the scroll geometry is cached: measuring inside pointermove
+    // forces a layout on every mouse move, and the box only moves on scroll or
+    // resize. boxTop is page-absolute, so the scroll position supplies the rest.
     const onMove = (e: PointerEvent) => {
-      const rect = canvas.getBoundingClientRect();
-      pointer.x = e.clientX - rect.left;
-      pointer.y = e.clientY - rect.top;
+      pointer.x = e.clientX - boxLeft;
+      pointer.y = e.clientY + window.scrollY - boxTop;
       pointer.active = pointer.y > -80 && pointer.y < h + 80;
     };
     const onLeave = () => {
@@ -158,12 +190,19 @@ export default function SynthesisField({ className }: { className?: string }) {
     window.addEventListener("pointerout", onLeave, { passive: true });
 
     const io = new IntersectionObserver(
-      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      ([entry]) => {
+        onScreen = entry.isIntersecting;
+        if (onScreen && !document.hidden) start();
+        else stop();
+      },
       { threshold: 0 }
     );
     io.observe(canvas);
 
-    const onVisible = () => (document.hidden ? stop() : start());
+    // Both gates have to agree before the loop restarts. Keyed off visibility
+    // alone, returning to the tab resumed the field while the hero was scrolled
+    // away, animating a canvas nobody can see.
+    const onVisible = () => (document.hidden || !onScreen ? stop() : start());
     document.addEventListener("visibilitychange", onVisible);
 
     let resizeRaf = 0;

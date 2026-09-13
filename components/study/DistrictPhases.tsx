@@ -62,8 +62,25 @@ const DISTRICTS = [
  * Wherever it is the hero, it keeps its caption.
  */
 export default function DistrictPhases({ caption }: { caption?: string }) {
+  // Below 640px the figure scrolls (see the module CSS), and a box only a mouse
+  // can scroll hides the right-hand half of the diagram from a keyboard user
+  // (WCAG 2.2 SC 2.1.1). So it gets a labelled tab stop, as `Figure` does — but
+  // only where it is the hero. As a thumbnail it sits inside an aria-hidden
+  // wrapper inside the row's link, where a tab stop would be both a focusable
+  // node hidden from assistive tech and a second stop inside a single link.
+  const isHero = Boolean(caption);
+
   return (
-    <figure className={styles.figure}>
+    <figure
+      className={styles.figure}
+      {...(isHero
+        ? {
+            tabIndex: 0,
+            role: "group",
+            "aria-label": "Three Kraków districts positioned by perceived cost of tourism",
+          }
+        : {})}
+    >
       <svg
         viewBox="0 0 1000 470"
         className={styles.svg}

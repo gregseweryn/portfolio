@@ -13,6 +13,7 @@
 }
 
 .arrow {
+  display: inline-flex;
   transition: transform var(--dur) var(--ease-out);
 }
 
@@ -37,7 +38,7 @@
 .line {
   background: transparent;
   color: var(--ink);
-  border-color: var(--line);
+  border-color: var(--control-line);
 }
 
 .line:hover,
