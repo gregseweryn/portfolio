@@ -1,34 +1,28 @@
 {
-  "name": "grzegorz-seweryn-portfolio",
-  "version": "0.1.0",
+  "name": "arturo-spatino-portfolio",
   "private": true,
+  "version": "1.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint",
-    "export:svg": "node scripts/extract-chart-svgs.mjs",
-    "check:placeholders": "node scripts/check-no-placeholders.mjs",
-    "capture:desk": "node scripts/capture-portfolio-desk.mjs"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@vercel/analytics": "^2.0.1",
-    "gsap": "^3.15.0",
-    "lenis": "^1.3.24",
-    "next": "^15.5.22",
-    "ogl": "^1.0.11",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0"
+    "framer-motion": "^12.4.7",
+    "lucide-react": "^1.16.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "@types/node": "^22",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "playwright": "^1.62.1",
-    "typescript": "^5"
-  },
-  "overrides": {
-    "postcss": "^8.5.25",
-    "sharp": "^0.35.3"
+    "@types/node": "^22.13.4",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.5.2",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.7.3",
+    "vite": "^6.1.0"
   }
 }

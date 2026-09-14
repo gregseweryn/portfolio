@@ -1,59 +1,56 @@
-# dependencies
-/node_modules
-/.pnp
+# Dependencies
+node_modules/
+.pnp
 .pnp.js
 
-# next.js
-/.next/
-/out/
+# Production build
+dist/
+dist-ssr/
 
-# production
-/build
-
-# misc
-.DS_Store
-*.pem
-
-# Salvaged object store from the 29.07.2026 corruption. Kept on disk in case
-# anything else needs recovering from its dangling blobs; not part of history.
-/.git.corrupt/
-
-# Research source material. Contains raw survey exports, interview transcripts
-# and respondent contact details — must never be committed or published. Only
-# the aggregates in lib/data/thesis/ are safe, and those are generated from it
-# by scripts/extract-thesis-data.py.
-/Wszystkie aktualne pliki związane z pracą/
-
-# NOTE: myfonts/ IS committed, deliberately. Druk Wide and Noirden are licensed
-# commercial faces, and the app will not build without them — a backup that
-# can't restore isn't a backup. This is fine while the repository is PRIVATE,
-# as a personal archival copy.
-#
-# BEFORE MAKING THIS REPOSITORY PUBLIC: remove myfonts/ from history, or
-# confirm the licences permit redistribution. scripts/build-webfonts.py
-# regenerates the WOFF2 builds from the masters.
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# local env files
-.env*.local
+# Environment and local config
+*.local
 .env
+.env.*
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Scratch dumps & temporary fonts
+home.html
+scraped_site/
+Plus_Jakarta_Sans/
+Poppins/
+Sintony/
+Space_Mono/
+
+# Root loose mockups (stored properly inside public/)
+/aboutzdjecie.png
+/herozdjecie.png
+/mockup1.png
+/mockup2.png
+/mockup3.png
 
 # impeccable-live-ignore-start
 .impeccable/hook.cache.json
 .impeccable/hook.pending.json
 .impeccable/config.local.json
 .impeccable/live/server.json
+.impeccable/live/roots.json
+.impeccable/live/app-root.json
+.impeccable/live/inject-journal.json
 .impeccable/live/sessions/
 .impeccable/live/previews/
 .impeccable/live/annotations/
+.impeccable/live/artifacts/
+.impeccable/live/accept-receipts/
+.impeccable/live/locks/
 .impeccable/live/cache/
 .impeccable/live/manual-edit-apply-transaction.json
 .impeccable/live/manual-edit-events.jsonl
@@ -62,26 +59,14 @@ next-env.d.ts
 .impeccable/live/deferred-svelte-component-accepts.json
 .impeccable-live.json
 .impeccable-live/
+app/.impeccable-live/
+src/.impeccable-live/
 node_modules/.impeccable-live/
 src/lib/impeccable/ImpeccableLiveRoot.svelte
 src/lib/impeccable/__runtime.js
 src/lib/impeccable/[0-9a-f]*/
+plugins/impeccable-live.client.ts
+app/plugins/impeccable-live.client.ts
+src/plugins/impeccable-live.client.ts
 # impeccable-live-ignore-end
 
-# CV kept out of the served directory — it carries a phone number.
-/private/
-
-# Raw fieldwork for the rental-search study: filled observation sheets, session
-# recordings, listing URLs and participant contact details. The methodology in
-# research/*.md is committed deliberately — it is the case study's evidence that
-# the process was designed before the data existed. What people said, and who
-# they are, is not. Same rule as the thesis: only aggregates ever leave here.
-/research/raw/
-
-# Bytecode from scripts/extract-synthetic-audit.py importing the reference-set
-# generator by path. Regenerated on every run.
-__pycache__/
-*.pyc
-
-# Empty state files left by the impeccable design hook.
-.impeccable/hook.cache.json
