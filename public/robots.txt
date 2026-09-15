@@ -1,0 +1,8 @@
+﻿User-agent: *
+Allow: /
+
+# Prevent indexing of PDF documents, raw markdown, and deleted assets
+Disallow: /*.pdf$
+Disallow: /*.md$
+
+Sitemap: https://grzegorzseweryn.pl/sitemap.xml
