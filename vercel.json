@@ -3,7 +3,6 @@
   "framework": "vite",
   "buildCommand": "npm run build",
   "outputDirectory": "dist",
-  "cleanUrls": true,
   "headers": [
     {
       "source": "/(.*)\\.pdf",
@@ -22,59 +21,33 @@
           "value": "noindex, nofollow"
         }
       ]
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "/work/krakow-rental-search",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
+      "destination": "/work",
+      "permanent": true
     },
     {
       "source": "/work/synthetic-data-audit",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
+      "destination": "/work",
+      "permanent": true
     },
     {
       "source": "/cv",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
+      "destination": "/about",
+      "permanent": true
     },
     {
       "source": "/contact",
-      "headers": [
-        {
-          "key": "X-Robots-Tag",
-          "value": "noindex, nofollow"
-        }
-      ]
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
     {
-      "source": "/about",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/work",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/work/portfolio-desk",
-      "destination": "/index.html"
-    },
-    {
-      "source": "/work/krakow-touristification",
+      "source": "/((?!.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
