@@ -32,11 +32,17 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       {/* Hero Section */}
       <section className="pt-6 pb-4 md:py-14">
         <div className="site-container grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center">
-          <div className="md:col-span-7 flex flex-col justify-center gap-6">
-            <AnimatedTitle
-              coloredSegments={heroSegments}
-              className="text-2xl leading-[1.14] tracking-[-0.03em] font-normal"
-            />
+          <div className="md:col-span-7 flex flex-col justify-center gap-5">
+            <div className="flex flex-col gap-2">
+              <span className="text-xs uppercase tracking-wider font-semibold text-zinc-500">
+                Grzegorz Seweryn · UX Researcher & Product Designer
+              </span>
+              <AnimatedTitle
+                coloredSegments={heroSegments}
+                className="text-2xl leading-[1.14] tracking-[-0.03em] font-normal"
+                srPrefix="Grzegorz Seweryn — "
+              />
+            </div>
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}

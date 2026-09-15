@@ -32,6 +32,9 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
       {/* Editorial Headline */}
       <section className="pt-8 md:pt-14 pb-8">
         <div className="site-container">
+          <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-2">
+            Grzegorz Seweryn · About & Background
+          </p>
           <h1 className="text-2xl md:text-3xl font-light text-[#111111] leading-[1.16] tracking-tight max-w-3xl text-balance">
             Combining visual design craft with empirical social research.
           </h1>

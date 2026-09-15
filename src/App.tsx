@@ -41,6 +41,64 @@ export default function App() {
     }
   }, [])
 
+  // Dynamic SEO metadata updates per route
+  useEffect(() => {
+    interface PageMeta {
+      title: string
+      description: string
+    }
+
+    const metaMap: Record<string, PageMeta> = {
+      '/': {
+        title: 'Grzegorz Seweryn — UX Researcher & Product Designer',
+        description:
+          'Portfolio of Grzegorz Seweryn, Junior UX Researcher and Product Designer based in Kraków. Mixed-methods empirical research, interface design, and KLM-GOMS modeling.',
+      },
+      '/about': {
+        title: 'About — Grzegorz Seweryn | UX Researcher',
+        description:
+          'About Grzegorz Seweryn — Junior UX Researcher and Product Designer based in Kraków. Background in sociology, survey design, and interface craft.',
+      },
+      '/work': {
+        title: 'Case Studies & Research — Grzegorz Seweryn',
+        description:
+          'Selected UX research and product design case studies by Grzegorz Seweryn: Portfolio Desk and Kraków Touristification study.',
+      },
+      '/work/portfolio-desk': {
+        title: 'Portfolio Desk Case Study — Grzegorz Seweryn',
+        description:
+          'Redesigning a loan servicing interface with KLM-GOMS operator modelling measuring a 65% reduction in analyst task execution time.',
+      },
+      '/work/krakow-touristification': {
+        title: 'Kraków Touristification Study — Grzegorz Seweryn',
+        description:
+          'City-wide convergent mixed-methods study (446 survey respondents, 10 in-depth interviews) investigating tourism growth in central Kraków.',
+      },
+    }
+
+    const meta = metaMap[currentPath] || {
+      title: 'Page Not Found — Grzegorz Seweryn',
+      description: 'The requested page does not exist or has moved.',
+    }
+
+    document.title = meta.title
+
+    const metaDesc = document.querySelector('meta[name="description"]')
+    if (metaDesc) {
+      metaDesc.setAttribute('content', meta.description)
+    }
+
+    const ogTitle = document.querySelector('meta[property="og:title"]')
+    if (ogTitle) {
+      ogTitle.setAttribute('content', meta.title)
+    }
+
+    const ogDesc = document.querySelector('meta[property="og:description"]')
+    if (ogDesc) {
+      ogDesc.setAttribute('content', meta.description)
+    }
+  }, [currentPath])
+
   const navigate = (path: string) => {
     if (window.location.protocol === 'file:' || window.location.hash.startsWith('#/')) {
       window.location.hash = path

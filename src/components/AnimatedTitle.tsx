@@ -5,11 +5,13 @@ interface AnimatedTitleProps {
   text?: string
   className?: string
   coloredSegments?: { text: string; color: string }[]
+  srPrefix?: string
 }
 
 export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
   className = '',
   coloredSegments,
+  srPrefix,
 }) => {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -40,7 +42,7 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
     return (
       <div className="relative">
         {/* Screen reader plain text alternative */}
-        <span className="sr-only">{fullText}</span>
+        <span className="sr-only">{srPrefix ? `${srPrefix} ` : ''}{fullText}</span>
 
         {/* Visual animated heading with word-level wrapping containers */}
         <motion.h1
