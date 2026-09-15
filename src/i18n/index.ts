@@ -1,0 +1,6 @@
+export * from './common'
+export * from './home'
+export * from './about'
+export * from './work'
+export * from './portfolioDesk'
+export * from './touristification'

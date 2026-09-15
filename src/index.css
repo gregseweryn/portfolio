@@ -2,14 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'Geist';
-  src: url('/fonts/geist.woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
-}
-
 :root {
   --font-size-xs: clamp(14px, 1.1vw, 14px);
   --font-size-sm: clamp(16px, 1.3vw, 17px);
@@ -27,7 +19,7 @@
 
 /* Base Body: Geist */
 body {
-  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  font-family: 'Geist Variable', 'Geist', system-ui, -apple-system, sans-serif;
   hanging-punctuation: first last;
   color: #111111;
   background-color: #ffffff;

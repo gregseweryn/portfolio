@@ -1,18 +1,23 @@
 import React from 'react'
+import { useLanguage } from '../context/LanguageContext'
+import { commonContent } from '../i18n'
 
 export const Footer: React.FC = () => {
+  const { language } = useLanguage()
+  const t = commonContent[language].footer
+
   return (
     <footer id="contact" className="bg-zinc-50 pt-14 md:pt-20 pb-12 border-t border-zinc-200/80">
       <div className="site-container flex flex-col gap-12 md:gap-16">
         <div className="max-w-2xl">
           <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-3">
-            Open to Junior Roles. Kraków, Warsaw, or Remote
+            {t.status}
           </p>
           <h2 className="text-2xl md:text-3xl font-medium text-[#111111] text-balance leading-[1.18] tracking-tight">
-            Looking for my first UX role.
+            {t.headline}
           </h2>
           <p className="text-sm text-zinc-600 mt-2 max-w-xl text-pretty">
-            I am looking for entry-level and junior UX Research or Product Design positions. If your team values empirical methods, clear interface design, and solid research foundations, let us talk.
+            {t.body}
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <a
@@ -22,10 +27,10 @@ export const Footer: React.FC = () => {
               grzegorz.seweryn99@gmail.com
             </a>
             <a
-              href="mailto:grzegorz.seweryn99@gmail.com?subject=Request%20for%20CV%20-%20Grzegorz%20Seweryn"
+              href="mailto:grzegorz.seweryn99@gmail.com?subject=Pro%C5%9Bba%20o%20CV%20-%20Grzegorz%20Seweryn"
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#111111] text-white text-xs font-medium hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
-              Request CV / Resume
+              {t.requestCv}
             </a>
           </div>
         </div>
@@ -48,11 +53,11 @@ export const Footer: React.FC = () => {
               aria-label="Portfolio Desk Figma Prototype (opens in new tab)"
               className="text-sm font-medium text-zinc-700 hover:text-[#111111] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
             >
-              Figma Prototype ↗
+              {t.figmaLink}
             </a>
           </div>
           <p className="text-xs text-zinc-600">
-            © 2026 Grzegorz Seweryn. All research verified against primary records.
+            {t.copyright}
           </p>
         </div>
       </div>

@@ -5,6 +5,7 @@ import modelsData from '../data/thesis/models.json'
 import typologyData from '../data/thesis/typology.json'
 import themesData from '../data/thesis/themes.json'
 import jointData from '../data/thesis/joint-display.json'
+import { useLanguage } from '../context/LanguageContext'
 
 // ==========================================
 // 1. HERO: THREE DISTRICTS, ONE PROCESS
@@ -20,7 +21,7 @@ function xHero(value: number) {
   return HERO_X0 + ((value - lo) / (hi - lo)) * (HERO_X1 - HERO_X0)
 }
 
-const DISTRICTS = [
+const DISTRICTS_EN = [
   {
     id: 'podgorze',
     name: 'Podgórze',
@@ -56,10 +57,53 @@ const DISTRICTS = [
   },
 ]
 
+const DISTRICTS_PL = [
+  {
+    id: 'podgorze',
+    name: 'Podgórze',
+    phase: 'Wciągane w proces',
+    costs: 3.21,
+    n: 144,
+    direction: 'up' as const,
+    stem: 200,
+    accent: true,
+    quote: 'Krótkoterminowy najem pojawił się na naszych klatkach dwa lata temu, ale codzienne życie wciąż tu istnieje.',
+  },
+  {
+    id: 'old-town',
+    name: 'Stare Miasto',
+    phase: 'Dojrzała turystyfikacja',
+    costs: 3.84,
+    n: 156,
+    direction: 'up' as const,
+    stem: 150,
+    accent: false,
+    quote: 'Każdy warzywniak i piekarnia zamieniły się w sklep z pamiątkami albo pub. Nie da się tu mieszkać bez poczucia bycia eksponatem w muzeum.',
+  },
+  {
+    id: 'kazimierz',
+    name: 'Kazimierz',
+    phase: 'Gwałtowna, napędzana najmem i nocnym życiem',
+    costs: 3.86,
+    n: 146,
+    direction: 'down' as const,
+    stem: 380,
+    accent: false,
+    quote: 'Hałas o 3 nad ranem wywoływany przez grupy party crawl uniemożliwia normalny sen od czwartku do niedzieli.',
+  },
+]
+
 export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
-  caption = 'Three districts chosen as three phases of one process, positioned here by the cost index their residents actually reported. Old Town and Kazimierz land on top of each other; Podgórze sits apart, and expects to follow.',
+  caption,
 }) => {
   const [activeDistrict, setActiveDistrict] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const districts = language === 'pl' ? DISTRICTS_PL : DISTRICTS_EN
+  const defaultCaption =
+    language === 'pl'
+      ? 'Trzy dzielnice wybrane jako trzy fazy jednego procesu, uszeregowane według wskaźnika uciążliwości wskazanego przez mieszkańców. Stare Miasto i Kazimierz nakładają się na siebie; Podgórze znajduje się w innym punkcie i spodziewa się podążyć tą samą drogą.'
+      : 'Three districts chosen as three phases of one process, positioned here by the cost index their residents actually reported. Old Town and Kazimierz land on top of each other; Podgórze sits apart, and expects to follow.'
+  const displayCaption = caption || defaultCaption
 
   return (
     <figure className="w-full m-0 flex flex-col">
@@ -72,13 +116,14 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
             aria-labelledby="district-phases-title district-phases-desc"
           >
             <title id="district-phases-title">
-              Three Kraków districts positioned by perceived cost of tourism
+              {language === 'pl'
+                ? 'Trzy krakowskie dzielnice uszeregowane według postrzeganych kosztów turystyki'
+                : 'Three Kraków districts positioned by perceived cost of tourism'}
             </title>
             <desc id="district-phases-desc">
-              Podgórze sits at 3.21 on the cost index, well to the left. Old Town at
-              3.84 and Kazimierz at 3.86 sit almost on top of each other at the right.
-              A dashed arrow runs from Podgórze towards them, marking the trajectory
-              its residents expect to follow.
+              {language === 'pl'
+                ? 'Podgórze znajduje się na poziomie 3.21 wskaźnika kosztów po lewej stronie. Stare Miasto (3.84) i Kazimierz (3.86) nakładają się na siebie po prawej stronie. Przerywana strzałka prowadzi z Podgórza w ich kierunku, oznaczając przewidywaną trajektorię rozwoju.'
+                : 'Podgórze sits at 3.21 on the cost index, well to the left. Old Town at 3.84 and Kazimierz at 3.86 sit almost on top of each other at the right. A dashed arrow runs from Podgórze towards them, marking the trajectory its residents expect to follow.'}
             </desc>
 
             <rect width="1000" height="470" fill="#ededed" />
@@ -89,7 +134,7 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
               y={68}
               className="font-sans font-bold text-[28px] tracking-tight fill-[#191714]"
             >
-              Three districts, one process
+              {language === 'pl' ? 'Trzy dzielnice, jeden proces' : 'Three districts, one process'}
             </text>
 
             {/* Anticipation Vector */}
@@ -108,7 +153,7 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
                 textAnchor="middle"
                 className="font-sans text-[13px] font-bold tracking-[0.14em] fill-[#2352c5]"
               >
-                ANTICIPATED TRAJECTORY
+                {language === 'pl' ? 'PRZEWIDYWANA TRAJEKTORIA' : 'ANTICIPATED TRAJECTORY'}
               </text>
             </g>
 
@@ -128,11 +173,13 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
               textAnchor="end"
               className="font-sans text-[13px] font-semibold tracking-[0.12em] fill-[#595653]"
             >
-              PERCEIVED COST OF TOURISM (INDEX 1-5)
+              {language === 'pl'
+                ? 'POSTRZEGANE KOSZTY TURYSTYKI (SKALA 1-5)'
+                : 'PERCEIVED COST OF TOURISM (INDEX 1-5)'}
             </text>
 
             {/* Districts Data Nodes */}
-            {DISTRICTS.map((d) => {
+            {districts.map((d) => {
               const cx = xHero(d.costs)
               const up = d.direction === 'up'
               const nameY = up ? d.stem - 40 : d.stem + 30
@@ -230,12 +277,12 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
 
       <div className="mt-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs md:text-sm">
         <figcaption className="max-w-[46rem] text-zinc-600 leading-relaxed text-pretty">
-          {caption}
+          {displayCaption}
         </figcaption>
 
         {activeDistrict && (
           <div className="bg-zinc-100/90 border border-zinc-200 px-3 py-1.5 rounded-lg text-xs text-zinc-700 italic max-w-sm shrink-0">
-            "{DISTRICTS.find((d) => d.id === activeDistrict)?.quote}"
+            "{districts.find((d) => d.id === activeDistrict)?.quote}"
           </div>
         )}
       </div>
@@ -261,6 +308,18 @@ const LIKERT_SHORT: Record<string, string> = {
   C9: 'A stranger in my own area',
 }
 
+const LIKERT_SHORT_PL: Record<string, string> = {
+  C4: 'Podbija czynsze',
+  C3: 'Podbija ceny usług',
+  C5: 'Wypiera codzienne sklepy',
+  C7: 'Dzielnica nadmiernie eksploatowana',
+  C6: 'Trudniej się przemieszczać',
+  C8: 'Atrakcja, a nie dom',
+  C2: 'Mniej dostępna przestrzeń',
+  C1: 'Hałas zakłóca sen',
+  C9: 'Obcy we własnej okolicy',
+}
+
 const LIKERT_DOMAIN: [number, number] = [-62, 98]
 const LIKERT_LABEL_X = 300
 const LIKERT_PLOT_X0 = 320
@@ -274,6 +333,14 @@ const SEGMENT_NAMES = [
   'Neither',
   'Agree',
   'Strongly agree',
+]
+
+const SEGMENT_NAMES_PL = [
+  'Zdecydowanie nie',
+  'Raczej nie',
+  'Trudno powiedzieć',
+  'Raczej tak',
+  'Zdecydowanie tak',
 ]
 
 const SEGMENT_COLORS = [
@@ -291,6 +358,10 @@ function xLikert(pct: number) {
 
 export const LikertBarsChart: React.FC = () => {
   const [hoveredCode, setHoveredCode] = useState<string | null>(null)
+  const { language } = useLanguage()
+  const shortMap = language === 'pl' ? LIKERT_SHORT_PL : LIKERT_SHORT
+  const segmentNames = language === 'pl' ? SEGMENT_NAMES_PL : SEGMENT_NAMES
+
   const items = costData.items
   const height = LIKERT_TOP + items.length * LIKERT_ROW_H + 40
   const zeroX = xLikert(0)
@@ -308,13 +379,13 @@ export const LikertBarsChart: React.FC = () => {
             viewBox={`0 0 1000 ${height}`}
             className="w-full h-auto block select-none"
             role="img"
-            aria-label="Perceived costs of tourism diverging Likert bars"
+            aria-label={language === 'pl' ? 'Wykres rozbieżny postrzeganych uciążliwości turystyki' : 'Perceived costs of tourism diverging Likert bars'}
           >
             <rect width="1000" height={height} fill="#ededed" />
 
             {/* Legend */}
             <g>
-              {SEGMENT_NAMES.map((name, i) => {
+              {segmentNames.map((name, i) => {
                 const lx = 30 + i * 190
                 return (
                   <g key={name}>
@@ -364,7 +435,7 @@ export const LikertBarsChart: React.FC = () => {
               textAnchor="end"
               className="font-sans text-[13px] font-bold tracking-[0.1em] fill-[#595653]"
             >
-              MEAN
+              {language === 'pl' ? 'ŚREDNIA' : 'MEAN'}
             </text>
 
             {/* Rows */}
@@ -408,7 +479,7 @@ export const LikertBarsChart: React.FC = () => {
                         : 'font-medium fill-[#191714]'
                     }`}
                   >
-                    {LIKERT_SHORT[item.code] ?? item.label}
+                    {shortMap[item.code] ?? item.label}
                   </text>
 
                   {/* Segments */}
@@ -468,18 +539,22 @@ export const LikertBarsChart: React.FC = () => {
 
       <div className="mt-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs md:text-sm">
         <figcaption className="max-w-[46rem] text-zinc-600 leading-relaxed text-pretty">
-          Costs are led by money, not by nuisance. Agreement that tourism drives up rents reaches 88.1%, the highest-scoring statement in the questionnaire and the one with the smallest variance.
+          {language === 'pl'
+            ? 'W postrzeganiu uciążliwości dominują koszty materialne, a nie zakłócenia spokoju. Zgoda z twierdzeniem, że turystyka podbija czynsze, sięga 88.1%: jest to najwyżej ocenione stwierdzenie w kwestionariuszu o najmniejszej wariancji.'
+            : 'Costs are led by money, not by nuisance. Agreement that tourism drives up rents reaches 88.1%, the highest-scoring statement in the questionnaire and the one with the smallest variance.'}
         </figcaption>
 
         {hoveredItem && (
           <div className="bg-zinc-100/90 border border-zinc-200 px-3 py-1.5 rounded-lg text-xs text-zinc-700 max-w-sm shrink-0">
-            <span className="font-semibold text-zinc-900">{hoveredItem.code}: {hoveredItem.label}</span>
+            <span className="font-semibold text-zinc-900">
+              {hoveredItem.code}: {shortMap[hoveredItem.code] ?? hoveredItem.label}
+            </span>
             <div className="mt-1 flex gap-2 tabular-nums">
-              <span>Agree: {hoveredItem.agreePct}%</span>
+              <span>{language === 'pl' ? 'Zgoda' : 'Agree'}: {hoveredItem.agreePct}%</span>
               <span>·</span>
-              <span>Disagree: {hoveredItem.disagreePct}%</span>
+              <span>{language === 'pl' ? 'Brak zgody' : 'Disagree'}: {hoveredItem.disagreePct}%</span>
               <span>·</span>
-              <span>Mean: {hoveredItem.mean}</span>
+              <span>{language === 'pl' ? 'Średnia' : 'Mean'}: {hoveredItem.mean}</span>
             </div>
           </div>
         )}
@@ -498,6 +573,14 @@ const REGISTERS_SHORT: Record<string, string> = {
   F1: 'The city manages tourism well',
   C8: 'An attraction, not a home',
   C1: 'Noise disrupts sleep',
+}
+
+const REGISTERS_SHORT_PL: Record<string, string> = {
+  C4: 'Turystyka podbija czynsze',
+  E2: 'Najem krótkoterminowy to problem',
+  F1: 'Miasto dobrze zarządza turystyką',
+  C8: 'Atrakcja, a nie dom',
+  C1: 'Hałas zakłóca sen',
 }
 
 const REGISTERS_LABEL_X = 330
@@ -550,19 +633,21 @@ function Mark({
 export const TwoRegistersDotPlot: React.FC = () => {
   const [hoveredRowCode, setHoveredRowCode] = useState<string | null>(null)
   const [selectedDistrict, setSelectedDistrict] = useState<number | null>(null)
+  const { language } = useLanguage()
+  const shortMap = language === 'pl' ? REGISTERS_SHORT_PL : REGISTERS_SHORT
 
   const cityWide = registersData.rows.filter((r) => r.register === 'city-wide')
   const graded = registersData.rows.filter((r) => r.register === 'graded')
 
   const bands = [
     {
-      title: 'ONE REGISTER REACHES THE WHOLE CITY',
-      note: 'Identical wherever you live (p > 0.04)',
+      title: language === 'pl' ? 'JEDEN REJESTR OBEJMUJE CAŁE MIASTO' : 'ONE REGISTER REACHES THE WHOLE CITY',
+      note: language === 'pl' ? 'Identyczny bez względu na dzielnicę (p > 0.04)' : 'Identical wherever you live (p > 0.04)',
       rows: cityWide,
     },
     {
-      title: "ONE TRACKS THE DISTRICT'S PHASE",
-      note: 'Graded by how far touristification has gone (p < 0.001)',
+      title: language === 'pl' ? "DRUGI ODZWIERCIEDLA FAZĘ DZIELNICY" : "ONE TRACKS THE DISTRICT'S PHASE",
+      note: language === 'pl' ? 'Zróżnicowany zależnie od zaawansowania turystyfikacji (p < 0.001)' : 'Graded by how far touristification has gone (p < 0.001)',
       rows: graded,
     },
   ]
@@ -583,6 +668,15 @@ export const TwoRegistersDotPlot: React.FC = () => {
 
   const activeRow = registersData.rows.find((r) => r.code === hoveredRowCode)
 
+  const formatDistrictLabel = (d: string) => {
+    if (language === 'pl') {
+      if (d === 'Old Town') return 'STARE MIASTO'
+      if (d === 'Kazimierz') return 'KAZIMIERZ'
+      if (d === 'Podgórze') return 'PODGÓRZE'
+    }
+    return d.toUpperCase()
+  }
+
   return (
     <figure className="w-full m-0 flex flex-col">
       <div className="w-full bg-zinc-100/80 border border-zinc-200/90 rounded-2xl overflow-x-auto shadow-xs">
@@ -591,7 +685,11 @@ export const TwoRegistersDotPlot: React.FC = () => {
             viewBox={`0 0 1000 ${height}`}
             className="w-full h-auto block select-none"
             role="img"
-            aria-label="Two registers, one process. District means by item, with effect size and significance."
+            aria-label={
+              language === 'pl'
+                ? 'Dwa rejestry, jeden proces. Średnie dla dzielnic według wskaźników.'
+                : 'Two registers, one process. District means by item, with effect size and significance.'
+            }
           >
             <rect width="1000" height={height} fill="#ededed" />
 
@@ -615,7 +713,7 @@ export const TwoRegistersDotPlot: React.FC = () => {
                       isSel ? 'fill-[#2352c5]' : 'fill-[#595653]'
                     }`}
                   >
-                    {m.district.toUpperCase()}
+                    {formatDistrictLabel(m.district)}
                   </text>
                 </g>
               )
@@ -649,7 +747,7 @@ export const TwoRegistersDotPlot: React.FC = () => {
               textAnchor="end"
               className="font-sans text-[14px] font-semibold tracking-[0.1em] fill-[#595653]"
             >
-              MEAN AGREEMENT (1-5)
+              {language === 'pl' ? 'ŚREDNIA ZGODA (1-5)' : 'MEAN AGREEMENT (1-5)'}
             </text>
 
             <text
@@ -711,7 +809,7 @@ export const TwoRegistersDotPlot: React.FC = () => {
                           isRowHovered ? 'font-bold fill-[#111111]' : 'font-medium fill-[#191714]'
                         }`}
                       >
-                        {REGISTERS_SHORT[row.code] ?? row.label}
+                        {shortMap[row.code] ?? row.label}
                       </text>
 
                       {/* Connector Line */}
@@ -760,16 +858,16 @@ export const TwoRegistersDotPlot: React.FC = () => {
 
       <div className="mt-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs md:text-sm">
         <figcaption className="max-w-[46rem] text-zinc-600 leading-relaxed text-pretty">
-          Two registers, one process. Rent pressure, short-term rental and distrust of the city sit at
-          the same level in all three districts. Noise and the sense of losing a home fan out sharply:
-          Kazimierz at one end, Podgórze at the other.
+          {language === 'pl'
+            ? 'Dwa rejestry, jeden proces. Presja czynszowa, najem krótkoterminowy i brak zaufania do miasta plasują się na jednakowym poziomie we wszystkich trzech dzielnicach. Hałas oraz poczucie utraty domowego charakteru wyraźnie różnicują badane obszary: Kazimierz na jednym biegunie, Podgórze na drugim.'
+            : 'Two registers, one process. Rent pressure, short-term rental and distrust of the city sit at the same level in all three districts. Noise and the sense of losing a home fan out sharply: Kazimierz at one end, Podgórze at the other.'}
         </figcaption>
 
         {activeRow && (
           <div className="bg-zinc-100/90 border border-zinc-200 px-3 py-1.5 rounded-lg text-xs text-zinc-700 max-w-sm shrink-0">
             <span className="font-semibold text-zinc-900">{activeRow.code} · ε² = {activeRow.epsilonSq.toFixed(3)} (p = {activeRow.p})</span>
             <div className="mt-1 flex gap-2 tabular-nums">
-              <span>Old Town: {activeRow.means[0]}</span>
+              <span>{language === 'pl' ? 'Stare Miasto' : 'Old Town'}: {activeRow.means[0]}</span>
               <span>·</span>
               <span>Kazimierz: {activeRow.means[1]}</span>
               <span>·</span>
@@ -815,11 +913,23 @@ const FOREST_CONFIG = {
   },
 } as const
 
+const TERMS_PL: Record<string, string> = {
+  'Perceived costs': 'Postrzegane koszty',
+  'Perceived benefits': 'Postrzegane korzyści',
+  'Age': 'Wiek',
+  'Gender (female)': 'Płeć (kobieta)',
+  'Tenure in district': 'Staż zamieszkania w dzielnicy',
+  'Employed in tourism': 'Praca w branży turystycznej',
+  'Homeowner': 'Własność lokalu (właściciel)',
+  'Intercept': 'Stała (wyraz wolny)',
+}
+
 export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
   initialVariant = 'attitude',
 }) => {
   const [variant, setVariant] = useState<ModelVariant>(initialVariant)
   const [hoveredTerm, setHoveredTerm] = useState<string | null>(null)
+  const { language } = useLanguage()
 
   const cfg = FOREST_CONFIG[variant]
   const { model } = cfg
@@ -843,6 +953,31 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
 
   const activeTermData = terms.find((t) => t.term === hoveredTerm)
 
+  const axisLabel =
+    variant === 'attitude'
+      ? language === 'pl'
+        ? 'STANDARYZOWANE β'
+        : 'STANDARDISED β'
+      : language === 'pl'
+      ? 'ILORAZ SZANS (SKALA LOGARYTMICZNA)'
+      : 'ODDS RATIO (LOG SCALE)'
+
+  const valueHead =
+    variant === 'attitude'
+      ? 'β'
+      : language === 'pl'
+      ? 'ILORAZ SZANS'
+      : 'ODDS RATIO'
+
+  const resolvedCaption =
+    variant === 'attitude'
+      ? language === 'pl'
+        ? 'Stosunek do turystyki jest bilansem zysków i strat, a nie cechą demograficzną. Postrzegane koszty i korzyści niosą cały model; wiek, płeć, staż, zawód i własność lokalu oscylują wokół zera.'
+        : cfg.caption
+      : language === 'pl'
+      ? 'Koszty wypychają znacznie silniej, niż korzyści zatrzymują. Wzrost postrzeganych kosztów o jedno odchylenie standardowe zwiększa szanse rozważania wyprowadzki 5.5-krotnie; posiadanie mieszkania na własność zmniejsza je o połowę.'
+      : cfg.caption
+
   return (
     <figure className="w-full m-0 flex flex-col">
       {/* Model Selector Tabs */}
@@ -855,7 +990,7 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
           }`}
         >
-          General Attitude (OLS, R² = 0.80)
+          {language === 'pl' ? 'Ogólny stosunek do turystyki (OLS, R² = 0.80)' : 'General Attitude (OLS, R² = 0.80)'}
         </button>
         <button
           onClick={() => setVariant('move-out')}
@@ -865,7 +1000,7 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
           }`}
         >
-          Considering Moving Out (Logistic, OR)
+          {language === 'pl' ? 'Rozważanie wyprowadzki (Logistyczna, OR)' : 'Considering Moving Out (Logistic, OR)'}
         </button>
       </div>
 
@@ -930,7 +1065,7 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
               className="font-sans text-[13px] font-semibold tracking-[0.1em] fill-[#595653]"
               textAnchor="end"
             >
-              {cfg.axis}
+              {axisLabel}
             </text>
 
             <text
@@ -939,7 +1074,7 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
               textAnchor="end"
               className="font-sans text-[13px] font-bold tracking-[0.1em] fill-[#595653]"
             >
-              {cfg.valueHead.toUpperCase()}
+              {valueHead}
             </text>
 
             {/* Terms Rows */}
@@ -979,7 +1114,7 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
                         : 'font-normal fill-[#8c8882]'
                     }`}
                   >
-                    {t.term}
+                    {language === 'pl' ? (TERMS_PL[t.term] ?? t.term) : t.term}
                   </text>
 
                   {/* 95% CI Bar */}
@@ -1025,14 +1160,16 @@ export const ForestPlotChart: React.FC<{ initialVariant?: ModelVariant }> = ({
 
       <div className="mt-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs md:text-sm">
         <figcaption className="max-w-[46rem] text-zinc-600 leading-relaxed text-pretty">
-          {cfg.caption}
+          {resolvedCaption}
         </figcaption>
 
         {activeTermData && (
           <div className="bg-zinc-100/90 border border-zinc-200 px-3 py-1.5 rounded-lg text-xs text-zinc-700 max-w-sm shrink-0">
-            <span className="font-semibold text-zinc-900">{activeTermData.term}</span>
+            <span className="font-semibold text-zinc-900">
+              {language === 'pl' ? (TERMS_PL[activeTermData.term] ?? activeTermData.term) : activeTermData.term}
+            </span>
             <div className="mt-1 flex gap-2 tabular-nums">
-              <span>Est: {cfg.format(activeTermData.estimate)}</span>
+              <span>{language === 'pl' ? 'Oszacowanie' : 'Est'}: {cfg.format(activeTermData.estimate)}</span>
               <span>·</span>
               <span>95% CI: [{cfg.format(activeTermData.ciLow)}, {cfg.format(activeTermData.ciHigh)}]</span>
               <span>·</span>
@@ -1063,6 +1200,7 @@ const yTyp = (v: number) =>
 export const TypologyScatterChart: React.FC = () => {
   const [selectedCluster, setSelectedCluster] = useState<string | null>(null)
   const [hoveredCentroid, setHoveredCentroid] = useState<string | null>(null)
+  const { language } = useLanguage()
 
   const conflict = typologyData.clusters.find((c) => c.name === 'In conflict')!
   const reconciled = typologyData.clusters.find((c) => c.name === 'Reconciled')!
@@ -1079,7 +1217,7 @@ export const TypologyScatterChart: React.FC = () => {
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
           }`}
         >
-          All Respondents (N = 446)
+          {language === 'pl' ? 'Wszyscy respondenci (N = 446)' : 'All Respondents (N = 446)'}
         </button>
         <button
           onClick={() => setSelectedCluster('In conflict')}
@@ -1089,7 +1227,7 @@ export const TypologyScatterChart: React.FC = () => {
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
           }`}
         >
-          In Conflict Only (57.3%)
+          {language === 'pl' ? 'Tylko w konflikcie (57.3%)' : 'In Conflict Only (57.3%)'}
         </button>
         <button
           onClick={() => setSelectedCluster('Reconciled')}
@@ -1099,7 +1237,7 @@ export const TypologyScatterChart: React.FC = () => {
               : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
           }`}
         >
-          Reconciled Only (42.7%)
+          {language === 'pl' ? 'Tylko pogodzeni (42.7%)' : 'Reconciled Only (42.7%)'}
         </button>
       </div>
 
@@ -1109,7 +1247,11 @@ export const TypologyScatterChart: React.FC = () => {
             viewBox="0 0 1000 660"
             className="w-full h-auto block select-none"
             role="img"
-            aria-label="Resident typology scatter plot of costs vs benefits"
+            aria-label={
+              language === 'pl'
+                ? 'Wykres rozrzutu typologii mieszkańców: koszty i korzyści'
+                : 'Resident typology scatter plot of costs vs benefits'
+            }
           >
             <rect width="1000" height={660} fill="#ededed" />
 
@@ -1157,7 +1299,7 @@ export const TypologyScatterChart: React.FC = () => {
               className="font-sans text-[13px] font-bold tracking-[0.1em] fill-[#595653]"
               textAnchor="end"
             >
-              PERCEIVED COSTS →
+              {language === 'pl' ? 'POSTRZEGANE KOSZTY →' : 'PERCEIVED COSTS →'}
             </text>
             <text
               x={0}
@@ -1166,7 +1308,7 @@ export const TypologyScatterChart: React.FC = () => {
               className="font-sans text-[13px] font-bold tracking-[0.1em] fill-[#595653]"
               textAnchor="end"
             >
-              ← PERCEIVED BENEFITS
+              {language === 'pl' ? '← POSTRZEGANE KORZYŚCI' : '← PERCEIVED BENEFITS'}
             </text>
 
             {/* The Correlation Caveat Diagonal (-0.73) */}
@@ -1186,7 +1328,7 @@ export const TypologyScatterChart: React.FC = () => {
               className="font-sans text-[12px] font-bold tracking-wider fill-[#2352c5]"
               textAnchor="middle"
             >
-              CORRELATION AXIS (r = -0.73)
+              {language === 'pl' ? 'OŚ KORELACJI (r = -0.73)' : 'CORRELATION AXIS (r = -0.73)'}
             </text>
 
             {/* Scatter Points */}
@@ -1252,16 +1394,22 @@ export const TypologyScatterChart: React.FC = () => {
                 y={0}
                 className="font-sans text-[16px] font-extrabold tracking-[0.14em] fill-[#191714]"
               >
-                IN CONFLICT
+                {language === 'pl' ? 'W KONFLIKCIE' : 'IN CONFLICT'}
               </text>
               <text x={0} y={30} className="font-sans text-[18px] font-bold fill-[#191714]">
-                {conflict.sharePct}% of the sample (n = {conflict.n})
+                {language === 'pl'
+                  ? `${conflict.sharePct}% próby (n = ${conflict.n})`
+                  : `${conflict.sharePct}% of the sample (n = ${conflict.n})`}
               </text>
               <text x={0} y={58} className="font-sans text-[15px] font-medium fill-[#595653]">
-                costs {conflict.costs.toFixed(2)} · benefits {conflict.benefits.toFixed(2)}
+                {language === 'pl'
+                  ? `koszty ${conflict.costs.toFixed(2)} · korzyści ${conflict.benefits.toFixed(2)}`
+                  : `costs ${conflict.costs.toFixed(2)} · benefits ${conflict.benefits.toFixed(2)}`}
               </text>
               <text x={0} y={82} className="font-sans text-[15px] font-bold fill-[#2352c5]">
-                {conflict.consideringMovePct}% considering leaving
+                {language === 'pl'
+                  ? `${conflict.consideringMovePct}% rozważa wyprowadzkę`
+                  : `${conflict.consideringMovePct}% considering leaving`}
               </text>
 
               <text
@@ -1269,16 +1417,22 @@ export const TypologyScatterChart: React.FC = () => {
                 y={170}
                 className="font-sans text-[16px] font-extrabold tracking-[0.14em] fill-[#191714]"
               >
-                RECONCILED
+                {language === 'pl' ? 'POGODZENI' : 'RECONCILED'}
               </text>
               <text x={0} y={200} className="font-sans text-[18px] font-bold fill-[#191714]">
-                {reconciled.sharePct}% of the sample (n = {reconciled.n})
+                {language === 'pl'
+                  ? `${reconciled.sharePct}% próby (n = ${reconciled.n})`
+                  : `${reconciled.sharePct}% of the sample (n = ${reconciled.n})`}
               </text>
               <text x={0} y={228} className="font-sans text-[15px] font-medium fill-[#595653]">
-                costs {reconciled.costs.toFixed(2)} · benefits {reconciled.benefits.toFixed(2)}
+                {language === 'pl'
+                  ? `koszty ${reconciled.costs.toFixed(2)} · korzyści ${reconciled.benefits.toFixed(2)}`
+                  : `costs ${reconciled.costs.toFixed(2)} · benefits ${reconciled.benefits.toFixed(2)}`}
               </text>
               <text x={0} y={252} className="font-sans text-[15px] font-bold fill-[#2352c5]">
-                {reconciled.consideringMovePct}% considering leaving
+                {language === 'pl'
+                  ? `${reconciled.consideringMovePct}% rozważa wyprowadzkę`
+                  : `${reconciled.consideringMovePct}% considering leaving`}
               </text>
 
               {/* Mini Legend */}
@@ -1289,7 +1443,7 @@ export const TypologyScatterChart: React.FC = () => {
                   y={0}
                   className="font-sans text-[13px] font-bold tracking-[0.08em] fill-[#595653]"
                 >
-                  IN CONFLICT (SOLID)
+                  {language === 'pl' ? 'W KONFLIKCIE (PEŁNE)' : 'IN CONFLICT (SOLID)'}
                 </text>
 
                 <circle cx={6} cy={26} r={5} fill="#ffffff" stroke="#191714" strokeWidth={1.5} />
@@ -1298,7 +1452,7 @@ export const TypologyScatterChart: React.FC = () => {
                   y={30}
                   className="font-sans text-[13px] font-bold tracking-[0.08em] fill-[#595653]"
                 >
-                  RECONCILED (HOLLOW)
+                  {language === 'pl' ? 'POGODZENI (KONTUR)' : 'RECONCILED (HOLLOW)'}
                 </text>
 
                 <path d="M 0 54 H 12 M 6 48 V 60" stroke="#2352c5" strokeWidth={3} />
@@ -1307,7 +1461,7 @@ export const TypologyScatterChart: React.FC = () => {
                   y={58}
                   className="font-sans text-[13px] font-bold tracking-[0.08em] fill-[#2352c5]"
                 >
-                  CLUSTER CENTROID
+                  {language === 'pl' ? 'ŚRODEK SKUPIENIA' : 'CLUSTER CENTROID'}
                 </text>
               </g>
             </g>
@@ -1316,7 +1470,9 @@ export const TypologyScatterChart: React.FC = () => {
       </div>
 
       <figcaption className="mt-3.5 max-w-[46rem] text-xs md:text-sm text-zinc-600 leading-relaxed text-pretty">
-        Two types, one axis. 57.3% sit in conflict and 42.7% reconciled, but the indices correlate at -0.73, so the clusters lie along a single diagonal. The typology names the poles of a continuum; it does not prove two separate populations exist.
+        {language === 'pl'
+          ? 'Dwa typy, jedna oś. 57.3% badanych znajduje się w konflikcie, a 42.7% to pogodzeni, lecz oba indeksy korelują na poziomie -0.73, więc skupienia układają się wzdłuż jednej przekątnej. Typologia wyznacza bieguny kontinuum, a nie dwie odrębne populacje.'
+          : 'Two types, one axis. 57.3% sit in conflict and 42.7% reconciled, but the indices correlate at -0.73, so the clusters lie along a single diagonal. The typology names the poles of a continuum; it does not prove two separate populations exist.'}
       </figcaption>
     </figure>
   )
@@ -1335,6 +1491,7 @@ const MATRIX_TOP = 150
 export const ThemeMatrixChart: React.FC = () => {
   const [hoveredResp, setHoveredResp] = useState<number | null>(null)
   const [hoveredTheme, setHoveredTheme] = useState<string | null>(null)
+  const { language } = useLanguage()
 
   const { respondents, themes } = themesData
   const height = MATRIX_TOP + themes.length * MATRIX_ROW_H + 70
@@ -1350,7 +1507,11 @@ export const ThemeMatrixChart: React.FC = () => {
             viewBox={`0 0 1000 ${height}`}
             className="w-full h-auto block select-none"
             role="img"
-            aria-label="Thematic coding matrix: 11 themes across 10 in-depth qualitative interviewees"
+            aria-label={
+              language === 'pl'
+                ? 'Matryca kodowania tematycznego: 11 motywów w 10 wywiadach pogłębionych'
+                : 'Thematic coding matrix: 11 themes across 10 in-depth qualitative interviewees'
+            }
           >
             <rect width="1000" height={height} fill="#ededed" />
 
@@ -1431,7 +1592,7 @@ export const ThemeMatrixChart: React.FC = () => {
                     textAnchor="end"
                     className="font-sans text-[12.5px] font-semibold tracking-wider fill-[#71717a]"
                   >
-                    {theme.code} · {inductive ? 'INDUCTIVE' : 'DEDUCTIVE'}
+                    {theme.code} · {language === 'pl' ? (inductive ? 'INDUKCYJNY' : 'DEDUKCYJNY') : (inductive ? 'INDUCTIVE' : 'DEDUCTIVE')}
                   </text>
 
                   {/* Dots Grid */}
@@ -1488,7 +1649,7 @@ export const ThemeMatrixChart: React.FC = () => {
                 y={0}
                 className="font-sans text-[12px] font-bold tracking-[0.08em] fill-[#595653]"
               >
-                ABSENT (0)
+                {language === 'pl' ? 'BRAK (0)' : 'ABSENT (0)'}
               </text>
               <circle cx={130} cy={-4} r={7.5} fill="#ffffff" stroke="#191714" strokeWidth={1.5} />
               <text
@@ -1496,7 +1657,7 @@ export const ThemeMatrixChart: React.FC = () => {
                 y={0}
                 className="font-sans text-[12px] font-bold tracking-[0.08em] fill-[#595653]"
               >
-                PRESENT (1)
+                {language === 'pl' ? 'OBECNY (1)' : 'PRESENT (1)'}
               </text>
               <circle cx={270} cy={-4} r={10.5} fill="#191714" />
               <text
@@ -1504,7 +1665,7 @@ export const ThemeMatrixChart: React.FC = () => {
                 y={0}
                 className="font-sans text-[12px] font-bold tracking-[0.08em] fill-[#595653]"
               >
-                CENTRAL (2)
+                {language === 'pl' ? 'KLUCZOWY (2)' : 'CENTRAL (2)'}
               </text>
             </g>
           </svg>
@@ -1513,7 +1674,9 @@ export const ThemeMatrixChart: React.FC = () => {
 
       <div className="mt-3.5 flex flex-col sm:flex-row sm:items-start justify-between gap-3 text-xs md:text-sm">
         <figcaption className="max-w-[46rem] text-zinc-600 leading-relaxed text-pretty">
-          The coding trail, not just the conclusion. Every theme is shown against every interviewee, so the counts quoted in the text can be verified: including the one theme all ten raised and the demand for short-term rental regulation that nine brought up unprompted.
+          {language === 'pl'
+            ? 'Ścieżka kodowania, a nie tylko wnioski. Każdy motyw został zestawiony z każdym rozmówcą, dzięki czemu liczebności przytoczone w tekście można bezpośrednio zweryfikować: w tym jeden motyw podniesiony przez wszystkich dziesięciu rozmówców oraz postulat regulacji najmu krótkoterminowego zgłoszony spontanicznie przez dziewięciu z nich.'
+            : 'The coding trail, not just the conclusion. Every theme is shown against every interviewee, so the counts quoted in the text can be verified: including the one theme all ten raised and the demand for short-term rental regulation that nine brought up unprompted.'}
         </figcaption>
 
         {activeRespObj && (
@@ -1538,9 +1701,72 @@ export const ThemeMatrixChart: React.FC = () => {
 // 7. JOINT DISPLAY INTEGRATION MATRIX
 // ==========================================
 
+const DIMENSION_PL: Record<
+  string,
+  { dimension: string; quantitative: string; qualitative: string; convergenceNote: string; verdict: string }
+> = {
+  'Housing and short-term rental': {
+    dimension: 'Mieszkalnictwo i najem krótkoterminowy',
+    quantitative: 'C4 czynsze 4.39, 88.1% zgody, najwyżej oceniona pozycja w ankiecie, jednolita we wszystkich dzielnicach (p = 0.193)',
+    qualitative: 'T1: budynek bez sąsiadów',
+    convergenceNote: 'Zbieżność i wyjaśnienie mechanizmu: wywiady wyjaśniają, jak dochodzi do tego zjawiska',
+    verdict: 'Pełna zbieżność',
+  },
+  'Noise and the night economy': {
+    dimension: 'Hałas i gospodarka nocna',
+    quantitative: 'C1 zróżnicowany: Kazimierz 3.77 / Stare Miasto 3.31 / Podgórze 2.47 (ε² = 0.177)',
+    qualitative: 'T2: noc, która nie należy do nas',
+    convergenceNote: 'Identyczny gradient w obu nurtach badania',
+    verdict: 'Pełna zbieżność',
+  },
+  'Everyday infrastructure': {
+    dimension: 'Infrastruktura codzienna',
+    quantitative: 'C3 usługi 4.15 (76.8%); C5 wypieranie sklepów 3.81 (65.7%)',
+    qualitative: 'T3: infrastruktura codziennego życia',
+    convergenceNote: '',
+    verdict: 'Pełna zbieżność',
+  },
+  'Domesticity and identity': {
+    dimension: 'Domowość i tożsamość',
+    quantitative: 'C8 atrakcja zamiast domu: 3.93 / 3.79 / 2.79 (ε² = 0.148)',
+    qualitative: 'T4: od domu do scenografii',
+    convergenceNote: 'Zbieżność i pogłębienie: metafory nazywają to, co mierzy skala',
+    verdict: 'Pełna zbieżność',
+  },
+  Benefits: {
+    dimension: 'Korzyści',
+    quantitative: 'Indeks korzyści 2.87; najwyższa pozycja D4 miejsca pracy 3.41 (48.7%)',
+    qualitative: 'T5: korzyści są pozycjonalne',
+    convergenceNote: 'Ankieta pokazuje skalę; wywiady pokazują kogo dotyczą i dlaczego',
+    verdict: 'Częściowa',
+  },
+  'Institutions and agency': {
+    dimension: 'Instytucje i sprawczość',
+    quantitative: 'F1 zaufanie 1.99–2.24, jednolicie niskie (p = 0.189); tylko 8.5% uważa, że miasto sprawnie zarządza turystyką',
+    qualitative: 'T6: 9 na 10 osób spontanicznie postuluje regulację najmu krótkoterminowego',
+    convergenceNote: '',
+    verdict: 'Pełna zbieżność',
+  },
+  'Intention to leave': {
+    dimension: 'Zamiar wyprowadzki',
+    quantitative: 'G1 13.9–17.8%, brak istotnych różnic między dzielnicami; model logit: koszty OR 5.54, staż OR 1.45, własność OR 0.44',
+    qualitative: 'T8: kontinuum od zdecydowanych do zakorzenionych; zakorzenieni to emeryci-właściciele i rodziny od pokoleń',
+    convergenceNote: 'Rozbieżność w kwestii stażu: ankieta wiąże staż z odejściem, wywiady z zakorzenieniem. Własność nieruchomości rozstrzyga tę sprzeczność',
+    verdict: 'Napięcie',
+  },
+  'Future outlook': {
+    dimension: 'Perspektywa przyszłości',
+    quantitative: 'F4 obawy 3.72, wysokie we wszystkich dzielnicach (71.1%)',
+    qualitative: 'T9: nieodwracalność zmian',
+    convergenceNote: 'Zbieżność pesymizmu: obie metody rejestrują przekonanie o nieodwracalności procesu',
+    verdict: 'Pełna zbieżność',
+  },
+}
+
 export const JointDisplayTable: React.FC = () => {
   const [hoveredIdx, setHoveredIdx] = useState<number | null>(null)
   const [filterMode, setFilterMode] = useState<'all' | 'tension'>('all')
+  const { language } = useLanguage()
 
   const rows = filterMode === 'tension'
     ? jointData.rows.filter((r) => r.convergence === 'tension')
@@ -1559,7 +1785,7 @@ export const JointDisplayTable: React.FC = () => {
                 : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
             }`}
           >
-            All 8 Dimensions
+            {language === 'pl' ? 'Wszystkie 8 wymiarów' : 'All 8 Dimensions'}
           </button>
           <button
             onClick={() => setFilterMode('tension')}
@@ -1569,31 +1795,59 @@ export const JointDisplayTable: React.FC = () => {
                 : 'bg-zinc-100 text-zinc-600 hover:bg-zinc-200'
             }`}
           >
-            Highlight Disagreement (Tension)
+            {language === 'pl' ? 'Wyróżnij rozbieżności (Napięcie)' : 'Highlight Disagreement (Tension)'}
           </button>
         </div>
         <span className="text-xs text-zinc-500 font-medium hidden sm:inline">
-          Survey (N = 446) + Interviews (N = 10)
+          {language === 'pl' ? 'Ankieta (N = 446) + Wywiady (N = 10)' : 'Survey (N = 446) + Interviews (N = 10)'}
         </span>
       </div>
 
       <div className="w-full bg-white border border-zinc-200 rounded-2xl overflow-x-auto shadow-2xs">
         <table className="w-full text-left text-sm border-collapse min-w-[740px]">
           <caption className="sr-only">
-            Joint display integrating survey results (N = 446) with interview themes (N = 10)
+            {language === 'pl'
+              ? 'Tabela integracji wyników ankiety (N = 446) z motywami wywiadów (N = 10)'
+              : 'Joint display integrating survey results (N = 446) with interview themes (N = 10)'}
           </caption>
           <thead>
             <tr className="border-b border-zinc-200 bg-zinc-50 text-xs uppercase tracking-wider text-zinc-500 font-semibold">
-              <th scope="col" className="py-3.5 px-4 font-semibold w-[20%]">Dimension</th>
-              <th scope="col" className="py-3.5 px-4 font-semibold w-[32%]">Survey (Quantitative, N = 446)</th>
-              <th scope="col" className="py-3.5 px-4 font-semibold w-[24%]">Interviews (Qualitative, N = 10)</th>
-              <th scope="col" className="py-3.5 px-4 font-semibold w-[24%]">Integration Verdict</th>
+              <th scope="col" className="py-3.5 px-4 font-semibold w-[20%]">
+                {language === 'pl' ? 'Wymiar' : 'Dimension'}
+              </th>
+              <th scope="col" className="py-3.5 px-4 font-semibold w-[32%]">
+                {language === 'pl' ? 'Ankieta (ilościowa, N = 446)' : 'Survey (Quantitative, N = 446)'}
+              </th>
+              <th scope="col" className="py-3.5 px-4 font-semibold w-[24%]">
+                {language === 'pl' ? 'Wywiady (jakościowe, N = 10)' : 'Interviews (Qualitative, N = 10)'}
+              </th>
+              <th scope="col" className="py-3.5 px-4 font-semibold w-[24%]">
+                {language === 'pl' ? 'Werdykt integracji' : 'Integration Verdict'}
+              </th>
             </tr>
           </thead>
           <tbody className="divide-y divide-zinc-100 text-zinc-700">
             {rows.map((row, idx) => {
               const isTension = row.convergence === 'tension'
               const isHovered = hoveredIdx === idx
+              const plRow = DIMENSION_PL[row.dimension]
+
+              const dim = language === 'pl' && plRow ? plRow.dimension : row.dimension
+              const quant = language === 'pl' && plRow ? plRow.quantitative : row.quantitative
+              const qual = language === 'pl' && plRow ? plRow.qualitative : row.qualitative
+              const note = language === 'pl' && plRow ? plRow.convergenceNote : row.convergenceNote
+              const verdict =
+                language === 'pl'
+                  ? isTension
+                    ? 'Napięcie'
+                    : row.convergence === 'partial'
+                    ? 'Częściowa'
+                    : 'Zbieżność'
+                  : isTension
+                  ? 'Tension'
+                  : row.convergence === 'partial'
+                  ? 'Partial'
+                  : 'Convergent'
 
               return (
                 <tr
@@ -1616,13 +1870,13 @@ export const JointDisplayTable: React.FC = () => {
                         : 'text-[#111111]'
                     }`}
                   >
-                    {row.dimension}
+                    {dim}
                   </th>
                   <td className="py-3.5 px-4 text-xs text-zinc-600 align-top leading-relaxed">
-                    {row.quantitative}
+                    {quant}
                   </td>
                   <td className="py-3.5 px-4 text-xs text-zinc-800 font-medium align-top leading-relaxed">
-                    {row.qualitative}
+                    {qual}
                   </td>
                   <td className="py-3.5 px-4 align-top">
                     <span
@@ -1634,15 +1888,11 @@ export const JointDisplayTable: React.FC = () => {
                           : 'bg-zinc-200 text-zinc-800'
                       }`}
                     >
-                      {row.convergence === 'tension'
-                        ? 'Tension'
-                        : row.convergence === 'partial'
-                        ? 'Partial'
-                        : 'Convergent'}
+                      {verdict}
                     </span>
-                    {row.convergenceNote && (
+                    {note && (
                       <p className="mt-1.5 text-xs text-zinc-600 leading-relaxed">
-                        {row.convergenceNote}
+                        {note}
                       </p>
                     )}
                   </td>
@@ -1654,7 +1904,9 @@ export const JointDisplayTable: React.FC = () => {
       </div>
 
       <figcaption className="mt-3.5 max-w-[46rem] text-xs md:text-sm text-zinc-600 leading-relaxed text-pretty">
-        In a convergent design the two strands are analysed separately and compared at the end. The display is where they meet: including where they disagree on tenure and anchoring.
+        {language === 'pl'
+          ? 'W zbieżnym schemacie badawczym oba nurty są analizowane niezależnie i zestawiane na końcu. Matryca integracji stanowi miejsce ich spotkania: w tym tam, gdzie wyniki różnią się w kwestii stażu i zakorzenienia.'
+          : 'In a convergent design the two strands are analysed separately and compared at the end. The display is where they meet: including where they disagree on tenure and anchoring.'}
       </figcaption>
     </figure>
   )
@@ -1664,98 +1916,101 @@ export const JointDisplayTable: React.FC = () => {
 // 8. LANDING PAGE THUMBNAIL (GEIST FONT DIRECT INJECTION)
 // ==========================================
 
-export const DistrictPhasesThumbnail: React.FC = () => (
-  <svg
-    viewBox="0 0 1000 470"
-    className="w-full h-full object-cover select-none"
-    role="img"
-    aria-label="Three districts, one process diagram"
-  >
-    <rect width="1000" height="470" fill="#f4f4f5" />
-    <text x="110" y="68" className="font-sans font-bold text-[28px] tracking-tight fill-[#111111]">
-      Three districts, one process
-    </text>
+export const DistrictPhasesThumbnail: React.FC = () => {
+  const { language } = useLanguage()
 
-    {/* Trajectory */}
-    <g>
-      <path
-        d="M 258.7 258 L 723.4 258"
-        stroke="#2352c5"
+  return (
+    <svg
+      viewBox="0 0 1000 470"
+      className="w-full h-full object-cover select-none"
+      role="img"
+      aria-label="Three districts, one process diagram"
+    >
+      <rect width="1000" height="470" fill="#f4f4f5" />
+      <text x="110" y="68" className="font-sans font-bold text-[28px] tracking-tight fill-[#111111]">
+        {language === 'pl' ? 'Trzy dzielnice, jeden proces' : 'Three districts, one process'}
+      </text>
+
+      {/* Trajectory */}
+      <g>
+        <path
+          d="M 258.7 258 L 723.4 258"
+          stroke="#2352c5"
+          strokeWidth="1.5"
+          strokeDasharray="4 7"
+          markerEnd="url(#thumb-arrow-accent)"
+          fill="none"
+        />
+        <text
+          x="491"
+          y="242"
+          className="font-sans text-[13px] font-bold tracking-[0.14em] fill-[#2352c5]"
+          textAnchor="middle"
+        >
+          {language === 'pl' ? 'PRZEWIDYWANA TRAJEKTORIA' : 'ANTICIPATED TRAJECTORY'}
+        </text>
+      </g>
+
+      {/* Axis */}
+      <line
+        x1="110"
+        y1="300"
+        x2="900"
+        y2="300"
+        stroke="#111111"
         strokeWidth="1.5"
-        strokeDasharray="4 7"
-        markerEnd="url(#thumb-arrow-accent)"
-        fill="none"
+        markerEnd="url(#thumb-arrow)"
       />
       <text
-        x="491"
-        y="242"
-        className="font-sans text-[13px] font-bold tracking-[0.14em] fill-[#2352c5]"
-        textAnchor="middle"
+        x="900"
+        y="334"
+        textAnchor="end"
+        className="font-sans text-[13px] font-semibold tracking-[0.1em] fill-[#71717a]"
       >
-        ANTICIPATED TRAJECTORY
+        {language === 'pl' ? 'POSTRZEGANE KOSZTY TURYSTYKI (SKALA 1-5)' : 'PERCEIVED COST OF TOURISM (INDEX 1-5)'}
       </text>
-    </g>
 
-    {/* Axis */}
-    <line
-      x1="110"
-      y1="300"
-      x2="900"
-      y2="300"
-      stroke="#111111"
-      strokeWidth="1.5"
-      markerEnd="url(#thumb-arrow)"
-    />
-    <text
-      x="900"
-      y="334"
-      textAnchor="end"
-      className="font-sans text-[13px] font-semibold tracking-[0.1em] fill-[#71717a]"
-    >
-      PERCEIVED COST OF TOURISM (INDEX 1-5)
-    </text>
+      {/* Podgórze */}
+      <g>
+        <line x1="212.2" y1="300" x2="212.2" y2="200" stroke="#d4d4d8" strokeWidth="1" />
+        <circle cx="212.2" cy="300" r="7" fill="#2352c5" />
+        <text
+          x="212.2"
+          y="160"
+          textAnchor="middle"
+          className="font-sans font-bold text-[26px] tracking-tight fill-[#2352c5]"
+        >
+          Podgórze
+        </text>
+        <text
+          x="212.2"
+          y="186"
+          textAnchor="middle"
+          className="font-sans font-medium text-[14.5px] fill-[#71717a]"
+        >
+          {language === 'pl' ? 'Wciągane w proces · n = 144 · 3.21' : 'Being drawn in · n = 144 · 3.21'}
+        </text>
+      </g>
 
-    {/* Podgórze */}
-    <g>
-      <line x1="212.2" y1="300" x2="212.2" y2="200" stroke="#d4d4d8" strokeWidth="1" />
-      <circle cx="212.2" cy="300" r="7" fill="#2352c5" />
-      <text
-        x="212.2"
-        y="160"
-        textAnchor="middle"
-        className="font-sans font-bold text-[26px] tracking-tight fill-[#2352c5]"
-      >
-        Podgórze
-      </text>
-      <text
-        x="212.2"
-        y="186"
-        textAnchor="middle"
-        className="font-sans font-medium text-[14.5px] fill-[#71717a]"
-      >
-        Being drawn in · n = 144 · 3.21
-      </text>
-    </g>
-
-    {/* Old Town */}
-    <g>
-      <line x1="797.8" y1="300" x2="797.8" y2="150" stroke="#d4d4d8" strokeWidth="1" />
-      <circle cx="797.8" cy="300" r="7" fill="#111111" />
-      <text
-        x="797.8"
-        y="110"
-        textAnchor="middle"
-        className="font-sans font-bold text-[26px] tracking-tight fill-[#111111]"
-      >
-        Old Town
-      </text>
+      {/* Old Town */}
+      <g>
+        <line x1="797.8" y1="300" x2="797.8" y2="150" stroke="#d4d4d8" strokeWidth="1" />
+        <circle cx="797.8" cy="300" r="7" fill="#111111" />
+        <text
+          x="797.8"
+          y="110"
+          textAnchor="middle"
+          className="font-sans font-bold text-[26px] tracking-tight fill-[#111111]"
+        >
+          {language === 'pl' ? 'Stare Miasto' : 'Old Town'}
+        </text>
       <text
         x="797.8"
         y="136"
         textAnchor="middle"
         className="font-sans font-medium text-[14.5px] fill-[#71717a]"
       >
-        Mature touristification · n = 156 · 3.84
+        {language === 'pl' ? 'Dojrzała turystyfikacja · n = 156 · 3.84' : 'Mature touristification · n = 156 · 3.84'}
       </text>
     </g>
 
@@ -1777,7 +2032,7 @@ export const DistrictPhasesThumbnail: React.FC = () => (
         textAnchor="middle"
         className="font-sans font-medium text-[14.5px] fill-[#71717a]"
       >
-        Rapid, rental- and nightlife-driven · n = 146 · 3.86
+        {language === 'pl' ? 'Gwałtowna, najem i życie nocne · n = 146 · 3.86' : 'Rapid, rental- and nightlife-driven · n = 146 · 3.86'}
       </text>
     </g>
 
@@ -1806,5 +2061,5 @@ export const DistrictPhasesThumbnail: React.FC = () => (
       </marker>
     </defs>
   </svg>
-)
-
+  )
+}

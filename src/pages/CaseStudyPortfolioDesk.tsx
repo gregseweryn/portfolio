@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import { AnimatedTitle } from '../components/AnimatedTitle'
 import { LightboxModal, LightboxImage } from '../components/LightboxModal'
+import { useLanguage } from '../context/LanguageContext'
+import { portfolioDeskContent } from '../i18n'
 
 interface CaseStudyPortfolioDeskProps {
   navigate: (path: string) => void
@@ -34,6 +36,8 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
   const [systemTabDemoIndex, setSystemTabDemoIndex] = useState<number>(0)
   const [isTabularDemo, setIsTabularDemo] = useState<boolean>(true)
   const isDark = systemTheme === 'dark'
+  const { language } = useLanguage()
+  const t = portfolioDeskContent[language]
 
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
@@ -43,52 +47,49 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
     }
   }
 
-  const tocItems = [
-    { id: 'overview', label: 'Overview' },
-    { id: 'problem', label: 'The Problem' },
-    { id: 'comparison', label: 'Before & After' },
-    { id: 'audit', label: '18 Findings' },
-    { id: 'klm', label: 'KLM Modelling' },
-    { id: 'design-system', label: 'Design System' },
-    { id: 'screens', label: 'Carbon Screens' },
-    { id: 'limits', label: 'Stated Limits' },
-  ]
-
   return (
     <main id="main-content">
       {/* Title & Metadata Section */}
       <section id="overview" className="pt-8 md:pt-14 pb-6 md:pb-8 scroll-mt-20">
         <div className="site-container">
           <AnimatedTitle
-            coloredSegments={[{ text: 'Portfolio Desk', color: '#111111' }]}
+            coloredSegments={[{ text: t.title, color: '#111111' }]}
             className="text-2xl md:text-3xl leading-[1.12] tracking-tight mb-3 font-normal"
           />
           <p className="text-lg md:text-xl text-zinc-700 font-light mb-8 text-balance">
-            Two numbers that were never on the same screen
+            {t.subtitle}
           </p>
 
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-zinc-200">
             <div>
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">Year</p>
-              <p className="text-sm font-medium text-[#111111]">2026</p>
+              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
+                {t.meta.yearLabel}
+              </p>
+              <p className="text-sm font-medium text-[#111111]">{t.meta.yearVal}</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">Role</p>
-              <p className="text-sm font-medium text-[#111111]">Audit, KLM, IA, UI</p>
+              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
+                {t.meta.roleLabel}
+              </p>
+              <p className="text-sm font-medium text-[#111111]">{t.meta.roleVal}</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">Audited Book</p>
-              <p className="text-sm font-medium text-[#111111]">500 loans, 18 findings</p>
+              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
+                {t.meta.bookLabel}
+              </p>
+              <p className="text-sm font-medium text-[#111111]">{t.meta.bookVal}</p>
             </div>
             <div>
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">Prototype</p>
+              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
+                {t.meta.prototypeLabel}
+              </p>
               <a
                 href="https://semi-secure-43576547.figma.site/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-sm font-medium underline underline-offset-4 text-zinc-700 hover:text-[#111111] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
               >
-                Figma Prototype ↗
+                {t.meta.prototypeLink}
               </a>
             </div>
           </div>
@@ -102,10 +103,10 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       >
         <div className="site-container flex items-center justify-between gap-4">
           <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 shrink-0 hidden sm:inline">
-            Contents
+            {language === 'pl' ? 'Spis treści' : 'Contents'}
           </span>
           <div className="flex items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar py-0.5 text-xs font-medium">
-            {tocItems.map((item) => (
+            {t.toc.map((item) => (
               <a
                 key={item.id}
                 href={`#${item.id}`}
@@ -117,7 +118,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             ))}
           </div>
           <span className="text-xs font-medium text-zinc-400 shrink-0 hidden md:inline">
-            65% speedup
+            {t.speedupBadge}
           </span>
         </div>
       </nav>
@@ -131,7 +132,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
           >
             <img
               src="/work/portfolio-desk/mockup1.png"
-              alt="Portfolio Desk: Redesigned loan servicing work list shown on laptop workstation mockup"
+              alt={t.heroMockupAlt}
               className="w-full h-full object-cover group-hover:scale-[1.005] transition-transform duration-300"
               loading="eager"
             />
@@ -145,16 +146,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       {/* The Core Question & Summary */}
       <section id="problem" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
         <div className="site-container grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
-          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">The Problem</h2>
+          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.problem.title}</h2>
           <div className="md:col-span-9 flex flex-col gap-4 text-md text-zinc-700 leading-relaxed max-measure text-pretty">
-            <p>
-              Can an analyst holding 500 commercial loans tell which ones need a phone call this morning?
+            <p className="font-medium text-[#111111]">
+              {t.problem.q}
             </p>
             <p>
-              A commercial loan servicing system tracked 500 loans and 150 of them were past due. It could tell you how many days late a borrower was. It could tell you how much they owed. It could never tell you both at once.
+              {t.problem.p1}
             </p>
             <p>
-              I loaded Frappe Lending with a realistic book, audited it against 18 heuristic findings, redesigned the three screens an analyst lives in every day, and modelled the work operator by operator: <strong>60.90 s of task time became 21.30 s (65% reduction)</strong>.
+              {t.problem.p2}
             </p>
           </div>
         </div>
@@ -165,14 +166,14 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
         <div className="site-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 mb-10">
             <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">
-              Audited System vs. Redesign
+              {t.comparison.title}
             </h2>
             <div className="md:col-span-9 flex flex-col gap-4 text-md text-zinc-700 leading-relaxed max-measure text-pretty">
               <p>
-                Frappe Lending models the entire life of a loan: application, disbursement, interest accrual, repayment, and write-off. It models the paperwork completely. What it does not model is the person who has to do something about a loan that stopped paying.
+                {t.comparison.p1}
               </p>
               <p>
-                Before auditing, I seeded the system with 500 commercial loans resampled from the US Small Business Administration 7(a) dataset and converted to PLN (30% delinquent, reference date 1 September 2026). Below are the original Frappe Lending screens placed directly alongside the Carbon redesign.
+                {t.comparison.p2}
               </p>
             </div>
           </div>
@@ -182,13 +183,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             <div className="border border-zinc-200 rounded-2xl p-5 md:p-8 bg-white shadow-2xs">
               <div className="mb-6">
                 <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                  Comparison 01 · Delinquency Queue
+                  {t.comparison.comp1.tag}
                 </p>
                 <h3 className="text-xl font-medium text-[#111111]">
-                  Work list: loans over 30 days past due
+                  {t.comparison.comp1.title}
                 </h3>
                 <p className="text-sm text-zinc-600 mt-2 max-measure text-pretty">
-                  The exact same filter on both sides: 79 loans overdue by more than 30 days. On the left, the result contains neither a day of arrears nor a zloty of debt, and the product column prints the internal code INV60 rather than a name. On the right, the two numbers the analyst needs are in the row.
+                  {t.comparison.comp1.desc}
                 </p>
               </div>
 
@@ -197,7 +198,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
-                      Audited System (Before)
+                      {t.comparison.comp1.beforeLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
                   </div>
@@ -207,16 +208,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/before-work-list.png"
-                      alt="Audited Frappe Lending loan list showing 79 loans with missing days past due and missing arrears amount"
+                      alt={t.comparison.comp1.beforeAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    Every row prints the generic status "Disbursed". Identifying which borrower owes money requires opening each loan record individually.
+                    {t.comparison.comp1.beforeNote}
                   </p>
                 </div>
 
@@ -224,7 +225,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
-                      Portfolio Desk (After)
+                      {t.comparison.comp1.afterLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
                   </div>
@@ -234,16 +235,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/work-list-light.png"
-                      alt="Redesigned work list showing borrower, loan, servicing state, days past due, amount in arrears, and last action"
+                      alt={t.comparison.comp1.afterAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    Borrower name, days past due, amount in arrears, outstanding balance, and last action date directly visible and sortable in the table.
+                    {t.comparison.comp1.afterNote}
                   </p>
                 </div>
               </div>
@@ -253,13 +254,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             <div className="border border-zinc-200 rounded-2xl p-5 md:p-8 bg-white shadow-2xs">
               <div className="mb-6">
                 <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                  Comparison 02 · Loan Record
+                  {t.comparison.comp2.tag}
                 </p>
                 <h3 className="text-xl font-medium text-[#111111]">
-                  Single loan overview and servicing state
+                  {t.comparison.comp2.title}
                 </h3>
                 <p className="text-sm text-zinc-600 mt-2 max-measure text-pretty">
-                  On the left, an administrative ERP form. Arrears balance is not broken down, and navigating to ledger schedules requires jumping through 10 separate doctypes in "Connections". On the right, overdue balances are prioritized immediately with an actionable sidebar.
+                  {t.comparison.comp2.desc}
                 </p>
               </div>
 
@@ -268,7 +269,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
-                      Audited System (Before)
+                      {t.comparison.comp2.beforeLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
                   </div>
@@ -278,16 +279,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/before-loan-detail.png"
-                      alt="Audited Frappe Lending loan document with 10 separate doctype connection buttons and no immediate arrears breakdown"
+                      alt={t.comparison.comp2.beforeAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    No dedicated object for collections work. Logging that an analyst spoke with a borrower could only be recorded in an unformatted comment box.
+                    {t.comparison.comp2.beforeNote}
                   </p>
                 </div>
 
@@ -295,7 +296,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
-                      Portfolio Desk (After)
+                      {t.comparison.comp2.afterLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
                   </div>
@@ -305,16 +306,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/loan-detail-light.png"
-                      alt="Redesigned loan detail screen showing arrears split into principal and interest, payment terms, and next steps sidebar"
+                      alt={t.comparison.comp2.afterAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    Total in arrears split into principal and interest up front, loan terms below, and a right-hand column carrying the next step, action history, and logging button.
+                    {t.comparison.comp2.afterNote}
                   </p>
                 </div>
               </div>
@@ -324,13 +325,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             <div className="border border-zinc-200 rounded-2xl p-5 md:p-8 bg-white shadow-2xs">
               <div className="mb-6">
                 <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                  Comparison 03 · Repayment Ledger
+                  {t.comparison.comp3.tag}
                 </p>
                 <h3 className="text-xl font-medium text-[#111111]">
-                  Payment history and interest accrual
+                  {t.comparison.comp3.title}
                 </h3>
                 <p className="text-sm text-zinc-600 mt-2 max-measure text-pretty">
-                  In the audited system, repayments live in an isolated list where paid amounts are hidden until you click open each row, while interest accruals sit in another document type entirely. In Portfolio Desk, repayment history is a unified in-drawer ledger with interest as a column.
+                  {t.comparison.comp3.desc}
                 </p>
               </div>
 
@@ -339,7 +340,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
-                      Audited System (Before)
+                      {t.comparison.comp3.beforeLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
                   </div>
@@ -349,16 +350,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/before-repayments.png"
-                      alt="Audited Frappe Lending repayment list requiring opening rows to see transaction details"
+                      alt={t.comparison.comp3.beforeAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    Answering what was paid and what is missing required joining three separate document types in your head across browser tabs.
+                    {t.comparison.comp3.beforeNote}
                   </p>
                 </div>
 
@@ -366,7 +367,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 <div className="flex flex-col gap-2">
                   <div className="flex justify-between items-baseline text-xs pb-1.5 border-b border-zinc-200/80 mb-1">
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
-                      Portfolio Desk (After)
+                      {t.comparison.comp3.afterLabel}
                     </span>
                     <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
                   </div>
@@ -376,16 +377,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   >
                     <img
                       src="/work/portfolio-desk/repayment-history-light.png"
-                      alt="Redesigned repayment history drawer showing unified ledger with interest accrual as a column"
+                      alt={t.comparison.comp3.afterAlt}
                       className="w-full h-full object-cover group-hover:scale-[1.01] transition-transform duration-300"
                       loading="lazy"
                     />
                     <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded backdrop-blur-xs opacity-0 group-hover:opacity-100 transition-opacity">
-                      Click to inspect ↗
+                      {language === 'pl' ? 'Powiększ ↗' : 'Click to inspect ↗'}
                     </span>
                   </button>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                    In-context slide-out drawer. Due date, instalment number, principal, interest, amount paid, and days late all visible in one continuous table.
+                    {t.comparison.comp3.afterNote}
                   </p>
                 </div>
               </div>
@@ -398,51 +399,51 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       <section id="audit" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
         <div className="site-container grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
           <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">
-            Eighteen Findings
+            {t.audit.title}
           </h2>
           <div className="md:col-span-9 flex flex-col gap-6 max-measure">
             <p className="text-md text-zinc-700 leading-relaxed text-pretty">
-              I evaluated the interface against Nielsen ten heuristics and Shneiderman eight golden rules, from the perspective of an analyst working in the system daily. Each finding carries a severity rating (2 catastrophic, 6 serious, 7 minor, and 3 cosmetic).
+              {t.audit.p1}
             </p>
 
             <div className="space-y-4">
               <div className="border border-zinc-200 rounded-xl p-5 bg-white shadow-2xs">
                 <p className="text-xs font-semibold uppercase tracking-wider text-rose-700 mb-1">
-                  F-01 · Severity 4 (Catastrophic)
+                  {t.audit.f1Tag}
                 </p>
-                <p className="text-sm font-medium text-[#111111] mb-1">The two key numbers never meet</p>
+                <p className="text-sm font-medium text-[#111111] mb-1">{t.audit.f1Title}</p>
                 <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                  Days past due lives on the loan document. Outstanding amounts live in a report of 19 columns, none of which is days past due. Ranking 79 loans by highest debt and longest overdue meant opening two screens and holding the join in your head.
+                  {t.audit.f1Desc}
                 </p>
               </div>
 
               <div className="border border-zinc-200 rounded-xl p-5 bg-white shadow-2xs">
                 <p className="text-xs font-semibold uppercase tracking-wider text-rose-700 mb-1">
-                  F-02 · Severity 4 (Catastrophic)
+                  {t.audit.f2Tag}
                 </p>
-                <p className="text-sm font-medium text-[#111111] mb-1">Filtering by a number that stays invisible</p>
+                <p className="text-sm font-medium text-[#111111] mb-1">{t.audit.f2Title}</p>
                 <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                  Filtering the loan list by days past due produced a result that did not contain a days-past-due column. Adding one required a separate trip through a settings dialog where the field had to be found by typing its database name.
+                  {t.audit.f2Desc}
                 </p>
               </div>
 
               <div className="border border-zinc-200 rounded-xl p-5 bg-white shadow-2xs">
                 <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1">
-                  F-05 · Severity 3 (Serious)
+                  {t.audit.f5Tag}
                 </p>
-                <p className="text-sm font-medium text-[#111111] mb-1">Ninety-four days late looks like paid on time</p>
+                <p className="text-sm font-medium text-[#111111] mb-1">{t.audit.f5Title}</p>
                 <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                  A loan 119 days overdue and flagged non-performing carried the status Disbursed, identical to a loan being repaid on schedule. Lifecycle state and servicing state were the same field, so neither could be read off the list.
+                  {t.audit.f5Desc}
                 </p>
               </div>
 
               <div className="border border-zinc-200 rounded-xl p-5 bg-white shadow-2xs">
                 <p className="text-xs font-semibold uppercase tracking-wider text-amber-700 mb-1">
-                  F-06 · Severity 3 (Serious)
+                  {t.audit.f6Tag}
                 </p>
-                <p className="text-sm font-medium text-[#111111] mb-1">No structured object for collections work</p>
+                <p className="text-sm font-medium text-[#111111] mb-1">{t.audit.f6Title}</p>
                 <p className="text-xs text-zinc-600 leading-relaxed text-pretty">
-                  Across every document type in the lending module, there was nothing that recorded a phone call, a letter, a promise, or an escalation. The only place to write that someone spoke to the borrower was a free-text comment, which could not be filtered or reported on.
+                  {t.audit.f6Desc}
                 </p>
               </div>
             </div>
@@ -454,33 +455,33 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       <section id="klm" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
         <div className="site-container">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between mb-6">
-            <h2 className="text-lg text-[#111111] font-medium">KLM-GOMS Operator Modelling</h2>
+            <h2 className="text-lg text-[#111111] font-medium">{t.klm.title}</h2>
             <span className="text-xs font-medium text-zinc-500 mt-1 sm:mt-0">
-              Expert execution, 1440×900, error-free model
+              {t.klm.metaInfo}
             </span>
           </div>
 
           {/* 3 Metric Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
             <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">23.33s → 2.66s</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">Filter loans &gt;30d past due</p>
+              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card1Val}</p>
+              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card1Title}</p>
               <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
-                88.6% reduction once filter presets are saved as instant views without re-filtering.
+                {t.klm.card1Desc}
               </p>
             </div>
             <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">13.35s → 6.68s</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">Inspect repayment history</p>
+              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card2Val}</p>
+              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card2Title}</p>
               <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
-                50.0% faster by bringing payment records into context from one table instead of three documents.
+                {t.klm.card2Desc}
               </p>
             </div>
             <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">24.22s → 11.96s</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">Log collector call outcome</p>
+              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card3Val}</p>
+              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card3Title}</p>
               <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
-                50.6% faster with in-drawer logging and prefilled borrower state.
+                {t.klm.card3Desc}
               </p>
             </div>
           </div>
@@ -488,10 +489,10 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
           {/* Measurement Changed the Design Callout */}
           <div className="border border-zinc-200 bg-zinc-50/80 p-5 rounded-xl mb-8">
             <p className="text-xs uppercase tracking-wider text-emerald-800 font-semibold mb-1">
-              How the measurement changed the design
+              {t.klm.calloutTag}
             </p>
             <p className="text-sm text-zinc-700 leading-relaxed text-pretty">
-              The first version of the collections action drawer used standard dropdown menus. Each choice required two pointing operations instead of one, and the task modelled at 23.86 seconds, which was no better than the unformatted comment box it replaced. Modelling the keystroke and pointing operators before finalizing the design revealed this mistake early. Replacing dropdowns with visible segmented controls reduced the task time to 11.96 seconds.
+              {t.klm.calloutText}
             </p>
           </div>
 
@@ -501,9 +502,9 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
               <svg className="w-3.5 h-3.5 text-zinc-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
-              Scroll table horizontally
+              {language === 'pl' ? 'Przesuń tabelę w poziomie' : 'Scroll table horizontally'}
             </span>
-            <span className="text-zinc-400">4 tasks</span>
+            <span className="text-zinc-400">{language === 'pl' ? '3 zadania' : '3 tasks'}</span>
           </div>
 
           {/* Full KLM Comparative Table with Horizontal Scroll */}
@@ -511,41 +512,29 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             <table className="w-full text-left text-sm border-collapse min-w-[620px]">
               <thead>
                 <tr className="border-b border-zinc-200 bg-zinc-50 text-xs uppercase tracking-wider text-zinc-500 font-semibold">
-                  <th scope="col" className="py-3.5 px-4 font-semibold">Analyst Task</th>
-                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">Audited System</th>
-                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">Portfolio Desk</th>
-                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">Time Saved</th>
-                  <th scope="col" className="py-3.5 px-4 font-semibold">Efficiency Mechanism</th>
+                  <th scope="col" className="py-3.5 px-4 font-semibold">{t.klm.tableHeaders.task}</th>
+                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">{t.klm.tableHeaders.audited}</th>
+                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">{t.klm.tableHeaders.portfolioDesk}</th>
+                  <th scope="col" className="py-3.5 px-4 font-semibold text-right">{t.klm.tableHeaders.saved}</th>
+                  <th scope="col" className="py-3.5 px-4 font-semibold">{t.klm.tableHeaders.mechanism}</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-100 text-zinc-700">
-                <tr className="hover:bg-zinc-50/50 transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-[#111111]">Filter loans &gt;30 days past due</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums text-zinc-600">23.33 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-medium text-emerald-700">2.66 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-semibold text-emerald-700">−88.6%</td>
-                  <td className="py-3.5 px-4 text-xs text-zinc-600">Saved named view eliminates repetitive modal filter rebuilds</td>
-                </tr>
-                <tr className="hover:bg-zinc-50/50 transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-[#111111]">Inspect single loan repayment history</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums text-zinc-600">13.35 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-medium text-emerald-700">6.68 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-semibold text-emerald-700">−50.0%</td>
-                  <td className="py-3.5 px-4 text-xs text-zinc-600">Single unified ledger table replaces 3 separate document types</td>
-                </tr>
-                <tr className="hover:bg-zinc-50/50 transition-colors">
-                  <td className="py-3.5 px-4 font-medium text-[#111111]">Record collections contact outcome</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums text-zinc-600">24.22 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-medium text-emerald-700">11.96 s</td>
-                  <td className="py-3.5 px-4 text-right tabular-nums font-semibold text-emerald-700">−50.6%</td>
-                  <td className="py-3.5 px-4 text-xs text-zinc-600">Contextual slide-out drawer with segmented controls replaces nested dropdowns</td>
-                </tr>
+                {t.klm.rows.map((row) => (
+                  <tr key={row.task} className="hover:bg-zinc-50/50 transition-colors">
+                    <td className="py-3.5 px-4 font-medium text-[#111111]">{row.task}</td>
+                    <td className="py-3.5 px-4 text-right tabular-nums text-zinc-600">{row.audited}</td>
+                    <td className="py-3.5 px-4 text-right tabular-nums font-medium text-emerald-700">{row.after}</td>
+                    <td className="py-3.5 px-4 text-right tabular-nums font-semibold text-emerald-700">{row.saved}</td>
+                    <td className="py-3.5 px-4 text-xs text-zinc-600">{row.mechanism}</td>
+                  </tr>
+                ))}
                 <tr className="bg-zinc-50/70 font-medium text-[#111111] border-t-2 border-zinc-200">
-                  <td className="py-4 px-4 font-semibold">Total 3-task routine</td>
-                  <td className="py-4 px-4 text-right tabular-nums">60.90 s</td>
-                  <td className="py-4 px-4 text-right tabular-nums font-semibold text-emerald-700">21.30 s</td>
-                  <td className="py-4 px-4 text-right tabular-nums font-bold text-emerald-700">−65.0%</td>
-                  <td className="py-4 px-4 text-xs font-normal text-zinc-600">Server round trips reduced from 8 to 4</td>
+                  <td className="py-4 px-4 font-semibold">{t.klm.total.task}</td>
+                  <td className="py-4 px-4 text-right tabular-nums">{t.klm.total.audited}</td>
+                  <td className="py-4 px-4 text-right tabular-nums font-semibold text-emerald-700">{t.klm.total.after}</td>
+                  <td className="py-4 px-4 text-right tabular-nums font-bold text-emerald-700">{t.klm.total.saved}</td>
+                  <td className="py-4 px-4 text-xs font-normal text-zinc-600">{t.klm.total.mechanism}</td>
                 </tr>
               </tbody>
             </table>
@@ -559,13 +548,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
           <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
             <div>
               <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                System Documentation · Foundations, Components &amp; Identity
+                {t.designSystem.tag}
               </p>
               <h2 className="text-2xl font-medium text-[#111111]">
-                Design System &amp; Brand Architecture
+                {t.designSystem.title}
               </h2>
               <p className="text-sm text-zinc-600 mt-2 max-measure text-pretty leading-relaxed">
-                Directly mirroring the published design system workbench from the live prototype. Foundations, components, and brand tokens provide the single source of truth for every screen in Portfolio Desk.
+                {t.designSystem.desc}
               </p>
             </div>
             <a
@@ -574,7 +563,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-4 py-2 rounded-xl text-xs font-semibold bg-zinc-900 text-white hover:bg-zinc-800 transition-colors shrink-0 shadow-2xs focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
-              Open Prototype System Docs ↗
+              {t.designSystem.openPrototype}
             </a>
           </div>
 
@@ -602,7 +591,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 </span>
                 <span className={`w-px h-4 ${isDark ? 'bg-zinc-700' : 'bg-zinc-300'} hidden sm:inline`} />
                 <span className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'} hidden sm:inline`}>
-                  Design system &amp; identity
+                  {language === 'pl' ? 'System projektowania i tożsamość' : 'Design system & identity'}
                 </span>
               </div>
 
@@ -617,7 +606,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         : 'text-zinc-400 hover:text-white'
                     }`}
                   >
-                    Light
+                    {language === 'pl' ? 'Jasny' : 'Light'}
                   </button>
                   <button
                     onClick={() => setSystemTheme('dark')}
@@ -627,7 +616,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         : 'text-zinc-600 hover:text-zinc-900'
                     }`}
                   >
-                    Dark
+                    {language === 'pl' ? 'Ciemny' : 'Dark'}
                   </button>
                 </div>
 
@@ -639,7 +628,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'
                   }`}
                 >
-                  Prototype ↗
+                  {language === 'pl' ? 'Prototyp ↗' : 'Prototype ↗'}
                 </a>
               </div>
             </header>
@@ -651,7 +640,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
               }`}
             >
               <span className={`text-[11px] font-semibold uppercase tracking-wider mr-2 shrink-0 hidden sm:inline ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                View
+                {language === 'pl' ? 'Widok' : 'View'}
               </span>
               <button
                 onClick={() => setSystemTab('foundations')}
@@ -661,7 +650,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     : (isDark ? 'bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-800' : 'bg-transparent text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60')
                 }`}
               >
-                Foundations (Color, Typography, Spacing)
+                {t.designSystem.foundationsTab}
               </button>
               <button
                 onClick={() => setSystemTab('components')}
@@ -671,7 +660,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     : (isDark ? 'bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-800' : 'bg-transparent text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60')
                 }`}
               >
-                Components (Buttons, Badges, Table, Tiles)
+                {t.designSystem.componentsTab}
               </button>
               <button
                 onClick={() => setSystemTab('identity')}
@@ -681,7 +670,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     : (isDark ? 'bg-transparent text-zinc-400 hover:text-white hover:bg-zinc-800' : 'bg-transparent text-zinc-600 hover:text-zinc-900 hover:bg-zinc-200/60')
                 }`}
               >
-                Identity (The PD Mark)
+                {t.designSystem.identityTab}
               </button>
             </div>
 
@@ -691,10 +680,15 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 {/* Intro subtitle */}
                 <div>
                   <h3 className={`text-base font-semibold ${isDark ? 'text-white' : 'text-[#111111]'}`}>
-                    Foundations
+                    {t.designSystem.foundationsTitle}
                   </h3>
                   <p className={`text-xs mt-1 max-measure text-pretty ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
-                    Foundations and components: the source of truth for the screens. Tokens live in styles/theme.css. Active theme: <strong className={isDark ? 'text-[#a8c7fa]' : 'text-zinc-900'}>{isDark ? 'Dark Mode (g100)' : 'Light Mode (g10)'}</strong>.
+                    {t.designSystem.foundationsDesc}{' '}
+                    <strong className={isDark ? 'text-[#a8c7fa]' : 'text-zinc-900'}>
+                      {isDark
+                        ? (language === 'pl' ? 'Tryb ciemny (g100)' : 'Dark Mode (g100)')
+                        : (language === 'pl' ? 'Tryb jasny (g10)' : 'Light Mode (g10)')}
+                    </strong>.
                   </p>
                 </div>
 
@@ -1448,14 +1442,14 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     </span>
                   </div>
 
-                  {/* Sizes */}
+                  {/* Scale sizes */}
                   <div
                     className={`p-5 rounded-xl shadow-2xs flex flex-col justify-between gap-4 border transition-colors duration-300 ${
                       isDark ? 'bg-[#262626] border-zinc-800 text-white' : 'bg-white border-zinc-200 text-zinc-900'
                     }`}
                   >
                     <span className={`text-xs uppercase tracking-wider font-semibold ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                      Scale Sizes
+                      {language === 'pl' ? 'Skalowanie znaku' : 'Scale Sizes'}
                     </span>
                     <div className="flex items-flex-end gap-3 py-2">
                       {[48, 32, 24, 16].map((sz) => (
@@ -1478,7 +1472,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                       ))}
                     </div>
                     <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                      Maintains optical balance from 16 to 48px
+                      {language === 'pl' ? 'Zachowuje równowagę optyczną od 16 do 48 px' : 'Maintains optical balance from 16 to 48px'}
                     </span>
                   </div>
 
@@ -1489,7 +1483,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     }`}
                   >
                     <span className={`text-xs uppercase tracking-wider font-semibold ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                      On Surfaces
+                      {language === 'pl' ? 'Na różnych tłach' : 'On Surfaces'}
                     </span>
                     <div className="flex items-center gap-2 py-3">
                       <div className="p-2.5 bg-white border border-zinc-200 rounded">
@@ -1518,7 +1512,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                       </div>
                     </div>
                     <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
-                      Tested on light canvas, board &amp; dark surface
+                      {language === 'pl' ? 'Przetestowany na jasnym tle, planszy i ciemnej powierzchni' : 'Tested on light canvas, board & dark surface'}
                     </span>
                   </div>
 
@@ -1529,12 +1523,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     }`}
                   >
                     <span className={`text-xs uppercase tracking-wider font-semibold ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
-                      Brand Principles
+                      {language === 'pl' ? 'Zasady tożsamości' : 'Brand Principles'}
                     </span>
                     <p className={`text-xs leading-relaxed text-pretty ${isDark ? 'text-zinc-300' : 'text-zinc-600'}`}>
-                      Flat corners (0px border-radius) preserve architectural alignment with the 4px table grid. The single accent color (IBM Blue 60) signals interaction without interfering with delinquency severity tones.
+                      {language === 'pl'
+                        ? 'Proste narożniki (promień 0 px) zachowują spójność architektoniczną z siatką tabeli 4 px. Pojedynczy akcent kolorystyczny (IBM Blue 60) sygnalizuje interakcję bez zakłócania barw oznaczających wagę opóźnień.'
+                        : 'Flat corners (0px border-radius) preserve architectural alignment with the 4px table grid. The single accent color (IBM Blue 60) signals interaction without interfering with delinquency severity tones.'}
                     </p>
-                    <span className="text-[11px] font-medium text-emerald-500">WCAG AA Contrast: 4.8:1</span>
+                    <span className="text-[11px] font-medium text-emerald-500">
+                      {language === 'pl' ? 'Kontrast WCAG AA: 4.8:1' : 'WCAG AA Contrast: 4.8:1'}
+                    </span>
                   </div>
                 </div>
               </div>
@@ -1547,9 +1545,9 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       <section id="screens" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
         <div className="site-container flex flex-col gap-10">
           <div>
-            <h2 className="text-lg text-[#111111] font-medium mb-2">Additional Carbon Redesign Screens</h2>
+            <h2 className="text-lg text-[#111111] font-medium mb-2">{t.screens.title}</h2>
             <p className="text-sm text-zinc-600 mb-6 max-measure text-pretty">
-              Every screen built upon IBM Carbon Design System tokens, ensuring predictable contrast, fluid layout hierarchy, and production-grade accessibility.
+              {t.screens.subtitle}
             </p>
           </div>
 
@@ -1566,11 +1564,11 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   loading="lazy"
                 />
                 <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                  Inspect ↗
+                  {t.screens.inspect}
                 </span>
               </button>
-              <p className="mt-2 text-xs text-zinc-700 font-medium">Portfolio Overview</p>
-              <p className="text-xs text-zinc-500">Delinquency distribution across 30, 60, and 90+ day aging buckets.</p>
+              <p className="mt-2 text-xs text-zinc-700 font-medium">{t.screens.overviewTitle}</p>
+              <p className="text-xs text-zinc-500">{t.screens.overviewDesc}</p>
             </div>
 
             <div>
@@ -1585,11 +1583,11 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                   loading="lazy"
                 />
                 <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                  Inspect ↗
+                  {t.screens.inspect}
                 </span>
               </button>
-              <p className="mt-2 text-xs text-zinc-700 font-medium">Log Collections Action Drawer</p>
-              <p className="text-xs text-zinc-500">Rebuilt after KLM measurement: visible segmented controls cut interaction time to 11.96 s.</p>
+              <p className="mt-2 text-xs text-zinc-700 font-medium">{t.screens.drawerTitle}</p>
+              <p className="text-xs text-zinc-500">{t.screens.drawerDesc}</p>
             </div>
           </div>
 
@@ -1605,11 +1603,11 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 loading="lazy"
               />
               <span className="absolute bottom-2 right-2 text-xs bg-black/70 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity">
-                Inspect ↗
+                {t.screens.inspect}
               </span>
             </button>
-            <p className="mt-2 text-xs text-zinc-700 font-medium">Edge States and Form Recovery</p>
-            <p className="text-xs text-zinc-500">Contextual zero states naming the active filter, skeleton loaders with matching column counts, and actionable error notices.</p>
+            <p className="mt-2 text-xs text-zinc-700 font-medium">{t.screens.edgeTitle}</p>
+            <p className="text-xs text-zinc-500">{t.screens.edgeDesc}</p>
           </div>
 
           {/* Sign In Flow & Dual Theme Gateway */}
@@ -1617,13 +1615,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
               <div>
                 <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                  Access &amp; Security · Screen S0
+                  {t.screens.s0Tag}
                 </p>
                 <h3 className="text-xl font-medium text-[#111111]">
-                  Authentication Gateway &amp; Theme Parity
+                  {t.screens.s0Title}
                 </h3>
                 <p className="text-sm text-zinc-600 mt-1 max-measure text-pretty">
-                  Designed during the IBM Carbon port to establish enterprise security posture, single-sign-on (SSO) federation, and direct session recovery for loan servicing analysts.
+                  {t.screens.s0Desc}
                 </p>
               </div>
 
@@ -1637,7 +1635,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                       : 'text-zinc-600 hover:text-[#111111]'
                   }`}
                 >
-                  Light Theme
+                  {t.screens.lightBtn}
                 </button>
                 <button
                   onClick={() => setSignInTheme('dark')}
@@ -1647,7 +1645,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                       : 'text-zinc-600 hover:text-[#111111]'
                   }`}
                 >
-                  Dark Theme
+                  {t.screens.darkBtn}
                 </button>
               </div>
             </div>
@@ -1672,19 +1670,21 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     loading="lazy"
                   />
                   <span className="absolute bottom-2 right-2 text-xs bg-black/75 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
-                    Inspect high-res ({signInTheme}) ↗
+                    {language === 'pl'
+                      ? `Podgląd w wysokiej rozdzielczości (${signInTheme === 'light' ? 'jasny' : 'ciemny'}) ↗`
+                      : `Inspect high-res (${signInTheme}) ↗`}
                   </span>
                 </button>
               </div>
 
               <div className="md:col-span-4 flex flex-col gap-3.5 text-xs text-zinc-600 leading-relaxed">
                 <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200/80">
-                  <span className="font-semibold text-zinc-900 block mb-1">Theme Token Synchronization</span>
-                  Strict WCAG AA contrast (&gt;= 4.5:1) verified across IBM Carbon v11 light (`g10`) and dark (`g100`) palettes. Text and input boundaries maintain identical optical weight.
+                  <span className="font-semibold text-zinc-900 block mb-1">{t.screens.note1Title}</span>
+                  {t.screens.note1Desc}
                 </div>
                 <div className="p-4 rounded-xl bg-zinc-50 border border-zinc-200/80">
-                  <span className="font-semibold text-zinc-900 block mb-1">Zero-Friction Workflow Entry</span>
-                  Eliminates decorative splash sequences or modal gates. Authenticated risk officers transition seamlessly into their active delinquency queues with preserved filters.
+                  <span className="font-semibold text-zinc-900 block mb-1">{t.screens.note2Title}</span>
+                  {t.screens.note2Desc}
                 </div>
               </div>
             </div>
@@ -1694,13 +1694,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
           <div className="border border-zinc-200 rounded-2xl p-6 md:p-8 bg-zinc-50 shadow-2xs mt-8">
             <div className="mb-6">
               <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-1">
-                Risk Manager Workstation · Dual-Theme Deployment
+                {t.screens.workstationTag}
               </p>
               <h3 className="text-xl font-medium text-[#111111]">
-                Simultaneous Dark &amp; Light Production Environment
+                {t.screens.workstationTitle}
               </h3>
               <p className="text-sm text-zinc-600 mt-1 max-measure text-pretty">
-                Perspective workstation render showing the risk manager team portfolio view ("Where the team stands") deployed across workstations in both Carbon v11 light and dark themes simultaneously.
+                {t.screens.workstationDesc}
               </p>
             </div>
 
@@ -1718,7 +1718,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                 decoding="async"
               />
               <span className="absolute bottom-3 right-3 text-xs bg-black/75 text-white px-3 py-1.5 rounded-md opacity-0 group-hover:opacity-100 transition-opacity backdrop-blur-xs">
-                Inspect 6K render ↗
+                {t.screens.inspect6k}
               </span>
             </button>
           </div>
@@ -1728,14 +1728,10 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       {/* Methodological Limits */}
       <section id="limits" className="py-12 md:py-16 border-t border-zinc-100 bg-zinc-50/70 rounded-2xl site-container scroll-mt-20 px-6 md:px-10">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">Stated Limits</h2>
+          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.limits.title}</h2>
           <div className="md:col-span-9 flex flex-col gap-3 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
-            <p>
-              No live user testing was conducted. That was a stated methodological choice: the KLM model assumes error-free expert execution at 1440×900 resolution.
-            </p>
-            <p>
-              The 65% total speedup measures expert motor and cognitive operator efficiency, not novice learning curves. The audit and numbers stand on verified operator counts published in the repository.
-            </p>
+            <p>{t.limits.p1}</p>
+            <p>{t.limits.p2}</p>
           </div>
         </div>
       </section>
@@ -1743,7 +1739,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       {/* Next Project Footer */}
       <section className="py-14 border-t border-zinc-100 mt-12">
         <div className="site-container flex justify-between items-center">
-          <span className="text-sm text-zinc-600">Next Study</span>
+          <span className="text-sm text-zinc-600">{t.nextStudy}</span>
           <button
             onClick={() => {
               navigate('/work/krakow-touristification')
@@ -1751,7 +1747,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             }}
             className="text-lg md:text-xl font-medium text-[#111111] hover:text-zinc-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
           >
-            Kraków Touristification →
+            {t.nextStudyTitle}
           </button>
         </div>
       </section>

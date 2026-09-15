@@ -4,6 +4,8 @@ import { AnimatedTitle } from '../components/AnimatedTitle'
 import { LightboxModal, LightboxImage } from '../components/LightboxModal'
 import { GeometricFigure, FigureType } from '../components/GeometricFigures'
 import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
+import { useLanguage } from '../context/LanguageContext'
+import { homeContent } from '../i18n'
 
 interface HomePageProps {
   navigate: (path: string) => void
@@ -21,11 +23,10 @@ const explorationImages: LightboxImage[] = [
 
 export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
+  const { language } = useLanguage()
+  const t = homeContent[language]
 
-  const heroSegments = [
-    { text: 'Junior UX Researcher and Product Designer ', color: '#111111' },
-    { text: 'with formal training in visual design and social research.', color: '#52525b' },
-  ]
+  const capabilityTypes: FigureType[] = ['research', 'design', 'systems', 'a11y']
 
   return (
     <main id="main-content">
@@ -35,12 +36,12 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           <div className="md:col-span-7 flex flex-col justify-center gap-5">
             <div className="flex flex-col gap-2">
               <span className="text-xs uppercase tracking-wider font-semibold text-zinc-500">
-                Grzegorz Seweryn · UX Researcher & Product Designer
+                {t.heroPrefix}
               </span>
               <AnimatedTitle
-                coloredSegments={heroSegments}
+                coloredSegments={t.heroSegments}
                 className="text-2xl leading-[1.14] tracking-[-0.03em] font-normal"
-                srPrefix="Grzegorz Seweryn — "
+                srPrefix={language === 'pl' ? 'Grzegorz Seweryn. ' : 'Grzegorz Seweryn — '}
               />
             </div>
             <motion.div
@@ -49,9 +50,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               transition={{ duration: 0.45, delay: 0.2 }}
             >
               <p className="text-md leading-relaxed text-zinc-600 max-measure text-pretty">
-                BA in Graphic Design and UX, MA in Sociology and Data Analysis from Jagiellonian University.
-                I combine empirical research methods with interface design to help product teams make
-                decisions based on evidence.
+                {t.heroBio}
               </p>
             </motion.div>
           </div>
@@ -65,7 +64,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             <div className="w-full max-w-[420px] md:max-w-none aspect-square relative overflow-hidden rounded-2xl bg-zinc-950 border border-zinc-200/80 shadow-md">
               <img
                 src="/herozdjecie.webp"
-                alt="Grzegorz Seweryn, UX Researcher and Product Designer"
+                alt={t.heroImageAlt}
                 width={1254}
                 height={1254}
                 className="w-full h-full object-cover"
@@ -78,7 +77,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       </section>
 
       {/* Featured Interface Showcase Banner */}
-      {/* Hero Showcase Teaser */}
       <section className="py-8 md:py-12">
         <div className="site-container">
           <motion.div
@@ -95,7 +93,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             <div className="aspect-[16/10] md:aspect-[3/2] w-full overflow-hidden bg-zinc-100">
               <img
                 src="/work/portfolio-desk/mockup2.webp"
-                alt="Portfolio Desk: Redesigned loan servicing interface shown on laptop mockup"
+                alt={t.showcase.imageAlt}
                 width={2500}
                 height={1667}
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
@@ -105,10 +103,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             </div>
             <div className="px-4 py-3 bg-white/95 border-t border-zinc-200/70 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
               <p className="text-xs text-zinc-600 font-medium text-pretty">
-                Portfolio Desk: Self-initiated audit of 18 findings and redesign in IBM Carbon.
+                {t.showcase.caption}
               </p>
               <span className="text-xs font-medium text-[#111111] group-hover:underline underline-offset-2 shrink-0">
-                Read case study →
+                {t.showcase.readStudy}
               </span>
             </div>
           </motion.div>
@@ -119,7 +117,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       <section className="py-14 md:py-20 border-t border-zinc-100">
         <div className="site-container grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
           <h2 className="md:col-span-3 md:sticky md:self-start md:top-24 text-lg font-medium tracking-tight text-[#111111]">
-            Perspective
+            {t.perspective.title}
           </h2>
           <motion.div
             className="md:col-span-9"
@@ -130,14 +128,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           >
             <div className="space-y-4 max-measure">
               <p className="text-md leading-relaxed text-zinc-700 text-pretty">
-                My education combined two areas that usually develop separately. A BA in Graphic Design gave me
-                the tools to construct interfaces, understand typography, and build component systems. An MA in Sociology
-                at Jagiellonian University taught me empirical research methods, questionnaire construction, in-depth
-                interviews, and statistical data analysis.
+                {t.perspective.p1}
               </p>
               <p className="text-md leading-relaxed text-zinc-700 text-pretty">
-                I apply this dual training directly. In research, I avoid leading questions and state limitations
-                transparently. In design, I measure whether a layout actually improves the task before calling it a success.
+                {t.perspective.p2}
               </p>
               <button
                 onClick={() => {
@@ -146,7 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 }}
                 className="inline-block mt-2 text-sm font-medium underline underline-offset-4 text-zinc-700 hover:text-[#111111] transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded py-1"
               >
-                More about my background and approach →
+                {t.perspective.moreLink}
               </button>
             </div>
           </motion.div>
@@ -157,35 +151,10 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
       <section className="py-14 md:py-20 border-t border-zinc-100">
         <div className="site-container">
           <h2 className="text-lg font-medium tracking-tight text-[#111111] mb-6 md:mb-8 text-balance">
-            Core Capabilities
+            {t.capabilities.title}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            {[
-              {
-                type: 'research' as FigureType,
-                title: 'UX Research',
-                subtitle: 'Frame questions, gather data',
-                desc: 'Survey instrument design, in-depth interviews (IDI), participant screening, and qualitative synthesis.',
-              },
-              {
-                type: 'design' as FigureType,
-                title: 'UX & UI Design',
-                subtitle: 'Structure and interaction',
-                desc: 'Information architecture, wireframing, high-fidelity prototypes in Figma, and task flow optimization.',
-              },
-              {
-                type: 'systems' as FigureType,
-                title: 'Design Systems',
-                subtitle: 'Scalable, consistent UI',
-                desc: 'Building interfaces using established component libraries, token systems, and standards such as IBM Carbon.',
-              },
-              {
-                type: 'a11y' as FigureType,
-                title: 'Accessibility (a11y)',
-                subtitle: 'Inclusive and readable',
-                desc: 'WCAG 2.2 AA compliance, keyboard navigation, color contrast ratios, and semantic HTML structure.',
-              },
-            ].map((service, index) => (
+            {t.capabilities.items.map((service, index) => (
               <motion.div
                 key={service.title}
                 className="capability-card flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 md:p-7 bg-white hover:border-zinc-300 transition-all duration-300 shadow-2xs group hover:shadow-xs min-h-[450px]"
@@ -196,7 +165,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               >
                 <div className="flex flex-col">
                   <div className="w-full h-52 mb-5 relative flex items-center justify-center bg-transparent">
-                    <GeometricFigure type={service.type} />
+                    <GeometricFigure type={capabilityTypes[index]} />
                   </div>
                   <p className="text-lg font-medium text-[#111111] text-balance">{service.title}</p>
                   <p className="text-sm font-medium text-zinc-700 mt-1 mb-3 text-balance">{service.subtitle}</p>
@@ -213,12 +182,11 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         <div className="site-container">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-4 mb-8">
             <h2 className="md:col-span-3 md:sticky md:self-start md:top-24 text-lg font-medium tracking-tight text-[#111111]">
-              Selected Studies
+              {t.selectedStudies.title}
             </h2>
             <div className="md:col-span-9 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
               <p className="text-sm text-zinc-600 max-measure text-pretty">
-                Two comprehensive case studies across financial interface design, cognitive
-                modelling, and urban mixed-methods research.
+                {t.selectedStudies.desc}
               </p>
               <button
                 onClick={() => {
@@ -227,7 +195,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 }}
                 className="text-sm font-medium underline underline-offset-4 text-zinc-700 hover:text-[#111111] transition-colors cursor-pointer shrink-0 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
               >
-                View all research →
+                {t.selectedStudies.viewAll}
               </button>
             </div>
           </div>
@@ -244,7 +212,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               <div className="aspect-[16/10] bg-zinc-100 overflow-hidden rounded-lg relative mb-3 border border-zinc-200">
                 <img
                   src="/work/portfolio-desk/mockup2.webp"
-                  alt="Portfolio Desk Interface"
+                  alt={t.selectedStudies.portfolioDesk.title}
                   width={2500}
                   height={1667}
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
@@ -252,8 +220,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                   decoding="async"
                 />
               </div>
-              <p className="text-sm font-medium text-[#111111]">Portfolio Desk</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">Self-initiated loan servicing audit and KLM redesign (65% task time cut)</p>
+              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</p>
+              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.portfolioDesk.desc}</p>
             </button>
 
             {/* Kraków Touristification Card */}
@@ -267,8 +235,8 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-lg relative mb-3 border border-zinc-200 flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
                 <DistrictPhasesThumbnail />
               </div>
-              <p className="text-sm font-medium text-[#111111]">Kraków Touristification</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">Sole-authored mixed methods study (446 survey respondents, 10 IDIs)</p>
+              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</p>
+              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.touristification.desc}</p>
             </button>
 
             {/* Explorations 2x2 Grid */}
@@ -290,13 +258,12 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                   </button>
                 ))}
               </div>
-              <p className="text-sm font-medium text-[#111111]">Interface States and Artefacts</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">Carbon design system, drawers, and dark mode</p>
+              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.artefacts.title}</p>
+              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.artefacts.desc}</p>
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Lightbox Modal */}
       <LightboxModal

@@ -4,6 +4,8 @@ import { Header } from './components/Header'
 import { Footer } from './components/Footer'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { HomePage } from './pages/HomePage'
+import { LanguageProvider, useLanguage } from './context/LanguageContext'
+import { commonContent } from './i18n'
 
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })))
 const WorkPage = lazy(() => import('./pages/WorkPage').then(m => ({ default: m.WorkPage })))
@@ -18,7 +20,7 @@ const RouteSkeleton = () => (
   </div>
 )
 
-export default function App() {
+function AppContent() {
   const getPath = () => {
     const hash = window.location.hash.slice(1)
     if (hash && hash.startsWith('/')) {
@@ -28,6 +30,8 @@ export default function App() {
   }
 
   const [currentPath, setCurrentPath] = useState(getPath())
+  const { language } = useLanguage()
+  const common = commonContent[language]
 
   useEffect(() => {
     const handlePopState = () => {
@@ -41,44 +45,19 @@ export default function App() {
     }
   }, [])
 
-  // Dynamic SEO metadata updates per route
+  // Dynamic SEO metadata updates per route and language
   useEffect(() => {
-    interface PageMeta {
-      title: string
-      description: string
-    }
-
-    const metaMap: Record<string, PageMeta> = {
-      '/': {
-        title: 'Grzegorz Seweryn — UX Researcher & Product Designer',
-        description:
-          'Portfolio of Grzegorz Seweryn, Junior UX Researcher and Product Designer based in Kraków. Mixed-methods empirical research, interface design, and KLM-GOMS modeling.',
-      },
-      '/about': {
-        title: 'About — Grzegorz Seweryn | UX Researcher',
-        description:
-          'About Grzegorz Seweryn — Junior UX Researcher and Product Designer based in Kraków. Background in sociology, survey design, and interface craft.',
-      },
-      '/work': {
-        title: 'Case Studies & Research — Grzegorz Seweryn',
-        description:
-          'Selected UX research and product design case studies by Grzegorz Seweryn: Portfolio Desk and Kraków Touristification study.',
-      },
-      '/work/portfolio-desk': {
-        title: 'Portfolio Desk Case Study — Grzegorz Seweryn',
-        description:
-          'Redesigning a loan servicing interface with KLM-GOMS operator modelling measuring a 65% reduction in analyst task execution time.',
-      },
-      '/work/krakow-touristification': {
-        title: 'Kraków Touristification Study — Grzegorz Seweryn',
-        description:
-          'City-wide convergent mixed-methods study (446 survey respondents, 10 in-depth interviews) investigating tourism growth in central Kraków.',
-      },
+    const metaMap: Record<string, { title: string; description: string }> = {
+      '/': common.meta.home,
+      '/about': common.meta.about,
+      '/work': common.meta.work,
+      '/work/portfolio-desk': common.meta.portfolioDesk,
+      '/work/krakow-touristification': common.meta.touristification,
     }
 
     const meta = metaMap[currentPath] || {
-      title: 'Page Not Found — Grzegorz Seweryn',
-      description: 'The requested page does not exist or has moved.',
+      title: language === 'pl' ? 'Nie znaleziono strony. Grzegorz Seweryn' : 'Page Not Found — Grzegorz Seweryn',
+      description: language === 'pl' ? 'Żądana strona nie istnieje lub została przeniesiona.' : 'The requested page does not exist or has moved.',
     }
 
     document.title = meta.title
@@ -97,7 +76,7 @@ export default function App() {
     if (ogDesc) {
       ogDesc.setAttribute('content', meta.description)
     }
-  }, [currentPath])
+  }, [currentPath, language, common])
 
   const navigate = (path: string) => {
     if (window.location.protocol === 'file:' || window.location.hash.startsWith('#/')) {
@@ -123,9 +102,9 @@ export default function App() {
       default:
         return (
           <div className="site-container py-20 min-h-[50vh] flex flex-col items-start justify-center gap-4">
-            <h1 className="text-3xl font-medium tracking-tight text-[#111111]">Page not found</h1>
+            <h1 className="text-3xl font-medium tracking-tight text-[#111111]">{common.notFound.title}</h1>
             <p className="text-sm text-zinc-600 max-measure text-pretty">
-              The requested page does not exist or has moved. Return to the overview or browse selected case studies.
+              {common.notFound.desc}
             </p>
             <button
               onClick={() => {
@@ -134,7 +113,7 @@ export default function App() {
               }}
               className="mt-2 px-4 py-2 text-xs font-semibold bg-zinc-900 text-white hover:bg-zinc-800 rounded-xl transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
-              Back to overview →
+              {common.notFound.backHome}
             </button>
           </div>
         )
@@ -153,5 +132,13 @@ export default function App() {
         <Footer />
       </div>
     </MotionConfig>
+  )
+}
+
+export default function App() {
+  return (
+    <LanguageProvider>
+      <AppContent />
+    </LanguageProvider>
   )
 }
