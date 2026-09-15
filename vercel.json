@@ -62,7 +62,19 @@
   ],
   "rewrites": [
     {
-      "source": "/(about|work|work/portfolio-desk|work/krakow-touristification)",
+      "source": "/about",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/portfolio-desk",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/work/krakow-touristification",
       "destination": "/index.html"
     }
   ]
