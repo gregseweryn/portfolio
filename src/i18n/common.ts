@@ -33,7 +33,7 @@ export const commonContent = {
       home: {
         title: 'Grzegorz Seweryn — UX Researcher & Product Designer',
         description:
-          'Portfolio of Grzegorz Seweryn, Junior UX Researcher and Product Designer based in Kraków. Mixed-methods empirical research, interface design, and KLM-GOMS modeling.',
+          'Portfolio of Grzegorz Seweryn, Junior UX Researcher & Product Designer in Kraków. Mixed-methods empirical research, interface design, and KLM-GOMS modeling.',
       },
       about: {
         title: 'About — Grzegorz Seweryn | UX Researcher',
@@ -91,7 +91,7 @@ export const commonContent = {
       home: {
         title: 'Grzegorz Seweryn. UX Researcher i Product Designer',
         description:
-          'Portfolio Grzegorza Seweryna, Junior UX Researchera i Product Designera z Krakowa. Empiryczne badania metodami mieszanymi, projektowanie interfejsów i modelowanie KLM-GOMS.',
+          'Portfolio Grzegorza Seweryna, Junior UX Researchera z Krakowa. Empiryczne badania metodami mieszanymi, projektowanie interfejsów oraz modelowanie KLM-GOMS.',
       },
       about: {
         title: 'O mnie. Grzegorz Seweryn | UX Researcher',

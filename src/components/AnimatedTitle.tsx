@@ -40,13 +40,13 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
     const fullText = coloredSegments.map((s) => s.text).join('')
 
     return (
-      <div className="relative">
-        {/* Screen reader plain text alternative */}
+      <h1 className={`${className} relative text-balance`}>
+        {/* Screen reader plain text alternative for accessibility and crawlers */}
         <span className="sr-only">{srPrefix ? `${srPrefix} ` : ''}{fullText}</span>
 
         {/* Visual animated heading with word-level wrapping containers */}
-        <motion.h1
-          className={`${className} text-balance`}
+        <motion.span
+          className="inline"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
@@ -78,8 +78,8 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
               </span>
             )
           })}
-        </motion.h1>
-      </div>
+        </motion.span>
+      </h1>
     )
   }
 

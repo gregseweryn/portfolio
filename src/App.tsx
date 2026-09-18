@@ -62,6 +62,7 @@ function AppContent() {
     }
 
     document.title = meta.title
+    document.documentElement.lang = language
 
     const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
@@ -76,6 +77,16 @@ function AppContent() {
     const ogDesc = document.querySelector('meta[property="og:description"]')
     if (ogDesc) {
       ogDesc.setAttribute('content', meta.description)
+    }
+
+    const twitterTitle = document.querySelector('meta[name="twitter:title"]')
+    if (twitterTitle) {
+      twitterTitle.setAttribute('content', meta.title)
+    }
+
+    const twitterDesc = document.querySelector('meta[name="twitter:description"]')
+    if (twitterDesc) {
+      twitterDesc.setAttribute('content', meta.description)
     }
   }, [currentPath, language, common])
 

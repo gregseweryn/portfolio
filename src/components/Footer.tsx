@@ -5,6 +5,9 @@ import { commonContent } from '../i18n'
 export const Footer: React.FC = () => {
   const { language } = useLanguage()
   const t = commonContent[language].footer
+  const emailUser = 'grzegorz.seweryn99'
+  const emailDomain = 'gmail.com'
+  const emailAddress = `${emailUser}@${emailDomain}`
 
   return (
     <footer id="contact" className="bg-zinc-50 pt-14 md:pt-20 pb-12 border-t border-zinc-200/80">
@@ -21,13 +24,15 @@ export const Footer: React.FC = () => {
           </p>
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <a
-              href="mailto:grzegorz.seweryn99@gmail.com"
+              href={`mailto:${emailAddress}`}
               className="inline-block text-lg md:text-xl font-medium text-zinc-800 hover:text-[#111111] underline underline-offset-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
             >
-              grzegorz.seweryn99@gmail.com
+              <span>{emailUser}</span>
+              <span>&#64;</span>
+              <span>{emailDomain}</span>
             </a>
             <a
-              href="mailto:grzegorz.seweryn99@gmail.com?subject=Pro%C5%9Bba%20o%20CV%20-%20Grzegorz%20Seweryn"
+              href={`mailto:${emailAddress}?subject=Pro%C5%9Bba%20o%20CV%20-%20Grzegorz%20Seweryn`}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#111111] text-white text-xs font-medium hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               {t.requestCv}
