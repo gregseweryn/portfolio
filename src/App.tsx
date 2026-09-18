@@ -6,6 +6,7 @@ import { ErrorBoundary } from './components/ErrorBoundary'
 import { HomePage } from './pages/HomePage'
 import { LanguageProvider, useLanguage } from './context/LanguageContext'
 import { commonContent } from './i18n'
+import { Analytics } from '@vercel/analytics/react'
 
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })))
 const WorkPage = lazy(() => import('./pages/WorkPage').then(m => ({ default: m.WorkPage })))
@@ -139,6 +140,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <AppContent />
+      <Analytics />
     </LanguageProvider>
   )
 }
