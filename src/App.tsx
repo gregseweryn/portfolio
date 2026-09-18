@@ -140,7 +140,7 @@ export default function App() {
   return (
     <LanguageProvider>
       <AppContent />
-      <Analytics />
+      <Analytics scriptSrc="/va/script.js" endpoint="/va" />
     </LanguageProvider>
   )
 }

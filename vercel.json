@@ -47,7 +47,11 @@
   ],
   "rewrites": [
     {
-      "source": "/((?!_vercel|.*\\..*).*)",
+      "source": "/va/:match*",
+      "destination": "/_vercel/insights/:match*"
+    },
+    {
+      "source": "/((?!_vercel|va|.*\\..*).*)",
       "destination": "/index.html"
     }
   ]
