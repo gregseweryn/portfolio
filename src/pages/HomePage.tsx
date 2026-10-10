@@ -45,9 +45,9 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               />
             </div>
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.2 }}
+              transition={{ duration: 0.4, delay: 0.05 }}
             >
               <p className="text-md leading-relaxed text-zinc-600 max-measure text-pretty">
                 {t.heroBio}
@@ -57,9 +57,9 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
 
           <motion.div
             className="md:col-span-5 flex justify-center md:justify-end w-full"
-            initial={{ opacity: 0, scale: 0.96 }}
+            initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.45, delay: 0.25 }}
+            transition={{ duration: 0.4, delay: 0.08 }}
           >
             <div className="w-full max-w-[420px] md:max-w-none aspect-square relative overflow-hidden rounded-2xl bg-zinc-950 border border-zinc-200/80 shadow-md">
               <img
