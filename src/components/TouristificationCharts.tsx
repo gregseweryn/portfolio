@@ -1921,12 +1921,13 @@ export const DistrictPhasesThumbnail: React.FC = () => {
 
   return (
     <svg
-      viewBox="0 0 1000 470"
+      viewBox="0 0 1000 625"
       className="w-full h-full object-cover select-none"
       role="img"
       aria-label="Three districts, one process diagram"
     >
-      <rect width="1000" height="470" fill="#f4f4f5" />
+      <rect width="1000" height="625" fill="#f4f4f5" />
+      <g transform="translate(0, 77)">
       <text x="110" y="68" className="font-sans font-bold text-[28px] tracking-tight fill-[#111111]">
         {language === 'pl' ? 'Trzy dzielnice, jeden proces' : 'Three districts, one process'}
       </text>
@@ -2034,6 +2035,7 @@ export const DistrictPhasesThumbnail: React.FC = () => {
       >
         {language === 'pl' ? 'Gwałtowna, najem i życie nocne · n = 146 · 3.86' : 'Rapid, rental- and nightlife-driven · n = 146 · 3.86'}
       </text>
+    </g>
     </g>
 
     <defs>

@@ -462,25 +462,31 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
           </div>
 
           {/* 3 Metric Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
-            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card1Val}</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card1Title}</p>
-              <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8 items-stretch">
+            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs flex flex-col justify-between h-full">
+              <div>
+                <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card1Val}</p>
+                <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card1Title}</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-3 leading-relaxed text-pretty">
                 {t.klm.card1Desc}
               </p>
             </div>
-            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card2Val}</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card2Title}</p>
-              <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
+            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs flex flex-col justify-between h-full">
+              <div>
+                <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card2Val}</p>
+                <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card2Title}</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-3 leading-relaxed text-pretty">
                 {t.klm.card2Desc}
               </p>
             </div>
-            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs">
-              <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card3Val}</p>
-              <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card3Title}</p>
-              <p className="text-xs text-zinc-600 mt-2 leading-relaxed text-pretty">
+            <div className="border border-zinc-200 rounded-xl p-6 bg-white shadow-2xs flex flex-col justify-between h-full">
+              <div>
+                <p className="text-2xl font-medium text-[#111111] tabular-nums">{t.klm.card3Val}</p>
+                <p className="text-sm font-medium text-zinc-800 mt-2 text-balance">{t.klm.card3Title}</p>
+              </div>
+              <p className="text-xs text-zinc-600 mt-3 leading-relaxed text-pretty">
                 {t.klm.card3Desc}
               </p>
             </div>
@@ -921,7 +927,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     Spacing: 4px grid scale
                   </h4>
                   <div
-                    className={`border rounded-xl p-6 shadow-2xs flex gap-6 items-flex-end flex-wrap transition-colors duration-300 ${
+                    className={`border rounded-xl p-6 shadow-2xs flex gap-6 items-end flex-wrap transition-colors duration-300 ${
                       isDark ? 'bg-[#262626] border-zinc-800' : 'bg-white border-zinc-200'
                     }`}
                   >
@@ -934,11 +940,13 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                       { name: '8', px: 32, token: '--space-8' },
                       { name: '16', px: 64, token: '--space-16' },
                     ].map((s) => (
-                      <div key={s.token} className="flex flex-col items-center gap-2">
-                        <div
-                          className="bg-[#0f62fe] rounded-none shadow-2xs"
-                          style={{ width: s.px, height: s.px }}
-                        />
+                      <div key={s.token} className="flex flex-col items-center justify-end gap-2">
+                        <div className="h-16 flex items-end justify-center">
+                          <div
+                            className="bg-[#0f62fe] rounded-none shadow-2xs"
+                            style={{ width: s.px, height: s.px }}
+                          />
+                        </div>
                         <code className={`text-xs font-mono font-semibold ${isDark ? 'text-zinc-300' : 'text-zinc-700'}`}>
                           {s.name}
                         </code>
@@ -1451,19 +1459,21 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className={`text-xs uppercase tracking-wider font-semibold ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
                       {language === 'pl' ? 'Skalowanie znaku' : 'Scale Sizes'}
                     </span>
-                    <div className="flex items-flex-end gap-3 py-2">
+                    <div className="flex items-end gap-3 py-2">
                       {[48, 32, 24, 16].map((sz) => (
-                        <div key={sz} className="flex flex-col items-center gap-1.5">
-                          <div
-                            style={{
-                              width: sz,
-                              height: sz,
-                              fontSize: sz * 0.42,
-                              letterSpacing: sz < 24 ? '-0.04em' : '-0.02em',
-                            }}
-                            className="inline-flex items-center justify-center bg-[#0f62fe] text-white font-semibold rounded-none shrink-0 select-none leading-none"
-                          >
-                            PD
+                        <div key={sz} className="flex flex-col items-center justify-end gap-1.5">
+                          <div className="h-12 flex items-end justify-center">
+                            <div
+                              style={{
+                                width: sz,
+                                height: sz,
+                                fontSize: sz * 0.42,
+                                letterSpacing: sz < 24 ? '-0.04em' : '-0.02em',
+                              }}
+                              className="inline-flex items-center justify-center bg-[#0f62fe] text-white font-semibold rounded-none shrink-0 select-none leading-none"
+                            >
+                              PD
+                            </div>
                           </div>
                           <span className={`text-[10px] font-mono tabular-nums ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>
                             {sz}px
@@ -1726,12 +1736,16 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
       </section>
 
       {/* Methodological Limits */}
-      <section id="limits" className="py-12 md:py-16 border-t border-zinc-100 bg-zinc-50/70 rounded-2xl site-container scroll-mt-20 px-6 md:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.limits.title}</h2>
-          <div className="md:col-span-9 flex flex-col gap-3 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
-            <p>{t.limits.p1}</p>
-            <p>{t.limits.p2}</p>
+      <section id="limits" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
+        <div className="site-container">
+          <div className="bg-zinc-50/70 border border-zinc-200/80 rounded-2xl p-6 md:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.limits.title}</h2>
+              <div className="md:col-span-9 flex flex-col gap-3 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
+                <p>{t.limits.p1}</p>
+                <p>{t.limits.p2}</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

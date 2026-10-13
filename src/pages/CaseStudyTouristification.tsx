@@ -181,7 +181,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.costs.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.costs.desc}
             </p>
           </div>
@@ -206,7 +206,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
               </div>
             </div>
 
-            <div className="md:col-span-8 flex flex-col justify-center gap-4 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
+            <div className="md:col-span-8 flex flex-col justify-center gap-4 text-md text-zinc-700 leading-relaxed max-measure text-pretty">
               <p>{t.costs.p1}</p>
               <p>{t.costs.p2}</p>
             </div>
@@ -221,10 +221,10 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.registers.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.registers.p1}
             </p>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty mt-3">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty mt-3">
               {t.registers.p2}
             </p>
           </div>
@@ -242,10 +242,10 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.models.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.models.p1}
             </p>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty mt-3">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty mt-3">
               {t.models.p2}
             </p>
           </div>
@@ -263,10 +263,10 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.typology.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.typology.p1}
             </p>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty mt-3">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty mt-3">
               {t.typology.p2}
             </p>
           </div>
@@ -284,10 +284,10 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.qualitative.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.qualitative.p1}
             </p>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty mt-3">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty mt-3">
               {t.qualitative.p2}
             </p>
           </div>
@@ -376,10 +376,10 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             <h2 className="text-xl md:text-2xl text-[#111111] font-medium tracking-tight mb-3">
               {t.synthesis.title}
             </h2>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty">
               {t.synthesis.p1}
             </p>
-            <p className="text-sm md:text-base text-zinc-700 leading-relaxed text-pretty mt-3">
+            <p className="text-md text-zinc-700 leading-relaxed text-pretty mt-3">
               {t.synthesis.p2}
             </p>
           </div>
@@ -391,22 +391,23 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
       </section>
 
       {/* Section 8: Methodological Limits */}
-      <section
-        id="limits"
-        className="py-12 md:py-16 border-t border-zinc-100 bg-zinc-50/70 rounded-2xl site-container scroll-mt-20 px-6 md:px-10"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-          <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.limits.title}</h2>
-          <div className="md:col-span-9 flex flex-col gap-3 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
-            <p>
-              <strong>{t.limits.item1Title}:</strong> {t.limits.item1Desc}
-            </p>
-            <p>
-              <strong>{t.limits.item2Title}:</strong> {t.limits.item2Desc}
-            </p>
-            <p>
-              <strong>{t.limits.item3Title}:</strong> {t.limits.item3Desc}
-            </p>
+      <section id="limits" className="py-12 md:py-16 border-t border-zinc-100 scroll-mt-20">
+        <div className="site-container">
+          <div className="bg-zinc-50/70 border border-zinc-200/80 rounded-2xl p-6 md:p-10">
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
+              <h2 className="md:col-span-3 text-lg text-[#111111] font-medium">{t.limits.title}</h2>
+              <div className="md:col-span-9 flex flex-col gap-3 text-sm text-zinc-700 leading-relaxed max-measure text-pretty">
+                <p>
+                  <strong>{t.limits.item1Title}:</strong> {t.limits.item1Desc}
+                </p>
+                <p>
+                  <strong>{t.limits.item2Title}:</strong> {t.limits.item2Desc}
+                </p>
+                <p>
+                  <strong>{t.limits.item3Title}:</strong> {t.limits.item3Desc}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -422,7 +423,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
             }}
             className="text-lg md:text-xl font-medium text-[#111111] hover:text-zinc-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
           >
-            Portfolio Desk →
+            {t.nextStudyTitle}
           </button>
         </div>
       </section>

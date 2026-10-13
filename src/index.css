@@ -28,11 +28,17 @@ body {
 /* Typography Scale */
 .text-xs { font-size: var(--font-size-xs); line-height: 1.5; }
 .text-sm { font-size: var(--font-size-sm); line-height: 1.55; }
+.text-base { font-size: clamp(16px, 1.3vw, 17px); line-height: 1.6; }
 .text-md { font-size: var(--font-size-md); line-height: 1.65; }
 .text-lg { font-size: var(--font-size-lg); line-height: 1.35; }
 .text-xl { font-size: var(--font-size-xl); line-height: 1.3; }
 .text-2xl { font-size: var(--font-size-2xl); line-height: 1.15; }
 .text-3xl { font-size: var(--font-size-3xl); line-height: 1.1; }
+
+.grid-equal-height {
+  display: grid;
+  grid-auto-rows: 1fr;
+}
 
 /* Typographic Composition: Orphans ('sierotki') & Widow Prevention */
 h1, h2, h3, h4, .text-balance {

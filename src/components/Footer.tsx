@@ -32,7 +32,9 @@ export const Footer: React.FC = () => {
               <span>{emailDomain}</span>
             </a>
             <a
-              href={`mailto:${emailAddress}?subject=Pro%C5%9Bba%20o%20CV%20-%20Grzegorz%20Seweryn`}
+              href={`mailto:${emailAddress}?subject=${encodeURIComponent(
+                language === 'pl' ? 'Prośba o CV - Grzegorz Seweryn' : 'CV Request - Grzegorz Seweryn'
+              )}`}
               className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#111111] text-white text-xs font-medium hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               {t.requestCv}
@@ -40,7 +42,7 @@ export const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 pt-6 border-t border-zinc-200/60">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-baseline gap-6 pt-6 border-t border-zinc-200/60">
           <div className="flex flex-wrap gap-6 items-center">
             <a
               href="https://www.linkedin.com/in/gseweryn/"

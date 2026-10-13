@@ -54,17 +54,16 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
     }
   }, [currentIndex, onClose, handlePrev, handleNext])
 
-  if (currentIndex === null) return null
-
-  const currentImage = images[currentIndex]
+  const currentImage = currentIndex !== null ? images[currentIndex] : null
 
   return (
     <AnimatePresence>
-      <motion.div
-        role="dialog"
-        aria-modal="true"
-        aria-label="Image viewer"
-        className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-8"
+      {currentIndex !== null && currentImage && (
+        <motion.div
+          role="dialog"
+          aria-modal="true"
+          aria-label="Image viewer"
+          className="fixed inset-0 z-[999] flex items-center justify-center p-4 md:p-8"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -147,6 +146,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
           </p>
         </motion.div>
       </motion.div>
+      )}
     </AnimatePresence>
   )
 }

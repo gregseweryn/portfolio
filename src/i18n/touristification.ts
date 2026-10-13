@@ -102,6 +102,7 @@ export const touristificationContent = {
         'Blocks E and F contained heterogeneous items and were analysed as verified subscales (E1-E4 alpha = 0.72, F1-F4 alpha = 0.69).',
     },
     nextStudy: 'Next Case Study',
+    nextStudyTitle: 'Portfolio Desk →',
   },
   pl: {
     title: 'Kto płaci za miasto turystyczne',
@@ -206,5 +207,6 @@ export const touristificationContent = {
         'Bloki pytań E i F zawierały zróżnicowane pozycje i zostały przeanalizowane jako zweryfikowane podskale (E1-E4 alfa = 0.72, F1-F4 alfa = 0.69).',
     },
     nextStudy: 'Kolejne case study',
+    nextStudyTitle: 'Portfolio Desk →',
   },
 }

@@ -18,7 +18,7 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
           <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-2">
             {t.subtitle}
           </p>
-          <h1 className="text-2xl md:text-3xl font-light text-[#111111] leading-[1.16] tracking-tight max-w-3xl text-balance">
+          <h1 className="text-2xl md:text-3xl font-normal text-[#111111] leading-[1.16] tracking-tight max-w-3xl text-balance">
             {t.headline}
           </h1>
         </div>
@@ -60,11 +60,11 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
           <h2 className="md:col-span-3 md:sticky md:self-start md:top-24 text-lg font-medium tracking-tight text-[#111111]">
             {t.principlesTitle}
           </h2>
-          <div className="md:col-span-9 flex flex-col divide-y divide-zinc-200/80 max-measure">
+          <div className="md:col-span-9 flex flex-col divide-y divide-zinc-200/80">
             {t.principles.map((p) => (
               <div key={p.title} className="py-6 first:pt-0 last:pb-0">
                 <p className="text-xl font-medium text-[#111111] mb-2 text-balance">{p.title}</p>
-                <p className="text-sm leading-relaxed text-zinc-700 text-pretty">{p.body}</p>
+                <p className="text-sm leading-relaxed text-zinc-700 text-pretty max-measure">{p.body}</p>
               </div>
             ))}
           </div>

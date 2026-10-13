@@ -50,7 +50,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xl p-1"
+              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
               <div className="aspect-[16/10] bg-[#f8f8f8] overflow-hidden rounded-xl relative mb-4 border border-zinc-200 shadow-sm transition-transform duration-500 group-hover:scale-[1.01]">
                 <img
@@ -76,7 +76,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xl p-1"
+              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
               <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-xl relative mb-4 border border-zinc-200 shadow-sm flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
                 <DistrictPhasesThumbnail />

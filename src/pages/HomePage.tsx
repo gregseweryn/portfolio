@@ -153,23 +153,25 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           <h2 className="text-lg font-medium tracking-tight text-[#111111] mb-6 md:mb-8 text-balance">
             {t.capabilities.title}
           </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 items-stretch">
             {t.capabilities.items.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="capability-card flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 md:p-7 bg-white hover:border-zinc-300 transition-all duration-300 shadow-2xs group hover:shadow-xs min-h-[450px]"
+                className="capability-card flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 bg-white hover:border-zinc-300 transition-all duration-300 shadow-2xs group hover:shadow-xs h-full"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.06 }}
               >
-                <div className="flex flex-col">
-                  <div className="w-full h-52 mb-5 relative flex items-center justify-center bg-transparent">
+                <div className="flex flex-col h-full">
+                  <div className="w-full h-48 mb-5 relative flex items-center justify-center bg-transparent">
                     <GeometricFigure type={capabilityTypes[index]} />
                   </div>
-                  <p className="text-lg font-medium text-[#111111] text-balance">{service.title}</p>
-                  <p className="text-sm font-medium text-zinc-700 mt-1 mb-3 text-balance">{service.subtitle}</p>
-                  <p className="text-xs text-zinc-600 leading-relaxed text-pretty">{service.desc}</p>
+                  <div className="min-h-[3.25rem] flex items-end mb-1">
+                    <p className="text-lg font-medium text-[#111111] text-balance leading-snug">{service.title}</p>
+                  </div>
+                  <p className="text-sm font-medium text-zinc-700 min-h-[2.5rem] mb-2 text-balance leading-snug">{service.subtitle}</p>
+                  <p className="text-xs text-zinc-600 leading-relaxed text-pretty mt-auto">{service.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -200,28 +202,30 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {/* Portfolio Desk Card */}
             <button
               onClick={() => {
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xl p-1"
+              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
-              <div className="aspect-[16/10] bg-zinc-100 overflow-hidden rounded-lg relative mb-3 border border-zinc-200">
-                <img
-                  src="/work/portfolio-desk/mockup2.webp"
-                  alt={t.selectedStudies.portfolioDesk.title}
-                  width={2500}
-                  height={1667}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  loading="lazy"
-                  decoding="async"
-                />
+              <div className="w-full">
+                <div className="aspect-[16/10] bg-zinc-100 overflow-hidden rounded-lg relative mb-3 border border-zinc-200">
+                  <img
+                    src="/work/portfolio-desk/work-list-light.png"
+                    alt={t.selectedStudies.portfolioDesk.title}
+                    width={2500}
+                    height={1667}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</p>
+                <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.portfolioDesk.desc}</p>
               </div>
-              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.portfolioDesk.desc}</p>
             </button>
 
             {/* Kraków Touristification Card */}
@@ -230,36 +234,40 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded-xl p-1"
+              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
-              <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-lg relative mb-3 border border-zinc-200 flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
-                <DistrictPhasesThumbnail />
+              <div className="w-full">
+                <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-lg relative mb-3 border border-zinc-200 flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
+                  <DistrictPhasesThumbnail />
+                </div>
+                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</p>
+                <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.touristification.desc}</p>
               </div>
-              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.touristification.desc}</p>
             </button>
 
             {/* Explorations 2x2 Grid */}
-            <div className="p-1">
-              <div className="aspect-[16/10] overflow-hidden rounded-lg mb-3 grid grid-cols-2 gap-1.5 bg-zinc-100 p-1.5 border border-zinc-200">
-                {explorationImages.slice(0, 4).map((img, idx) => (
-                  <button
-                    key={img.src}
-                    onClick={() => setLightboxIndex(idx)}
-                    className="relative overflow-hidden rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] cursor-pointer group bg-white border border-zinc-200/60"
-                    aria-label={`Open preview of ${img.alt}`}
-                  >
-                    <img
-                      src={img.src}
-                      alt={img.alt}
-                      className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                      loading="lazy"
-                    />
-                  </button>
-                ))}
+            <div className="flex flex-col justify-between h-full rounded-xl">
+              <div className="w-full">
+                <div className="aspect-[16/10] overflow-hidden rounded-lg mb-3 grid grid-cols-2 gap-1.5 bg-zinc-100 p-1.5 border border-zinc-200">
+                  {explorationImages.slice(0, 4).map((img, idx) => (
+                    <button
+                      key={img.src}
+                      onClick={() => setLightboxIndex(idx)}
+                      className="relative overflow-hidden rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] cursor-pointer group bg-white border border-zinc-200/60"
+                      aria-label={`Open preview of ${img.alt}`}
+                    >
+                      <img
+                        src={img.src}
+                        alt={img.alt}
+                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                        loading="lazy"
+                      />
+                    </button>
+                  ))}
+                </div>
+                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.artefacts.title}</p>
+                <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.artefacts.desc}</p>
               </div>
-              <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.artefacts.title}</p>
-              <p className="text-xs text-zinc-600 mt-0.5 text-pretty">{t.selectedStudies.artefacts.desc}</p>
             </div>
           </div>
         </div>

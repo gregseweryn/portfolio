@@ -136,8 +136,8 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
           </div>
 
           {/* Desktop Nav */}
-          <div className="hidden sm:flex items-center gap-7">
-            <nav aria-label="Main navigation" className="flex items-center gap-7 shrink-0">
+          <div className="hidden sm:flex items-center gap-6">
+            <nav aria-label="Main navigation" className="flex items-center gap-6 shrink-0">
               {navLinks.map((link) => {
                 const isActive = currentPath === link.path
                 return (
@@ -202,7 +202,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
                     key={link.path}
                     href={link.path}
                     onClick={(e) => handleLinkClick(e, link.path)}
-                    className={`transition-colors text-sm md:text-md py-1 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded ${
+                    className={`transition-colors text-sm md:text-md py-1.5 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded ${
                       isActive
                         ? 'text-[#111111] font-semibold underline underline-offset-4 decoration-2 decoration-[#111111]'
                         : 'text-zinc-600 hover:text-[#111111]'
