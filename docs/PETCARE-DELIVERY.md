@@ -25,12 +25,12 @@ Updated 28 October 2026. Scope: finish Figma refinement and prototype verificati
 - [x] Tracked diff whitespace check passed.
 
 ## Remaining delivery gates
-- [ ] Review staged file whitelist and content/privacy scope.
-- [ ] Commit and push feature branch; create and attach PR.
-- [ ] Verify deployed preview route, static HTML metadata, assets and rendered page.
+- [x] Reviewed staged whitelist; no new raw research or credentials included. Staged whitespace check passed.
+- [x] Commit 2b9dc7ba578deb4a43f1b5d2c4f69b2c4e0419ba pushed; PR #3 created and attached.
+- [x] Vercel preview deployment D2SvxgxDAhEz1Fqd7SM2S1X9EFWJ succeeded. Browser loaded the case study, 1280px hero and correct runtime canonical/social cover. Preview screenshot saved. Unauthenticated HTTP is protected by Vercel login and therefore does not prove the static HTML response; verify on production.
 - [ ] Publish and verify production URL.
 
 ## Explicit evidence limits
 No participant retest, full WCAG certification, actual200% zoom/text pass, assistive-technology or physical-phone pass. Figma authentication, input, saves and sharing are presets. Website browser checks do not establish accessibility or synchronization of a future product. Some repeated Figma WebGL captures omit unchanged regions; fresh native/player captures differ. Keep that observation separate from actual route verification.
 
-Commit/push/publication have not occurred at this receipt. Update deployment status with exact commit, PR, checks and verified URL when available.
+PR: https://github.com/gregseweryn/portfolio/pull/3. Production publication and anonymous static HTML verification remain pending at this receipt.
