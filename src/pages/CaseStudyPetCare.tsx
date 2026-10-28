@@ -5,6 +5,7 @@ import { petcareContent } from '../i18n/petcare'
 import './petcare.css'
 
 const reportingUrl = 'https://www.figma.com/proto/AIuCtCLcsTiQYPGS9C81sb/PetCare?page-id=158%3A313&node-id=158-494&starting-point-node-id=158%3A494'
+const fileUrl = 'https://www.figma.com/design/AIuCtCLcsTiQYPGS9C81sb/PetCare'
 const sharingUrl = 'https://www.figma.com/proto/AIuCtCLcsTiQYPGS9C81sb/PetCare?page-id=269%3A4528&node-id=269-4529&starting-point-node-id=269%3A4529'
 const sections = ['problem', 'decisions', 'testing', 'sharing', 'visual', 'outcome']
 
@@ -39,7 +40,7 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
         <div><dt>{t.roleLabel}</dt><dd>{t.role}</dd></div>
         <div><dt>{t.toolsLabel}</dt><dd>{t.tools}</dd></div>
       </dl>
-      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
+      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
     </header>
     <div className="site-container pc-layout">
     <nav className="pc-toc" aria-label={language === 'pl' ? 'Sekcje case study PetCare' : 'PetCare case study sections'}>
@@ -82,7 +83,7 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
     <Section id="outcome" title={t.outcomeTitle}>
       <p>{t.outcome}</p><p>{t.reflection}</p><p>{t.next}</p>
       <details className="pc-method"><summary>{t.methodologyTitle}</summary>{t.methodology.map(p => <p key={p}>{p}</p>)}</details>
-      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
+      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
     </Section>
     </div>
     </div>
