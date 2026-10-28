@@ -5,6 +5,7 @@ import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
 import { useLanguage } from '../context/LanguageContext'
 import { workContent } from '../i18n'
 import { petcareContent } from '../i18n/petcare'
+import { Laptop3D, PhonePair3D } from '../components/DeviceMockups'
 
 interface WorkPageProps {
   navigate: (path: string) => void
@@ -53,17 +54,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
               }}
               className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
-              <div className="aspect-[16/10] bg-[#f8f8f8] overflow-hidden rounded-xl relative mb-4 border border-zinc-200 shadow-sm transition-transform duration-500 group-hover:scale-[1.01]">
-                <img
-                  src="/work/portfolio-desk/mockup3.webp"
-                  alt="Portfolio Desk: Dual workstation mockup showing dark and light mode team portfolios"
-                  width={6000}
-                  height={4171}
-                  className="w-full h-full object-cover"
-                  loading="eager"
-                  decoding="async"
-                />
-              </div>
+              <Laptop3D src="/work/portfolio-desk/overview-light.png" alt="Portfolio Desk: overview dashboard on a laptop" eager className="mb-4" />
               <p className="text-xl font-medium text-[#111111] text-balance">{t.portfolioDesk.title}</p>
               <p className="text-sm text-zinc-700 mt-1 font-medium text-balance">{t.portfolioDesk.subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1 text-pretty">
@@ -79,9 +70,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
               }}
               className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
-              <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-xl relative mb-4 border border-zinc-200 shadow-sm flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
-                <DistrictPhasesThumbnail />
-              </div>
+              <Laptop3D className="mb-4"><DistrictPhasesThumbnail /></Laptop3D>
               <p className="text-xl font-medium text-[#111111] text-balance">{t.touristification.title}</p>
               <p className="text-sm text-zinc-700 mt-1 font-medium text-balance">{t.touristification.subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1 text-pretty">
@@ -93,9 +82,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
               onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
               className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900"
             >
-              <div className="aspect-[16/10] overflow-hidden rounded-xl mb-4 bg-[#f6f0f8]">
-                <img src="/work/petcare/cover.png" alt={petcareContent[language].heroAlt} width={1280} height={900} loading="lazy" className="w-full h-full object-contain" />
-              </div>
+              <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-4" />
               <p className="text-xl font-medium">PetCare</p>
               <p className="text-sm text-zinc-700 mt-1 font-medium">{petcareContent[language].subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1">{language === 'pl' ? 'Cztery wywiady, testy wcześniejszego prototypu z pięcioma osobami i projekt wspólnego zapisu opieki.' : 'Four discovery interviews, a five-person test of an earlier prototype and a shared-care record concept.'}</p>
@@ -115,14 +102,10 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
               <button
                 key={item.src}
                 onClick={() => setLightboxIndex(idx)}
-                className="aspect-[16/10] relative overflow-hidden rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] cursor-pointer group bg-zinc-50 border border-zinc-200"
+                aria-label={item.alt}
+                className="block text-left cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2"
               >
-                <img
-                  src={item.src}
-                  alt={item.alt}
-                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                  loading="lazy"
-                />
+                <Laptop3D src={item.src} alt={item.alt} tone={item.src.includes('dark') ? 'dark' : 'neutral'} soft />
               </button>
             ))}
           </div>

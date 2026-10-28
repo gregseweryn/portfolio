@@ -9,9 +9,9 @@ interface PetCareShowcaseProps {
 }
 
 const phones = [
-  { src: '/work/petcare/add-pet.png', className: 'w-[27%] -rotate-3 translate-y-6 sm:translate-y-12', delay: 0.12 },
-  { src: '/work/petcare/today-light.png', className: 'w-[32%] z-10', delay: 0.04 },
-  { src: '/work/petcare/shared-care-dark.png', className: 'w-[27%] rotate-3 translate-y-6 sm:translate-y-12', delay: 0.2 },
+  { src: '/work/petcare/add-pet.png', className: 'w-[27%] translate-y-6 sm:translate-y-12', tilt: 'perspective(900px) rotateY(18deg) rotateZ(-3deg)', delay: 0.12 },
+  { src: '/work/petcare/today-light.png', className: 'w-[32%] z-10', tilt: 'perspective(900px) rotateY(0deg)', delay: 0.04 },
+  { src: '/work/petcare/shared-care-dark.png', className: 'w-[27%] translate-y-6 sm:translate-y-12', tilt: 'perspective(900px) rotateY(-18deg) rotateZ(3deg)', delay: 0.2 },
 ]
 
 export const PetCareShowcase: React.FC<PetCareShowcaseProps> = ({ navigate, alt, caption, readStudy }) => (
@@ -46,6 +46,7 @@ export const PetCareShowcase: React.FC<PetCareShowcaseProps> = ({ navigate, alt,
             height={852}
             loading="eager"
             decoding="async"
+            style={{ transform: p.tilt }}
             className="block w-full h-auto rounded-t-[1.6rem] sm:rounded-t-[2.2rem] border-[5px] sm:border-[7px] border-b-0 border-[#1d1424] bg-[#1d1424] shadow-[0_24px_50px_-12px_rgba(50,35,63,0.35)]"
           />
         </motion.div>

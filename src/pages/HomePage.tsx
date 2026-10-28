@@ -8,6 +8,7 @@ import { useLanguage } from '../context/LanguageContext'
 import { homeContent } from '../i18n'
 import { petcareContent } from '../i18n/petcare'
 import { PetCareShowcase } from '../components/PetCareShowcase'
+import { Laptop3D, PhonePair3D } from '../components/DeviceMockups'
 
 interface HomePageProps {
   navigate: (path: string) => void
@@ -189,17 +190,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
               <div className="w-full">
-                <div className="aspect-[16/10] bg-zinc-100 overflow-hidden rounded-lg relative mb-3 border border-zinc-200">
-                  <img
-                    src="/work/portfolio-desk/work-list-light.png"
-                    alt={t.selectedStudies.portfolioDesk.title}
-                    width={2500}
-                    height={1667}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+                <Laptop3D src="/work/portfolio-desk/work-list-light.png" alt={t.selectedStudies.portfolioDesk.title} className="mb-3" />
                 <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</p>
                 <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.portfolioDesk.desc}</p>
               </div>
@@ -214,18 +205,14 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
             >
               <div className="w-full">
-                <div className="aspect-[16/10] bg-[#f4f4f5] overflow-hidden rounded-lg relative mb-3 border border-zinc-200 flex items-center justify-center transition-transform duration-500 group-hover:scale-[1.01]">
-                  <DistrictPhasesThumbnail />
-                </div>
+                <Laptop3D tone="neutral" className="mb-3"><DistrictPhasesThumbnail /></Laptop3D>
                 <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</p>
                 <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.touristification.desc}</p>
               </div>
             </button>
 
             <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900">
-              <div className="aspect-[16/10] bg-[#f6f0f8] overflow-hidden rounded-lg mb-3">
-                <img src="/work/petcare/cover.png" alt={petcareContent[language].heroAlt} width={1280} height={900} loading="lazy" decoding="async" className="w-full h-full object-contain" />
-              </div>
+              <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-3" />
               <p className="text-sm font-medium">PetCare</p>
               <p className="text-xs text-zinc-600 mt-1">{petcareContent[language].subtitle}</p>
             </a>
