@@ -1,0 +1,8 @@
+{
+  "frames": 632,
+  "segments": 5628,
+  "min": 5.072154112032915,
+  "skipped": 0,
+  "failures": [],
+  "scope": "Solid foreground/background paint pairs. Sibling watermark intersections, photos, runtime focus, AT and text resizing are outside this check."
+}

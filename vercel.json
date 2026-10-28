@@ -47,6 +47,10 @@
   ],
   "rewrites": [
     {
+      "source": "/work/petcare",
+      "destination": "/work/petcare/index.html"
+    },
+    {
       "source": "/va/:match*",
       "destination": "/_vercel/insights/:match*"
     },

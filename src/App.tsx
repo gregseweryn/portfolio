@@ -12,6 +12,7 @@ const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m
 const WorkPage = lazy(() => import('./pages/WorkPage').then(m => ({ default: m.WorkPage })))
 const CaseStudyPortfolioDesk = lazy(() => import('./pages/CaseStudyPortfolioDesk').then(m => ({ default: m.CaseStudyPortfolioDesk })))
 const CaseStudyTouristification = lazy(() => import('./pages/CaseStudyTouristification').then(m => ({ default: m.CaseStudyTouristification })))
+const CaseStudyPetCare = lazy(() => import('./pages/CaseStudyPetCare').then(m => ({ default: m.CaseStudyPetCare })))
 
 const RouteSkeleton = () => (
   <div className="site-container py-14 min-h-[60vh] flex flex-col gap-6 animate-pulse">
@@ -54,6 +55,7 @@ function AppContent() {
       '/work': common.meta.work,
       '/work/portfolio-desk': common.meta.portfolioDesk,
       '/work/krakow-touristification': common.meta.touristification,
+      '/work/petcare': common.meta.petcare,
     }
 
     const meta = metaMap[currentPath] || {
@@ -63,6 +65,16 @@ function AppContent() {
 
     document.title = meta.title
     document.documentElement.lang = language
+    const pageUrl = `https://grzegorzseweryn.pl${currentPath === '/' ? '/' : currentPath}`
+    const socialImage = currentPath === '/work/petcare'
+      ? 'https://grzegorzseweryn.pl/work/petcare/cover.png'
+      : 'https://grzegorzseweryn.pl/herozdjecie.webp'
+    document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl)
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', pageUrl)
+    document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', pageUrl)
+    document.querySelector('meta[property="og:image"]')?.setAttribute('content', socialImage)
+    document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', socialImage)
+    document.querySelector('meta[property="og:type"]')?.setAttribute('content', currentPath === '/work/petcare' ? 'article' : 'profile')
 
     const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
@@ -109,6 +121,8 @@ function AppContent() {
         return <CaseStudyPortfolioDesk navigate={navigate} />
       case '/work/krakow-touristification':
         return <CaseStudyTouristification navigate={navigate} />
+      case '/work/petcare':
+        return <CaseStudyPetCare navigate={navigate} />
       case '/':
         return <HomePage navigate={navigate} />
       default:

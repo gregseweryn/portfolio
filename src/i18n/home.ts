@@ -46,7 +46,7 @@ export const homeContent = {
     },
     selectedStudies: {
       title: 'Selected Studies',
-      desc: 'Two comprehensive case studies across financial interface design, cognitive modelling, and urban mixed-methods research.',
+      desc: 'Three case studies across interface design, shared pet care and urban mixed-methods research.',
       viewAll: 'View all research →',
       portfolioDesk: {
         title: 'Portfolio Desk',
@@ -109,7 +109,7 @@ export const homeContent = {
     },
     selectedStudies: {
       title: 'Wybrane badania',
-      desc: 'Dwa kompleksowe badania obejmujące projektowanie interfejsu finansowego, modelowanie poznawcze i miejskie badania metodami mieszanymi.',
+      desc: 'Trzy case studies obejmujące projektowanie interfejsów, wspólną opiekę nad zwierzęciem i miejskie badania metodami mieszanymi.',
       viewAll: 'Zobacz wszystkie badania →',
       portfolioDesk: {
         title: 'Portfolio Desk',
