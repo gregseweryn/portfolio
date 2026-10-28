@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { CaseStudyToc } from '../components/CaseStudyToc'
 import { AnimatedTitle } from '../components/AnimatedTitle'
 import {
   DistrictPhasesHero,
@@ -20,11 +21,30 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
   const { language } = useLanguage()
   const t = touristificationContent[language]
 
+  const [activeSection, setActiveSection] = useState(t.toc[0]?.id || 'overview')
+
+  useEffect(() => {
+    const ids = t.toc.map((item) => item.id)
+    const els = ids.map((id) => document.getElementById(id)).filter((el): el is HTMLElement => !!el)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0]
+        if (visible) setActiveSection(visible.target.id)
+      },
+      { rootMargin: '-15% 0px -70% 0px' }
+    )
+    els.forEach((el) => observer.observe(el))
+    return () => observer.disconnect()
+  }, [t.toc])
+
   const scrollToSection = (e: React.MouseEvent, id: string) => {
     e.preventDefault()
     const el = document.getElementById(id)
     if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
+      setActiveSection(id)
     }
   }
 
@@ -70,32 +90,18 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
         </div>
       </section>
 
-      {/* Discrete Sticky Table of Contents */}
-      <nav
-        aria-label="Case study sections"
-        className="sticky top-0 z-30 bg-white/95 backdrop-blur-sm border-b border-zinc-200/80 py-2.5 transition-all"
-      >
-        <div className="site-container flex items-center justify-between gap-4">
-          <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 shrink-0 hidden sm:inline">
-            {language === 'pl' ? 'Spis treści' : 'Contents'}
-          </span>
-          <div className="flex items-center gap-2 sm:gap-3 overflow-x-auto no-scrollbar py-0.5 text-xs font-medium">
-            {t.toc.map((item) => (
-              <a
-                key={item.id}
-                href={`#${item.id}`}
-                onClick={(e) => scrollToSection(e, item.id)}
-                className="whitespace-nowrap px-2.5 py-1 rounded-full text-zinc-600 hover:text-[#111111] hover:bg-zinc-100 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
-              >
-                {item.label}
-              </a>
-            ))}
-          </div>
-          <span className="text-xs font-medium text-zinc-400 shrink-0 hidden md:inline">
-            N = 446 Triangulation
-          </span>
-        </div>
-      </nav>
+      {/* Main Content with Left TOC Rail */}
+      <div className="site-container cs-layout">
+        <CaseStudyToc
+          items={t.toc}
+          activeId={activeSection}
+          onSelect={scrollToSection}
+          label={language === 'pl' ? 'Spis treści' : 'Contents'}
+          badge="N = 446 Triangulation"
+        />
+        <div className="cs-main">
+
+        
 
       {/* Hero Banner: Title Diagram (Three districts, one process) */}
       <section className="py-8 md:py-12">
@@ -412,13 +418,16 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
         </div>
       </section>
 
+      </div>
+      </div>
+
       {/* Next Project Footer */}
       <section className="py-14 border-t border-zinc-100 mt-12">
         <div className="site-container flex justify-between items-center">
           <span className="text-sm text-zinc-600">{t.nextStudy}</span>
           <button
             onClick={() => {
-              navigate('/work/portfolio-desk')
+              navigate('/work/petcare')
               window.scrollTo({ top: 0, behavior: 'smooth' })
             }}
             className="text-lg md:text-xl font-medium text-[#111111] hover:text-zinc-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"

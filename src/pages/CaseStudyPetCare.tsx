@@ -123,5 +123,21 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
     </Section>
     </div>
     </div>
+
+    {/* Next Project Footer */}
+    <section className="py-14 border-t border-zinc-100 mt-12">
+      <div className="site-container flex justify-between items-center">
+        <span className="text-sm text-zinc-600">{t.nextStudy}</span>
+        <button
+          onClick={() => {
+            navigate('/work/portfolio-desk')
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+          }}
+          className="text-lg md:text-xl font-medium text-[#111111] hover:text-zinc-600 transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
+        >
+          {t.nextStudyTitle}
+        </button>
+      </div>
+    </section>
   </main>
 }
