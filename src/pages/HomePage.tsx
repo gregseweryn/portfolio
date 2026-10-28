@@ -7,6 +7,7 @@ import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
 import { useLanguage } from '../context/LanguageContext'
 import { homeContent } from '../i18n'
 import { petcareContent } from '../i18n/petcare'
+import { PetCareShowcase } from '../components/PetCareShowcase'
 
 interface HomePageProps {
   navigate: (path: string) => void
@@ -77,40 +78,15 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
         </div>
       </section>
 
-      {/* Featured Interface Showcase Banner */}
+      {/* Featured Interface Showcase Banner: PetCare mobile screens */}
       <section className="py-8 md:py-12">
         <div className="site-container">
-          <motion.div
-            initial={{ opacity: 0, y: 18 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative overflow-hidden rounded-xl border border-zinc-200/90 shadow-md bg-zinc-50 group cursor-pointer"
-            onClick={() => {
-              navigate('/work/portfolio-desk')
-              window.scrollTo({ top: 0, behavior: 'smooth' })
-            }}
-          >
-            <div className="aspect-[16/10] md:aspect-[3/2] w-full overflow-hidden bg-zinc-100">
-              <img
-                src="/work/portfolio-desk/mockup2.webp"
-                alt={t.showcase.imageAlt}
-                width={2500}
-                height={1667}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.01]"
-                loading="eager"
-                decoding="async"
-              />
-            </div>
-            <div className="px-4 py-3 bg-white/95 border-t border-zinc-200/70 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
-              <p className="text-xs text-zinc-600 font-medium text-pretty">
-                {t.showcase.caption}
-              </p>
-              <span className="text-xs font-medium text-[#111111] group-hover:underline underline-offset-2 shrink-0">
-                {t.showcase.readStudy}
-              </span>
-            </div>
-          </motion.div>
+          <PetCareShowcase
+            navigate={navigate}
+            alt={t.showcase.imageAlt}
+            caption={t.showcase.caption}
+            readStudy={t.showcase.readStudy}
+          />
         </div>
       </section>
 

@@ -9,8 +9,8 @@ export const homeContent = {
       'BA in Graphic Design and UX, MA in Sociology and Data Analysis from Jagiellonian University. I combine empirical research methods with interface design to help product teams make decisions based on evidence.',
     heroImageAlt: 'Grzegorz Seweryn, UX Researcher and Product Designer',
     showcase: {
-      imageAlt: 'Portfolio Desk: Redesigned loan servicing interface shown on laptop mockup',
-      caption: 'Portfolio Desk: Self-initiated audit of 18 findings and redesign in IBM Carbon.',
+      imageAlt: 'PetCare mobile screens: the Today view in light and dark themes, and adding a pet',
+      caption: 'PetCare: a shared record for the people caring for a pet. UX/UI concept, 2026.',
       readStudy: 'Read case study →',
     },
     perspective: {
@@ -72,8 +72,8 @@ export const homeContent = {
       'Licencjat z grafiki i UX, magister socjologii i analizy danych na Uniwersytecie Jagiellońskim. Łączę empiryczne metody badawcze z projektowaniem interfejsów, pomagając zespołom produktowym podejmować decyzje w oparciu o dowody.',
     heroImageAlt: 'Grzegorz Seweryn, UX Researcher i Product Designer',
     showcase: {
-      imageAlt: 'Portfolio Desk: Przeprojektowany interfejs obsługi pożyczek na makiecie laptopa',
-      caption: 'Portfolio Desk: samodzielny audyt z 18 wnioskami i przeprojektowanie w systemie IBM Carbon.',
+      imageAlt: 'Ekrany mobilne PetCare: widok Today w jasnym i ciemnym motywie oraz dodawanie zwierzaka',
+      caption: 'PetCare: wspólny zapis dla osób opiekujących się zwierzęciem. Koncept UX/UI, 2026.',
       readStudy: 'Zobacz case study →',
     },
     perspective: {
