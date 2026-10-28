@@ -60,7 +60,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
+              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <Laptop3D src="/work/portfolio-desk/overview-light.png" alt="Portfolio Desk: overview dashboard on a laptop" eager className="mb-4" />
               <p className="text-xl font-medium text-[#111111] text-balance">{t.portfolioDesk.title}</p>
@@ -76,7 +76,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
+              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <Laptop3D className="mb-4"><DistrictPhasesThumbnail /></Laptop3D>
               <p className="text-xl font-medium text-[#111111] text-balance">{t.touristification.title}</p>
@@ -90,7 +90,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
             <a
               href="/work/petcare"
               onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
-              className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900"
+              className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150"
             >
               <PhoneTrio3D
                 left="/work/petcare/add-pet.png"
@@ -118,7 +118,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 key={item.src}
                 onClick={() => setLightboxIndex(idx)}
                 aria-label={item.alt}
-                className="block text-left cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2"
+                className="block text-left cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 active:scale-[0.985] transition-transform duration-150"
               >
                 {item.type === 'phone' ? (
                   <Phone3D src={item.src} alt={item.alt} tone={item.tone || 'violet'} />

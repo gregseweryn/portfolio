@@ -81,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`rounded-full transition-colors cursor-pointer font-medium ${
+        className={`rounded-full transition-all duration-150 cursor-pointer font-medium active:scale-[0.96] ${
           isCompact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-0.5'
         } ${
           language === 'en'
@@ -96,7 +96,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
       <button
         type="button"
         onClick={() => setLanguage('pl')}
-        className={`rounded-full transition-colors cursor-pointer font-medium ${
+        className={`rounded-full transition-all duration-150 cursor-pointer font-medium active:scale-[0.96] ${
           isCompact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-0.5'
         } ${
           language === 'pl'
@@ -168,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-menu"
               aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
-              className="px-3 py-1.5 text-sm font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:bg-zinc-100 transition-colors cursor-pointer flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="px-3 py-1.5 text-sm font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:bg-zinc-100 active:scale-[0.97] transition-all duration-150 cursor-pointer flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
               <span>{mobileMenuOpen ? t.menuClose : t.menuOpen}</span>
@@ -179,14 +179,14 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
 
       {/* Floating Sticky Header on Scroll */}
       <header
-        className={`fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-3 sm:py-4 transition-transform duration-300 ease-out shadow-xs ${
+        className={`fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100 py-3 sm:py-4 transition-transform duration-220 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-xs ${
           isStickyVisible ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
         <div className="site-container flex flex-row items-center justify-between gap-2">
           <button
             onClick={(e) => handleLinkClick(e, '/')}
-            className="text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded p-1 -m-1"
+            className="text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded p-1 -m-1 active:scale-[0.98] transition-transform duration-150"
           >
             <span className="hidden sm:inline text-md font-medium text-[#111111]">Grzegorz Seweryn</span>
             <span className="inline sm:hidden text-md font-medium text-[#111111]">GS</span>
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-menu"
               aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
-              className="px-2.5 py-1.5 text-xs font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 transition-colors cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="px-2.5 py-1.5 text-xs font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:scale-[0.97] transition-all duration-150 cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
               <span>{mobileMenuOpen ? t.menuClose : t.menuOpen}</span>
@@ -248,7 +248,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-xl p-6 transition-transform duration-300 ease-in-out sm:hidden ${
+        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-xl p-6 transition-transform duration-240 ease-[cubic-bezier(0.32,0.72,0,1)] sm:hidden ${
           mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
         }`}
       >
@@ -260,7 +260,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
           <button
             onClick={() => setMobileMenuOpen(false)}
             aria-label={t.menuClose}
-            className="p-2 -mr-2 text-zinc-600 hover:text-[#111111] hover:bg-zinc-100 rounded-lg transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+            className="p-2 -mr-2 text-zinc-600 hover:text-[#111111] hover:bg-zinc-100 active:scale-95 rounded-lg transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />

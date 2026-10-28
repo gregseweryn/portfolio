@@ -3,6 +3,12 @@
   position: relative; display: grid; place-items: center; overflow: hidden;
   border-radius: 12px; border: 1px solid #e4e4e7; perspective: 1400px;
   background: radial-gradient(120% 90% at 30% 10%, #ffffff 0%, #f4f4f5 55%, #e4e4e7 100%);
+  transition: transform 180ms cubic-bezier(0.23, 1, 0.32, 1);
+}
+a:active .dev-stage,
+button:active .dev-stage {
+  transform: scale(0.985);
+  transition: transform 120ms cubic-bezier(0.23, 1, 0.32, 1);
 }
 .dev-violet { background: radial-gradient(120% 90% at 30% 10%, #fbf7fd 0%, #f6f0f8 55%, #e9dcf0 100%); border-color: #eadcf2; }
 .dev-dark { background: radial-gradient(120% 90% at 30% 10%, #2a2a2e 0%, #18181b 70%); border-color: #27272a; }
@@ -14,11 +20,16 @@
 .dev-laptop {
   position: relative; z-index: 1; width: 74%; transform-style: preserve-3d;
   transform: rotateX(9deg) rotateY(-18deg) rotateZ(1.5deg); transform-origin: 50% 80%;
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform; backface-visibility: hidden;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
 .dev-laptop.is-soft { transform: rotateX(5deg) rotateY(-9deg); }
-a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { transform: rotateX(3deg) rotateY(-5deg) translateY(-4px) scale(1.03); }
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop {
+    transform: rotateX(3deg) rotateY(-5deg) translateY(-4px) scale(1.03);
+  }
+}
 
 .dev-lid {
   position: relative; border: 6px solid #1a1a1d; border-bottom-width: 9px; border-radius: 10px 10px 3px 3px;
@@ -47,13 +58,16 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
 .dev-phone {
   width: 27%; height: auto; display: block; background: #1d1424; border: 4px solid #1d1424; border-bottom: 0;
   border-radius: 20px 20px 0 0; box-shadow: 0 26px 40px -14px rgba(50, 35, 63, .45);
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform; backface-visibility: hidden;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
 .dev-phone-a { transform: rotateY(20deg) rotateZ(-2deg) translateY(6%); }
 .dev-phone-b { transform: rotateY(-20deg) rotateZ(2deg); }
-.dev-stage:hover .dev-phone-a { transform: rotateY(8deg) rotateZ(-1deg) translateY(2%); }
-.dev-stage:hover .dev-phone-b { transform: rotateY(-8deg) rotateZ(1deg) translateY(-3%); }
+
+@media (hover: hover) and (pointer: fine) {
+  .dev-stage:hover .dev-phone-a { transform: rotateY(8deg) rotateZ(-1deg) translateY(2%); }
+  .dev-stage:hover .dev-phone-b { transform: rotateY(-8deg) rotateZ(1deg) translateY(-3%); }
+}
 
 /* Single 3D Phone */
 .dev-phone-single {
@@ -64,14 +78,16 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
   transform-style: preserve-3d;
   transform: rotateX(7deg) rotateY(-12deg) rotateZ(1deg);
   transform-origin: 50% 85%;
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
   backface-visibility: hidden;
 }
-a:hover .dev-phone-single,
-button:hover .dev-phone-single,
-.dev-stage:hover .dev-phone-single {
-  transform: rotateX(2deg) rotateY(-4deg) translateY(-4px) scale(1.04);
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover .dev-phone-single,
+  button:hover .dev-phone-single,
+  .dev-stage:hover .dev-phone-single {
+    transform: rotateX(2deg) rotateY(-4deg) translateY(-4px) scale(1.04);
+  }
 }
 .dev-phone-frame {
   position: relative;
@@ -141,8 +157,8 @@ button:hover .dev-phone-single,
   background: #1d1424;
   box-shadow: 0 20px 34px -12px rgba(50, 35, 63, 0.38);
   transform: rotateY(18deg) rotateZ(-3deg) translateY(9%);
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
 .dev-phone-trio .dev-trio-center {
   width: 29%;
@@ -154,8 +170,8 @@ button:hover .dev-phone-single,
   z-index: 2;
   box-shadow: 0 26px 44px -14px rgba(50, 35, 63, 0.48);
   transform: rotateY(0deg) translateY(0%);
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
 .dev-phone-trio .dev-trio-right {
   width: 25%;
@@ -166,17 +182,20 @@ button:hover .dev-phone-single,
   background: #1d1424;
   box-shadow: 0 20px 34px -12px rgba(50, 35, 63, 0.38);
   transform: rotateY(-18deg) rotateZ(3deg) translateY(9%);
-  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
-  will-change: transform;
+  transition: transform 220ms cubic-bezier(0.23, 1, 0.32, 1);
+  backface-visibility: hidden;
 }
-.dev-stage:hover .dev-trio-left {
-  transform: rotateY(10deg) rotateZ(-1.5deg) translateY(4%);
-}
-.dev-stage:hover .dev-trio-center {
-  transform: translateY(-4%);
-}
-.dev-stage:hover .dev-trio-right {
-  transform: rotateY(-10deg) rotateZ(1.5deg) translateY(4%);
+
+@media (hover: hover) and (pointer: fine) {
+  .dev-stage:hover .dev-trio-left {
+    transform: rotateY(10deg) rotateZ(-1.5deg) translateY(4%);
+  }
+  .dev-stage:hover .dev-trio-center {
+    transform: translateY(-4%);
+  }
+  .dev-stage:hover .dev-trio-right {
+    transform: rotateY(-10deg) rotateZ(1.5deg) translateY(4%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

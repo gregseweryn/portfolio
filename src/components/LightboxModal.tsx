@@ -81,11 +81,11 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             ref={closeButtonRef}
             onClick={onClose}
             aria-label="Close image viewer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 transition-colors text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
-            initial={{ opacity: 0, scale: 0.75 }}
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.75 }}
-            transition={{ duration: 0.2, delay: 0.05 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.18, ease: [0.23, 1, 0.32, 1] }}
           >
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
               <line x1="1" y1="1" x2="15" y2="15" stroke="white" strokeWidth="1.8" strokeLinecap="round" />
@@ -102,7 +102,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               handlePrev()
             }}
             aria-label="Previous image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 transition-colors text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="15 18 9 12 15 6" />
@@ -118,7 +118,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               handleNext()
             }}
             aria-label="Next image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 transition-colors text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="9 18 15 12 9 6" />
@@ -130,10 +130,10 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
         <motion.div
           key={currentImage.src}
           className="relative max-w-5xl max-h-[85vh] z-10 overflow-hidden rounded-xl shadow-2xl flex flex-col items-center justify-center"
-          initial={{ opacity: 0, scale: 0.96 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          transition={{ duration: 0.2 }}
+          exit={{ opacity: 0, scale: 0.97 }}
+          transition={{ duration: 0.22, ease: [0.23, 1, 0.32, 1] }}
           onClick={(e) => e.stopPropagation()}
         >
           <img

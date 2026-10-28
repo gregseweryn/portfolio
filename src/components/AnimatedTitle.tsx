@@ -1,5 +1,5 @@
 import React from 'react'
-import { motion, Variants } from 'framer-motion'
+import { motion, Variants, useReducedMotion } from 'framer-motion'
 
 interface AnimatedTitleProps {
   text?: string
@@ -13,25 +13,29 @@ export const AnimatedTitle: React.FC<AnimatedTitleProps> = ({
   coloredSegments,
   srPrefix,
 }) => {
+  const shouldReduceMotion = useReducedMotion()
+
   const containerVariants: Variants = {
-    hidden: { opacity: 0 },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0 },
     visible: {
       opacity: 1,
-      transition: {
-        staggerChildren: 0.015,
-        delayChildren: 0.04,
-      },
+      transition: shouldReduceMotion
+        ? { duration: 0 }
+        : {
+            staggerChildren: 0.012,
+            delayChildren: 0.02,
+          },
     },
   }
 
   const letterVariants: Variants = {
-    hidden: { opacity: 0, y: 14 },
+    hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 10 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.4,
-        ease: 'easeOut',
+        duration: shouldReduceMotion ? 0 : 0.24,
+        ease: [0.23, 1, 0.32, 1],
       },
     },
   }

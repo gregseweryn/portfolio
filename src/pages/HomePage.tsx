@@ -130,7 +130,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             {t.capabilities.items.map((service, index) => (
               <motion.div
                 key={service.title}
-                className="capability-card flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 bg-white hover:border-zinc-300 transition-all duration-300 shadow-2xs group hover:shadow-xs h-full"
+                className="capability-card flex flex-col justify-between border border-zinc-200 rounded-2xl p-6 bg-white hover:border-zinc-300 transition-[border-color,box-shadow,transform] duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] shadow-2xs group hover:shadow-xs h-full"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -182,7 +182,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
+              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <div className="w-full">
                 <Laptop3D src="/work/portfolio-desk/work-list-light.png" alt={t.selectedStudies.portfolioDesk.title} className="mb-3" />
@@ -197,7 +197,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
-              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl transition-all"
+              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <div className="w-full">
                 <Laptop3D tone="neutral" className="mb-3"><DistrictPhasesThumbnail /></Laptop3D>
@@ -206,7 +206,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               </div>
             </button>
 
-            <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900">
+            <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150">
               <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-3" />
               <p className="text-sm font-medium">PetCare</p>
               <p className="text-xs text-zinc-600 mt-1">{petcareContent[language].subtitle}</p>

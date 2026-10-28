@@ -25,7 +25,7 @@ export const Footer: React.FC = () => {
           <div className="mt-5 flex flex-wrap items-center gap-4">
             <a
               href={`mailto:${emailAddress}`}
-              className="inline-block text-lg md:text-xl font-medium text-zinc-800 hover:text-[#111111] underline underline-offset-4 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
+              className="inline-block text-lg md:text-xl font-medium text-zinc-800 hover:text-[#111111] underline underline-offset-4 active:scale-[0.98] transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
             >
               <span>{emailUser}</span>
               <span>&#64;</span>
@@ -35,7 +35,7 @@ export const Footer: React.FC = () => {
               href={`mailto:${emailAddress}?subject=${encodeURIComponent(
                 language === 'pl' ? 'Prośba o CV - Grzegorz Seweryn' : 'CV Request - Grzegorz Seweryn'
               )}`}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#111111] text-white text-xs font-medium hover:bg-zinc-800 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-[#111111] text-white text-xs font-medium hover:bg-zinc-800 active:scale-[0.97] transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               {t.requestCv}
             </a>
