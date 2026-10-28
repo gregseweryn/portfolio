@@ -7,6 +7,8 @@ import './petcare.css'
 const reportingUrl = 'https://www.figma.com/proto/AIuCtCLcsTiQYPGS9C81sb/PetCare?page-id=158%3A313&node-id=158-494&starting-point-node-id=158%3A494'
 const fileUrl = 'https://www.figma.com/design/AIuCtCLcsTiQYPGS9C81sb/PetCare'
 const sharingUrl = 'https://www.figma.com/proto/AIuCtCLcsTiQYPGS9C81sb/PetCare?page-id=269%3A4528&node-id=269-4529&starting-point-node-id=269%3A4529'
+const figjamUrl = 'https://www.figma.com/board/J4DQBh1Y1qsfWurfPOn6MR/Research-for-PetCare-App?node-id=15-444&t=jEgrtzdg7frV4Ufn-1'
+const designSystemUrl = 'https://www.figma.com/design/AIuCtCLcsTiQYPGS9C81sb/PetCare-App-%E2%80%94-UI---Prototype?node-id=167-2544&t=QT4FAKRhyyp3ONtR-1'
 const sections = ['problem', 'decisions', 'testing', 'sharing', 'visual', 'outcome']
 
 function Section({ id, title, children }: { id: string; title: string; children: ReactNode }) {
@@ -40,19 +42,37 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
         <div><dt>{t.roleLabel}</dt><dd>{t.role}</dd></div>
         <div><dt>{t.toolsLabel}</dt><dd>{t.tools}</dd></div>
       </dl>
-      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
+      <div className="pc-actions">
+        <a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={figjamUrl} target="_blank" rel="noopener noreferrer">{t.figjamAction}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={designSystemUrl} target="_blank" rel="noopener noreferrer">{t.designSystemAction}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a>
+      </div>
     </header>
     <div className="site-container pc-layout">
-    <nav className="pc-toc" aria-label={language === 'pl' ? 'Sekcje case study PetCare' : 'PetCare case study sections'}>
-      <p className="pc-toc-label">{language === 'pl' ? 'Spis treści' : 'Contents'}</p>
-      {t.nav.map((label, i) => <a key={sections[i]} href={`#petcare-${sections[i]}`} className={active === sections[i] ? 'is-active' : undefined} aria-current={active === sections[i] ? 'location' : undefined}>{label}</a>)}
-    </nav>
+    <aside className="pc-toc-rail" aria-label={language === 'pl' ? 'Spis treści' : 'Table of contents'}>
+      <nav className="pc-toc" aria-label={language === 'pl' ? 'Sekcje case study PetCare' : 'PetCare case study sections'}>
+        <p className="pc-toc-label">{language === 'pl' ? 'Spis treści' : 'Contents'}</p>
+        {t.nav.map((label, i) => <a key={sections[i]} href={`#petcare-${sections[i]}`} className={active === sections[i] ? 'is-active' : undefined} aria-current={active === sections[i] ? 'location' : undefined}>{label}</a>)}
+      </nav>
+    </aside>
     <div className="pc-main">
     <Section id="problem" title={t.problemTitle}>
       <p>{t.origin}</p><p>{t.research}</p>
       <blockquote><p>“{t.quote}”</p><cite>{t.quoteSource}</cite></blockquote>
       <p>{t.researchLimit}</p>
       <blockquote className="pc-counter"><p>“{t.counterQuote}”</p><cite>{t.counterSource}</cite></blockquote>
+      <div className="pc-resource-card">
+        <div className="pc-resource-body">
+          <span className="pc-resource-badge">FigJam</span>
+          <h3>{t.figjamCalloutTitle}</h3>
+          <p>{t.figjamCalloutBody}</p>
+        </div>
+        <a href={figjamUrl} target="_blank" rel="noopener noreferrer" className="pc-resource-link">
+          {t.figjamCalloutCta}<ArrowUpRight size={16} aria-hidden="true" />
+        </a>
+      </div>
     </Section>
     <Section id="decisions" title={t.decisionsTitle}>
       {t.decisions.map(d => <div className="pc-decision" key={d.title}><h3>{d.title}</h3><p>{d.body}</p></div>)}
@@ -74,6 +94,16 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
     </div><figcaption>{t.sharingCaption}</figcaption></figure>
     <Section id="visual" title={t.systemTitle}>
       <p>{t.systemBody}</p>
+      <div className="pc-resource-card">
+        <div className="pc-resource-body">
+          <span className="pc-resource-badge">Figma</span>
+          <h3>{t.designSystemCalloutTitle}</h3>
+          <p>{t.designSystemCalloutBody}</p>
+        </div>
+        <a href={designSystemUrl} target="_blank" rel="noopener noreferrer" className="pc-resource-link">
+          {t.designSystemCalloutCta}<ArrowUpRight size={16} aria-hidden="true" />
+        </a>
+      </div>
       <div className="pc-theme-controls" role="group" aria-label={t.themeLabel}>{(['light', 'dark'] as const).map(value => <button key={value} type="button" aria-pressed={theme === value} onClick={() => setTheme(value)}>{t[value]}</button>)}</div>
       <figure className={`pc-theme-preview pc-theme-${theme}`}><img src={`/work/petcare/today-${theme}.png`} alt={t.themeAlt + ' ' + t[theme]} loading="lazy" width="393" height="852" /><figcaption>{t.themeCaption}</figcaption></figure>
       <p>{t.access}</p><h3>{t.motionTitle}</h3><p>{t.motionBody}</p>
@@ -83,7 +113,13 @@ export function CaseStudyPetCare({ navigate }: { navigate: (path: string) => voi
     <Section id="outcome" title={t.outcomeTitle}>
       <p>{t.outcome}</p><p>{t.reflection}</p><p>{t.next}</p>
       <details className="pc-method"><summary>{t.methodologyTitle}</summary>{t.methodology.map(p => <p key={p}>{p}</p>)}</details>
-      <div className="pc-actions"><a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a><a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a></div>
+      <div className="pc-actions">
+        <a href={reportingUrl} target="_blank" rel="noopener noreferrer">{t.prototype}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={sharingUrl} target="_blank" rel="noopener noreferrer">{t.sharingPrototype}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={figjamUrl} target="_blank" rel="noopener noreferrer">{t.figjamAction}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={designSystemUrl} target="_blank" rel="noopener noreferrer">{t.designSystemAction}<ArrowUpRight size={18} aria-hidden="true" /></a>
+        <a href={fileUrl} target="_blank" rel="noopener noreferrer">{language === 'pl' ? 'Otwórz cały plik w Figmie' : 'Open the full Figma file'}<ArrowUpRight size={18} aria-hidden="true" /></a>
+      </div>
     </Section>
     </div>
     </div>
