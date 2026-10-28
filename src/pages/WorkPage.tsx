@@ -5,21 +5,29 @@ import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
 import { useLanguage } from '../context/LanguageContext'
 import { workContent } from '../i18n'
 import { petcareContent } from '../i18n/petcare'
-import { Laptop3D, PhonePair3D } from '../components/DeviceMockups'
+import { Laptop3D, Phone3D, PhoneTrio3D } from '../components/DeviceMockups'
 
 interface WorkPageProps {
   navigate: (path: string) => void
 }
 
-const allExplorations: LightboxImage[] = [
-  { src: '/work/portfolio-desk/work-list-light.png', alt: 'Portfolio Desk Work List (Light Theme)' },
-  { src: '/work/portfolio-desk/work-list-dark.png', alt: 'Portfolio Desk Work List (Dark Theme)' },
-  { src: '/work/portfolio-desk/loan-detail-light.png', alt: 'Loan Detail View' },
-  { src: '/work/portfolio-desk/loan-detail-dark.png', alt: 'Loan Detail View (Dark Theme)' },
-  { src: '/work/portfolio-desk/repayment-history-light.png', alt: 'Repayment History Drawer' },
-  { src: '/work/portfolio-desk/repayment-history-dark.png', alt: 'Repayment History Drawer (Dark Theme)' },
-  { src: '/work/portfolio-desk/overview-light.png', alt: 'Portfolio Overview Dashboard' },
-  { src: '/work/portfolio-desk/edge-states-light.png', alt: 'Empty and Edge States' },
+interface ExplorationItem extends LightboxImage {
+  type: 'laptop' | 'phone'
+  tone?: 'neutral' | 'dark' | 'violet'
+}
+
+const allExplorations: ExplorationItem[] = [
+  // 4 Portfolio Desk Laptops
+  { src: '/work/portfolio-desk/work-list-light.png', alt: 'Portfolio Desk Work List (Light Theme)', type: 'laptop', tone: 'neutral' },
+  { src: '/work/portfolio-desk/work-list-dark.png', alt: 'Portfolio Desk Work List (Dark Theme)', type: 'laptop', tone: 'dark' },
+  { src: '/work/portfolio-desk/loan-detail-light.png', alt: 'Loan Detail View', type: 'laptop', tone: 'neutral' },
+  { src: '/work/portfolio-desk/repayment-history-dark.png', alt: 'Repayment History Drawer (Dark Theme)', type: 'laptop', tone: 'dark' },
+
+  // 4 PetCare Mobile Smartphones
+  { src: '/work/petcare/today-light.png', alt: 'PetCare: Today View (Light Theme)', type: 'phone', tone: 'violet' },
+  { src: '/work/petcare/shared-care-dark.png', alt: 'PetCare: Shared Care Log (Dark Theme)', type: 'phone', tone: 'dark' },
+  { src: '/work/petcare/add-pet.png', alt: 'PetCare: Add Pet Flow', type: 'phone', tone: 'violet' },
+  { src: '/work/petcare/invitation-pending.png', alt: 'PetCare: Caregiver Invitation Pending', type: 'phone', tone: 'violet' },
 ]
 
 export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
@@ -77,12 +85,19 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 {t.touristification.desc}
               </p>
             </button>
+
+            {/* PetCare */}
             <a
               href="/work/petcare"
               onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
               className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900"
             >
-              <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-4" />
+              <PhoneTrio3D
+                left="/work/petcare/add-pet.png"
+                center="/work/petcare/today-light.png"
+                right="/work/petcare/shared-care-dark.png"
+                className="mb-4"
+              />
               <p className="text-xl font-medium">PetCare</p>
               <p className="text-sm text-zinc-700 mt-1 font-medium">{petcareContent[language].subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1">{language === 'pl' ? 'Cztery wywiady, testy wcześniejszego prototypu z pięcioma osobami i projekt wspólnego zapisu opieki.' : 'Four discovery interviews, a five-person test of an earlier prototype and a shared-care record concept.'}</p>
@@ -105,7 +120,11 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 aria-label={item.alt}
                 className="block text-left cursor-pointer rounded-xl focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2"
               >
-                <Laptop3D src={item.src} alt={item.alt} tone={item.src.includes('dark') ? 'dark' : 'neutral'} soft />
+                {item.type === 'phone' ? (
+                  <Phone3D src={item.src} alt={item.alt} tone={item.tone || 'violet'} />
+                ) : (
+                  <Laptop3D src={item.src} alt={item.alt} tone={item.tone || 'neutral'} soft />
+                )}
               </button>
             ))}
           </div>

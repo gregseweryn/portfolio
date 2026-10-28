@@ -55,3 +55,44 @@ export const PhonePair3D: React.FC<PhonePairProps> = ({ light, dark, tone = 'vio
     </div>
   </DeviceStage>
 )
+
+interface PhoneProps {
+  src: string
+  alt?: string
+  tone?: StageTone
+  eager?: boolean
+  className?: string
+}
+
+/** Single phone mockup tilted gently on a stage. */
+export const Phone3D: React.FC<PhoneProps> = ({ src, alt = '', tone = 'violet', eager = false, className = '' }) => (
+  <DeviceStage tone={tone} className={`aspect-[16/10] ${className}`}>
+    <div className="dev-phone-single">
+      <div className="dev-phone-frame">
+        <span className="dev-phone-island" aria-hidden="true" />
+        <div className="dev-phone-screen">
+          <img src={src} alt={alt} loading={eager ? 'eager' : 'lazy'} decoding="async" draggable={false} />
+        </div>
+      </div>
+    </div>
+  </DeviceStage>
+)
+
+interface PhoneTrioProps {
+  left: string
+  center: string
+  right: string
+  tone?: StageTone
+  className?: string
+}
+
+/** Trio of phones (left, center, right) on a studio stage. */
+export const PhoneTrio3D: React.FC<PhoneTrioProps> = ({ left, center, right, tone = 'violet', className = '' }) => (
+  <DeviceStage tone={tone} className={`aspect-[16/10] ${className}`}>
+    <div className="dev-phone-trio">
+      <img className="dev-trio-left" src={left} alt="" width={393} height={852} loading="lazy" decoding="async" draggable={false} />
+      <img className="dev-trio-center" src={center} alt="" width={393} height={852} loading="lazy" decoding="async" draggable={false} />
+      <img className="dev-trio-right" src={right} alt="" width={393} height={852} loading="lazy" decoding="async" draggable={false} />
+    </div>
+  </DeviceStage>
+)

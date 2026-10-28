@@ -39,6 +39,7 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
 }
 .dev-base span { position: absolute; top: 0; left: 50%; width: 18%; height: 4px; margin-left: -9%; background: #c4c4cb; border-radius: 0 0 6px 6px; }
 
+/* Phone Pair */
 .dev-phones {
   position: absolute; inset: 0; z-index: 1; display: flex; justify-content: center; align-items: flex-start;
   gap: 5%; padding-top: 11%; perspective: 900px;
@@ -54,6 +55,130 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
 .dev-stage:hover .dev-phone-a { transform: rotateY(8deg) rotateZ(-1deg) translateY(2%); }
 .dev-stage:hover .dev-phone-b { transform: rotateY(-8deg) rotateZ(1deg) translateY(-3%); }
 
+/* Single 3D Phone */
+.dev-phone-single {
+  position: relative;
+  z-index: 1;
+  width: 32%;
+  max-width: 145px;
+  transform-style: preserve-3d;
+  transform: rotateX(7deg) rotateY(-12deg) rotateZ(1deg);
+  transform-origin: 50% 85%;
+  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform;
+  backface-visibility: hidden;
+}
+a:hover .dev-phone-single,
+button:hover .dev-phone-single,
+.dev-stage:hover .dev-phone-single {
+  transform: rotateX(2deg) rotateY(-4deg) translateY(-4px) scale(1.04);
+}
+.dev-phone-frame {
+  position: relative;
+  aspect-ratio: 393 / 852;
+  border: 4px solid #1d1424;
+  border-radius: 20px;
+  background: #1d1424;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08) inset, 0 22px 36px -12px rgba(50, 35, 63, 0.42);
+  overflow: hidden;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+.dev-phone-island {
+  position: absolute;
+  top: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 24%;
+  height: 4px;
+  background: #000;
+  border-radius: 9999px;
+  z-index: 3;
+}
+.dev-phone-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+}
+.dev-phone-screen img,
+.dev-phone-screen video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+.dev-phone-screen::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0) 38%);
+  z-index: 2;
+}
+
+/* Trio of 3D phones */
+.dev-phone-trio {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 3%;
+  padding-top: 9%;
+  perspective: 1000px;
+}
+.dev-phone-trio .dev-trio-left {
+  width: 25%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+  border: 4px solid #1d1424;
+  border-bottom: 0;
+  background: #1d1424;
+  box-shadow: 0 20px 34px -12px rgba(50, 35, 63, 0.38);
+  transform: rotateY(18deg) rotateZ(-3deg) translateY(9%);
+  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform;
+}
+.dev-phone-trio .dev-trio-center {
+  width: 29%;
+  height: auto;
+  border-radius: 22px 22px 0 0;
+  border: 4px solid #1d1424;
+  border-bottom: 0;
+  background: #1d1424;
+  z-index: 2;
+  box-shadow: 0 26px 44px -14px rgba(50, 35, 63, 0.48);
+  transform: rotateY(0deg) translateY(0%);
+  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform;
+}
+.dev-phone-trio .dev-trio-right {
+  width: 25%;
+  height: auto;
+  border-radius: 20px 20px 0 0;
+  border: 4px solid #1d1424;
+  border-bottom: 0;
+  background: #1d1424;
+  box-shadow: 0 20px 34px -12px rgba(50, 35, 63, 0.38);
+  transform: rotateY(-18deg) rotateZ(3deg) translateY(9%);
+  transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform;
+}
+.dev-stage:hover .dev-trio-left {
+  transform: rotateY(10deg) rotateZ(-1.5deg) translateY(4%);
+}
+.dev-stage:hover .dev-trio-center {
+  transform: translateY(-4%);
+}
+.dev-stage:hover .dev-trio-right {
+  transform: rotateY(-10deg) rotateZ(1.5deg) translateY(4%);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .dev-laptop, .dev-phone { transition: none; }
+  .dev-laptop, .dev-phone, .dev-phone-single, .dev-trio-left, .dev-trio-center, .dev-trio-right { transition: none; }
 }

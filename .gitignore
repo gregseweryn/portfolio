@@ -73,3 +73,5 @@ src/plugins/impeccable-live.client.ts
 .agents/
 skills-lock.json
 /linkedin-thumbnail*.png
+
+/animator-loop-30s-horizontal.mp4
