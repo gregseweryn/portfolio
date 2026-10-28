@@ -6,6 +6,7 @@ import { GeometricFigure, FigureType } from '../components/GeometricFigures'
 import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
 import { useLanguage } from '../context/LanguageContext'
 import { homeContent } from '../i18n'
+import { petcareContent } from '../i18n/petcare'
 
 interface HomePageProps {
   navigate: (path: string) => void
@@ -245,30 +246,13 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               </div>
             </button>
 
-            {/* Explorations 2x2 Grid */}
-            <div className="flex flex-col justify-between h-full rounded-xl">
-              <div className="w-full">
-                <div className="aspect-[16/10] overflow-hidden rounded-lg mb-3 grid grid-cols-2 gap-1.5 bg-zinc-100 p-1.5 border border-zinc-200">
-                  {explorationImages.slice(0, 4).map((img, idx) => (
-                    <button
-                      key={img.src}
-                      onClick={() => setLightboxIndex(idx)}
-                      className="relative overflow-hidden rounded focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] cursor-pointer group bg-white border border-zinc-200/60"
-                      aria-label={`Open preview of ${img.alt}`}
-                    >
-                      <img
-                        src={img.src}
-                        alt={img.alt}
-                        className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
-                        loading="lazy"
-                      />
-                    </button>
-                  ))}
-                </div>
-                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.artefacts.title}</p>
-                <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.artefacts.desc}</p>
+            <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900">
+              <div className="aspect-[16/10] bg-[#f6f0f8] overflow-hidden rounded-lg mb-3">
+                <img src="/work/petcare/cover.png" alt={petcareContent[language].heroAlt} width={1280} height={900} loading="lazy" decoding="async" className="w-full h-full object-contain" />
               </div>
-            </div>
+              <p className="text-sm font-medium">PetCare</p>
+              <p className="text-xs text-zinc-600 mt-1">{petcareContent[language].subtitle}</p>
+            </a>
           </div>
         </div>
       </section>

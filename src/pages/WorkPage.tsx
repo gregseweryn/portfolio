@@ -4,6 +4,7 @@ import { LightboxModal, LightboxImage } from '../components/LightboxModal'
 import { DistrictPhasesThumbnail } from '../components/TouristificationCharts'
 import { useLanguage } from '../context/LanguageContext'
 import { workContent } from '../i18n'
+import { petcareContent } from '../i18n/petcare'
 
 interface WorkPageProps {
   navigate: (path: string) => void
@@ -87,6 +88,18 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 {t.touristification.desc}
               </p>
             </button>
+            <a
+              href="/work/petcare"
+              onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
+              className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900"
+            >
+              <div className="aspect-[16/10] overflow-hidden rounded-xl mb-4 bg-[#f6f0f8]">
+                <img src="/work/petcare/cover.png" alt={petcareContent[language].heroAlt} width={1280} height={900} loading="lazy" className="w-full h-full object-contain" />
+              </div>
+              <p className="text-xl font-medium">PetCare</p>
+              <p className="text-sm text-zinc-700 mt-1 font-medium">{petcareContent[language].subtitle}</p>
+              <p className="text-xs text-zinc-600 mt-1">{language === 'pl' ? 'Cztery wywiady, testy wcześniejszego prototypu z pięcioma osobami i projekt wspólnego zapisu opieki.' : 'Four discovery interviews, a five-person test of an earlier prototype and a shared-care record concept.'}</p>
+            </a>
           </div>
         </div>
       </section>

@@ -43,7 +43,7 @@ export const commonContent = {
       work: {
         title: 'Case Studies & Research — Grzegorz Seweryn',
         description:
-          'Selected UX research and product design case studies by Grzegorz Seweryn: Portfolio Desk and Kraków Touristification study.',
+          'Selected UX research and product design case studies by Grzegorz Seweryn: Portfolio Desk, Kraków Touristification and PetCare.',
       },
       portfolioDesk: {
         title: 'Portfolio Desk Case Study — Grzegorz Seweryn',
@@ -54,6 +54,10 @@ export const commonContent = {
         title: 'Kraków Touristification Study — Grzegorz Seweryn',
         description:
           'City-wide convergent mixed-methods study (446 survey respondents, 10 in-depth interviews) investigating tourism growth in central Kraków.',
+      },
+      petcare: {
+        title: 'PetCare Case Study | Grzegorz Seweryn',
+        description: 'Designing a shared pet-care record through discovery interviews, prototype testing and explicit reporting, uncertainty and recovery states.',
       },
     },
   },
@@ -101,7 +105,7 @@ export const commonContent = {
       work: {
         title: 'Badania i projekty. Grzegorz Seweryn',
         description:
-          'Wybrane badania UX i projekty interfejsów Grzegorza Seweryna: Portfolio Desk oraz badanie turystyfikacji Krakowa.',
+          'Wybrane badania UX i projekty interfejsów Grzegorza Seweryna: Portfolio Desk, turystyfikacja Krakowa i PetCare.',
       },
       portfolioDesk: {
         title: 'Portfolio Desk Case Study. Grzegorz Seweryn',
@@ -112,6 +116,10 @@ export const commonContent = {
         title: 'Turystyfikacja Krakowa. Grzegorz Seweryn',
         description:
           'Miejskie badanie metodami mieszanymi (446 respondentów ankiety, 10 wywiadów pogłębionych) badające wpływ turystyki w centralnych dzielnicach Krakowa.',
+      },
+      petcare: {
+        title: 'PetCare. Case study | Grzegorz Seweryn',
+        description: 'Projekt wspólnego zapisu opieki nad zwierzęciem: wywiady, testy prototypu oraz jawne zgłoszenia, niepewność i odzyskiwanie kontroli.',
       },
     },
   },

@@ -1,8 +1,8 @@
 export const workContent = {
   en: {
     headlineSegments: [
-      { text: 'Two detailed case studies. ', color: '#111111' },
-      { text: 'Both executed end to end, with methodology and limits included.', color: '#52525b' },
+      { text: 'Three detailed case studies. ', color: '#111111' },
+      { text: 'Research and design, with methodology and limits included.', color: '#52525b' },
     ],
     caseStudiesTitle: 'Case studies',
     portfolioDesk: {
@@ -19,8 +19,8 @@ export const workContent = {
   },
   pl: {
     headlineSegments: [
-      { text: 'Dwa szczegółowe badania. ', color: '#111111' },
-      { text: 'Oba zrealizowane od początku do końca, z opisem metodyki i ograniczeń.', color: '#52525b' },
+      { text: 'Trzy szczegółowe case studies. ', color: '#111111' },
+      { text: 'Badania i projektowanie, z opisem metodyki i ograniczeń.', color: '#52525b' },
     ],
     caseStudiesTitle: 'Badania i projekty',
     portfolioDesk: {
