@@ -53,15 +53,6 @@ export const Footer: React.FC = () => {
             >
               LinkedIn ↗
             </a>
-            <a
-              href="https://semi-secure-43576547.figma.site/"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Portfolio Desk Figma Prototype (opens in new tab)"
-              className="text-sm font-medium text-zinc-700 hover:text-[#111111] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
-            >
-              {t.figmaLink}
-            </a>
           </div>
           <p className="text-xs text-zinc-600">
             {t.copyright}

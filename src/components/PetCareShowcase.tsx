@@ -37,7 +37,7 @@ export const PetCareShowcase: React.FC<PetCareShowcaseProps> = ({ navigate, alt,
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.55, delay: p.delay }}
-          className={`${p.className} max-w-[300px] shrink-0 transition-transform duration-500 group-hover:-translate-y-2`}
+          className={`${p.className} max-w-[300px] shrink-0 transition-transform duration-500 will-change-transform transform-gpu group-hover:-translate-y-2`}
         >
           <img
             src={p.src}

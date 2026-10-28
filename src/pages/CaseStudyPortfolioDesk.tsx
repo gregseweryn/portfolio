@@ -80,7 +80,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             {t.subtitle}
           </p>
 
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 py-6 border-y border-zinc-200">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 py-6 border-y border-zinc-200">
             <div>
               <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
                 {t.meta.yearLabel}
@@ -99,19 +99,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
               </p>
               <p className="text-sm font-medium text-[#111111]">{t.meta.bookVal}</p>
             </div>
-            <div>
-              <p className="text-xs text-zinc-500 font-semibold uppercase tracking-wider mb-1">
-                {t.meta.prototypeLabel}
-              </p>
-              <a
-                href="https://semi-secure-43576547.figma.site/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium underline underline-offset-4 text-zinc-700 hover:text-[#111111] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] rounded"
-              >
-                {t.meta.prototypeLink}
-              </a>
-            </div>
+            
           </div>
         </div>
       </section>

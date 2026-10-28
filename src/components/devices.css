@@ -15,6 +15,7 @@
   position: relative; z-index: 1; width: 74%; transform-style: preserve-3d;
   transform: rotateX(9deg) rotateY(-18deg) rotateZ(1.5deg); transform-origin: 50% 80%;
   transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform; backface-visibility: hidden;
 }
 .dev-laptop.is-soft { transform: rotateX(5deg) rotateY(-9deg); }
 a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { transform: rotateX(3deg) rotateY(-5deg) translateY(-4px) scale(1.03); }
@@ -22,6 +23,7 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
 .dev-lid {
   position: relative; border: 6px solid #1a1a1d; border-bottom-width: 9px; border-radius: 10px 10px 3px 3px;
   background: #0b0b0c; box-shadow: 0 0 0 1px #52525b, 0 34px 40px -20px rgba(0, 0, 0, .45);
+  transform-style: preserve-3d; backface-visibility: hidden;
 }
 .dev-camera { position: absolute; top: -4px; left: 50%; width: 3px; height: 3px; margin-left: -1.5px; border-radius: 50%; background: #3f3f46; }
 .dev-screen { aspect-ratio: 16 / 10; overflow: hidden; background: #fff; border-radius: 2px; position: relative; }
@@ -45,6 +47,7 @@ a:hover .dev-laptop, button:hover .dev-laptop, .dev-stage:hover .dev-laptop { tr
   width: 27%; height: auto; display: block; background: #1d1424; border: 4px solid #1d1424; border-bottom: 0;
   border-radius: 20px 20px 0 0; box-shadow: 0 26px 40px -14px rgba(50, 35, 63, .45);
   transition: transform .7s cubic-bezier(.2, .8, .2, 1);
+  will-change: transform; backface-visibility: hidden;
 }
 .dev-phone-a { transform: rotateY(20deg) rotateZ(-2deg) translateY(6%); }
 .dev-phone-b { transform: rotateY(-20deg) rotateZ(2deg); }
