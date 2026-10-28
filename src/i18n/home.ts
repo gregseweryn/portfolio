@@ -1,6 +1,5 @@
 export const homeContent = {
   en: {
-    heroPrefix: 'Grzegorz Seweryn · UX Researcher & Product Designer',
     heroSegments: [
       { text: 'Junior UX Researcher and Product Designer ', color: '#111111' },
       { text: 'with formal training in visual design and social research.', color: '#52525b' },
@@ -63,7 +62,6 @@ export const homeContent = {
     },
   },
   pl: {
-    heroPrefix: 'Grzegorz Seweryn · UX Researcher i Product Designer',
     heroSegments: [
       { text: 'Junior UX Researcher i Product Designer ', color: '#111111' },
       { text: 'z wykształceniem w projektowaniu wizualnym i badaniach społecznych.', color: '#52525b' },
