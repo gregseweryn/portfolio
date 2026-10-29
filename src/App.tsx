@@ -13,6 +13,7 @@ const WorkPage = lazy(() => import('./pages/WorkPage').then(m => ({ default: m.W
 const CaseStudyPortfolioDesk = lazy(() => import('./pages/CaseStudyPortfolioDesk').then(m => ({ default: m.CaseStudyPortfolioDesk })))
 const CaseStudyTouristification = lazy(() => import('./pages/CaseStudyTouristification').then(m => ({ default: m.CaseStudyTouristification })))
 const CaseStudyPetCare = lazy(() => import('./pages/CaseStudyPetCare').then(m => ({ default: m.CaseStudyPetCare })))
+const CaseStudyMotionTokens = lazy(() => import('./pages/CaseStudyMotionTokens').then(m => ({ default: m.CaseStudyMotionTokens })))
 
 const RouteSkeleton = () => (
   <div className="site-container py-14 min-h-[60vh] flex flex-col gap-6 animate-pulse">
@@ -56,6 +57,7 @@ function AppContent() {
       '/work/portfolio-desk': common.meta.portfolioDesk,
       '/work/krakow-touristification': common.meta.touristification,
       '/work/petcare': common.meta.petcare,
+      '/work/motion-tokens': common.meta.motionTokens,
     }
 
     const meta = metaMap[currentPath] || {
@@ -66,7 +68,9 @@ function AppContent() {
     document.title = meta.title
     document.documentElement.lang = language
     const pageUrl = `https://grzegorzseweryn.pl${currentPath === '/' ? '/' : currentPath}`
-    const socialImage = currentPath === '/work/petcare'
+    const socialImage = currentPath === '/work/motion-tokens'
+      ? 'https://grzegorzseweryn.pl/work/motion-tokens/cover.png'
+      : currentPath === '/work/petcare'
       ? 'https://grzegorzseweryn.pl/work/petcare/cover.png'
       : 'https://grzegorzseweryn.pl/herozdjecie.webp'
     document.querySelector('link[rel="canonical"]')?.setAttribute('href', pageUrl)
@@ -74,7 +78,7 @@ function AppContent() {
     document.querySelector('meta[name="twitter:url"]')?.setAttribute('content', pageUrl)
     document.querySelector('meta[property="og:image"]')?.setAttribute('content', socialImage)
     document.querySelector('meta[name="twitter:image"]')?.setAttribute('content', socialImage)
-    document.querySelector('meta[property="og:type"]')?.setAttribute('content', currentPath === '/work/petcare' ? 'article' : 'profile')
+    document.querySelector('meta[property="og:type"]')?.setAttribute('content', ['/work/petcare', '/work/motion-tokens'].includes(currentPath) ? 'article' : 'profile')
 
     const metaDesc = document.querySelector('meta[name="description"]')
     if (metaDesc) {
@@ -123,6 +127,8 @@ function AppContent() {
         return <CaseStudyTouristification navigate={navigate} />
       case '/work/petcare':
         return <CaseStudyPetCare navigate={navigate} />
+      case '/work/motion-tokens':
+        return <CaseStudyMotionTokens navigate={navigate} />
       case '/':
         return <HomePage navigate={navigate} />
       default:

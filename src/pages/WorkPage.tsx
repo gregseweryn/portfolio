@@ -54,6 +54,31 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
             {t.caseStudiesTitle}
           </h2>
           <div className="md:col-span-9 flex flex-col gap-12">
+            {/* Motion Tokens Studio */}
+            <a
+              href="/work/motion-tokens"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/work/motion-tokens')
+                window.scrollTo(0, 0)
+              }}
+              className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-cyan-500 active:scale-[0.985] transition-transform duration-150"
+            >
+              <div className="w-full rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-950 mb-4 shadow-sm group-hover:border-zinc-300 transition-colors">
+                <img
+                  src="/work/motion-tokens/cover.png"
+                  alt="Motion Tokens Studio preview hero"
+                  className="w-full h-auto object-cover max-h-[380px]"
+                  loading="lazy"
+                  width="1280"
+                  height="900"
+                />
+              </div>
+              <p className="text-xl font-medium">{t.motionTokens.title}</p>
+              <p className="text-sm text-zinc-700 mt-1 font-medium">{t.motionTokens.subtitle}</p>
+              <p className="text-xs text-zinc-600 mt-1">{t.motionTokens.desc}</p>
+            </a>
+
             {/* Portfolio Desk */}
             <button
               onClick={() => {
@@ -89,7 +114,11 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
             {/* PetCare */}
             <a
               href="/work/petcare"
-              onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/work/petcare')
+                window.scrollTo(0, 0)
+              }}
               className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150"
             >
               <PhoneTrio3D

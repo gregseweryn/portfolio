@@ -51,6 +51,10 @@
       "destination": "/work/petcare/index.html"
     },
     {
+      "source": "/work/motion-tokens",
+      "destination": "/work/motion-tokens/index.html"
+    },
+    {
       "source": "/va/:match*",
       "destination": "/_vercel/insights/:match*"
     },

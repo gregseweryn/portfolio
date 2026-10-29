@@ -59,6 +59,10 @@ export const commonContent = {
         title: 'PetCare Case Study | Grzegorz Seweryn',
         description: 'Designing a shared pet-care record through discovery interviews, prototype testing and explicit reporting, uncertainty and recovery states.',
       },
+      motionTokens: {
+        title: 'Motion Tokens Studio | Grzegorz Seweryn',
+        description: 'Motion token design system with typed mathematical bounds, dark devtools studio, and multi-format CSS, Tailwind, Framer and W3C exports.',
+      },
     },
   },
   pl: {
@@ -120,6 +124,10 @@ export const commonContent = {
       petcare: {
         title: 'PetCare. Case study | Grzegorz Seweryn',
         description: 'Projekt wspólnego zapisu opieki nad zwierzęciem: wywiady, testy prototypu oraz jawne zgłoszenia, niepewność i odzyskiwanie kontroli.',
+      },
+      motionTokens: {
+        title: 'Motion Tokens Studio | Grzegorz Seweryn',
+        description: 'System tokenów ruchu ze ścisłymi granicami matematycznymi, ciemnym studiem devtools i eksportem do CSS, Tailwind, Framer Motion i W3C.',
       },
     },
   },

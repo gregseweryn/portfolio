@@ -45,8 +45,12 @@ export const homeContent = {
     },
     selectedStudies: {
       title: 'Selected Studies',
-      desc: 'Three case studies across interface design, shared pet care and urban mixed-methods research.',
+      desc: 'Selected case studies across motion design systems, enterprise software, and mixed-methods research.',
       viewAll: 'View all research →',
+      motionTokens: {
+        title: 'Motion Tokens Studio',
+        desc: 'Typed token design system with live dark devtools and code exporters',
+      },
       portfolioDesk: {
         title: 'Portfolio Desk',
         desc: 'Self-initiated loan servicing audit and KLM redesign (65% task time cut)',
@@ -107,8 +111,12 @@ export const homeContent = {
     },
     selectedStudies: {
       title: 'Wybrane badania',
-      desc: 'Trzy case studies obejmujące projektowanie interfejsów, wspólną opiekę nad zwierzęciem i miejskie badania metodami mieszanymi.',
+      desc: 'Wybrane projekty obejmujące systemy tokenów ruchu, oprogramowanie biznesowe i badania miejskie.',
       viewAll: 'Zobacz wszystkie badania →',
+      motionTokens: {
+        title: 'Motion Tokens Studio',
+        desc: 'System tokenów ruchu ze studiem devtools i eksportem kodu',
+      },
       portfolioDesk: {
         title: 'Portfolio Desk',
         desc: 'Samodzielny audyt obsługi pożyczek i przeprojektowanie KLM (skrócenie czasu zadania o 65%)',

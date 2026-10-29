@@ -175,7 +175,33 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             </div>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-stretch">
+            {/* Motion Tokens Studio Card */}
+            <a
+              href="/work/motion-tokens"
+              onClick={(e) => {
+                e.preventDefault()
+                navigate('/work/motion-tokens')
+                window.scrollTo(0, 0)
+              }}
+              className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500 focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
+            >
+              <div className="w-full">
+                <div className="w-full rounded-2xl overflow-hidden border border-zinc-200 bg-zinc-950 mb-3 shadow-sm group-hover:border-zinc-300 transition-colors">
+                  <img
+                    src="/work/motion-tokens/cover.png"
+                    alt={t.selectedStudies.motionTokens.title}
+                    className="w-full h-auto object-cover max-h-[160px]"
+                    loading="lazy"
+                    width="1280"
+                    height="900"
+                  />
+                </div>
+                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.motionTokens.title}</p>
+                <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.motionTokens.desc}</p>
+              </div>
+            </a>
+
             {/* Portfolio Desk Card */}
             <button
               onClick={() => {
@@ -206,6 +232,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               </div>
             </button>
 
+            {/* PetCare Card */}
             <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150">
               <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-3" />
               <p className="text-sm font-medium">PetCare</p>
