@@ -1,10 +1,10 @@
 # PetCare delivery checklist
 
-Updated 28 October 2026. Scope: finish Figma refinement and prototype verification, assemble the case study, integrate into the current portfolio, then verify deployment.
+Updated 29 October 2026. Scope: finish Figma refinement and prototype verification, assemble the case study, integrate into the current portfolio, then verify deployment.
 
 ## Authoritative locations
 - Current repository: C:/Users/grzeg/Documents/portfolio-current
-- Branch: grzegorz/petcare-case-study; origin: gregseweryn/portfolio
+- Delivered through grzegorz/petcare-case-study into main; origin: gregseweryn/portfolio
 - Source/research archive: C:/Users/grzeg/Documents/portfolio/case-study-opiekunowie-zwierzat
 - Figma file AIuCtCLcsTiQYPGS9C81sb; reporting page158:313; extension269:4528
 - Local preview: http://localhost:3015/work/petcare
@@ -28,9 +28,11 @@ Updated 28 October 2026. Scope: finish Figma refinement and prototype verificati
 - [x] Reviewed staged whitelist; no new raw research or credentials included. Staged whitespace check passed.
 - [x] Commit 2b9dc7ba578deb4a43f1b5d2c4f69b2c4e0419ba pushed; PR #3 created and attached.
 - [x] Vercel preview deployment D2SvxgxDAhEz1Fqd7SM2S1X9EFWJ succeeded. Browser loaded the case study, 1280px hero and correct runtime canonical/social cover. Preview screenshot saved. Unauthenticated HTTP is protected by Vercel login and therefore does not prove the static HTML response; verify on production.
-- [ ] Publish and verify production URL.
+- [x] PR #3 merged as 9f5926b3d59bf48f7ec14b88bc4c356fc1f01259. Vercel production deployment 7CsJWSXQHSjm8VEWizfRcXTjHeJf succeeded. Public URL: https://grzegorzseweryn.pl/work/petcare.
+- [x] Anonymous production HTTP verified status200, PetCare title, canonical, social cover and no-JavaScript overview. All nine media files returned correct MIME types and matching content lengths.
+- [x] On 29 October, rechecked the currently published site after subsequent portfolio changes: Home third-project tile and Work third-project link both open PetCare; Polish switch works. Current public response retains PetCare metadata. Saved a production screenshot and production-verification.json in the source archive final-delivery folder.
 
 ## Explicit evidence limits
 No participant retest, full WCAG certification, actual200% zoom/text pass, assistive-technology or physical-phone pass. Figma authentication, input, saves and sharing are presets. Website browser checks do not establish accessibility or synchronization of a future product. Some repeated Figma WebGL captures omit unchanged regions; fresh native/player captures differ. Keep that observation separate from actual route verification.
 
-PR: https://github.com/gregseweryn/portfolio/pull/3. Production publication and anonymous static HTML verification remain pending at this receipt.
+PR: https://github.com/gregseweryn/portfolio/pull/3. Publication is complete. Research and implementation limitations above remain explicit follow-up work, not claims of completed testing.
