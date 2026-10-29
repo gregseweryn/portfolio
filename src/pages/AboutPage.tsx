@@ -15,9 +15,6 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
       {/* Editorial Headline */}
       <section className="pt-8 md:pt-14 pb-8">
         <div className="site-container">
-          <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-2">
-            {t.subtitle}
-          </p>
           <h1 className="text-2xl md:text-3xl font-normal text-[#111111] leading-[1.16] tracking-tight max-w-3xl text-balance">
             {t.headline}
           </h1>
