@@ -1,0 +1,28 @@
+/* Motion Studio Devtools Dark Theme */
+.motion-studio-root {
+  --studio-bg: #09090b;
+  --studio-surface: #121215;
+  --studio-border: #27272a;
+  --studio-cyan: #22d3ee;
+  --studio-cyan-glow: rgba(34, 211, 238, 0.15);
+  --studio-violet: #a855f7;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.motion-studio-scroll::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.motion-studio-scroll::-webkit-scrollbar-track {
+  background: rgba(24, 24, 27, 0.6);
+}
+
+.motion-studio-scroll::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 3px;
+}
+
+.motion-studio-scroll::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
