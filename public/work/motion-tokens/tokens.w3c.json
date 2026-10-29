@@ -1,0 +1,119 @@
+{
+  "motion": {
+    "duration-fast": {
+      "$value": "120ms",
+      "$type": "duration",
+      "$description": "Quick micro-interactions such as button taps, icon states, and tooltips."
+    },
+    "duration-base": {
+      "$value": "200ms",
+      "$type": "duration",
+      "$description": "Standard UI transitions like dropdown disclosures and tab switches."
+    },
+    "duration-slow": {
+      "$value": "320ms",
+      "$type": "duration",
+      "$description": "Large container layout expansions and full dialog transitions."
+    },
+    "ease-out": {
+      "$value": [
+        0.23,
+        1,
+        0.32,
+        1
+      ],
+      "$type": "cubic-bezier",
+      "$description": "Decelerating curve for elements entering the screen or expanding."
+    },
+    "ease-in-out": {
+      "$value": [
+        0.4,
+        0,
+        0.2,
+        1
+      ],
+      "$type": "cubic-bezier",
+      "$description": "Smooth acceleration and deceleration for continuous repositioning."
+    },
+    "spring-snappy": {
+      "$value": {
+        "stiffness": 300,
+        "damping": 28,
+        "mass": 1
+      },
+      "$type": "spring",
+      "$description": "High-responsiveness physical spring with minimal overshoot for interactive controls."
+    },
+    "spring-soft": {
+      "$value": {
+        "stiffness": 180,
+        "damping": 22,
+        "mass": 1
+      },
+      "$type": "spring",
+      "$description": "Gentle, forgiving spring for ambient cards and non-blocking overlays."
+    },
+    "motion-enter": {
+      "$value": [
+        0.23,
+        1,
+        0.32,
+        1
+      ],
+      "$type": "cubic-bezier",
+      "$description": "Universal enter transition token for incoming elements."
+    },
+    "motion-exit": {
+      "$value": "120ms",
+      "$type": "duration",
+      "$description": "Swift exit curve to avoid keeping the user waiting on dismiss."
+    },
+    "motion-feedback": {
+      "$value": {
+        "stiffness": 300,
+        "damping": 28,
+        "mass": 1
+      },
+      "$type": "spring",
+      "$description": "Spring physics feedback for direct user interactions."
+    },
+    "motion-emphasis": {
+      "$value": {
+        "stiffness": 180,
+        "damping": 22,
+        "mass": 1
+      },
+      "$type": "spring",
+      "$description": "Gentle spring for attention cues and subtle focus shifts."
+    },
+    "modal-enter": {
+      "$value": {
+        "stiffness": 280,
+        "damping": 26,
+        "mass": 1
+      },
+      "$type": "spring",
+      "$description": "Physics spring for dialog scale and backdrop opacity."
+    },
+    "tooltip-enter": {
+      "$value": "120ms",
+      "$type": "duration",
+      "$description": "Rapid slide and opacity fade for contextual hover text."
+    },
+    "accordion-expand": {
+      "$value": [
+        0.23,
+        1,
+        0.32,
+        1
+      ],
+      "$type": "cubic-bezier",
+      "$description": "Smooth height expansion curve and chevron rotation."
+    },
+    "dropdown-open": {
+      "$value": "150ms",
+      "$type": "duration",
+      "$description": "Snappy menu disclosure with vertical anchor."
+    }
+  }
+}

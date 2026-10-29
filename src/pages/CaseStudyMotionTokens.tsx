@@ -98,7 +98,7 @@ export const CaseStudyMotionTokens: React.FC<CaseStudyMotionTokensProps> = ({ na
 
         <div className="flex items-center gap-3 mt-8 flex-wrap">
           <a
-            href="https://www.figma.com"
+            href="https://www.figma.com/design/1UirrjNKzhUYpz3Jkbqu9X"
             id="figma-spec-link"
             target="_blank"
             rel="noopener noreferrer"
