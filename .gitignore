@@ -79,3 +79,7 @@ skills-lock.json
 .codex/
 .gemini/
 projects/
+
+# Local research notes and voice guidelines
+voice_principles.md
+wywiady_IDI_opiekunowie_zwierzat.md
