@@ -190,10 +190,19 @@ export const DistrictPhasesHero: React.FC<{ caption?: string }> = ({
               return (
                 <g
                   key={d.name}
-                  className="cursor-pointer transition-opacity duration-200"
+                  className="cursor-pointer transition-opacity duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+                  tabIndex={0}
+                  role="button"
+                  aria-label={`${d.name}: ${d.phase}`}
                   onMouseEnter={() => setActiveDistrict(d.id)}
                   onMouseLeave={() => setActiveDistrict(null)}
                   onClick={() => setActiveDistrict(activeDistrict === d.id ? null : d.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      setActiveDistrict(activeDistrict === d.id ? null : d.id);
+                    }
+                  }}
                 >
                   <line
                     x1={cx}

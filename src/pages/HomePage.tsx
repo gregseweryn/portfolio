@@ -9,11 +9,9 @@ import { homeContent } from '../i18n'
 import { petcareContent } from '../i18n/petcare'
 import { PetCareShowcase } from '../components/PetCareShowcase'
 import { Laptop3D, PhonePair3D } from '../components/DeviceMockups'
-
 interface HomePageProps {
   navigate: (path: string) => void
 }
-
 const explorationImages: LightboxImage[] = [
   { src: '/work/portfolio-desk/mockup2.png', alt: 'Portfolio Desk Laptop Mockup' },
   { src: '/work/portfolio-desk/work-list-light.png', alt: 'Redesigned Work List (Light Theme)' },
@@ -23,14 +21,11 @@ const explorationImages: LightboxImage[] = [
   { src: '/work/portfolio-desk/overview-light.png', alt: 'Portfolio Overview Dashboard' },
   { src: '/work/portfolio-desk/edge-states-light.png', alt: 'Edge and Zero State Scenarios' },
 ]
-
 export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
   const { language } = useLanguage()
   const t = homeContent[language]
-
   const capabilityTypes: FigureType[] = ['research', 'design', 'systems', 'a11y']
-
   return (
     <main id="main-content">
       {/* Hero Section */}
@@ -40,24 +35,23 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             <AnimatedTitle
               coloredSegments={t.heroSegments}
               className="text-2xl leading-[1.14] tracking-[-0.03em] font-normal"
-              srPrefix={language === 'pl' ? 'Grzegorz Seweryn. ' : 'Grzegorz Seweryn — '}
+              srPrefix={language === 'pl' ? 'Grzegorz Seweryn. ' : 'Grzegorz Seweryn, '}
             />
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.05 }}
+              transition={{ duration: 0.24, delay: 0.04, ease: [0.23, 1, 0.32, 1] }}
             >
               <p className="text-md leading-relaxed text-zinc-600 max-measure text-pretty">
                 {t.heroBio}
               </p>
             </motion.div>
           </div>
-
           <motion.div
             className="md:col-span-5 flex justify-center md:justify-end w-full"
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.4, delay: 0.08 }}
+            transition={{ duration: 0.26, delay: 0.05, ease: [0.23, 1, 0.32, 1] }}
           >
             <div className="w-full max-w-[420px] md:max-w-none aspect-square relative overflow-hidden rounded-2xl bg-zinc-950 border border-zinc-200/80 shadow-md">
               <img
@@ -73,7 +67,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           </motion.div>
         </div>
       </section>
-
       {/* Featured Interface Showcase Banner: PetCare mobile screens */}
       <section className="py-8 md:py-12">
         <div className="site-container">
@@ -85,7 +78,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           />
         </div>
       </section>
-
       {/* Perspective / Info Section */}
       <section className="py-14 md:py-20 border-t border-zinc-100">
         <div className="site-container grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12">
@@ -97,7 +89,7 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             initial={{ opacity: 0, y: 18 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.45 }}
+            transition={{ duration: 0.26, ease: [0.23, 1, 0.32, 1] }}
           >
             <div className="space-y-4 max-measure">
               <p className="text-md leading-relaxed text-zinc-700 text-pretty">
@@ -119,7 +111,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           </motion.div>
         </div>
       </section>
-
       {/* Core Capabilities Section (The 4 user pillars) */}
       <section className="py-14 md:py-20 border-t border-zinc-100">
         <div className="site-container">
@@ -134,14 +125,14 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.06 }}
+                transition={{ duration: 0.24, delay: index * 0.04, ease: [0.23, 1, 0.32, 1] }}
               >
                 <div className="flex flex-col h-full">
                   <div className="w-full h-48 mb-5 relative flex items-center justify-center bg-transparent">
                     <GeometricFigure type={capabilityTypes[index]} />
                   </div>
                   <div className="min-h-[3.25rem] flex items-end mb-1">
-                    <p className="text-lg font-medium text-[#111111] text-balance leading-snug">{service.title}</p>
+                    <h3 className="text-lg font-medium text-[#111111] text-balance leading-snug">{service.title}</h3>
                   </div>
                   <p className="text-sm font-medium text-zinc-700 min-h-[2.5rem] mb-2 text-balance leading-snug">{service.subtitle}</p>
                   <p className="text-xs text-zinc-600 leading-relaxed text-pretty mt-auto">{service.desc}</p>
@@ -151,7 +142,6 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
           </div>
         </div>
       </section>
-
       {/* Selected Studies Section */}
       <section className="py-14 md:py-20 border-t border-zinc-100">
         <div className="site-container">
@@ -174,11 +164,11 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
               </button>
             </div>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
             {/* Portfolio Desk Card */}
-            <button
-              onClick={() => {
+            <a
+              href="/work/portfolio-desk"
+              onClick={(e) => { e.preventDefault();
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
@@ -186,14 +176,14 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             >
               <div className="w-full">
                 <Laptop3D src="/work/portfolio-desk/work-list-light.png" alt={t.selectedStudies.portfolioDesk.title} className="mb-3" />
-                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</p>
+                <h3 className="text-sm font-medium text-[#111111]">{t.selectedStudies.portfolioDesk.title}</h3>
                 <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.portfolioDesk.desc}</p>
               </div>
-            </button>
-
+            </a>
             {/* Kraków Touristification Card */}
-            <button
-              onClick={() => {
+            <a
+              href="/work/krakow-touristification"
+              onClick={(e) => { e.preventDefault();
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
@@ -201,20 +191,18 @@ export const HomePage: React.FC<HomePageProps> = ({ navigate }) => {
             >
               <div className="w-full">
                 <Laptop3D tone="neutral" className="mb-3"><DistrictPhasesThumbnail /></Laptop3D>
-                <p className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</p>
+                <h3 className="text-sm font-medium text-[#111111]">{t.selectedStudies.touristification.title}</h3>
                 <p className="text-xs text-zinc-600 mt-1 text-pretty">{t.selectedStudies.touristification.desc}</p>
               </div>
-            </button>
-
-            <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="block rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150">
+            </a>
+            <a href="/work/petcare" onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }} className="flex flex-col justify-between h-full group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150">
               <PhonePair3D light="/work/petcare/today-light.png" dark="/work/petcare/shared-care-dark.png" className="mb-3" />
-              <p className="text-sm font-medium">PetCare</p>
+              <h3 className="text-sm font-medium text-[#111111]">PetCare</h3>
               <p className="text-xs text-zinc-600 mt-1">{petcareContent[language].subtitle}</p>
             </a>
           </div>
         </div>
       </section>
-
       {/* Lightbox Modal */}
       <LightboxModal
         images={explorationImages}

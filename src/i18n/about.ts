@@ -1,6 +1,10 @@
 export const aboutContent = {
   en: {
     headline: 'What I enjoy most is turning research into a clear idea of what to improve.',
+    headlineSegments: [
+      { text: 'What I enjoy most ', color: '#111111' },
+      { text: 'is turning research into a clear idea of what to improve.', color: '#52525b' },
+    ],
     imageAlt: 'Grzegorz Seweryn',
     bio: [
       'I’m Grzegorz, based in Kraków, and I’m looking for my first role in UX. I’m interested in both research and design, especially the connection between them: understanding a problem, making sense of the findings and using them to improve a product.',
@@ -46,12 +50,16 @@ export const aboutContent = {
   },
   pl: {
     headline: 'Najbardziej lubię moment, kiedy z badań wynika, co warto zmienić.',
+    headlineSegments: [
+      { text: 'Najbardziej lubię moment, ', color: '#111111' },
+      { text: 'kiedy z badań wynika, co warto zmienić.', color: '#52525b' },
+    ],
     imageAlt: 'Grzegorz Seweryn',
     bio: [
       'Jestem Grzegorz, mieszkam w Krakowie i szukam pierwszej pracy w UX. Interesują mnie zarówno badania, jak i projektowanie, a szczególnie to, co je łączy: zrozumienie problemu, poukładanie wniosków i przełożenie ich na usprawnienie produktu.',
       'Zacząłem od studiów z grafiki i UX na WSE im. ks. Józefa Tischnera. Później wybrałem magisterską socjologię na Uniwersytecie Jagiellońskim, z naciskiem na analizę danych i badania społeczne. Chciałem uzupełnić znajomość narzędzi projektowych o solidniejsze przygotowanie do prowadzenia i interpretowania badań. Dla mnie te dziedziny dobrze się uzupełniają.',
       'Wcześniej pracowałem w obsłudze klientów w Lunching i Alior Banku oraz przy obsłudze danych ubezpieczeniowych w Warcie. W Lunching na co dzień spotykałem się z trudnościami osób korzystających z usługi, a powtarzające się problemy i błędy aplikacji przekazywałem zespołowi produktowemu przez Jirę. To była obsługa klienta, ale pozwoliła mi zobaczyć z bliska, co utrudnia ludziom korzystanie z produktu.',
-      'W swoich projektach najbardziej lubię prowadzenie badań, analizowanie materiału i szukanie wniosków, które pomagają podjąć konkretną decyzję projektową. W portfolio pokazuję projekt interfejsu Portfolio Desk, badanie turystyfikacji Krakowa oraz PetCare — koncepcję wspólnej opieki nad zwierzęciem.',
+      'W swoich projektach najbardziej lubię prowadzenie badań, analizowanie materiału i szukanie wniosków, które pomagają podjąć konkretną decyzję projektową. W portfolio pokazuję projekt interfejsu Portfolio Desk, badanie turystyfikacji Krakowa oraz PetCare, koncepcję wspólnej opieki nad zwierzęciem.',
       'Lubię też poznawać narzędzia, które pomagają mi pracować i się rozwijać. Korzystam z AI, integracji MCP i projektów open source na GitHubie, żeby usprawniać pracę i szukać nowych podejść. Wybieram to, co przydatne, sprawdzam wyniki i decyduję, co trafia do projektu.',
     ],
     principlesTitle: 'Jak podchodzę do projektów',

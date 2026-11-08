@@ -192,7 +192,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
                       {t.comparison.comp1.beforeLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">Frappe Lending</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(0)}
@@ -219,7 +219,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
                       {t.comparison.comp1.afterLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">IBM Carbon Redesign</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(1)}
@@ -263,7 +263,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
                       {t.comparison.comp2.beforeLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">Frappe Lending</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(2)}
@@ -290,7 +290,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
                       {t.comparison.comp2.afterLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">IBM Carbon Redesign</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(3)}
@@ -334,7 +334,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-zinc-700">
                       {t.comparison.comp3.beforeLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">Frappe Lending</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">Frappe Lending</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(4)}
@@ -361,7 +361,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                     <span className="font-semibold uppercase tracking-wider text-[#111111]">
                       {t.comparison.comp3.afterLabel}
                     </span>
-                    <span className="text-zinc-400 text-[11px]">IBM Carbon Redesign</span>
+                    <span className="text-zinc-600 text-[11px] font-medium">IBM Carbon Redesign</span>
                   </div>
                   <button
                     onClick={() => setLightboxIndex(5)}
@@ -502,7 +502,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
               </svg>
               {language === 'pl' ? 'Przesuń tabelę w poziomie' : 'Scroll table horizontally'}
             </span>
-            <span className="text-zinc-400">{language === 'pl' ? '3 zadania' : '3 tasks'}</span>
+            <span className="text-zinc-600 font-medium">{language === 'pl' ? '3 zadania' : '3 tasks'}</span>
           </div>
 
           {/* Full KLM Comparative Table with Horizontal Scroll */}
@@ -595,7 +595,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
 
               <div className="flex items-center gap-3">
                 {/* Theme Selector */}
-                <div className={`flex items-center gap-1 p-1 rounded-lg ${isDark ? 'bg-zinc-900 border border-zinc-700' : 'bg-zinc-200/70'}`}>
+                <div role="group" aria-label={language === 'pl' ? 'Wybór motywu' : 'Theme selector'} className={`flex items-center gap-1 p-1 rounded-lg ${isDark ? 'bg-zinc-900 border border-zinc-700' : 'bg-zinc-200/70'}`}>
                   <button
                     onClick={() => setSystemTheme('light')}
                     className={`px-2.5 py-1 text-xs font-medium rounded-md transition-colors cursor-pointer ${
@@ -632,12 +632,12 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
             </header>
 
             {/* System Docs Main Nav */}
-            <div
+            <div role="tablist" aria-label={language === 'pl' ? 'Widok systemu projektowania' : 'Design system view'}
               className={`border-b px-4 sm:px-6 py-2.5 flex items-center gap-2 overflow-x-auto no-scrollbar transition-colors duration-300 ${
                 isDark ? 'bg-[#1f1f1f] border-zinc-800' : 'bg-zinc-100/60 border-zinc-200'
               }`}
             >
-              <span className={`text-[11px] font-semibold uppercase tracking-wider mr-2 shrink-0 hidden sm:inline ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+              <span className={`text-[11px] font-semibold uppercase tracking-wider mr-2 shrink-0 hidden sm:inline ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                 {language === 'pl' ? 'Widok' : 'View'}
               </span>
               <button
@@ -942,7 +942,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         <code className={`text-xs font-mono font-semibold ${isDark ? 'text-zinc-300' : 'text-zinc-700'}`}>
                           {s.name}
                         </code>
-                        <span className={`text-[10px] font-mono ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                        <span className={`text-[10px] font-mono ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                           {s.px}px
                         </span>
                       </div>
@@ -1156,7 +1156,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                             M PLN
                           </span>
                         </div>
-                        <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>500 loans</span>
+                        <span className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>500 loans</span>
                       </div>
                       <div className={`p-4 flex flex-col gap-1 ${isDark ? 'bg-[#1e1e1e]' : 'bg-white'}`}>
                         <span className={`text-xs ${isDark ? 'text-zinc-400' : 'text-zinc-500'}`}>Actions due</span>
@@ -1257,7 +1257,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         }`}
                       >
                         Over 30 days
-                        <span className={`${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-400 hover:text-zinc-700'} cursor-pointer`}>✕</span>
+                        <button type="button" aria-label={language === 'pl' ? 'Usuń filtr: Powyżej 30 dni' : 'Remove filter: Over 30 days'} className={`p-0.5 rounded cursor-pointer transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#111111] ${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}><span aria-hidden="true">✕</span></button>
                       </span>
                       <span
                         className={`inline-flex items-center gap-1.5 px-2.5 py-1 text-xs font-medium rounded-none border ${
@@ -1265,7 +1265,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         }`}
                       >
                         Product: Term loan
-                        <span className={`${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-400 hover:text-zinc-700'} cursor-pointer`}>✕</span>
+                        <button type="button" aria-label={language === 'pl' ? 'Usuń filtr: Pożyczka terminowa' : 'Remove filter: Term loan'} className={`p-0.5 rounded cursor-pointer transition-colors focus:outline-none focus-visible:ring-1 focus-visible:ring-[#111111] ${isDark ? 'text-zinc-400 hover:text-white' : 'text-zinc-600 hover:text-zinc-900'}`}><span aria-hidden="true">✕</span></button>
                       </span>
                     </div>
                     <div
@@ -1437,7 +1437,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         Portfolio Desk
                       </span>
                     </div>
-                    <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                    <span className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       Header lockup on enterprise desktops
                     </span>
                   </div>
@@ -1473,7 +1473,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         </div>
                       ))}
                     </div>
-                    <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                    <span className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       {language === 'pl' ? 'Zachowuje równowagę optyczną od 16 do 48 px' : 'Maintains optical balance from 16 to 48px'}
                     </span>
                   </div>
@@ -1513,7 +1513,7 @@ export const CaseStudyPortfolioDesk: React.FC<CaseStudyPortfolioDeskProps> = ({ 
                         </div>
                       </div>
                     </div>
-                    <span className={`text-[11px] ${isDark ? 'text-zinc-500' : 'text-zinc-400'}`}>
+                    <span className={`text-[11px] ${isDark ? 'text-zinc-400' : 'text-zinc-600'}`}>
                       {language === 'pl' ? 'Przetestowany na jasnym tle, planszy i ciemnej powierzchni' : 'Tested on light canvas, board & dark surface'}
                     </span>
                   </div>

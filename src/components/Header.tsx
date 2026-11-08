@@ -81,12 +81,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
       <button
         type="button"
         onClick={() => setLanguage('en')}
-        className={`rounded-full transition-all duration-150 cursor-pointer font-medium active:scale-[0.96] ${
-          isCompact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-0.5'
+        className={`rounded-full transition-[color,background-color,box-shadow,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer font-medium active:scale-[0.96] ${
+          isCompact ? 'px-2.5 py-1 text-xs min-h-[28px] min-w-[28px] flex items-center justify-center' : 'px-3 py-1 text-xs min-h-[28px] min-w-[32px] flex items-center justify-center'
         } ${
           language === 'en'
             ? 'bg-white text-[#111111] shadow-2xs font-semibold'
-            : 'text-zinc-500 hover:text-zinc-900'
+            : 'text-zinc-600 hover:text-zinc-900'
         }`}
         aria-pressed={language === 'en'}
         aria-label="English version"
@@ -96,12 +96,12 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
       <button
         type="button"
         onClick={() => setLanguage('pl')}
-        className={`rounded-full transition-all duration-150 cursor-pointer font-medium active:scale-[0.96] ${
-          isCompact ? 'px-2 py-0.5 text-[11px]' : 'px-2.5 py-0.5'
+        className={`rounded-full transition-[color,background-color,box-shadow,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer font-medium active:scale-[0.96] ${
+          isCompact ? 'px-2.5 py-1 text-xs min-h-[28px] min-w-[28px] flex items-center justify-center' : 'px-3 py-1 text-xs min-h-[28px] min-w-[32px] flex items-center justify-center'
         } ${
           language === 'pl'
             ? 'bg-white text-[#111111] shadow-2xs font-semibold'
-            : 'text-zinc-500 hover:text-zinc-900'
+            : 'text-zinc-600 hover:text-zinc-900'
         }`}
         aria-pressed={language === 'pl'}
         aria-label="Wersja polska"
@@ -168,7 +168,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-menu"
               aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
-              className="px-3 py-1.5 text-sm font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:bg-zinc-100 active:scale-[0.97] transition-all duration-150 cursor-pointer flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="px-3 py-1.5 text-sm font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:bg-zinc-100 active:scale-[0.97] transition-[color,background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer flex items-center gap-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               <span className="w-2 h-2 rounded-full bg-emerald-600"></span>
               <span>{mobileMenuOpen ? t.menuClose : t.menuOpen}</span>
@@ -224,7 +224,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav-menu"
               aria-label={mobileMenuOpen ? t.menuClose : t.menuOpen}
-              className="px-2.5 py-1.5 text-xs font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:scale-[0.97] transition-all duration-150 cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+              className="px-2.5 py-1.5 text-xs font-medium border border-zinc-200 rounded-lg text-[#111111] hover:bg-zinc-50 active:scale-[0.97] transition-[color,background-color,border-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
             >
               <span className="w-1.5 h-1.5 rounded-full bg-emerald-600"></span>
               <span>{mobileMenuOpen ? t.menuClose : t.menuOpen}</span>
@@ -234,13 +234,15 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
       </header>
 
       {/* Mobile Backdrop Overlay */}
-      {mobileMenuOpen && (
-        <div
-          onClick={() => setMobileMenuOpen(false)}
-          className="fixed inset-0 z-50 bg-black/40 backdrop-blur-xs transition-opacity duration-200 sm:hidden"
-          aria-hidden="true"
-        />
-      )}
+      <div
+        onClick={() => setMobileMenuOpen(false)}
+        className={`fixed inset-0 z-50 bg-black/40 backdrop-blur-xs transition-opacity sm:hidden ${
+          mobileMenuOpen
+            ? 'opacity-100 pointer-events-auto duration-200 ease-out'
+            : 'opacity-0 pointer-events-none duration-140 ease-in'
+        }`}
+        aria-hidden="true"
+      />
 
       {/* Mobile Navigation Drawer */}
       <div
@@ -248,8 +250,10 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
-        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-xl p-6 transition-transform duration-240 ease-[cubic-bezier(0.32,0.72,0,1)] sm:hidden ${
-          mobileMenuOpen ? 'translate-y-0' : '-translate-y-full'
+        className={`fixed top-0 left-0 right-0 z-50 bg-white border-b border-zinc-200 shadow-xl p-6 transition-transform sm:hidden ${
+          mobileMenuOpen
+            ? 'translate-y-0 duration-240 ease-[cubic-bezier(0.32,0.72,0,1)]'
+            : '-translate-y-full duration-160 ease-[cubic-bezier(0.23,1,0.32,1)]'
         }`}
       >
         <div className="flex items-center justify-between pb-4 border-b border-zinc-100">
@@ -260,7 +264,7 @@ export const Header: React.FC<HeaderProps> = ({ currentPath, navigate }) => {
           <button
             onClick={() => setMobileMenuOpen(false)}
             aria-label={t.menuClose}
-            className="p-2 -mr-2 text-zinc-600 hover:text-[#111111] hover:bg-zinc-100 active:scale-95 rounded-lg transition-all duration-150 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
+            className="p-2 -mr-2 text-zinc-600 hover:text-[#111111] hover:bg-zinc-100 active:scale-95 rounded-lg transition-[color,background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111]"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="18" y1="6" x2="6" y2="18" strokeLinecap="round" />

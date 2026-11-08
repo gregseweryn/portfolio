@@ -22,12 +22,19 @@
   --ease-drawer: cubic-bezier(0.32, 0.72, 0, 1);
 }
 
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: #e4e4e7 #ffffff;
+}
+
 /* Base Body: Geist */
 body {
   font-family: 'Geist Variable', 'Geist', system-ui, -apple-system, sans-serif;
   hanging-punctuation: first last;
   color: #111111;
   background-color: #ffffff;
+  caret-color: #111111;
   -webkit-tap-highlight-color: transparent;
 }
 
@@ -68,9 +75,6 @@ p, .text-pretty {
   max-width: 68ch;
 }
 
-html {
-  scroll-behavior: smooth;
-}
 
 /* Custom scrollbar */
 ::-webkit-scrollbar {

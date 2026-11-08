@@ -75,3 +75,7 @@ skills-lock.json
 /linkedin-thumbnail*.png
 
 /animator-loop-30s-horizontal.mp4
+
+.codex/
+.gemini/
+projects/

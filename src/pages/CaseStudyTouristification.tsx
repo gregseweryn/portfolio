@@ -316,7 +316,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
                   {t.qualitative.quote1Sub}
                 </p>
               )}
-              <p className="text-xs text-zinc-400 mt-3 font-semibold">
+              <p className="text-xs text-zinc-600 mt-3 font-semibold">
                 {t.qualitative.quote1Author}
               </p>
             </div>
@@ -333,7 +333,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
                   {t.qualitative.quote2Sub}
                 </p>
               )}
-              <p className="text-xs text-zinc-400 mt-3 font-semibold">
+              <p className="text-xs text-zinc-600 mt-3 font-semibold">
                 {t.qualitative.quote2Author}
               </p>
             </div>
@@ -350,7 +350,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
                   {t.qualitative.quote3Sub}
                 </p>
               )}
-              <p className="text-xs text-zinc-400 mt-3 font-semibold">
+              <p className="text-xs text-zinc-600 mt-3 font-semibold">
                 {t.qualitative.quote3Author}
               </p>
             </div>
@@ -367,7 +367,7 @@ export const CaseStudyTouristification: React.FC<CaseStudyTouristificationProps>
                   {t.qualitative.quote4Sub}
                 </p>
               )}
-              <p className="text-xs text-zinc-400 mt-3 font-semibold">
+              <p className="text-xs text-zinc-600 mt-3 font-semibold">
                 {t.qualitative.quote4Author}
               </p>
             </div>

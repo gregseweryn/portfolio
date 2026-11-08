@@ -74,8 +74,8 @@
   margin-block: 28px;
   padding: 24px 28px;
   background: #f6f0f8;
-  border-left: 3px solid #573877;
-  border-radius: 0 12px 12px 0;
+  border: 1px solid rgba(87, 56, 119, 0.15);
+  border-radius: 12px;
 }
 .pc-section blockquote p {
   font-size: clamp(20px, 2vw, 26px);

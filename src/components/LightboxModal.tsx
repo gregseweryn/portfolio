@@ -81,7 +81,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
             ref={closeButtonRef}
             onClick={onClose}
             aria-label="Close image viewer"
-            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="w-10 h-10 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 active:scale-95 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
@@ -102,7 +102,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               handlePrev()
             }}
             aria-label="Previous image"
-            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="15 18 9 12 15 6" />
@@ -118,7 +118,7 @@ export const LightboxModal: React.FC<LightboxModalProps> = ({
               handleNext()
             }}
             aria-label="Next image"
-            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-all duration-150 text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/25 active:scale-95 transition-[background-color,transform] duration-150 ease-[cubic-bezier(0.23,1,0.32,1)] text-white cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <polyline points="9 18 15 12 9 6" />

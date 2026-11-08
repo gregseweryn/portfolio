@@ -55,42 +55,44 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
           </h2>
           <div className="md:col-span-9 flex flex-col gap-12">
             {/* Portfolio Desk */}
-            <button
-              onClick={() => {
+            <a
+              href="/work/portfolio-desk"
+              onClick={(e) => { e.preventDefault();
                 navigate('/work/portfolio-desk')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
               className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <Laptop3D src="/work/portfolio-desk/overview-light.png" alt="Portfolio Desk: overview dashboard on a laptop" eager className="mb-4" />
-              <p className="text-xl font-medium text-[#111111] text-balance">{t.portfolioDesk.title}</p>
+              <h3 className="text-xl font-medium text-[#111111] text-balance">{t.portfolioDesk.title}</h3>
               <p className="text-sm text-zinc-700 mt-1 font-medium text-balance">{t.portfolioDesk.subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1 text-pretty">
                 {t.portfolioDesk.desc}
               </p>
-            </button>
+            </a>
 
             {/* Kraków Touristification */}
-            <button
-              onClick={() => {
+            <a
+              href="/work/krakow-touristification"
+              onClick={(e) => { e.preventDefault();
                 navigate('/work/krakow-touristification')
                 window.scrollTo({ top: 0, behavior: 'smooth' })
               }}
               className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <Laptop3D className="mb-4"><DistrictPhasesThumbnail /></Laptop3D>
-              <p className="text-xl font-medium text-[#111111] text-balance">{t.touristification.title}</p>
+              <h3 className="text-xl font-medium text-[#111111] text-balance">{t.touristification.title}</h3>
               <p className="text-sm text-zinc-700 mt-1 font-medium text-balance">{t.touristification.subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1 text-pretty">
                 {t.touristification.desc}
               </p>
-            </button>
+            </a>
 
             {/* PetCare */}
             <a
               href="/work/petcare"
               onClick={e => { e.preventDefault(); navigate('/work/petcare'); window.scrollTo(0, 0) }}
-              className="block group text-left rounded-xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-violet-900 active:scale-[0.985] transition-transform duration-150"
+              className="block group text-left cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#111111] focus-visible:ring-offset-2 rounded-xl active:scale-[0.985] transition-transform duration-150"
             >
               <PhoneTrio3D
                 left="/work/petcare/add-pet.png"
@@ -98,7 +100,7 @@ export const WorkPage: React.FC<WorkPageProps> = ({ navigate }) => {
                 right="/work/petcare/shared-care-dark.png"
                 className="mb-4"
               />
-              <p className="text-xl font-medium">PetCare</p>
+              <h3 className="text-xl font-medium text-[#111111]">PetCare</h3>
               <p className="text-sm text-zinc-700 mt-1 font-medium">{petcareContent[language].subtitle}</p>
               <p className="text-xs text-zinc-600 mt-1">{language === 'pl' ? 'Cztery wywiady, testy wcześniejszego prototypu z pięcioma osobami i projekt wspólnego zapisu opieki.' : 'Four discovery interviews, a five-person test of an earlier prototype and a shared-care record concept.'}</p>
             </a>

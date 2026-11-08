@@ -1,4 +1,5 @@
 import React from 'react'
+import { AnimatedTitle } from '../components/AnimatedTitle'
 import { useLanguage } from '../context/LanguageContext'
 import { aboutContent } from '../i18n'
 
@@ -13,11 +14,12 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
   return (
     <main id="main-content">
       {/* Editorial Headline */}
-      <section className="pt-8 md:pt-14 pb-8">
+      <section className="pt-8 md:pt-14 pb-8 md:pb-12">
         <div className="site-container">
-          <h1 className="text-2xl md:text-3xl font-normal text-[#111111] leading-[1.16] tracking-tight max-w-3xl text-balance">
-            {t.headline}
-          </h1>
+          <AnimatedTitle
+            coloredSegments={t.headlineSegments}
+            className="text-2xl md:text-3xl font-normal leading-[1.16] tracking-tight max-w-3xl text-balance"
+          />
         </div>
       </section>
 
@@ -60,7 +62,7 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
           <div className="md:col-span-9 flex flex-col divide-y divide-zinc-200/80">
             {t.principles.map((p) => (
               <div key={p.title} className="py-6 first:pt-0 last:pb-0">
-                <p className="text-xl font-medium text-[#111111] mb-2 text-balance">{p.title}</p>
+                <h3 className="text-xl font-medium text-[#111111] mb-2 text-balance">{p.title}</h3>
                 <p className="text-sm leading-relaxed text-zinc-700 text-pretty max-measure">{p.body}</p>
               </div>
             ))}
@@ -77,9 +79,9 @@ export const AboutPage: React.FC<AboutPageProps> = () => {
           <div className="md:col-span-9 grid grid-cols-1 sm:grid-cols-2 gap-4">
             {t.toolkit.map((group) => (
               <div key={group.group} className="border border-zinc-200 rounded-xl p-5 bg-white shadow-2xs">
-                <p className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-3">
+                <h3 className="text-xs uppercase tracking-wider font-semibold text-zinc-500 mb-3">
                   {group.group}
-                </p>
+                </h3>
                 <ul className="space-y-1.5">
                   {group.items.map((item) => (
                     <li key={item} className="text-sm font-medium text-zinc-800">
